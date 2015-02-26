@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="DEDI.LogInPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DEDI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image Height="200" VerticalAlignment="Top" Width="200" Margin="0,80,0,0" HorizontalAlignment="Center"/>
+        <Grid HorizontalAlignment="Center" Height="300" VerticalAlignment="Bottom" Margin="0,0,0,50">
+            <TextBlock x:Name="UsernameTbl" TextWrapping="Wrap" Text="Username" FontSize="24" Margin="50,50,0,166" VerticalAlignment="Top"/>
+            <TextBlock x:Name="PasswordTbl" TextWrapping="Wrap" Text="Password" FontSize="24" Margin="50,110,0,112" VerticalAlignment="Top"/>
+            <TextBox x:Name="UsernameTb" TextWrapping="Wrap" Margin="0,50,50,0" Width="170" Height="24" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" MinHeight="28"/>
+            <TextBox x:Name="PasswordTb" TextWrapping="Wrap" Margin="180,110,50,112" Width="170" Height="24" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" MinHeight="28"/>
+            <Button x:Name="SignInBtn" Content="Sign In" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,80" Width="120" FontSize="20"/>
+            <TextBlock x:Name="OrTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="or" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,135,55"/>
+            <HyperlinkButton x:Name="RegisterHL" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="50,0,65,52"/>
+        </Grid>
+
+    </Grid>
+</Page>
