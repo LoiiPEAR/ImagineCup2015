@@ -15,6 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Address.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MapsView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Report.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />
   </ItemGroup>
 </Project>
