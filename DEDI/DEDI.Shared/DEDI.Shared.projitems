@@ -15,6 +15,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CreateReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DisasterReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
   </ItemGroup>
 </Project>

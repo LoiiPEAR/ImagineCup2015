@@ -22,7 +22,7 @@ namespace DEDI
     /// </summary>
     public sealed partial class LogInPage : Page
     {
-        public LogInPage()
+        public LogInPage()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         {
             this.InitializeComponent();
         }

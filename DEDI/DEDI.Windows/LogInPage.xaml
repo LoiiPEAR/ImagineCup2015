@@ -8,15 +8,15 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image HorizontalAlignment="Center" Height="250" VerticalAlignment="Top" Width="250" Margin="558,80,558,0"/>
+        <Image x:Name="LogoImg" HorizontalAlignment="Center" Height="250" VerticalAlignment="Top" Width="250" Margin="558,80,558,0"/>
         <Grid HorizontalAlignment="Center" Height="300" VerticalAlignment="Bottom" Width="500" Margin="433,0,433,80">
             <TextBlock x:Name="UsernameTbl" TextWrapping="Wrap" Text="Username" FontSize="28" Margin="50,50,320,166" VerticalAlignment="Top"/>
             <TextBlock x:Name="PasswordTbl" TextWrapping="Wrap" Text="Password" FontSize="28" Margin="50,110,320,112" VerticalAlignment="Top"/>
             <TextBox x:Name="UsernameTb" TextWrapping="Wrap" Margin="200,50,50,166" Width="250" Height="32" FontSize="28" VerticalAlignment="Top"/>
             <TextBox x:Name="PasswordTb" TextWrapping="Wrap" Margin="200,110,50,112" Width="250" Height="32" FontSize="28" VerticalAlignment="Top"/>
-            <Button x:Name="SignInBtn" Content="Sign In" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,80" Width="160" FontSize="24"/>
+            <Button x:Name="SignInBtn" Content="Sign In" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,80" Width="160" FontSize="24" Click="SignInBtn_Click"/>
             <TextBlock x:Name="OrTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="or" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,160,45"/>
-            <HyperlinkButton x:Name="RegisterHL" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="50,0,65,35"/>
+            <HyperlinkButton x:Name="RegisterHL" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="50,0,65,35" Click="RegisterHL_Click"/>
         </Grid>
 
     </Grid>
