@@ -26,5 +26,10 @@ namespace DEDI
         {
             this.InitializeComponent();
         }
+
+        private void gotoMap(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MapsView));
+        }
     }
 }
