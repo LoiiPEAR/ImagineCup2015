@@ -23,7 +23,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MapsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Report.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />
   </ItemGroup>

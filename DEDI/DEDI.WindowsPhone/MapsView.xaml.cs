@@ -1,9 +1,4 @@
-﻿using Microsoft.Phone.Maps.Controls;
-using Microsoft.Phone.Maps.Toolkit;
-using System.Device.Location;
-using Windows.Devices.Geolocation;
-using System.Windows.Shapes;
-using System.Windows.Media;
+﻿
 
 using System.Xml.Linq;
 using System.Runtime.Serialization;
@@ -13,6 +8,11 @@ using System.Text;
 using System.IO;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.Devices.Geolocation;
+using Windows.UI.Xaml.Shapes;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
+using Windows.UI.Xaml.Controls.Maps;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -43,46 +43,55 @@ namespace DEDI
         void InitializeMap()
         {
 
-            //*** Map
-            Map MyMap = new Map();
-            MyMap.ZoomLevel = 16;
-
-            MapLayer layer = new MapLayer();
 
             /* [{"Lat":"13.815361","Lon":"100.560822","LocationName":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","LocationName":"MRT Phaholyothin"}] */
             string strJSON = string.Empty;
             strJSON = " [{\"Lat\":\"13.815361\",\"Lon\":\"100.560822\",\"LocationName\":\"Central Patpharo\"},{\"Lat\":\"13.81433\",\"Lon\":\"100.560162\",\"LocationName\":\"MRT Phaholyothin\"}]";
 
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(strJSON));
-            ObservableCollection<MyLocation> list = new ObservableCollection<MyLocation>();
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<MyLocation>));
-            list = (ObservableCollection<MyLocation>)serializer.ReadObject(ms);
+            ObservableCollection<Address> list = new ObservableCollection<Address>();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Address>));
+            list = (ObservableCollection<Address>)serializer.ReadObject(ms);
 
-            foreach (MyLocation loc in list)
+            foreach (Address loc in list)
             {
-                Pushpin pushpin1 = new Pushpin();
-                pushpin1.GeoCoordinate = new GeoCoordinate(loc.Lat, loc.Lon);
-                pushpin1.Background = new SolidColorBrush(Colors.Orange);
-                MapOverlay overlay1 = new MapOverlay();
-                overlay1.Content = pushpin1;
-                overlay1.GeoCoordinate = new GeoCoordinate(loc.Lat, loc.Lon);
-                layer.Add(overlay1);
-
-                MyMap.Center = new GeoCoordinate(loc.Lat, loc.Lon);
+                AddPushpin(new BasicGeoposition() { Latitude=loc.Lat,Longitude=loc.Lon}, loc.LocationName);
             }
 
 
-            // Map Layer
-            MyMap.Layers.Add(layer);
-
-            // CarphicMode
-            MyMap.CartographicMode = MapCartographicMode.Hybrid;
-
-            // Add map to display
-            ContentPanel.Children.Add(MyMap);
+           
 
 
+        }
+        public void AddPushpin(BasicGeoposition location, string text)
+        {
+            var pin = new Grid()
+            {
+                Width = 50,
+                Height = 50,
+                Margin = new Windows.UI.Xaml.Thickness(-12)
+            };
 
+            pin.Children.Add(new Ellipse()
+            {
+                Fill = new SolidColorBrush(Colors.DodgerBlue),
+                Stroke = new SolidColorBrush(Colors.White),
+                StrokeThickness = 3,
+                Width = 50,
+                Height = 50
+            });
+
+            pin.Children.Add(new TextBlock()
+            {
+                Text = text,
+                FontSize = 12,
+                Foreground = new SolidColorBrush(Colors.White),
+                HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center,
+                VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center
+            });
+
+            MapControl.SetLocation(pin, new Geopoint(location));
+            MyMap.Children.Add(pin);
         }
 
         
