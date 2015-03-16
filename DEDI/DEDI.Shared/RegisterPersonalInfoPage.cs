@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DEDI
 {
-    public sealed partial class RegisterPage
+    public sealed partial class RegisterPersonalInfoPage
     {
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -17,6 +17,11 @@ namespace DEDI
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LogInPage));
+        }
+        
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(RegisterOfficialInfoPage));
         }
     }
 }

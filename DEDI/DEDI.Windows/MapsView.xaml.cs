@@ -27,7 +27,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 namespace DEDI
 {
-    public class MapsView
+    public sealed partial class MapsView
     {
         public MapsView()
         {
@@ -45,7 +45,7 @@ namespace DEDI
             // this event is handled for you.
         }
 
-        void InitializeMap()
+        public void InitializeMap()
         {
 
             double lat = 0;

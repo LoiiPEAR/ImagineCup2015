@@ -22,7 +22,7 @@ namespace DEDI
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public  class MapsView 
+    public sealed partial class MapsView
     {
         public MapsView()
         {
@@ -40,7 +40,7 @@ namespace DEDI
             // this event is handled for you.
         }
 
-        void InitializeMap()
+       public void InitializeMap()
         {
 
             //*** Map

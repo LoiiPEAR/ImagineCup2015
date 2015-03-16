@@ -15,7 +15,7 @@ namespace DEDI
 
         private void RegisterHL_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(RegisterPage));
+            this.Frame.Navigate(typeof(RegisterPersonalInfoPage));
         }
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
