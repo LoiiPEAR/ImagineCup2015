@@ -7,9 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    xmlns:Controls="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps">
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    >
 
     <Grid>
-    
+        <maps:MapControl x:Name="MyMap" 
+                 MapTapped="MyMap_MapTapped" />
     </Grid>
 </Page>
