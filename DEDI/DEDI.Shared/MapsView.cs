@@ -13,8 +13,14 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+#if WINDOWS_APP
 using Bing.Maps;
+#endif
+#if WINDOW_PHONE_APP
+using Microsift.Phone.Maps.Contorls;
+using IntelliFactory.WebSharper.Bing;
+#endif
+
 using Windows.UI.Popups;
 
 using System.Xml.Linq;
@@ -47,7 +53,7 @@ namespace DEDI
 
             double lat = 0;
             double lon = 0;
-
+            //Map myMap = new Map();
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 17;
             myMap.MapType = MapType.Road;
