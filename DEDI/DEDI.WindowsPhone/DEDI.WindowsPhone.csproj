@@ -99,6 +99,9 @@
       <DependentUpon>MapsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterOfficialInfoPage.xaml.cs">
+      <DependentUpon>RegisterOfficialInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegisterPersonalInfoPage.xaml.cs">
       <DependentUpon>RegisterPersonalInfoPage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
     <Page Include="LogInPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RegisterOfficialInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterPersonalInfoPage.xaml">
       <SubType>Designer</SubType>

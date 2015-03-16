@@ -29,18 +29,18 @@
         -->
         <Grid Grid.Row="1" x:Name="contentRegion">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Official Information" VerticalAlignment="Top" Margin="200,30,0,0" FontSize="36" FontWeight="Bold"/>
-            <TextBlock x:Name="UsernameTbl1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Organization*" VerticalAlignment="Top" FontSize="20" Margin="200,120,0,0"/>
-            <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,160,0,0" FontSize="16" Width="450"/>
-            <TextBlock x:Name="PasswordTbl1" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Position*" VerticalAlignment="Top" Margin="0,120,571,0" FontSize="20"/>
-            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" Width="450" Margin="0,160,200,0" FontSize="20"/>
-            <TextBlock x:Name="FirstNameTb1l" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Country*" VerticalAlignment="Top" FontSize="20" Margin="200,220,0,0"/>
-            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" Margin="0,220,616,0" FontSize="20"/>
-            <TextBlock x:Name="GenderTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="District" VerticalAlignment="Top" FontSize="20" Margin="200,320,0,0"/>
-            <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="120" Click="NextBtn_Click"/>
-            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" Width="450" Margin="0,260,200,0" FontSize="20"/>
-            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Margin="200,260,0,0" FontSize="20"/>
-            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Margin="200,360,0,0" FontSize="20"/>
-            <Button x:Name="NextBtn" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,330,50" FontSize="24" Width="120" Click="NextBtn_Click"/>
+            <TextBlock x:Name="OrganizationTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Organization*" VerticalAlignment="Top" FontSize="20" Margin="200,120,0,0"/>
+            <TextBox x:Name="OrganizationTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,160,0,0" FontSize="16" Width="450"/>
+            <TextBlock x:Name="PositionTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Position*" VerticalAlignment="Top" Margin="0,120,571,0" FontSize="20"/>
+            <ComboBox x:Name="PositionCb" HorizontalAlignment="Right" VerticalAlignment="Top" Width="450" Margin="0,160,200,0" FontSize="20"/>
+            <TextBlock x:Name="CountryTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Country*" VerticalAlignment="Top" FontSize="20" Margin="200,220,0,0"/>
+            <ComboBox x:Name="CountryCb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Margin="200,260,0,0" FontSize="20"/>
+            <TextBlock x:Name="CityTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" Margin="0,220,616,0" FontSize="20"/>
+            <ComboBox x:Name="CityCb" HorizontalAlignment="Right" VerticalAlignment="Top" Width="450" Margin="0,260,200,0" FontSize="20"/>
+            <TextBlock x:Name="DistrictTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="District" VerticalAlignment="Top" FontSize="20" Margin="200,320,0,0"/>
+            <ComboBox x:Name="DistrictCb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Margin="200,360,0,0" FontSize="20"/>
+            <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="120"/>
+            <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,330,50" FontSize="24" Width="120"/>
         </Grid>
 
         <!-- Back button and page title -->
@@ -54,7 +54,7 @@
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
+                        AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock x:Name="pageTitle" Text="Register" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>

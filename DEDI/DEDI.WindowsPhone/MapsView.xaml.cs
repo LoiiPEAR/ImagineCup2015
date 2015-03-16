@@ -6,12 +6,14 @@ using System.Runtime.Serialization.Json;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.IO;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 
 
@@ -42,8 +44,13 @@ namespace DEDI
 
        public void InitializeMap()
         {
-
-
+            double lat = 0;
+            double lon = 0;
+            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.ZoomLevel = 17;
+            myMap.Width = 300;
+            myMap.Height = 800;
+            myMap.LandmarksVisible = true;
             /* [{"Lat":"13.815361","Lon":"100.560822","LocationName":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","LocationName":"MRT Phaholyothin"}] */
             string strJSON = string.Empty;
             strJSON = " [{\"Lat\":\"13.815361\",\"Lon\":\"100.560822\",\"LocationName\":\"Central Patpharo\"},{\"Lat\":\"13.81433\",\"Lon\":\"100.560162\",\"LocationName\":\"MRT Phaholyothin\"}]";
@@ -56,9 +63,11 @@ namespace DEDI
             foreach (Address loc in list)
             {
                 AddPushpin(new BasicGeoposition() { Latitude=loc.Lat,Longitude=loc.Lon}, loc.LocationName);
+                lat = loc.Lat;
+                lon = loc.Lon;
             }
 
-
+            myMap.Center = new Geopoint(new BasicGeoposition() { Latitude=lat,Longitude=lon});
            
 
 
@@ -89,9 +98,10 @@ namespace DEDI
                 HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center,
                 VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center
             });
-
+            
             MapControl.SetLocation(pin, new Geopoint(location));
-            MyMap.Children.Add(pin);
+           
+            myMap.Children.Add(pin);
         }
 
         
