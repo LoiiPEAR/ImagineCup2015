@@ -47,5 +47,15 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(CreateReportPage));
         }
+
+        private void GoToMapBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MapsView));
+        }
+
+        private void GoToReportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ReportsView));
+        }
     }
 }

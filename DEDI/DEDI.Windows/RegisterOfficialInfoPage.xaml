@@ -39,8 +39,8 @@
             <ComboBox x:Name="CityCb" HorizontalAlignment="Right" VerticalAlignment="Top" Width="450" Margin="0,260,200,0" FontSize="20"/>
             <TextBlock x:Name="DistrictTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="District" VerticalAlignment="Top" FontSize="20" Margin="200,320,0,0"/>
             <ComboBox x:Name="DistrictCb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Margin="200,360,0,0" FontSize="20"/>
-            <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="120"/>
-            <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,330,50" FontSize="24" Width="120"/>
+            <Button x:Name="RegisterBtn" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="130" Click="RegisterBtn_Click"/>
+            <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,340,50" FontSize="24" Width="130" Click="BackBtn_Click"/>
         </Grid>
 
         <!-- Back button and page title -->
@@ -54,7 +54,7 @@
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
+                        AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
             <TextBlock x:Name="pageTitle" Text="Register" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>

@@ -135,6 +135,9 @@
     <Compile Include="RegisterPersonalInfoPage.xaml.cs">
       <DependentUpon>RegisterPersonalInfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportsView.xaml.cs">
+      <DependentUpon>ReportsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RiskFactorReportPage.xaml.cs">
       <DependentUpon>RiskFactorReportPage.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterPersonalInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterOfficialInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterPersonalInfoPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReportsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Report.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />
