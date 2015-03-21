@@ -17,7 +17,7 @@ namespace DEDI
         [DataMember]
         public string Description { get; set; }
         [DataMember]
-        public HealthWorker HealthWorker { get; set; }
+        public Health_Worker HealthWorker { get; set; }
         [DataMember]
         public string Patient { get; set; }
         [DataMember]

@@ -1,27 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DEDI
 {
  
-    class HealthWorker
+    class Health_Worker
     {
-       
-        public int id { get; set; }
-       [JsonProperty(PropertyName = "fname")]
-        public string Firstname { get; set; }
-       [JsonProperty(PropertyName = "lname")]
-       public string Lastname { get; set; }
-       [JsonProperty(PropertyName = "gender")]
-       public string Gender { get; set; }
-       [JsonProperty(PropertyName = "DOB")]
-       public DateTime DateofBirth { get; set; }
-       [JsonProperty(PropertyName = "telephone")]
-       public string Telephone { get; set; }
-       [JsonProperty(PropertyName = "email")]
-       public string Email { get; set; }
 
+        public string id { get; set; }
+        public int hw_id { get; set; }
+        public string fname { get; set; }
+        public string lname { get; set; }
+        public string gender { get; set; }
+        public DateTime DOB { get; set; }
+        public string telephone { get; set; }
+        public string email { get; set; }
+        public int organization_id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public int position_id { get; set; }
     }
 }

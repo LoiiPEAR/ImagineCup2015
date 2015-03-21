@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -10,32 +11,40 @@ namespace DEDI
 {
     public sealed partial class HomePage
     {
-        private List<HealthWorker> hw;
-        private IMobileServiceTable<HealthWorker> memberTable = App.MobileService.GetTable<HealthWorker>();
+        private List<Health_Worker> hw;
+        //private MobileServiceCollection<Health_Worker, Health_Worker> items;
+        private IMobileServiceTable<Health_Worker> memberTable;
         public HomePage()
         {
             this.InitializeComponent();
-           
+            
         }
 
         private async void loadData()
         {
             try
             {
-                hw = await memberTable.Where( user => user.Firstname =="Phanumas").Take(1).ToListAsync();
+                //items = await memberTable.ToCollectionAsync();
+                var getData = await App.MobileService.GetTable<Health_Worker>().ToCollectionAsync();
+                int i = 0;
+                //hw = await memberTable.ToListAsync();
+                //Health_Worker test = hw[0];
+                //string _Firstname = test.fname;
+
             }
             catch (MobileServiceInvalidOperationException e)
             {
-                throw e;
+                MessageDialog ms = new MessageDialog(e.ToString());
+                ms.ShowAsync();
             }
 
 
-            string FirstName = hw[0].Firstname;
+            
             
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-             loadData();
+            loadData();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
