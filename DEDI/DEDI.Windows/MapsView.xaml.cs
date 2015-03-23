@@ -55,6 +55,7 @@ namespace DEDI
             myMap.MapType = MapType.Road;
             myMap.Width = 800;
             myMap.Height = 800;
+           
 
             /* [{"Lat":"13.815361","Lon":"100.560822","LocationName":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","LocationName":"MRT Phaholyothin"}] */
             string strJSON = string.Empty;

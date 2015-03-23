@@ -83,6 +83,9 @@
     <Compile Include="CreateReportPage.xaml.cs">
       <DependentUpon>CreateReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DashBoard.xaml.cs">
+      <DependentUpon>DashBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DisasterReportPage.xaml.cs">
       <DependentUpon>DisasterReportPage.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CreateReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DashBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

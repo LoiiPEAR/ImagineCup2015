@@ -7,21 +7,22 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DEDI
 {
-    public sealed partial class RegisterPersonalInfoPage
+    public sealed partial class DashBoard
     {
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LogInPage));
+            this.Frame.Navigate(typeof(HomePage));
         }
-        
-        private void NextBtn_Click(object sender, RoutedEventArgs e)
+
+        private void MoreBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(RegisterOfficialInfoPage));
+
         }
+
     }
 }
