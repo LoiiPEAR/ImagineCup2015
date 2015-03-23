@@ -21,6 +21,7 @@ namespace DEDI
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+           
             NewPatient.Visibility = Visibility.Visible;
             PatientInfo.Visibility = Visibility.Collapsed;
         }

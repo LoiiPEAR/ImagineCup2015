@@ -34,8 +34,16 @@ namespace DEDI
 
             }
             catch (MobileServiceInvalidOperationException e)
+        
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+                MessageDialog ms = new MessageDialog(e.ToString());
+                ms.ShowAsync();
+            }
 
+
+            
+            
         }
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
