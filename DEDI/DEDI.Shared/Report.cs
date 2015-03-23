@@ -9,12 +9,28 @@ namespace DEDI
     class Report
     {
         [DataMember]
+        public int id { get; set; }
+        [DataMember]
         public double Lat { get; set; }
         [DataMember]
         public double Lon { get; set; }
         [DataMember]
-        public int id { get; set; }
+        public string Description { get; set; }
         [DataMember]
-        public string user_report { get; set; }
+        public Health_Worker HealthWorker { get; set; }
+        [DataMember]
+        public string Patient { get; set; }
+        [DataMember]
+        public DateTime ReportTime { get; set; }
+        [DataMember]
+        public DateTime OcurrTime { get; set; }
+        [DataMember]
+        public double ProbofDisease { get; set; }
+        [DataMember]
+        public List<string> RiskFactor { get; set; }
+        [DataMember]
+        public List<string> Symptom { get; set; }
+
+
     }
 }

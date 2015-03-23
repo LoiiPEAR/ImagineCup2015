@@ -54,10 +54,10 @@
             <HubSection x:Name="ProfileSection" Width="530">
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ProfileSectionTemplate" TargetType="HubSection">
-                        <Grid Margin="0,0,20,0" Width="530">
+                        <Grid x:Name="ProfileSection" Margin="0,0,20,0" Width="530">
                             <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Margin="50,260,0,0"/>
-                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Prae" VerticalAlignment="Top" Margin="230,280,0,0" FontSize="24" FontWeight="Bold"/>
-                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Charkratpahu" VerticalAlignment="Top" Margin="230,310,0,0" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Firstname}" VerticalAlignment="Top" Margin="230,280,0,0" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Lastname}" VerticalAlignment="Top" Margin="230,310,0,0" FontSize="24" FontWeight="Bold"/>
                             <Image x:Name="___Image_" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="240,350,0,0"/>
                             <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ban Phaxay, Sisattanak District, Vientiane Laos" VerticalAlignment="Top" Margin="280,350,0,0" FontSize="16" Width="200"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Margin="50,430,0,0" FontSize="20"/>

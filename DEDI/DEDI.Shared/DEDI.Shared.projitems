@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DateTimePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DisasterReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Health_Worker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Address.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />

@@ -25,6 +25,14 @@ namespace DEDI
         public LogInPage()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         {
             this.InitializeComponent();
+            if (App.MobileService != null)
+            {
+                lblStatus.Text = "Mobile Service Connected.";
+            }
+            else
+            {
+                lblStatus.Text = "Mobile Service Connect Failed.";
+            }
         }
 
         private void gotoMap(object sender, RoutedEventArgs e)

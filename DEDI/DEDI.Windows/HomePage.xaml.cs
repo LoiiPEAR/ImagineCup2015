@@ -36,5 +36,6 @@ namespace DEDI
             //myMap.MapType = MapType.Road;
             
         }
+       
     }
 }
