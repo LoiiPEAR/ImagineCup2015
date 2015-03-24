@@ -114,7 +114,7 @@
                     <ControlTemplate x:Key="MapSectionTemplate" TargetType="HubSection">
                         <Grid>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="map" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48"/>
-                            <Maps:Map x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,50,50"/>
+                            <bm:Map x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,50,50"/>
                             <AppBarButton x:Name="GoToMapBtn" HorizontalAlignment="Left" Label="&#xD;&#xA;" VerticalAlignment="Top" Margin="130,160,0,0" Icon="Forward" Click="GoToMapBtn_Click"/>
                         </Grid>
                     </ControlTemplate>

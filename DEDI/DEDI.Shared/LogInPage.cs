@@ -9,6 +9,11 @@ namespace DEDI
 {
     public sealed partial class LogInPage
     {
+        public LogInPage()
+        {
+            this.InitializeComponent();
+            
+        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
