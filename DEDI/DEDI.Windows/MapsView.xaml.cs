@@ -53,7 +53,7 @@ namespace DEDI
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 17;
             myMap.MapType = MapType.Road;
-           
+
 
             /* [{"Lat":"13.815361","Lon":"100.560822","Name":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","Name":"MRT Phaholyothin"}] */
             string strJSON = string.Empty;

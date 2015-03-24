@@ -4,7 +4,7 @@
     xmlns:local="using:DEDI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Maps="using:Bing.Maps"
+    xmlns:bm="using:Bing.Maps"
     x:Class="DEDI.HomePage"
     mc:Ignorable="d">
 
@@ -17,8 +17,8 @@
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="FourBars" Label="Dashboard"/>
-            <AppBarButton Label="Create A Report" Click="AppBarButton_Click" Icon="Add"/>
+            <AppBarButton x:Name="DashboardBtn" Icon="TwoBars" Label="Dashboard" Click="DashboardBtn_Click"/>
+            <AppBarButton x:Name="CreateReportBtn" Icon="Add" Label="Create a New Report" Click="CreateReportBtn_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -147,7 +147,7 @@
                     <ControlTemplate x:Key="ReportSectionTemplate" TargetType="HubSection">
                         <Grid Width="500">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="reports" VerticalAlignment="Top" FontSize="48" Margin="50,160,0,0"/>
-                            <AppBarButton x:Name="GoToReportBtn" HorizontalAlignment="Left" Label="&#xA;" VerticalAlignment="Top" Margin="185,160,0,0" Icon="Forward" Click="GoToReportBtn_Click"/>
+                            <AppBarButton x:Name="GoToReportBtn" HorizontalAlignment="Left" Label="&#xA;" VerticalAlignment="Top" Margin="185,160,0,0" Icon="Forward" Click="GoToReportBtn_Click" Height="71"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>

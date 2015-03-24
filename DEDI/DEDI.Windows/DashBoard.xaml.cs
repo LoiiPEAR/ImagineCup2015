@@ -1,5 +1,4 @@
-﻿using Bing.Maps;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,20 +20,11 @@ namespace DEDI
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RiskFactorReportPage : Page
+    public sealed partial class DashBoard : Page
     {
-        public RiskFactorReportPage()
+        public DashBoard()
         {
             this.InitializeComponent();
-            InitializeMap();
-        }
-
-        private void InitializeMap()
-        {
-            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 17;
-            myMap.MapType = MapType.Road;
-           
         }
     }
 }

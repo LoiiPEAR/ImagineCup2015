@@ -1,10 +1,11 @@
 ﻿<Page
-    x:Class="DEDI.DiseaseReportPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DEDI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Bing.Maps"
+    x:Class="DEDI.DiseaseReportPage"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -22,7 +23,117 @@
             TODO: Content should be placed within the following grid 
                   to show details for the current item
         -->
-        <Grid Grid.Row="1" x:Name="contentRegion"/>
+        <Grid Grid.Row="1" x:Name="contentRegion">
+            <Grid HorizontalAlignment="Left" Height="628" VerticalAlignment="Top" Width="400">
+                <Button x:Name="PatientInfoBtn" Content="Patient Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,80,0,0" FontSize="36" Click="PatientInfoBtn_Click"/>
+                <Button x:Name="SymptomsBtn" Content="Symptoms" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,200,0,0" FontSize="36" Click="SymptomsBtn_Click"/>
+                <Button x:Name="LocationTimeBtn" Content="Location and Time" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,320,0,0" FontSize="36" Click="LocationTimeBtn_Click"/>
+            </Grid>
+            <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="966" Height="628">
+                <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Margin="0" Visibility="Collapsed">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="40,210,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" FontSize="20" Margin="40,160,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="40,310,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="40,360,0,0"/>
+                    <Button x:Name="EditPatientInfoBtn" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="244,84,0,0" Click="EditPatientInfoBtn_Click">
+                        <Button.Resources>
+                            <Flyout x:Name="EditFlyout" x:Key="EditPatientInfo" Placement="Bottom">
+                                <Grid Height="600" Width="289" UseLayoutRounding="True">
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+                                    <TextBlock x:Name="EditNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="20" Margin="0,60,0,0"/>
+                                    <TextBox x:Name="EditNameTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,90,0,0" FontSize="16" Width="289"/>
+                                    <TextBlock x:Name="EditDOBTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date of  birth" VerticalAlignment="Top" FontSize="20" Margin="0,140,0,0"/>
+                                    <DatePicker x:Name="EditDOBDpk" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,170,0,0"/>
+                                    <TextBlock x:Name="EditWeightTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight" VerticalAlignment="Top" FontSize="20" Margin="0,220,0,0"/>
+                                    <TextBlock x:Name="EditHeightTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" FontSize="20" Margin="146,220,0,0"/>
+                                    <TextBox x:Name="EditWeightTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,250,0,0" FontSize="16" Width="100"/>
+                                    <TextBox x:Name="EditHeightTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,250,43,0" FontSize="16" Width="100"/>
+                                    <TextBlock x:Name="EditKGTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="kg" VerticalAlignment="Top" FontSize="20" Margin="113,254,0,0"/>
+                                    <TextBlock x:Name="EditAddressTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" FontSize="20" Margin="0,300,0,0"/>
+                                    <TextBlock x:Name="EditTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Telephone" VerticalAlignment="Top" FontSize="20" Margin="0,470,0,0"/>
+                                    <TextBox x:Name="EditTelTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,500,0,0" FontSize="16" Width="289"/>
+                                    <TextBlock x:Name="EditCMTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="cm" VerticalAlignment="Top" FontSize="20" Margin="255,254,0,0"/>
+                                    <TextBox x:Name="EditOtherTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="44,390,0,0" FontSize="16" Width="245" Height="60"/>
+                                    <RadioButton x:Name="EditCurrentLocationRBtn" Content="Current Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,330,0,0"/>
+                                    <RadioButton x:Name="EditOtherRBtn" Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,360,0,0"/>
+                                    <Button x:Name="EditConfirmBtn" Content="Confirm" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,562,0,0" FontSize="20" Width="140" Click="EditConfirmBtn_Click"/>
+                                    <Button x:Name="EditCancelBtn" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,562,0,0" FontSize="20" Width="140" Click="EditCancelBtn_Click"/>
+                                </Grid>
+                            </Flyout>
+                        </Button.Resources>
+                        <Button.Flyout>
+                            <StaticResource ResourceKey="EditPatientInfo"/>
+                        </Button.Flyout>
+                    </Button>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="40,260,0,0"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="20,0,0,120" Stroke="Black" VerticalAlignment="Bottom" Width="289"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="40,0,0,166" FontWeight="Bold"/>
+                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel. 12-3456-7890" VerticalAlignment="Top" Margin="130,474,0,0" FontSize="20"/>
+                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mary Mary" VerticalAlignment="Top" FontSize="18" Margin="0,212,112,0"/>
+                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" FontSize="18" Margin="0,260,112,0"/>
+                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="50 kg" VerticalAlignment="Top" FontSize="18" Margin="0,312,112,0"/>
+                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="160 cm" VerticalAlignment="Top" FontSize="18" Margin="0,362,112,0"/>
+                    <TextBlock x:Name="ShowIDTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="123456" VerticalAlignment="Top" FontSize="18" Margin="0,162,112,0"/>
+                </Grid>
+                <Grid x:Name="NewPatient" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
+                    <Button x:Name="AddPatientInfoBtn_Copy" Content="Add New Patient" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Margin="0,200,120,0" Width="200" Height="200">
+                        <Button.Resources>
+                            <Flyout x:Name="AddFlyout" x:Key="EditPatientInfo" Placement="Bottom">
+                                <Grid Height="600" Width="289" UseLayoutRounding="True">
+                                    <TextBlock x:Name="PatientTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+                                    <TextBlock x:Name="NameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="20" Margin="0,60,0,0"/>
+                                    <TextBox x:Name="NameTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,90,0,0" FontSize="16" Width="289"/>
+                                    <TextBlock x:Name="DOBTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date of  birth" VerticalAlignment="Top" FontSize="20" Margin="0,140,0,0"/>
+                                    <DatePicker x:Name="DOBDpk" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,170,0,0"/>
+                                    <TextBlock x:Name="WeightTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight" VerticalAlignment="Top" FontSize="20" Margin="0,220,0,0"/>
+                                    <TextBlock x:Name="HeightTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" FontSize="20" Margin="146,220,0,0"/>
+                                    <TextBox x:Name="WeightTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,250,0,0" FontSize="16" Width="100"/>
+                                    <TextBox x:Name="HeightTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,250,43,0" FontSize="16" Width="100"/>
+                                    <TextBlock x:Name="KGTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="kg" VerticalAlignment="Top" FontSize="20" Margin="113,254,0,0"/>
+                                    <TextBlock x:Name="AddressTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" FontSize="20" Margin="0,300,0,0"/>
+                                    <TextBlock x:Name="TelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Telephone" VerticalAlignment="Top" FontSize="20" Margin="0,470,0,0"/>
+                                    <TextBox x:Name="TelTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,500,0,0" FontSize="16" Width="289"/>
+                                    <TextBlock x:Name="CMTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="cm" VerticalAlignment="Top" FontSize="20" Margin="255,254,0,0"/>
+                                    <TextBox x:Name="OtherTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="44,390,0,0" FontSize="16" Width="245" Height="60" IsEnabled="False"/>
+                                    <RadioButton x:Name="CurrentLocationRBtn" Content="Current Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,330,0,0" IsChecked="False" Checked="CurrentLocationRBtn_Checked"/>
+                                    <RadioButton x:Name="OtherRBtn" Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,360,0,0" Checked="OtherRBtn_Checked"/>
+                                    <Button x:Name="AddConfirmBtn" Content="Confirm" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,562,0,0" FontSize="20" Width="140" Click="AddConfirmBtn_Click"/>
+                                    <Button x:Name="ResetBtn" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,562,0,0" FontSize="20" Width="140" Click="ResetBtn_Click"/>
+                                </Grid>
+                            </Flyout>
+                        </Button.Resources>
+                        <Button.Flyout>
+                            <StaticResource ResourceKey="EditPatientInfo"/>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
+                <Grid x:Name="Avatar" HorizontalAlignment="Left" Height="628" VerticalAlignment="Top" Width="566">
+                    <Button x:Name="MaleBtn" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,514,80,0" Width="70" Height="70" Click="MaleBtn_Click"/>
+                    <Button x:Name="FemaleBtn" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="80,514,0,0" Width="70" Height="70" Click="FemaleBtn_Click"/>
+                    <Image x:Name="exMaleImg" Source="/Assets/male-external.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Height="500"/>
+                    <Image x:Name="exFemaleImg" Source="/Assets/female-external.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Height="500" Visibility="Collapsed"/>
+                    <Button x:Name="ExternalBtn" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="208,514,288,0" Width="70" Height="70" Click="ExternalBtn_Click" Visibility="Collapsed"/>
+                    <Button x:Name="InternalBtn" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="288,514,208,0" Width="70" Height="70" Click="InternalBtn_Click" Visibility="Collapsed"/>
+                    <Image x:Name="inMaleImg" Source="/Assets/male-internal.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="213,4,212,0" Height="500" Visibility="Collapsed"/>
+                    <Image x:Name="inFemaleImg" Source="/Assets/female-internal.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="220,5,220,0" Height="500" Visibility="Collapsed"/>
+
+                </Grid>
+                <Grid x:Name="Symptoms" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Visibility="Collapsed"/>
+            </Grid>
+            <Grid x:Name="LocationNTime" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="966" Visibility="Collapsed">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="100,80,0,0"/>
+                <Maps:Map HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="360" Margin="100,150,463,0"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="577,150,0,0"/>
+                <TextBox HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,194,100,0" FontSize="20" MinWidth="100" Width="289" Height="39"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="577,254,0,0"/>
+                <TextBox HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,294,100,0" FontSize="20" MinWidth="100" Width="289" Height="110"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,424,336,0"/>
+                <DatePicker HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,464,100,0"/>
+                <Button Content="Submit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,46" FontSize="24"/>
+            </Grid>
+        </Grid>
 
         <!-- Back button and page title -->
         <Grid>
@@ -31,13 +142,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
+				Style="{StaticResource NavigationBackButtonNormalStyle}"
+				VerticalAlignment="Top"
+				AutomationProperties.Name="Back"
+				AutomationProperties.AutomationId="BackButton"
+				AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
             <TextBlock x:Name="pageTitle" Text="Disease Report" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
     </Grid>
 </Page>

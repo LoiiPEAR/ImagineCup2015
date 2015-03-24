@@ -17,17 +17,19 @@ using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json.Linq;
 using Windows.Data.Json;
 
+
 namespace DEDI
 {
     public sealed partial class HomePage
     {
+        private Health_Worker user;
         public HomePage()
         {
             this.InitializeComponent();
             
         }
 
-        private async void loadData(Health_Worker user)
+        private async void loadData()
         {
             try
             {
@@ -64,17 +66,16 @@ namespace DEDI
                 myMap.Center = new Bing.Maps.Location(jsonResponse.ResourceSets[0].Resources[0].Point.Coordinates[0], jsonResponse.ResourceSets[0].Resources[0].Point.Coordinates[1]);
 
             }
-            catch (MobileServiceInvalidOperationException e)
-            {
-                MessageDialog ms = new MessageDialog(e.ToString());
-                ms.ShowAsync();
+            catch (MobileServiceInvalidOperationException e){
+
             }
-
-
-            
-            
         }
-        private DependencyObject FindChildControl<T>(DependencyObject control, string ctrlName)
+        
+
+            
+            
+        
+      private DependencyObject FindChildControl<T>(DependencyObject control, string ctrlName)
         {
             int childNumber = VisualTreeHelper.GetChildrenCount(control);
             for (int i = 0; i < childNumber; i++)
@@ -99,6 +100,7 @@ namespace DEDI
             }
             return null;
         }
+
         //public static T DeserializeJSon<T>(string jsonString)
         //{
         //    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
@@ -108,8 +110,8 @@ namespace DEDI
         //}
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Health_Worker hw = e.Parameter as Health_Worker;
-            loadData(hw);
+            user = e.Parameter as Health_Worker;
+            loadData();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -117,9 +119,14 @@ namespace DEDI
             this.Frame.Navigate(typeof(LogInPage));
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private void CreateReportBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreateReportPage));
+        }
+
+        private void DashboardBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(DashBoard));
         }
 
         private void GoToMapBtn_Click(object sender, RoutedEventArgs e)
@@ -130,6 +137,10 @@ namespace DEDI
         private void GoToReportBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ReportsView));
+        }
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreateReportPage));
         }
     }
 }

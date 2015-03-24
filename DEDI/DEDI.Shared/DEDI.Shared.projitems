@@ -16,14 +16,15 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DashBoard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DateTimePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DisasterReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Health_Worker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Response.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RegisterOfficialInfoPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RegisterPersonalInfoPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ReportsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Report.cs" />

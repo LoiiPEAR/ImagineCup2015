@@ -110,6 +110,9 @@
     <Compile Include="CreateReportPage.xaml.cs">
       <DependentUpon>CreateReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DashBoard.xaml.cs">
+      <DependentUpon>DashBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DisasterReportPage.xaml.cs">
       <DependentUpon>DisasterReportPage.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,9 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HubPage1.xaml.cs">
+      <DependentUpon>HubPage1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MapsView.xaml.cs">
       <DependentUpon>MapsView.xaml</DependentUpon>
     </Compile>
@@ -129,11 +135,8 @@
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterOfficialInfoPage.xaml.cs">
-      <DependentUpon>RegisterOfficialInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RegisterPersonalInfoPage.xaml.cs">
-      <DependentUpon>RegisterPersonalInfoPage.xaml</DependentUpon>
+    <Compile Include="RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReportsView.xaml.cs">
       <DependentUpon>ReportsView.xaml</DependentUpon>
@@ -150,13 +153,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\female-external.png" />
+    <Content Include="Assets\female-internal.png" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\male-external.png" />
+    <Content Include="Assets\male-internal.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="CreateReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DashBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HubPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MapsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,11 +195,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RegisterOfficialInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RegisterPersonalInfoPage.xaml">
+    <Page Include="RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +232,9 @@
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
