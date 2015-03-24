@@ -56,11 +56,11 @@ namespace DEDI
             strJSON = " [{\"Lat\":\"13.815361\",\"Lon\":\"100.560822\",\"LocationName\":\"Central Patpharo\"},{\"Lat\":\"13.81433\",\"Lon\":\"100.560162\",\"LocationName\":\"MRT Phaholyothin\"}]";
 
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(strJSON));
-            ObservableCollection<Address> list = new ObservableCollection<Address>();
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Address>));
-            list = (ObservableCollection<Address>)serializer.ReadObject(ms);
+            ObservableCollection<Response> list = new ObservableCollection<Response>();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Response>));
+            list = (ObservableCollection<Response>)serializer.ReadObject(ms);
 
-            foreach (Address loc in list)
+            foreach (Response loc in list)
             {
                 AddPushpin(new BasicGeoposition() { Latitude=loc.Lat,Longitude=loc.Lon}, loc.LocationName);
                 lat = loc.Lat;

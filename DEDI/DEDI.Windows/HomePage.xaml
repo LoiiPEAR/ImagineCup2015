@@ -56,10 +56,10 @@
                     <ControlTemplate x:Key="ProfileSectionTemplate" TargetType="HubSection">
                         <Grid x:Name="ProfileSection" Margin="0,0,20,0" Width="530">
                             <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Margin="50,260,0,0"/>
-                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Firstname}" VerticalAlignment="Top" Margin="230,280,0,0" FontSize="24" FontWeight="Bold"/>
-                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Lastname}" VerticalAlignment="Top" Margin="230,310,0,0" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,280,0,0" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,310,0,0" FontSize="24" FontWeight="Bold"/>
                             <Image x:Name="___Image_" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="240,350,0,0"/>
-                            <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ban Phaxay, Sisattanak District, Vientiane Laos" VerticalAlignment="Top" Margin="280,350,0,0" FontSize="16" Width="200"/>
+                            <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="280,350,0,0" FontSize="16" Width="200"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Margin="50,430,0,0" FontSize="20"/>
                             <TextBlock x:Name="StatusTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="SAFE" VerticalAlignment="Top" Margin="115,430,0,0" FontSize="20" FontWeight="Bold"/>
                             <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="50,530,0,0"/>
@@ -114,7 +114,7 @@
                     <ControlTemplate x:Key="MapSectionTemplate" TargetType="HubSection">
                         <Grid>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="map" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48"/>
-                            <Maps:Map HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,50,50"/>
+                            <Maps:Map x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,50,50"/>
                             <AppBarButton x:Name="GoToMapBtn" HorizontalAlignment="Left" Label="&#xD;&#xA;" VerticalAlignment="Top" Margin="130,160,0,0" Icon="Forward" Click="GoToMapBtn_Click"/>
                         </Grid>
                     </ControlTemplate>

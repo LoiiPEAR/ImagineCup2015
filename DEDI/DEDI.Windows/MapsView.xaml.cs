@@ -53,32 +53,31 @@ namespace DEDI
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 17;
             myMap.MapType = MapType.Road;
-            myMap.Width = 800;
-            myMap.Height = 800;
+           
 
-            /* [{"Lat":"13.815361","Lon":"100.560822","LocationName":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","LocationName":"MRT Phaholyothin"}] */
+            /* [{"Lat":"13.815361","Lon":"100.560822","Name":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","Name":"MRT Phaholyothin"}] */
             string strJSON = string.Empty;
             strJSON = " [{\"Lat\":\"13.815361\",\"Lon\":\"100.560822\",\"LocationName\":\"Central Patpharo\"},{\"Lat\":\"13.81433\",\"Lon\":\"100.560162\",\"LocationName\":\"MRT Phaholyothin\"}]";
 
 
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(strJSON));
-            ObservableCollection<Address> list = new ObservableCollection<Address>();
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Address>));
-            list = (ObservableCollection<Address>)serializer.ReadObject(ms);
+            ObservableCollection<Response> list = new ObservableCollection<Response>();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Response>));
+            list = (ObservableCollection<Response>)serializer.ReadObject(ms);
 
-            foreach (Address loc in list)
-            {
-                Pushpin pushpin = new Pushpin();
-                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                pushpin.Name = loc.LocationName;
-                MapLayer.SetPosition(pushpin, new Location(loc.Lat, loc.Lon));
-                myMap.Children.Add(pushpin);
+            //foreach (Address loc in list)
+            //{
+            //    Pushpin pushpin = new Pushpin();
+            //    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+            //    pushpin.Name = loc.name;
+            //    MapLayer.SetPosition(pushpin, new Location(loc.coordinates[0], loc.coordinates[1]));
+            //    myMap.Children.Add(pushpin);
 
-                lat = loc.Lat;
-                lon = loc.Lon;
-            }
+            //    lat = loc.coordinates[0];
+            //    lon = loc.coordinates[1];
+            //}
 
-            myMap.Center = new Location(lat, lon);
+            //myMap.Center = new Location(lat, lon);
 
         }
 
