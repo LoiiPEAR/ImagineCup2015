@@ -28,13 +28,14 @@ namespace DEDI
                 this.Frame.Navigate(typeof(HomePage),user[0]);
             }
             else{
-                errorTbl.Text = "User name or password is incorrect.";
+                errorTbl.Text = "Username or password is incorrect.";
             }
         }
         private void password_KeyDown(object sender, KeyRoutedEventArgs e)
         {
 
         }
+
         
     }
 }
