@@ -48,8 +48,7 @@ namespace DEDI
        public void InitializeMap()
         {
 
-            double lat = 0;
-            double lon = 0;
+            
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 17;
             myMap.MapType = MapType.Road;

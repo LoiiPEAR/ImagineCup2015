@@ -1,10 +1,14 @@
 ﻿
+using Bing.Maps;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 using Windows.Data.Json;
+using Windows.Devices.Geolocation;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,38 +24,12 @@ namespace DEDI
         {
             OfficialInfoRegion.Visibility = Visibility.Collapsed;
             PositionCb_load();
-            CountryCb_load();
+            InitializeMap();
+            
         }
 
-        private async void CountryCb_load()
-        {
-            StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            folder = await folder.GetFolderAsync("Assets");
-            StorageFile file= await folder.GetFileAsync("Country_List.txt");
-            string json = await Windows.Storage.FileIO.ReadTextAsync(file);
-            JsonArray Countries = JsonArray.Parse(json);
-            foreach (var country in Countries)
-                {
-                   JsonObject itemObject = country.GetObject();
-                   CountryCb.Items.Add(itemObject["name"].GetString());
-                }
-        }
-        private async void getCity(object sender, SelectionChangedEventArgs e)
-        {
-            string country = CountryCb.SelectedItem.ToString();
-            StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            folder = await folder.GetFolderAsync("Assets");
-            StorageFile file = await folder.GetFileAsync("City_List.txt");
-            string json = await Windows.Storage.FileIO.ReadTextAsync(file);
-            JsonObject countries = JsonObject.Parse(json);
-            if (countries.ContainsKey(country))
-            {
-                JsonArray cities = countries[country].GetArray();
-                foreach (var city in cities) CityCb.Items.Add(city.GetString());
-            }
-            
-            
-        }
+        
+       
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LogInPage));
@@ -84,10 +62,7 @@ namespace DEDI
             {
                 Organization_errorTbl.Text = "Organization name" + warning_str;
             }
-            if (CountryCb.SelectedItem== "")
-            {
-                Country_errorTbl.Text = "Country" + warning_str;
-            }
+           
             if (PositionCb.SelectedItem == "")
             {
                 Position_errorTbl.Text = "Position" + warning_str;
@@ -96,7 +71,7 @@ namespace DEDI
             {
                 Gender_errorTbl.Text = "Gender" + warning_str;
             }
-            if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" && Country_errorTbl.Text == "")
+            if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
                 this.Frame.Navigate(typeof(LogInPage));
             }
@@ -167,6 +142,81 @@ namespace DEDI
             }
             else Password_errorTbl.Text = "";
         }
+        public async void InitializeMap()
+        {
+
+
+            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.ZoomLevel = 17;
+            myMap.MapType = MapType.Road;
+
+
+            Geolocator geolocator = new Geolocator();
+            geolocator.DesiredAccuracy = PositionAccuracy.High;
+            Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
+                                                                          TimeSpan.FromSeconds(10));
+            myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
+            DraggablePin pin = new DraggablePin(myMap);
+            //Set the location of the pin to the center of the map.
+            Bing.Maps.MapLayer.SetPosition(pin, myMap.Center);
+
+            //Set the pin as draggable.
+            pin.Draggable = true;
+
+            //Attach to the drag event of the pin.
+            pin.DragEnd += Pin_Dragged;
+           
+            //Add the pin to the map.
+            myMap.Children.Add(pin);
+
+            var client = new HttpClient();
+            Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + currentPosition.Coordinate.Latitude + "," + currentPosition.Coordinate.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
+            var response = await client.GetAsync(uri);
+            var result = await response.Content.ReadAsStringAsync();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+            var list = serializer.ReadObject(ms);
+            Response jsonResponse = list as Response;
+            AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+        }
+
+        private async void Pin_Dragged(Bing.Maps.Location obj)
+        {
+            var lat = obj.Latitude;
+            var client = new HttpClient();
+            Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + obj.Latitude + "," + obj.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
+            var response = await client.GetAsync(uri);
+            var result = await response.Content.ReadAsStringAsync();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+            var list = serializer.ReadObject(ms);
+            Response jsonResponse = list as Response;
+            ms.Flush();
+            AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+        }
+
+        //private async void pushpin_DragLeave(object sender, DragEventArgs e)
+        //{
+        //    Pushpin pin = (Pushpin)sender;
+        //     var client = new HttpClient();
+        //     //Get the mouse click coordinates
+        //     var mousePosition = e.GetPosition(this);
+        //     //Convert the mouse coordinates to a locatoin on the map
+        //     Location pinLocation = m
+        //    Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + p.X+ "," + p.Y+ "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
+        //    var response = await client.GetAsync(uri);
+        //    var result = await response.Content.ReadAsStringAsync();
+        //    MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+        //    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+        //    var list = serializer.ReadObject(ms);
+        //    Response jsonResponse = list as Response;
+        //    AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+        //}
+       
+
+        
+
+        
 
     }
 }
