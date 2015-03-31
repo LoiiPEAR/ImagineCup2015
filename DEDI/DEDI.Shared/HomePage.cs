@@ -137,5 +137,27 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(CreateReportPage));
         }
+        private void NearbyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Image allBG = FindChildControl<Image>(NotiSection, "allBG") as Image;
+            allBG.Visibility = Visibility.Collapsed;
+            Image nearbyBG = FindChildControl<Image>(NotiSection, "nearbyBG") as Image;
+            nearbyBG.Visibility = Visibility.Visible;
+            ScrollViewer AllScrollView = FindChildControl<ScrollViewer>(NotiSection, "AllScrollView") as ScrollViewer;
+            AllScrollView.Visibility = Visibility.Collapsed;
+            ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
+            NearbyScrollView.Visibility = Visibility.Visible;
+        }
+        private void AllBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Image allBG = FindChildControl<Image>(NotiSection, "allBG") as Image;
+            allBG.Visibility = Visibility.Visible;
+            Image nearbyBG = FindChildControl<Image>(NotiSection, "nearbyBG") as Image;
+            nearbyBG.Visibility = Visibility.Collapsed;
+            ScrollViewer AllScrollView = FindChildControl<ScrollViewer>(NotiSection, "AllScrollView") as ScrollViewer;
+            AllScrollView.Visibility = Visibility.Visible;
+            ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
+            NearbyScrollView.Visibility = Visibility.Collapsed;
+        }
     }
 }

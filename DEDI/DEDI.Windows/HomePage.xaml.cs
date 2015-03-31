@@ -23,9 +23,5 @@ namespace DEDI
     /// </summary>
     public sealed partial class HomePage : Page
     {
-        
-
-        
-       
     }
 }

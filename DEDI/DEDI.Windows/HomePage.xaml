@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bm="using:Bing.Maps"
     x:Class="DEDI.HomePage"
-    mc:Ignorable="d">
+    mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Auto">
 
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
@@ -76,8 +76,31 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="NotificationSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="notifications" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48"/>
-                            <ListView HorizontalAlignment="Left" Height="450" VerticalAlignment="Bottom" Width="400" Margin="50,0,0,50"/>
+                            <Image x:Name="nearbyBG" HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Assets/noti_nearby_active.png" Margin="50,0,50,50" Visibility="Collapsed"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="notifications" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48" Foreground="#FF2D4D5A"/>
+                            <Image x:Name="allBG" HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Assets/noti_all_active.png" Margin="50,0,50,50"/>
+                            <ScrollViewer x:Name="AllScrollView" HorizontalAlignment="Center" VerticalAlignment="Center" Width="372" Margin="65,297,63,59" Height="412" VerticalScrollBarVisibility="Auto">
+                                <StackPanel x:Name="AllNotiStack" Orientation="Vertical" Width="360" Margin="0">
+                                    <Image Source="Assets/noti_tab_red.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_yellow.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_green.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_yellow.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_yellow.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_yellow.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_green.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_red.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <HyperlinkButton x:Name="AllBtn" Content="ALL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,245,0,0" FontSize="24" FontWeight="Bold" Width="134" Height="44" Foreground="#FF00AEC8" Click="AllBtn_Click"/>
+                            <HyperlinkButton x:Name="NearbyBtn" Content="NEARBY" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="186,245,0,0" FontSize="24" FontWeight="Bold" Width="134" Height="44" Foreground="White" Click="NearbyBtn_Click"/>
+                            <ScrollViewer x:Name="NearbyScrollView" HorizontalAlignment="Center" VerticalAlignment="Center" Width="372" Margin="65,297,63,59" Height="412" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+                                <StackPanel x:Name="NearbyNotiStack" Orientation="Vertical" Width="360" Margin="0">
+                                    <Image Source="Assets/noti_tab_yellow.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_yellow.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_green.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                    <Image Source="Assets/noti_tab_red.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                                </StackPanel>
+                            </ScrollViewer>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
@@ -106,9 +129,11 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="MapSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="map" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="map" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48" Foreground="#FF2D4D5A"/>
                             <bm:Map x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,50,50"/>
-                            <AppBarButton x:Name="GoToMapBtn" HorizontalAlignment="Left" Label="&#xD;&#xA;" VerticalAlignment="Top" Margin="130,160,0,0" Icon="Forward" Click="GoToMapBtn_Click"/>
+                            <Button x:Name="GoToMapBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,157,0,0" Height="66" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="GoToMapBtn_Click">
+                                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/goto.png"/>
+                            </Button>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
