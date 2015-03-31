@@ -14,7 +14,7 @@ namespace DEDI
             
         }
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
+        private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(HomePage));
         }

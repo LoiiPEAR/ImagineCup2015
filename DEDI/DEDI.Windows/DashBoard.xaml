@@ -32,16 +32,15 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="548*"/>
                     </Grid.ColumnDefinitions>
-                    <Button  x:Name="backButton" Margin="-1,-1,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-						Style="{StaticResource NavigationBackButtonNormalStyle}"
-						VerticalAlignment="Top"
-						AutomationProperties.Name="Back"
-						AutomationProperties.AutomationId="BackButton"
-						AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
-                    <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                    <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-46,-68,-54,-6" Height="155" Width="1386"/>
+                    <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" 
+						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="5,-31,-5,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1" FontSize="48"/>
+                    <Button x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="19,-30,0,0" Height="45" Width="65" Click="backBtn_Click" Grid.ColumnSpan="2">
+                        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/back_btn.png"/>
+                    </Button>
                 </Grid>
             </Hub.Header>
 
@@ -49,12 +48,12 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Maps:Map HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="400" Margin="0,220,0,0"/>
-                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0"/>
-                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0"/>
-                            <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="20" Margin="90,180,0,0" FontWeight="Bold"/>
+                            <Maps:Map HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="370" Margin="90,250,90,0"/>
+                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7"/>
+                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A"/>
+                            <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,180,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
@@ -69,9 +68,9 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="PredictionSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Stroke="Black" VerticalAlignment="Top" Width="200" Margin="40,180,0,0"/>
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Stroke="Black" VerticalAlignment="Top" Width="200" Margin="260,180,0,0"/>
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Stroke="Black" VerticalAlignment="Top" Width="200" Margin="480,180,0,0"/>
+                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_10.png"/>
+                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,180,0,0" Source="Assets/patients.png"/>
+                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,180,0,0" Source="Assets/prediction_case.png"/>
                             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="300" Stroke="Black" VerticalAlignment="Top" Width="640" Margin="40,400,0,0"/>
                             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="460" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,240,0,0"/>
                             <SearchBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="730,180,0,0" Width="320" FontSize="18"/>

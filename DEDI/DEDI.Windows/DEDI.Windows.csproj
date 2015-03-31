@@ -157,8 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\address_icon.png" />
+    <Content Include="Assets\back_btn.png" />
     <Content Include="Assets\City_List.txt" />
     <Content Include="Assets\Country_List.txt" />
+    <Content Include="Assets\emergency_btn.png" />
     <Content Include="Assets\female-external.png" />
     <Content Include="Assets\female-internal.png" />
     <Content Include="Assets\followers_btn.png" />
@@ -175,11 +177,16 @@
     <Content Include="Assets\noti_tab_green.png" />
     <Content Include="Assets\noti_tab_red.png" />
     <Content Include="Assets\noti_tab_yellow.png" />
+    <Content Include="Assets\patients.png" />
+    <Content Include="Assets\prediction_case.png" />
     <Content Include="Assets\profile_img.png" />
     <Content Include="Assets\signout_btn.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\total_case_lt_10.png" />
+    <Content Include="Assets\total_case_lt_20.png" />
+    <Content Include="Assets\total_case_mt_20.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="CreateReportPage.xaml">
@@ -254,6 +261,9 @@
     </Reference>
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\win8\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\..\packages\WinRTXamlToolkit.Windows.1.8.1.0\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
