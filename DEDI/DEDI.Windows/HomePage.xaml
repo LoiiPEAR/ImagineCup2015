@@ -7,13 +7,10 @@
     xmlns:bm="using:Bing.Maps"
     x:Class="DEDI.HomePage"
     mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Auto">
-
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
-
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">My Application</x:String>
-
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar>
@@ -21,7 +18,6 @@
             <AppBarButton x:Name="CreateReportBtn" Icon="Add" Label="Create a New Report" Click="CreateReportBtn_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
-
     <!--
         This grid acts as a root panel for the page.
     -->
@@ -31,7 +27,6 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-
         <Hub>
             <Hub.Header>
                 <!-- Back button and page title -->
@@ -44,7 +39,6 @@
                     <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="117" Width="253" Margin="-24,-58,0,0"/>
                 </Grid>
             </Hub.Header>
-
             <HubSection x:Name="ProfileSection" Width="530">
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ProfileSectionTemplate" TargetType="HubSection">
@@ -159,7 +153,6 @@
                     </Grid>
                 </DataTemplate>
             </HubSection>
-
             <HubSection x:Name="ReportsSection" Header="Section 3">
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ReportSectionTemplate" TargetType="HubSection">

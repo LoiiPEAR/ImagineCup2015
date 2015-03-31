@@ -71,6 +71,10 @@ namespace DEDI
             {
                 Gender_errorTbl.Text = "Gender" + warning_str;
             }
+            if (EmailTbl.Text == "")
+            {
+                Email_errorTbl.Text = "Email" + warning_str;
+            }
             if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
                 this.Frame.Navigate(typeof(LogInPage));
@@ -142,12 +146,13 @@ namespace DEDI
             }
             else Password_errorTbl.Text = "";
         }
+        DraggablePin pin;
         public async void InitializeMap()
         {
 
 
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 17;
+            myMap.ZoomLevel = 10;
             myMap.MapType = MapType.Road;
 
 
@@ -156,7 +161,7 @@ namespace DEDI
             Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
                                                                           TimeSpan.FromSeconds(10));
             myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
-            DraggablePin pin = new DraggablePin(myMap);
+            pin = new DraggablePin(myMap);
             //Set the location of the pin to the center of the map.
             Bing.Maps.MapLayer.SetPosition(pin, myMap.Center);
 
@@ -168,7 +173,7 @@ namespace DEDI
            
             //Add the pin to the map.
             myMap.Children.Add(pin);
-
+            myMap.PointerPressedOverride+=myMap_PointerPressedOverride;
             var client = new HttpClient();
             Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + currentPosition.Coordinate.Latitude + "," + currentPosition.Coordinate.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
             var response = await client.GetAsync(uri);
@@ -180,9 +185,37 @@ namespace DEDI
             AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
         }
 
+        private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
+        {
+            var pointerPosition = e.GetCurrentPoint(((Map)sender));
+
+            Bing.Maps.Location location = null;
+
+            //Convert the point pixel to a Location coordinate
+            if (((Map)sender).TryPixelToLocation(pointerPosition.Position, out location))
+            {
+                Bing.Maps.MapLayer.SetPosition(pin, location);
+                var client = new HttpClient();
+                Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + location.Latitude + "," + location.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
+                var response = await client.GetAsync(uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+                var list = serializer.ReadObject(ms);
+                Response jsonResponse = list as Response;
+                ms.Flush();
+                if (jsonResponse.ResourceSets[0].EstimatedTotal != 0)
+                    AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+            }
+        }
+
+       
+
+        
+
         private async void Pin_Dragged(Bing.Maps.Location obj)
         {
-            var lat = obj.Latitude;
+            
             var client = new HttpClient();
             Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + obj.Latitude + "," + obj.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
             var response = await client.GetAsync(uri);
@@ -192,6 +225,7 @@ namespace DEDI
             var list = serializer.ReadObject(ms);
             Response jsonResponse = list as Response;
             ms.Flush();
+            if (jsonResponse.ResourceSets[0].EstimatedTotal!=0)
             AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
         }
 
