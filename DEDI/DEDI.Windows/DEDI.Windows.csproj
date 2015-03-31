@@ -156,13 +156,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\address_icon.png" />
     <Content Include="Assets\City_List.txt" />
     <Content Include="Assets\Country_List.txt" />
     <Content Include="Assets\female-external.png" />
     <Content Include="Assets\female-internal.png" />
+    <Content Include="Assets\followers_btn.png" />
+    <Content Include="Assets\following_btn.png" />
+    <Content Include="Assets\home_header.png" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\logo_big.png" />
     <Content Include="Assets\male-external.png" />
     <Content Include="Assets\male-internal.png" />
+    <Content Include="Assets\myreports_btn.png" />
+    <Content Include="Assets\profile_img.png" />
+    <Content Include="Assets\signout_btn.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />

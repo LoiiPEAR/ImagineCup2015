@@ -40,14 +40,8 @@
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button  x:Name="backButton" Margin="-1,-1,40,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-						Style="{StaticResource NavigationBackButtonNormalStyle}"
-						VerticalAlignment="Top"
-						AutomationProperties.Name="Back"
-						AutomationProperties.AutomationId="BackButton"
-						AutomationProperties.ItemType="Navigation Button" HorizontalAlignment="Right" Click="backButton_Click"/>
-                    <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                    <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-46,-68,-54,-6" Height="155" Width="1386"/>
+                    <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="117" Width="253" Margin="-24,-58,0,0"/>
                 </Grid>
             </Hub.Header>
 
@@ -55,20 +49,19 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ProfileSectionTemplate" TargetType="HubSection">
                         <Grid x:Name="ProfileSection" Margin="0,0,20,0" Width="530">
-                            <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Margin="50,260,0,0"/>
-                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,280,0,0" FontSize="24" FontWeight="Bold"/>
-                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,310,0,0" FontSize="24" FontWeight="Bold"/>
-                            <Image x:Name="___Image_" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="240,350,0,0"/>
-                            <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="280,350,0,0" FontSize="16" Width="200"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Margin="50,430,0,0" FontSize="20"/>
-                            <TextBlock x:Name="StatusTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="SAFE" VerticalAlignment="Top" Margin="115,430,0,0" FontSize="20" FontWeight="Bold"/>
-                            <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="50,530,0,0"/>
-                            <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="50,580,0,0"/>
-                            <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="50,630,0,0"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="My reports" VerticalAlignment="Top" Margin="100,534,0,0" FontSize="20"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Following" VerticalAlignment="Top" Margin="100,584,0,0" FontSize="20"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Followers" VerticalAlignment="Top" Margin="100,634,0,0" FontSize="20"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="profile" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48"/>
+                            <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Margin="50,180,0,0" Source="Assets/profile_img.png" Width="170"/>
+                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,190,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A" Text="Prae"/>
+                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A" Text="Charkratpahu"/>
+                            <Image x:Name="___Image_" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,280,0,0" Source="Assets/address_icon.png" Height="80" Width="62"/>
+                            <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="290,280,0,0" FontSize="14" Width="170" Text="123 abc, abc, abc Thailand 11111" Foreground="#FF7296A8"/>
+                            <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/signout_btn.png" Margin="70,375,0,0" Height="120" Width="120"/>
+                            <Image HorizontalAlignment="Center" Height="120" VerticalAlignment="Top" Width="120" Source="Assets/following_btn.png" Margin="0,375,0,0"/>
+                            <Image HorizontalAlignment="Right" Height="120" VerticalAlignment="Top" Width="120" Source="Assets/followers_btn.png" Margin="0,375,70,0"/>
+                            <Image HorizontalAlignment="Right" Height="187" VerticalAlignment="Bottom" Width="187" Source="Assets/myreports_btn.png" Margin="0,0,70,70"/>
+                            <Image HorizontalAlignment="Left" Height="187" VerticalAlignment="Bottom" Width="187" Source="Assets/myreports_btn.png" Margin="70,0,0,70"/>
+                            <TextBlock x:Name="followingTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="284,427,0,0" Foreground="#FFF3F3F4" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock x:Name="followersTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="419,427,0,0" Foreground="#FF00BAD0" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock x:Name="myreportsTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="361,563,0,0" Foreground="#FFF4F5F6" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>

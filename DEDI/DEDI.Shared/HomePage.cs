@@ -54,8 +54,6 @@ namespace DEDI
                 LastNameTbl.Text = user.lname;
                 TextBlock LocationTbl = FindChildControl<TextBlock>(ProfileSection, "LocationTbl") as TextBlock;
                 LocationTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
-                TextBlock StatusTbl = FindChildControl<TextBlock>(ProfileSection, "StatusTbl") as TextBlock;
-                StatusTbl.Text = "";
                
                 Map myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
@@ -114,10 +112,7 @@ namespace DEDI
             loadData();
         }
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(LogInPage));
-        }
+
 
         private void CreateReportBtn_Click(object sender, RoutedEventArgs e)
         {
