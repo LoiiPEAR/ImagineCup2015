@@ -44,8 +44,8 @@
                     <ControlTemplate x:Key="ProfileSectionTemplate" TargetType="HubSection">
                         <Grid x:Name="ProfileSection" Margin="0,0,20,0" Width="530">
                             <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Margin="50,180,0,0" Source="Assets/profile_img.png" Width="170"/>
-                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,190,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A" Text="Prae"/>
-                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A" Text="Charkratpahu"/>
+                            <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,190,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A" />
+                            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A" />
                             <Image x:Name="___Image_" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,280,0,0" Source="Assets/address_icon.png" Height="80" Width="62"/>
                             <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="290,280,0,0" FontSize="14" Width="170" Text="123 abc, abc, abc Thailand 11111" Foreground="#FF7296A8"/>
                             <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/signout_btn.png" Margin="70,375,0,0" Height="120" Width="120"/>

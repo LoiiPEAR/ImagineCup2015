@@ -1,5 +1,6 @@
 ﻿
 using Bing.Maps;
+using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,9 @@ namespace DEDI
             OfficialInfoRegion.Visibility = Visibility.Collapsed;
             PositionCb_load();
             InitializeMap();
+            // Set the MinDate and MaxDate.
+            DOBDpk.MinYear = new DateTime(1985, 6, 20);
+            DOBDpk.MaxYear = DateTime.Today;
             
         }
 
@@ -47,7 +51,7 @@ namespace DEDI
             OfficialInfoRegion.Visibility = Visibility.Collapsed;
         }
 
-        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        private async void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             string warning_str =" is required*";
             if (FirstNameTb.Text == "")
@@ -77,6 +81,24 @@ namespace DEDI
             }
             if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
+                //ComboBoxItem posItem = (ComboBoxItem)PositionCb.SelectedItem;
+                string pos_value = PositionCb.SelectedItem.ToString();
+                Health_Worker user = new Health_Worker() { 
+                fname = FirstNameTb.Text,
+                lname = LastNameTb.Text,
+                password = PasswordTb.Password,
+                username =UsernameTb.Text,
+                position = pos_value,
+                organization = OrganizationTb.Text,
+                latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
+                longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
+                email = EmailTb.Text,
+                telephone = TelTb.Text,
+                dob = DOBDpk.Date.UtcDateTime,
+                gender = this.gender
+                };
+                IMobileServiceTable<Health_Worker> hwTable =  App.MobileService.GetTable<Health_Worker>();
+                await hwTable.InsertAsync(user);
                 this.Frame.Navigate(typeof(LogInPage));
             }
         }

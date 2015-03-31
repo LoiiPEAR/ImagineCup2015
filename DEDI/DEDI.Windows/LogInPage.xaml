@@ -20,7 +20,6 @@
             <TextBlock x:Name="errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="274,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
         </Grid>
         <Button Content="Map" HorizontalAlignment="Left" Margin="1127,516,0,0" VerticalAlignment="Top" Click="gotoMap"/>
-        <TextBox x:Name="lblStatus" HorizontalAlignment="Left" Margin="188,166,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
