@@ -26,8 +26,10 @@ namespace DEDI
     /// </summary>
     public sealed partial class App : Application
     {
-        public static MobileServiceClient MobileService = new MobileServiceClient("https://testimagine.azure-mobile.net/", "uhkcAokGLuPRIHygbDiAlqQDTeYygK14");
-#if WINDOWS_PHONE_APP
+
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://dedi.azure-mobile.net/", "lcnVSZEkrXPDzUIvTXCmiuxAHKFHqt59");
+
+       #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
 

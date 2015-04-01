@@ -22,13 +22,17 @@ namespace DEDI
 
         private async void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
+            SignInBtn.IsEnabled = false;
             var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == UsernameTb.Text &&hw.password == PasswordTb.Password).ToListAsync();
             if (user.Count != 0)
             {
+                
                 this.Frame.Navigate(typeof(HomePage),user[0]);
+                
             }
             else{
                 errorTbl.Text = "Username or password is incorrect.";
+                SignInBtn.IsEnabled = true;
             }
         }
         private void password_KeyDown(object sender, KeyRoutedEventArgs e)
