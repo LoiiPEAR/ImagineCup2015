@@ -52,7 +52,7 @@
                             <Image HorizontalAlignment="Center" Height="120" VerticalAlignment="Top" Width="120" Source="Assets/following_btn.png" Margin="0,375,0,0"/>
                             <Image HorizontalAlignment="Right" Height="120" VerticalAlignment="Top" Width="120" Source="Assets/followers_btn.png" Margin="0,375,70,0"/>
                             <Image HorizontalAlignment="Right" Height="187" VerticalAlignment="Bottom" Width="187" Source="Assets/myreports_btn.png" Margin="0,0,70,70"/>
-                            <Image HorizontalAlignment="Left" Height="187" VerticalAlignment="Bottom" Width="187" Source="Assets/myreports_btn.png" Margin="70,0,0,70"/>
+                            <Image HorizontalAlignment="Left" Height="192" VerticalAlignment="Bottom" Width="192" Source="Assets/emergency_btn.png" Margin="70,0,0,70"/>
                             <TextBlock x:Name="followingTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="284,427,0,0" Foreground="#FFF3F3F4" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock x:Name="followersTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="419,427,0,0" Foreground="#FF00BAD0" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock x:Name="myreportsTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="361,563,0,0" Foreground="#FFF4F5F6" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
