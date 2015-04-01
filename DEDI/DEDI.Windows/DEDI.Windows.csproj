@@ -157,6 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\address_icon.png" />
+    <Content Include="Assets\app_icon_big.png" />
+    <Content Include="Assets\app_icon_small.png" />
     <Content Include="Assets\back_btn.png" />
     <Content Include="Assets\City_List.txt" />
     <Content Include="Assets\Country_List.txt" />
@@ -169,6 +171,8 @@
     <Content Include="Assets\home_header.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\logo_big.png" />
+    <Content Include="Assets\logo_medium.png" />
+    <Content Include="Assets\logo_small.png" />
     <Content Include="Assets\male-external.png" />
     <Content Include="Assets\male-internal.png" />
     <Content Include="Assets\myreports_btn.png" />
@@ -183,6 +187,7 @@
     <Content Include="Assets\signout_btn.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\startup_bg.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\total_case_lt_10.png" />
     <Content Include="Assets\total_case_lt_20.png" />
