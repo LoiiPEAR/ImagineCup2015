@@ -160,6 +160,7 @@
     <Content Include="Assets\app_icon_big.png" />
     <Content Include="Assets\app_icon_small.png" />
     <Content Include="Assets\back_btn.png" />
+    <Content Include="Assets\back_btn_hover.png" />
     <Content Include="Assets\City_List.txt" />
     <Content Include="Assets\Country_List.txt" />
     <Content Include="Assets\emergency_btn.png" />
@@ -184,6 +185,7 @@
     <Content Include="Assets\patients.png" />
     <Content Include="Assets\prediction_case.png" />
     <Content Include="Assets\profile_img.png" />
+    <Content Include="Assets\searchbox.png" />
     <Content Include="Assets\signout_btn.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />

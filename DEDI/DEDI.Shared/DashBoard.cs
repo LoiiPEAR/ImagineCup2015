@@ -1,6 +1,13 @@
-﻿using System;
+﻿using Bing.Maps;
+using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -19,20 +26,59 @@ namespace DEDI
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            LoadChartContents();
+            
         }
 
-        private void LoadChartContents()
+        private void NoOfCasesBtn_Click(object sender, RoutedEventArgs e)
         {
+            Map myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
+            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             Random rand = new Random();
-            List<NumberOfCases> NoOfCasesList = new List<NumberOfCases>();
-            NoOfCasesList.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            NoOfCasesList.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            NoOfCasesList.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            NoOfCasesList.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            NoOfCasesList.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
-//            Chart NoOfCasesChart = FindChildControl<Chart>(PredictionSection, "NoOfCasesChart") as Chart;
-//            (NoOfCasesChart.Series[0] as BarSeries).ItemsSource = NoOfCasesList;
+            List<NumberOfCases> All = new List<NumberOfCases>();
+            List<NumberOfCases> Cholera = new List<NumberOfCases>();
+            List<NumberOfCases> Rotavirus = new List<NumberOfCases>();
+            List<NumberOfCases> Shigella = new List<NumberOfCases>();
+            List<NumberOfCases> Typhoid = new List<NumberOfCases>();
+            List<NumberOfCases> Others = new List<NumberOfCases>();
+            All.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
+            All.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
+            All.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
+            All.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
+            All.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+            Cholera.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
+            Cholera.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
+            Cholera.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
+            Cholera.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
+            Cholera.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+            Rotavirus.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
+            Rotavirus.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
+            Rotavirus.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
+            Rotavirus.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
+            Rotavirus.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+            Shigella.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
+            Shigella.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
+            Shigella.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
+            Shigella.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
+            Shigella.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+            Typhoid.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
+            Typhoid.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
+            Typhoid.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
+            Typhoid.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
+            Typhoid.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+            Others.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
+            Others.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
+            Others.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
+            Others.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
+            Others.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+            Chart NoOfCasesChart = FindChildControl<Chart>(PredictionSection, "NoOfCasesChart") as Chart;
+            (NoOfCasesChart.Series[0] as ColumnSeries).ItemsSource = All;
+            (NoOfCasesChart.Series[1] as ColumnSeries).ItemsSource = Cholera;
+            (NoOfCasesChart.Series[2] as ColumnSeries).ItemsSource = Rotavirus;
+            (NoOfCasesChart.Series[3] as ColumnSeries).ItemsSource = Shigella;
+            (NoOfCasesChart.Series[4] as ColumnSeries).ItemsSource = Typhoid;
+            (NoOfCasesChart.Series[5] as ColumnSeries).ItemsSource = Others;
+            Button NoOfCasesBtn = FindChildControl<Button>(PredictionSection, "NoOfCasesBtn") as Button;
+            NoOfCasesBtn.Visibility = Visibility.Collapsed;
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

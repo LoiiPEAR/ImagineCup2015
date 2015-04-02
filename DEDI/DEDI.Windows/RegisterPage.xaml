@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Maps="using:Bing.Maps"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"
     x:Class="DEDI.RegisterPage"
     mc:Ignorable="d">
 
@@ -13,7 +14,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFFFFFFF">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -24,30 +25,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--
-            TODO: Content should be placed within the following grid 
-                  to show details for the current item
-        -->
-        <Grid Grid.Row="1" x:Name="PersonalInfoRegion" Margin="-37,25,37,-25" d:IsHidden="True">
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Personal Information" VerticalAlignment="Top" Margin="200,30,0,0" FontSize="36" FontWeight="Bold"/>
-            <TextBlock x:Name="UsernameTbl1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username*" VerticalAlignment="Top" FontSize="20" Margin="200,120,0,0"/>
+        <Grid Grid.Row="1" x:Name="PersonalInfoRegion">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Personal Information" VerticalAlignment="Top" Margin="200,30,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+            <TextBlock x:Name="UsernameTbl1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username*" VerticalAlignment="Top" FontSize="20" Margin="200,120,0,0" Foreground="#FF2D4D5A"/>
             <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,160,0,0" FontSize="16" Width="450" FontFamily="Global User Interface" TextChanged="isUsernameUsed"/>
-            <TextBlock x:Name="PasswordTbl1" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Password*" VerticalAlignment="Top" Margin="0,120,559,0" FontSize="20"/>
+            <TextBlock x:Name="PasswordTbl1" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Password*" VerticalAlignment="Top" Margin="0,120,559,0" FontSize="20" Foreground="#FF2D4D5A"/>
             <PasswordBox x:Name="PasswordTb" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,160,200,0" FontSize="16" Width="450" PasswordChanged="checkPW"/>
-            <TextBlock x:Name="FirstNameTb1l" HorizontalAlignment="Left" TextWrapping="Wrap" Text="First name*" VerticalAlignment="Top" FontSize="20" Margin="200,220,0,0"/>
+            <TextBlock x:Name="FirstNameTb1l" HorizontalAlignment="Left" TextWrapping="Wrap" Text="First name*" VerticalAlignment="Top" FontSize="20" Margin="200,220,0,0" Foreground="#FF2D4D5A"/>
             <TextBox x:Name="FirstNameTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,260,0,0" FontSize="16" Width="450"/>
-            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Last name*" VerticalAlignment="Top" Margin="0,220,552,0" FontSize="20"/>
+            <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Last name*" VerticalAlignment="Top" Margin="0,220,552,0" FontSize="20" Foreground="#FF2D4D5A"/>
             <TextBox x:Name="LastNameTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,260,200,0" FontSize="16" Width="450" FontFamily="Global User Interface"/>
-            <TextBlock x:Name="GenderTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Gender*" VerticalAlignment="Top" FontSize="20" Margin="200,320,0,0"/>
-            <RadioButton x:Name="MaleRBtn" Content=" Male" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,360,0,0" FontSize="20" Checked="MaleRBtn_Checked"/>
-            <RadioButton x:Name="FemaleRBtn" Content=" Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,360,0,0" FontSize="20" Checked="FemaleRBtn_Checked"/>
-            <TextBlock x:Name="DOBTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date of birth" VerticalAlignment="Top" FontSize="20" Margin="716,320,0,0"/>
-            <DatePicker x:Name="DOBDpk" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,360,354,0" FontSize="16"/>
-            <TextBlock x:Name="TelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Telephone" VerticalAlignment="Top" FontSize="20" Margin="200,420,0,0"/>
+            <TextBlock x:Name="GenderTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Gender*" VerticalAlignment="Top" FontSize="20" Margin="200,320,0,0" Foreground="#FF2D4D5A"/>
+            <RadioButton x:Name="MaleRBtn" Content=" Male" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,360,0,0" FontSize="20" Checked="MaleRBtn_Checked" Foreground="#FF2D4D5A"/>
+            <RadioButton x:Name="FemaleRBtn" Content=" Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,360,0,0" FontSize="20" Checked="FemaleRBtn_Checked" Foreground="#FF2D4D5A"/>
+            <TextBlock x:Name="DOBTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Date of birth" VerticalAlignment="Top" FontSize="20" Margin="716,320,0,0" Foreground="#FF2D4D5A"/>
+            <DatePicker x:Name="DOBDpk" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="716,360,0,0" FontSize="16" Foreground="#FF2D4D5A"/>
+            <TextBlock x:Name="TelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Telephone" VerticalAlignment="Top" FontSize="20" Margin="200,420,0,0" Foreground="#FF2D4D5A"/>
             <TextBox x:Name="TelTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,460,0,0" FontSize="16" Width="450"/>
-            <TextBlock x:Name="EmailTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email*" VerticalAlignment="Top" Margin="716,420,0,0" FontSize="20"/>
+            <TextBlock x:Name="EmailTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email*" VerticalAlignment="Top" Margin="716,420,0,0" FontSize="20" Foreground="#FF2D4D5A"/>
             <TextBox x:Name="EmailTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,460,200,0" FontSize="16" Width="450" FontFamily="Global User Interface" TextChanged="checkEmail"/>
-            <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="130" Click="NextBtn_Click"/>
+            <Button x:Name="NextBtn" Content="Next" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="130" Click="NextBtn_Click" Background="#FFADDFF8" Foreground="#FF104C5B"/>
             <TextBlock x:Name="Username_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="474,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
             <TextBlock x:Name="Password_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="716,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="448" TextAlignment="Right" />
             <TextBlock x:Name="Firstname_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="474,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
@@ -55,37 +52,34 @@
             <TextBlock x:Name="Lastname_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="990,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
             <TextBlock x:Name="Gender_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="474,367,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
         </Grid>
-        <Grid x:Name="OfficialInfoRegion" Margin="0,130,0,10" Grid.RowSpan="2">
+        <Grid x:Name="OfficialInfoRegion" Margin="0,140,0,0" Grid.RowSpan="2" Visibility="Collapsed">
             <TextBlock x:Name="Organization_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="474,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Official Information" VerticalAlignment="Top" Margin="200,30,0,0" FontSize="36" FontWeight="Bold"/>
-            <TextBlock x:Name="OrganizationTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Organization*" VerticalAlignment="Top" FontSize="20" Margin="200,120,0,0"/>
-            <TextBox x:Name="OrganizationTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,149,0,0" FontSize="16" Width="450" FontFamily="Global User Interface"/>
-            <TextBlock x:Name="PositionTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Position*" VerticalAlignment="Top" Margin="0,204,1087,0" FontSize="20"/>
-            <ComboBox x:Name="PositionCb" HorizontalAlignment="Right" VerticalAlignment="Top" Width="450" Margin="0,233,716,0" FontSize="20"/>
-            <TextBlock x:Name="CountryTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" FontSize="20" Margin="200,284,0,0"/>
-            <Button x:Name="RegisterBtn" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="130" Click="RegisterBtn_Click"/>
-            <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,340,50" FontSize="24" Width="130" Click="BackBtn_Click"/>
-            <TextBlock x:Name="Position_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="474,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
-            <Maps:Map x:Name="myMap" HorizontalAlignment="Left" Margin="718,149,0,0" VerticalAlignment="Top" Height="361" Width="445"/>
-            <TextBlock x:Name="AddressTbl" HorizontalAlignment="Left" Height="193" Margin="200,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="450"/>
-           
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Official Information" VerticalAlignment="Top" Margin="200,30,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF2B5360"/>
+            <TextBlock x:Name="OrganizationTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Organization*" VerticalAlignment="Top" FontSize="20" Margin="200,120,0,0" Foreground="#FF2B5360"/>
+            <TextBox x:Name="OrganizationTb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="200,160,0,0" FontSize="16" Width="450" FontFamily="Global User Interface"/>
+            <TextBlock x:Name="PositionTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Position*" VerticalAlignment="Top" Margin="200,220,0,0" FontSize="20" Foreground="#FF2B5360"/>
+            <ComboBox x:Name="PositionCb" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Margin="200,260,0,0" FontSize="20"/>
+            <TextBlock x:Name="CountryTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" FontSize="20" Margin="200,320,0,0" Foreground="#FF2B5360"/>
+            <Button x:Name="RegisterBtn" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,50" FontSize="24" Width="130" Click="RegisterBtn_Click" Foreground="#FFADDFF8" Background="#FF104C5B"/>
+            <Button x:Name="BackBtn" Content="Back" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,340,50" FontSize="24" Width="130" Click="BackBtn_Click" Background="#FFADDFF8" Foreground="#FF104C5B"/>
+            <TextBlock x:Name="Position_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="474,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
+            <Maps:Map x:Name="myMap" HorizontalAlignment="Right" Margin="0,160,200,0" VerticalAlignment="Top" Height="329" Width="453"/>
+            <TextBlock x:Name="AddressTbl" HorizontalAlignment="Left" Height="150" Margin="200,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="450" FontSize="16" Foreground="#FF104C5B"/>
+
 
         </Grid>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Margin="38,62,50,8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-				Style="{StaticResource NavigationBackButtonNormalStyle}"
-				VerticalAlignment="Top"
-				AutomationProperties.Name="Back"
-				AutomationProperties.AutomationId="BackButton"
-				AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
-            <TextBlock x:Name="pageTitle" Text="Register" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-46,-68,-62,-25" Height="163" Width="1386"/>
+            <TextBlock x:Name="pageTitle1" Text="Register" Style="{StaticResource HeaderTextBlockStyle}" 
+				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="5,-31,-5,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1" FontSize="48"/>
+            <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="19,-30,0,0" Height="45" Width="65" Click="backButton_Click" Grid.ColumnSpan="2" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
         </Grid>
     </Grid>
 </Page>

@@ -7,6 +7,7 @@
     xmlns:Maps="using:Bing.Maps"
     xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     x:Class="DEDI.DashBoard"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -39,9 +40,7 @@
                     <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-46,-68,-54,-6" Height="155" Width="1386"/>
                     <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" 
 						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="5,-31,-5,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1" FontSize="48"/>
-                    <Button x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="19,-30,0,0" Height="45" Width="65" Click="backButton_Click" Grid.ColumnSpan="2">
-                        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/back_btn.png"/>
-                    </Button>
+                    <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="19,-30,0,0" Height="45" Width="65" Click="backButton_Click" Grid.ColumnSpan="2" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
                 </Grid>
             </Hub.Header>
 
@@ -49,7 +48,7 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Maps:Map HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="370" Margin="90,250,90,0"/>
+                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="370" Margin="90,250,90,0"/>
                             <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7"/>
                             <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A"/>
@@ -72,69 +71,8 @@
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_10.png"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,180,0,0" Source="Assets/patients.png"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,180,0,0" Source="Assets/prediction_case.png"/>
-                            <Charting:Chart x:Name="NoOfCasesChart" Margin="40,400,620,68">
-                                <Charting:Chart.Series>
-                                    <Charting:BarSeries Title="Number of Cases" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                </Charting:Chart.Series>
-                                <Charting:Chart.Palette>
-                                    <Charting:ResourceDictionaryCollection>
-                                        <!-- Blue -->
-                                        <ResourceDictionary>
-                                            <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
-                                            <Style x:Key="DataPointStyle" TargetType="Control">
-                                                <Setter Property="Background" Value="{StaticResource Background}" />
-                                            </Style>
-                                            <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                <Setter  Property="StrokeThickness" Value="2" />
-                                                <Setter Property="StrokeMiterLimit" Value="1" />
-                                                <Setter Property="Fill" Value="{StaticResource Background}" />
-                                            </Style>
-                                        </ResourceDictionary>
-                                        <!-- Red -->
-                                        <ResourceDictionary>
-                                            <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
-                                            <Style x:Key="DataPointStyle" TargetType="Control">
-                                                <Setter Property="Background" Value="{StaticResource Background}" />
-                                            </Style>
-                                            <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                <Setter Property="StrokeThickness" Value="2" />
-                                                <Setter Property="StrokeMiterLimit" Value="1" />
-                                                <Setter Property="Fill" Value="{StaticResource Background}" />
-                                            </Style>
-                                        </ResourceDictionary>
-                                        <!-- Yellow -->
-                                        <ResourceDictionary>
-                                            <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
-                                            <Style x:Key="DataPointStyle" TargetType="Control">
-                                                <Setter Property="Background" Value="{StaticResource Background}" />
-                                            </Style>
-                                            <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                <Setter Property="StrokeThickness" Value="2" />
-                                                <Setter Property="StrokeMiterLimit" Value="1" />
-                                                <Setter Property="Fill" Value="{StaticResource Background}" />
-                                            </Style>
-                                        </ResourceDictionary>
-                                        <!-- Green -->
-                                        <ResourceDictionary>
-                                            <SolidColorBrush x:Key="Background" Color="#FFAAD34F" />
-                                            <Style x:Key="DataPointStyle" TargetType="Control">
-                                                <Setter Property="Background" Value="{StaticResource Background}" />
-                                            </Style>
-                                            <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                <Setter Property="StrokeThickness" Value="2" />
-                                                <Setter Property="StrokeMiterLimit" Value="1" />
-                                                <Setter Property="Fill" Value="{StaticResource Background}" />
-                                            </Style>
-                                        </ResourceDictionary>
-                                    </Charting:ResourceDictionaryCollection>
-                                </Charting:Chart.Palette>
-                            </Charting:Chart>
                             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="460" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,240,0,0"/>
-                            <SearchBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="730,180,0,0" Width="320" FontSize="18"/>
+                            <SearchBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="730,180,0,0" Width="320" FontSize="18" BorderBrush="{x:Null}" Foreground="White"/>
                             <ScrollViewer HorizontalAlignment="Left" Height="460" VerticalAlignment="Top" Width="320" Margin="730,240,0,0">
                                 <ListView HorizontalAlignment="Left" Height="460" VerticalAlignment="Top" Width="320">
                                     <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="130">
@@ -152,6 +90,88 @@
                                     </Grid>
                                 </ListView>
                             </ScrollViewer>
+                            <Button x:Name="NoOfCasesBtn" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="607,669,0,0" Click="NoOfCasesBtn_Click"/>
+                            <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="640" Margin="40,400,0,0">
+                                <Charting:Chart x:Name="NoOfCasesChart" Margin="0,10,0,0">
+                                    <Charting:Chart.Palette>
+                                        <Charting:ResourceDictionaryCollection>
+                                            <!-- Blue -->
+                                            <ResourceDictionary>
+                                                <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
+                                                <Style x:Key="DataPointStyle" TargetType="Control">
+                                                    <Setter Property="Background" Value="{StaticResource Background}" />
+                                                </Style>
+                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                                    <Setter  Property="StrokeThickness" Value="2" />
+                                                    <Setter Property="StrokeMiterLimit" Value="1" />
+                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
+                                                </Style>
+                                            </ResourceDictionary>
+                                            <!-- Red -->
+                                            <ResourceDictionary>
+                                                <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
+                                                <Style x:Key="DataPointStyle" TargetType="Control">
+                                                    <Setter Property="Background" Value="{StaticResource Background}" />
+                                                </Style>
+                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                                    <Setter Property="StrokeThickness" Value="2" />
+                                                    <Setter Property="StrokeMiterLimit" Value="1" />
+                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
+                                                </Style>
+                                            </ResourceDictionary>
+                                            <!-- Yellow -->
+                                            <ResourceDictionary>
+                                                <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
+                                                <Style x:Key="DataPointStyle" TargetType="Control">
+                                                    <Setter Property="Background" Value="{StaticResource Background}" />
+                                                </Style>
+                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                                    <Setter Property="StrokeThickness" Value="2" />
+                                                    <Setter Property="StrokeMiterLimit" Value="1" />
+                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
+                                                </Style>
+                                            </ResourceDictionary>
+                                            <!-- Green -->
+                                            <ResourceDictionary>
+                                                <SolidColorBrush x:Key="Background" Color="#FFAAD34F" />
+                                                <Style x:Key="DataPointStyle" TargetType="Control">
+                                                    <Setter Property="Background" Value="{StaticResource Background}" />
+                                                </Style>
+                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                                    <Setter Property="StrokeThickness" Value="2" />
+                                                    <Setter Property="StrokeMiterLimit" Value="1" />
+                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
+                                                </Style>
+                                            </ResourceDictionary>
+                                        </Charting:ResourceDictionaryCollection>
+                                    </Charting:Chart.Palette>
+                                    <Charting:ColumnSeries Title="All" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Cholera" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Rotavirus" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Shigella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Typhoid" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Others" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                </Charting:Chart>
+
+                            </Grid>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Margin="130,288,0,0" FontWeight="Bold" FontSize="36" Foreground="#FF6DC39F"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cases" VerticalAlignment="Top" Margin="110,317,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patients" VerticalAlignment="Top" Margin="315,160,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Margin="297,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Margin="351,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Margin="407,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="583,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Typhoid" VerticalAlignment="Top" Margin="587,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Margin="542,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Margin="603,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="603,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Margin="542,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
