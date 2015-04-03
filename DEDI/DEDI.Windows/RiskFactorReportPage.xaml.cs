@@ -23,18 +23,8 @@ namespace DEDI
     /// </summary>
     public sealed partial class RiskFactorReportPage : Page
     {
-        public RiskFactorReportPage()
-        {
-            this.InitializeComponent();
-            InitializeMap();
-        }
+        
 
-        private void InitializeMap()
-        {
-            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 17;
-            myMap.MapType = MapType.Road;
-           
-        }
+        
     }
 }

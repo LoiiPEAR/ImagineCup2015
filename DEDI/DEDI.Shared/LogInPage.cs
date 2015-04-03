@@ -6,6 +6,9 @@ using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -16,7 +19,7 @@ namespace DEDI
 {
     public sealed partial class LogInPage
     {
-
+        
         private SQLiteAsyncConnection conn = new SQLiteAsyncConnection("dediLocal.db");
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -51,7 +54,7 @@ namespace DEDI
         private async void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
             SignInBtn.IsEnabled = false;
-            var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == UsernameTb.Text &&hw.password == PasswordTb.Password).ToListAsync();
+            var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == UsernameTb.Text && hw.password == ComputeMD5(PasswordTb.Password)).ToListAsync();
             if (user.Count != 0)
             {
                 
@@ -63,9 +66,13 @@ namespace DEDI
                 SignInBtn.IsEnabled = true;
             }
         }
-        private void password_KeyDown(object sender, KeyRoutedEventArgs e)
+        public static string ComputeMD5(string str)
         {
-
+            var alg = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
+            IBuffer buff = CryptographicBuffer.ConvertStringToBinary(str, BinaryStringEncoding.Utf8);
+            var hashed = alg.HashData(buff);
+            var res = CryptographicBuffer.EncodeToHexString(hashed);
+            return res;
         }
 
         

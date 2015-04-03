@@ -7,8 +7,10 @@ namespace DEDI
 {
     public sealed partial class ReportsView
     {
+        Health_Worker user;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            user = e.Parameter as Health_Worker;
         }
     }
 }

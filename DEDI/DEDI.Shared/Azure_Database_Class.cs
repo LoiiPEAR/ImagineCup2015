@@ -135,24 +135,7 @@ namespace DEDI
         public string intensity_id { get; set; }
     }
 
-    class Risk_Factor
-    {
-        public string id { get; set; }
-
-        public string risk_factor { get; set; }
-    }
-
-    class Risk_Factor_Intensity
-    {
-        public string id { get; set; }
-
-        public string rf_id { get; set; }
-
-        public int level { get; set; }
-
-        public string description { get; set; }
-    }
-
+    
     class Risk_Factor_Report
     {
         public string id { get; set; }
@@ -165,9 +148,7 @@ namespace DEDI
 
         public string description { get; set; }
 
-        public string rf_id { get; set; }
-
-        public string intensity_id { get; set; }
+        public string risk_factor { get; set; }
 
         public DateTime reported_time { get; set; }
 

@@ -57,7 +57,7 @@ namespace DEDI
                
                 Map myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 17;
+                myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Width = 420;
                 myMap.Height = 480;
@@ -116,26 +116,26 @@ namespace DEDI
 
         private void CreateReportBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReportPage));
+            this.Frame.Navigate(typeof(CreateReportPage),user);
         }
 
         private void DashboardBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(DashBoard));
+            this.Frame.Navigate(typeof(DashBoard),user);
         }
 
         private void GoToMapBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MapsView));
+            this.Frame.Navigate(typeof(MapsView), user);
         }
 
         private void GoToReportBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ReportsView));
+            this.Frame.Navigate(typeof(ReportsView), user);
         }
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReportPage));
+            this.Frame.Navigate(typeof(CreateReportPage), user);
         }
         private void NearbyBtn_Click(object sender, RoutedEventArgs e)
         {
