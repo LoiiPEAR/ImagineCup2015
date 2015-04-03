@@ -10,7 +10,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Windows.Data.Json;
 using Windows.Devices.Geolocation;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -54,6 +57,14 @@ namespace DEDI
         private async void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             string warning_str =" is required*";
+            if (UsernameTb.Text == "")
+            {
+                Username_errorTbl.Text = "Firstname" + warning_str;
+            }
+            if (PasswordTb.Password == "")
+            {
+                Password_errorTbl.Text = "Lastname" + warning_str;
+            }
             if (FirstNameTb.Text == "")
             {
                 Firstname_errorTbl.Text = "Firstname"+warning_str;
@@ -67,7 +78,7 @@ namespace DEDI
                 Organization_errorTbl.Text = "Organization name" + warning_str;
             }
            
-            if (PositionCb.SelectedItem == "")
+            if (PositionCb.SelectedItem == null)
             {
                 Position_errorTbl.Text = "Position" + warning_str;
             }
@@ -75,18 +86,19 @@ namespace DEDI
             {
                 Gender_errorTbl.Text = "Gender" + warning_str;
             }
-            if (EmailTbl.Text == "")
+            if (EmailTb.Text == "")
             {
                 Email_errorTbl.Text = "Email" + warning_str;
             }
             if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
                 //ComboBoxItem posItem = (ComboBoxItem)PositionCb.SelectedItem;
+                
                 string pos_value = PositionCb.SelectedItem.ToString();
                 Health_Worker user = new Health_Worker() { 
                 fname = FirstNameTb.Text,
                 lname = LastNameTb.Text,
-                password = PasswordTb.Password,
+                password = ComputeMD5(PasswordTb.Password),
                 username =UsernameTb.Text,
                 position = pos_value,
                 organization = OrganizationTb.Text,
@@ -251,23 +263,14 @@ namespace DEDI
             AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
         }
 
-        //private async void pushpin_DragLeave(object sender, DragEventArgs e)
-        //{
-        //    Pushpin pin = (Pushpin)sender;
-        //     var client = new HttpClient();
-        //     //Get the mouse click coordinates
-        //     var mousePosition = e.GetPosition(this);
-        //     //Convert the mouse coordinates to a locatoin on the map
-        //     Location pinLocation = m
-        //    Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + p.X+ "," + p.Y+ "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
-        //    var response = await client.GetAsync(uri);
-        //    var result = await response.Content.ReadAsStringAsync();
-        //    MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-        //    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
-        //    var list = serializer.ReadObject(ms);
-        //    Response jsonResponse = list as Response;
-        //    AddressTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
-        //}
+        public static string ComputeMD5(string str)
+        {
+            var alg = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
+            IBuffer buff = CryptographicBuffer.ConvertStringToBinary(str, BinaryStringEncoding.Utf8);
+            var hashed = alg.HashData(buff);
+            var res = CryptographicBuffer.EncodeToHexString(hashed);
+            return res;
+        }
        
 
         

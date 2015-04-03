@@ -116,26 +116,26 @@ namespace DEDI
 
         private void CreateReportBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReportPage));
+            this.Frame.Navigate(typeof(CreateReportPage),user);
         }
 
         private void DashboardBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(DashBoard));
+            this.Frame.Navigate(typeof(DashBoard),user);
         }
 
         private void GoToMapBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MapsView));
+            this.Frame.Navigate(typeof(MapsView), user);
         }
 
         private void GoToReportBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ReportsView));
+            this.Frame.Navigate(typeof(ReportsView), user);
         }
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReportPage));
+            this.Frame.Navigate(typeof(CreateReportPage), user);
         }
         private void NearbyBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -23,9 +23,11 @@ namespace DEDI
             public string date { get; set; }
             public int cases { get; set; }
         }
+        Health_Worker user;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            user = e.Parameter as Health_Worker;
             loaddata();
         }
 
@@ -108,7 +110,7 @@ namespace DEDI
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(HomePage));
+            this.Frame.Navigate(typeof(HomePage),user);
         }
 
         private void MoreBtn_Click(object sender, RoutedEventArgs e)

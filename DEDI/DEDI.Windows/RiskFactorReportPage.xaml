@@ -24,22 +24,21 @@
                   to show details for the current item
         -->
         <Grid Grid.Row="1" x:Name="contentRegion">
-            <Button Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,150,0,0" Width="100" Height="100"/>
-            <Button Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,150,0,0" Width="100" Height="100"/>
-            <Button Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,280,0,0" Width="100" Height="100"/>
-            <Button Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,280,0,0" Width="100" Height="100"/>
-            <Button Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,410,0,0" Width="100" Height="100"/>
-            <Button Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,410,0,0" Width="100" Height="100"/>
+            <Button x:Name="ContraminatedWaterBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,150,0,0" Width="100" Height="100" Click="ContraminatedWaterBtn_Click"/>
+            <Button x:Name="ContraminatedFoodBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,150,0,0" Width="100" Height="100" Click="ContraminatedFoodBtn_Click"/>
+            <Button x:Name="CrowdingBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,280,0,0" Width="100" Height="100" Click="CrowdingBtn_Click"/>
+            <Button x:Name="PoorsanitationBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,280,0,0" Width="100" Height="100" Click="PoorsanitationBtn_Click"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="120,80,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="483,80,0,0"/>
             <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="360" Margin="483,150,483,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="957,150,0,0"/>
-            <TextBox HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,190,120,0" FontSize="20" MinWidth="100" Width="289" Height="39"/>
+            <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,190,120,0" FontSize="20" MinWidth="100" Width="289" Height="39"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="957,250,0,0"/>
-            <TextBox HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,290,120,0" FontSize="20" MinWidth="100" Width="289" Height="110"/>
+            <TextBox x:Name="DescriptionTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,290,120,0" FontSize="20" MinWidth="100" Width="289" Height="110"/>
             <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,420,355.84,0"/>
-            <DatePicker HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,460,120,0"/>
-            <Button Content="Submit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,120,50" FontSize="24"/>
+            <DatePicker x:Name="DatePicker" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,460,120,0"/>
+            <Button x:Name="SubmitBtn" Content="Submit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,120,50" FontSize="24" Click="SubmitBtn_Click"/>
+            <TextBlock x:Name="Type_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="171,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
         </Grid>
 
         <!-- Back button and page title -->
