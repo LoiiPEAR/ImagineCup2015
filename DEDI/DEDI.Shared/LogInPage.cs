@@ -42,8 +42,8 @@ namespace DEDI
             //        password="z,iyd86I", position="Village Health Volunteer", latitude=13, longitude=100}
             //});
 
-            var getAll = await conn.Table<Health_Worker_Local>().Where(u=>u.fname == "Prae").FirstOrDefaultAsync();
-            UsernameTb.Text = getAll.fname;
+            //var getAll = await conn.Table<Health_Worker_Local>().Where(u=>u.fname == "Prae").FirstOrDefaultAsync();
+            //UsernameTb.Text = getAll.fname;
         }
 
         private void RegisterHL_Click(object sender, RoutedEventArgs e)
