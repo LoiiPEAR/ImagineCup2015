@@ -57,7 +57,7 @@ namespace DEDI
                
                 Map myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 17;
+                myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Width = 420;
                 myMap.Height = 480;

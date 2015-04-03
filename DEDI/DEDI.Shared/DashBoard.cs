@@ -26,13 +26,33 @@ namespace DEDI
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+            loaddata();
         }
 
-        private void NoOfCasesBtn_Click(object sender, RoutedEventArgs e)
+        private async void loaddata()
         {
-            Map myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
-            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            try
+            {
+                Geolocator geolocator = new Geolocator();
+                geolocator.DesiredAccuracy = PositionAccuracy.High;
+                Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
+                                                                               TimeSpan.FromSeconds(10));
+                Map myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
+                myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.ZoomLevel = 10;
+                myMap.MapType = MapType.Road;
+                myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
+                loadgraph();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void loadgraph()
+        {
             Random rand = new Random();
             List<NumberOfCases> All = new List<NumberOfCases>();
             List<NumberOfCases> Cholera = new List<NumberOfCases>();
@@ -79,6 +99,11 @@ namespace DEDI
             (NoOfCasesChart.Series[5] as ColumnSeries).ItemsSource = Others;
             Button NoOfCasesBtn = FindChildControl<Button>(PredictionSection, "NoOfCasesBtn") as Button;
             NoOfCasesBtn.Visibility = Visibility.Collapsed;
+        }
+
+        private void NoOfCasesBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
