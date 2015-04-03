@@ -164,7 +164,7 @@ namespace DEDI
         }
         public static bool isPassword(string inputPW)
         {
-            string strRegex = @"(?!^[0-9]*$)(?!^[a-z]*$)(?!^[A-Z]*$)^(.{8,15})$";
+            string strRegex = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$";
             Regex re = new Regex(strRegex);
             if (re.IsMatch(inputPW))
                 return (true);
