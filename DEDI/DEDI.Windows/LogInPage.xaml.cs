@@ -20,11 +20,6 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(MapsView));
         }
-
-       
-
-       
-
        
     }
 }

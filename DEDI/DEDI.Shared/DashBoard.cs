@@ -42,7 +42,7 @@ namespace DEDI
                 TextBlock no_case = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
                 no_case.Text = disease_report.Count+"";
                 foreach(Disease_Report report in disease_report){
-                    var patient = await App.MobileService.GetTable<Patient_Local>().ToListAsync();
+                    var patient = await App.MobileService.GetTable<Patient>().ToListAsync();
                     if (patient[0].gender == "F") female++;
                     else male++;
                     if (CalculateAge(patient[0].dob) <= 15) child++;

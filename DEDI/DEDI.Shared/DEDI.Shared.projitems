@@ -23,7 +23,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DraggablePin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LocalDB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pushpin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Response.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
@@ -31,6 +30,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ReportsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLite_DB.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncHandler.cs" />
   </ItemGroup>
 </Project>

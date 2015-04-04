@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
+using Newtonsoft.Json.Linq;
 using SQLite;
 using SQLitePCL;
 using System;
@@ -20,30 +21,149 @@ namespace DEDI
     public sealed partial class LogInPage
     {
         
-        private SQLiteAsyncConnection conn = new SQLiteAsyncConnection("dediLocal.db");
+        private SQLiteAsyncConnection conn = new SQLiteAsyncConnection("localsync.db");
+        private MobileServiceCollection<Health_Worker, Health_Worker> HWs;
+        private IMobileServiceSyncTable<Health_Worker> HWTable = App.MobileService.GetSyncTable<Health_Worker>();
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //conn.CreateTableAsync<Disaster_Report_Local>();
-            //conn.CreateTableAsync<Disease_Local>();
-            //conn.CreateTableAsync<Disease_Report_Local>();
-            //conn.CreateTableAsync<Edited_Report_Local>();
-            //conn.CreateTableAsync<Follow_Local>();
-           // await conn.CreateTableAsync<Health_Worker_Local>();
-            //conn.CreateTableAsync<Message_Local>();
-            //conn.CreateTableAsync<Patient_Local>();
-            //conn.CreateTableAsync<Reported_Symptom_Local>();
-            //conn.CreateTableAsync<Risk_Factor_Report_Local>();
-            //conn.CreateTableAsync<Symptom_Local>();
+            if (e.NavigationMode != NavigationMode.New)
+                return;
 
-            //await conn.InsertAllAsync(new[]
-            //{
-            //    new Health_Worker_Local {id="AAA111", fname="Prae", lname="Charkratpahu", gender="F", dob=new DateTime(DateTime.Today.Year,DateTime.Today.Month,DateTime.Today.Day,10,39,30),
-            //        telephone="0123456789", email="abc@a.com", organization="DEDI", username="Loii.PEAR",
-            //        password="z,iyd86I", position="Village Health Volunteer", latitude=13, longitude=100}
-            //});
+            if (!App.MobileService.SyncContext.IsInitialized)
+            {
+                var store = new MobileServiceSQLiteStore("localsync.db");
+                store.DefineTable<Health_Worker>();
+                await App.MobileService.SyncContext.InitializeAsync(store, new SyncHandler(App.MobileService));
+            }
+            await RefreshHW();
+        }
 
-            //var getAll = await conn.Table<Health_Worker_Local>().Where(u=>u.fname == "Prae").FirstOrDefaultAsync();
-            //UsernameTb.Text = getAll.fname;
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Health_Worker selected = ListViews.Items[ListViews.SelectedIndex] as Health_Worker;
+            conn.DeleteAsync(selected);
+        }
+
+        private async void RefreshBtn_Click(object sender, RoutedEventArgs e)
+        {
+            await RefreshHW();
+        }
+
+        private async void PullBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            string errorString = null;
+
+            PullBtn.Focus(FocusState.Programmatic);
+            PullBtn.IsEnabled = false;
+
+            try
+            {
+                await HWTable.PullAsync("id", HWTable.CreateQuery());
+                await RefreshHW();
+            }
+            catch(MobileServicePushFailedException ex)
+            {
+                errorString = "Internal Push operation during pull request failed because of sync errors: " +
+                    ex.PushResult.Errors.Count + " errors, message: " + ex.Message;
+            }
+            catch(Exception ex)
+            {
+                errorString = "Pull failed: " + ex.Message +
+                    "\n\nIf you are still in an offline scenario, " +
+                    "you can try your Pull again when connected with your Mobile Service.";
+            }
+
+            if (errorString != null)
+            {
+                MessageDialog d = new MessageDialog(errorString);
+                await d.ShowAsync();
+            }
+            PullBtn.IsEnabled = true;
+        }
+
+        private async void PushBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            string errorString = null;
+
+            PushBtn.Focus(FocusState.Programmatic);
+            PushBtn.IsEnabled = false;
+
+            try
+            {
+                await App.MobileService.SyncContext.PushAsync();
+            }
+            catch (MobileServicePushFailedException ex)
+            {
+                errorString = "Push failed because of sync errors: " +
+                    ex.PushResult.Errors.Count + " errors, message: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                errorString = "Push failed: " + ex.Message +
+                    "\n\nIf you are still in an offline scenario, " +
+                    "you can try your Push again when connected with your Mobile Service.";
+            }
+
+            if (errorString != null)
+            {
+                MessageDialog d = new MessageDialog(errorString);
+                await d.ShowAsync();
+            }
+            PushBtn.IsEnabled = true;
+        }
+
+        private async Task RefreshHW()
+        {
+            MobileServiceInvalidOperationException exception = null;
+            try
+            {
+                HWs = await HWTable.OrderBy(Health_Worker => Health_Worker.id).ToCollectionAsync();
+            }
+            catch (MobileServiceInvalidOperationException e)
+            {
+                exception = e;
+            }
+
+            if (exception != null)
+            {
+                await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
+            }
+            else
+            {
+                ListViews.ItemsSource = HWs;
+                this.SaveBtn.IsEnabled = true;
+            }
+        }
+
+        private async Task UpdateHW(Health_Worker hw)
+        {
+            await HWTable.UpdateAsync(hw);
+        }
+
+        private async void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var hw = new Health_Worker
+            {
+                fname = "Prae",
+                lname = "Charkratpahu",
+                gender = "F",
+                dob = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 10, 39, 30),
+                telephone = "0123456789",
+                email = "abc@a.com",
+                organization = "DEDI",
+                username = "Loii.PEAR",
+                password = "z,iyd86I",
+                position = "Village Health Volunteer",
+                latitude = 13,
+                longitude = 100
+            };
+            await InsertHW(hw);
+        }
+
+        private async Task InsertHW(Health_Worker hw)
+        {
+            await HWTable.InsertAsync(hw);
+            HWs.Add(hw);
         }
 
         private void RegisterHL_Click(object sender, RoutedEventArgs e)
