@@ -29,7 +29,7 @@ namespace DEDI
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReportPage));
+            this.Frame.Navigate(typeof(CreateReportPage),user);
         }
         private void FloodBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -37,11 +37,11 @@ namespace DEDI
         }
         private void StromBtn_Click(object sender, RoutedEventArgs e)
         {
-            disaster = "Strom";
+            disaster = "Storm";
         }
         private void WildFireBtn_Click(object sender, RoutedEventArgs e)
         {
-            disaster = "WildFire";
+            disaster = "Wildfire";
         }
         private void TsunamiBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -49,11 +49,11 @@ namespace DEDI
         }
         private void EarthQuakeBtn_Click(object sender, RoutedEventArgs e)
         {
-            disaster = "EarthQuake";
+            disaster = "Earthquake";
         }
         private void VocanicEruptionBtn_Click(object sender, RoutedEventArgs e)
         {
-            disaster = "Vocanic eruption";
+            disaster = "Volcanic eruption";
         }
         public async void InitializeMap()
         {

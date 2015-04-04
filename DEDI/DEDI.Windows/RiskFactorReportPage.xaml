@@ -24,10 +24,10 @@
                   to show details for the current item
         -->
         <Grid Grid.Row="1" x:Name="contentRegion">
-            <Button x:Name="ContraminatedWaterBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,150,0,0" Width="100" Height="100" Click="ContraminatedWaterBtn_Click"/>
-            <Button x:Name="ContraminatedFoodBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,150,0,0" Width="100" Height="100" Click="ContraminatedFoodBtn_Click"/>
+            <Button x:Name="ContaminatedWaterBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,150,0,0" Width="100" Height="100" Click="ContraminatedWaterBtn_Click"/>
+            <Button x:Name="ContaminatedFoodBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,150,0,0" Width="100" Height="100" Click="ContraminatedFoodBtn_Click"/>
             <Button x:Name="CrowdingBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,280,0,0" Width="100" Height="100" Click="CrowdingBtn_Click"/>
-            <Button x:Name="PoorsanitationBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,280,0,0" Width="100" Height="100" Click="PoorsanitationBtn_Click"/>
+            <Button x:Name="PoorSanitationBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,280,0,0" Width="100" Height="100" Click="PoorsanitationBtn_Click"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="120,80,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="483,80,0,0"/>
             <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="360" Margin="483,150,483,0"/>

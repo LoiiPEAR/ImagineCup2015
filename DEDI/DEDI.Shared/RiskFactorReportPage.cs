@@ -33,7 +33,7 @@ namespace DEDI
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReportPage));
+            this.Frame.Navigate(typeof(CreateReportPage),user);
         }
         private async void InitializeMap()
         {
@@ -75,12 +75,12 @@ namespace DEDI
 
         private void ContraminatedWaterBtn_Click(object sender, RoutedEventArgs e)
         {
-            risk_factor = "Contraminated water";
+            risk_factor = "Contaminated water";
         }
 
         private void ContraminatedFoodBtn_Click(object sender, RoutedEventArgs e)
         {
-            risk_factor = "Contraminated food";
+            risk_factor = "Contaminated food";
         }
 
         private void CrowdingBtn_Click(object sender, RoutedEventArgs e)
@@ -90,7 +90,7 @@ namespace DEDI
 
         private void PoorsanitationBtn_Click(object sender, RoutedEventArgs e)
         {
-            risk_factor = "Poorsanitation";
+            risk_factor = "Poor sanitation";
 
         }
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)

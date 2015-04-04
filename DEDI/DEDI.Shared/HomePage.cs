@@ -16,6 +16,7 @@ using System.Runtime.Serialization.Json;
 using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json.Linq;
 using Windows.Data.Json;
+using Windows.UI.Xaml.Input;
 
 
 namespace DEDI
@@ -23,6 +24,7 @@ namespace DEDI
     public sealed partial class HomePage
     {
         private Health_Worker user;
+        Map myMap;
         public HomePage()
         {
             this.InitializeComponent();
@@ -55,14 +57,15 @@ namespace DEDI
                 TextBlock LocationTbl = FindChildControl<TextBlock>(ProfileSection, "LocationTbl") as TextBlock;
                 LocationTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
                
-                Map myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
+                myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
                 myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Width = 420;
                 myMap.Height = 480;
                 myMap.Center = new Bing.Maps.Location(jsonResponse.ResourceSets[0].Resources[0].Point.Coordinates[0], jsonResponse.ResourceSets[0].Resources[0].Point.Coordinates[1]);
-
+                loadRF();
+                loadDisaster();
             }
             catch (MobileServiceInvalidOperationException e){
 
@@ -110,6 +113,7 @@ namespace DEDI
         {
             user = e.Parameter as Health_Worker;
             loadData();
+           
         }
 
 
@@ -158,6 +162,45 @@ namespace DEDI
             AllScrollView.Visibility = Visibility.Visible;
             ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
             NearbyScrollView.Visibility = Visibility.Collapsed;
+        }
+        private async void loadDisaster()
+        {
+            var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
+            foreach (Disaster_Report report in reports)
+            {
+                Pushpin pushpin = new Pushpin();
+                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                pushpin.Name = report.disaster;
+                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                myMap.Children.Add(pushpin);
+            }
+
+        }
+        private async void loadRF()
+        {
+            var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
+            foreach (Risk_Factor_Report report in reports)
+            {
+                Pushpin pushpin = new Pushpin();
+                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                pushpin.Name = report.risk_factor;
+                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                myMap.Children.Add(pushpin);
+            }
+
+        }
+        private async void loadDisease()
+        {
+
+
+        }
+
+
+
+        private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
+        {
+            MessageDialog dialog = new MessageDialog(((Pushpin)sender).Name);
+            await dialog.ShowAsync();
         }
     }
 }

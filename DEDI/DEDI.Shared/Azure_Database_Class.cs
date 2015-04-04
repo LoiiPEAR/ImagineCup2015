@@ -57,6 +57,7 @@ namespace DEDI
         public DateTime sent_time { get; set; }
     }
 
+
     class Patient
     {
         public string id { get; set; }

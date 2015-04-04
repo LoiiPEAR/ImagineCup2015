@@ -92,6 +92,9 @@
     <Compile Include="DiseaseReportPage.xaml.cs">
       <DependentUpon>DiseaseReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DraggablePin.xaml.cs">
+      <DependentUpon>DraggablePin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
     <Page Include="DiseaseReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DraggablePin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>

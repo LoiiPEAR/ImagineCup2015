@@ -125,10 +125,10 @@ namespace DEDI
         private void PositionCb_load()
         {
             PositionCb.Items.Add("Village Health Volunteer");
-            PositionCb.Items.Add("Tambon Health Promoting Hospital");
-            PositionCb.Items.Add("District Public Health Office");
-            PositionCb.Items.Add("Povincial Public Health Office");
-            PositionCb.Items.Add("Ministry of Public Health");
+            PositionCb.Items.Add("Tambon Health Promoting Hospital Officer");
+            PositionCb.Items.Add("District Public Health Officer");
+            PositionCb.Items.Add("Povincial Public Health Officer");
+            PositionCb.Items.Add("Ministry of Public Health Officer");
           //  PositionCb.SelectedIndex = PositionCb.FindStringExact("Sunday");
 
         }

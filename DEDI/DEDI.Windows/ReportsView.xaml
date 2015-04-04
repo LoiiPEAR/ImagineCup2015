@@ -8,6 +8,48 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+        <ComboBox x:Name="FilterCb" HorizontalAlignment="Left" Margin="137,54,0,0" VerticalAlignment="Top" Width="344" SelectionChanged="Change_Filter"/>
+        <ListView x:Name="DisasterReportsViewLv" Margin="104,142,912,0" >
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal" Width="600" Height="50">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
+                            <TextBlock Text="{Binding disaster}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
+                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
+                        <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="DiseaseReportsViewLv" Margin="474,142,519,10" >
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal" Width="600" Height="50">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
+                            <TextBlock Text="{Binding disease}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
+                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
+                        <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="RiskFactorReportsViewLv" Margin="988,142,0,0" >
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal" Width="600" Height="50">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
+                            <TextBlock Text="{Binding risk_factor}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
+                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
+                        <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+       </Grid>
 </Page>
