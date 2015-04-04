@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEDI.Windows", "DEDI\DEDI.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEDI.WindowsPhone", "DEDI\DEDI.WindowsPhone\DEDI.WindowsPhone.csproj", "{01CD7821-C05A-4483-9950-D159AA181DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App3", "App3\App3.csproj", "{D3FA453D-1306-4E22-AD1A-9F16173AD141}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		DEDI\DEDI.Shared\DEDI.Shared.projitems*{c9a08454-c66c-4181-ad8f-0acaa49c6ff5}*SharedItemsImports = 13
@@ -88,32 +86,6 @@ Global
 		{01CD7821-C05A-4483-9950-D159AA181DE0}.Release|x86.ActiveCfg = Release|x86
 		{01CD7821-C05A-4483-9950-D159AA181DE0}.Release|x86.Build.0 = Release|x86
 		{01CD7821-C05A-4483-9950-D159AA181DE0}.Release|x86.Deploy.0 = Release|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|ARM.ActiveCfg = Debug|ARM
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|ARM.Build.0 = Debug|ARM
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|ARM.Deploy.0 = Debug|ARM
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|x64.ActiveCfg = Debug|x64
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|x64.Build.0 = Debug|x64
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|x64.Deploy.0 = Debug|x64
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|x86.ActiveCfg = Debug|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|x86.Build.0 = Debug|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Debug|x86.Deploy.0 = Debug|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|ARM.ActiveCfg = Release|ARM
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|ARM.Build.0 = Release|ARM
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|ARM.Deploy.0 = Release|ARM
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|x64.ActiveCfg = Release|x64
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|x64.Build.0 = Release|x64
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|x64.Deploy.0 = Release|x64
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|x86.ActiveCfg = Release|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|x86.Build.0 = Release|x86
-		{D3FA453D-1306-4E22-AD1A-9F16173AD141}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

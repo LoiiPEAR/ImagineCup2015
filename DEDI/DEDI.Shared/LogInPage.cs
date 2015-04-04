@@ -28,7 +28,7 @@ namespace DEDI
             //conn.CreateTableAsync<Disease_Report_Local>();
             //conn.CreateTableAsync<Edited_Report_Local>();
             //conn.CreateTableAsync<Follow_Local>();
-            await conn.CreateTableAsync<Health_Worker_Local>();
+           // await conn.CreateTableAsync<Health_Worker_Local>();
             //conn.CreateTableAsync<Message_Local>();
             //conn.CreateTableAsync<Patient_Local>();
             //conn.CreateTableAsync<Reported_Symptom_Local>();

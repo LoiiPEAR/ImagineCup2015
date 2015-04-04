@@ -158,12 +158,12 @@
                                 </Charting:Chart>
 
                             </Grid>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Margin="130,288,0,0" FontWeight="Bold" FontSize="36" Foreground="#FF6DC39F"/>
+                            <TextBlock x:Name="NoOfCasesTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Margin="130,288,0,0" FontWeight="Bold" FontSize="36" Foreground="#FF6DC39F"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cases" VerticalAlignment="Top" Margin="110,317,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patients" VerticalAlignment="Top" Margin="315,160,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Margin="297,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Margin="351,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Margin="407,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock x:Name="NoOfFemaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Margin="297,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Margin="351,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Margin="407,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="583,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>

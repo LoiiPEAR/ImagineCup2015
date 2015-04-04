@@ -35,6 +35,25 @@ namespace DEDI
         {
             try
             {
+                int male = 0;
+                int female = 0;
+                int child = 0;
+                var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+                TextBlock no_case = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
+                no_case.Text = disease_report.Count+"";
+                foreach(Disease_Report report in disease_report){
+                    var patient = await App.MobileService.GetTable<Patient_Local>().ToListAsync();
+                    if (patient[0].gender == "F") female++;
+                    else male++;
+                    if (CalculateAge(patient[0].dob) <= 15) child++;
+                }
+                TextBlock no_child = FindChildControl<TextBlock>(PredictionSection, "NoOfChildTbl") as TextBlock;
+                no_child.Text = child + "";
+                TextBlock no_male = FindChildControl<TextBlock>(PredictionSection, "NoOfMaleTbl") as TextBlock;
+                no_male.Text = male + "";
+                TextBlock no_female = FindChildControl<TextBlock>(PredictionSection, "NoOfFemaleTbl") as TextBlock;
+                no_female.Text = female + "";
+
                 Geolocator geolocator = new Geolocator();
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
                 Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
@@ -45,7 +64,7 @@ namespace DEDI
                 myMap.MapType = MapType.Road;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadgraph();
-
+                
             }
             catch (Exception ex)
             {
@@ -102,7 +121,13 @@ namespace DEDI
             Button NoOfCasesBtn = FindChildControl<Button>(PredictionSection, "NoOfCasesBtn") as Button;
             NoOfCasesBtn.Visibility = Visibility.Collapsed;
         }
-
+        public int CalculateAge(DateTime birthDate)
+        {
+            var now = DateTime.Today;
+            int age = now.Year - birthDate.Year;
+            if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day)) age--;
+            return age;
+        }
         private void NoOfCasesBtn_Click(object sender, RoutedEventArgs e)
         {
            

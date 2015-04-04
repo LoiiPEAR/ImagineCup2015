@@ -14,7 +14,6 @@ namespace DEDI
         {
             user = e.Parameter as Health_Worker;
             loadFilter();
-            loadDisaster();
         }
 
         private async void loadDisaster()
