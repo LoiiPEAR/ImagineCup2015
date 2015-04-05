@@ -39,15 +39,15 @@ namespace DEDI
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
                 Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
                                                                                TimeSpan.FromSeconds(10));
-               
                 var client = new HttpClient();
-                Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + currentPosition.Coordinate.Latitude + "," + currentPosition.Coordinate.Longitude+ "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
-                var response = await client.GetAsync(uri);
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + currentPosition.Coordinate.Latitude + "," + currentPosition.Coordinate.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
                 var result = await response.Content.ReadAsStringAsync();
                 MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
                 var list = serializer.ReadObject(ms);
-                Response jsonResponse = list as Response;
+                RootObject jsonResponse = list as RootObject;
+            
                 
                 
                 TextBlock FirstNameTbl = FindChildControl<TextBlock>(ProfileSection, "FirstNameTbl") as TextBlock;
@@ -55,7 +55,7 @@ namespace DEDI
                 TextBlock LastNameTbl = FindChildControl<TextBlock>(ProfileSection, "LastNameTbl") as TextBlock;
                 LastNameTbl.Text = user.lname;
                 TextBlock LocationTbl = FindChildControl<TextBlock>(ProfileSection, "LocationTbl") as TextBlock;
-                LocationTbl.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+                LocationTbl.Text = jsonResponse.results[0].formatted_address;
                
                 myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
@@ -63,7 +63,7 @@ namespace DEDI
                 myMap.MapType = MapType.Road;
                 myMap.Width = 420;
                 myMap.Height = 480;
-                myMap.Center = new Bing.Maps.Location(jsonResponse.ResourceSets[0].Resources[0].Point.Coordinates[0], jsonResponse.ResourceSets[0].Resources[0].Point.Coordinates[1]);
+                myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadRF();
                 loadDisaster();
             }

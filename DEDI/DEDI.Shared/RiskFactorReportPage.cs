@@ -62,14 +62,14 @@ namespace DEDI
             myMap.Children.Add(pin);
             myMap.PointerPressedOverride += myMap_PointerPressedOverride;
             var client = new HttpClient();
-            Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + currentPosition.Coordinate.Latitude + "," + currentPosition.Coordinate.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
-            var response = await client.GetAsync(uri);
+            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + currentPosition.Coordinate.Latitude + "," + currentPosition.Coordinate.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+            var response = await client.GetAsync(Uri);
             var result = await response.Content.ReadAsStringAsync();
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
             var list = serializer.ReadObject(ms);
-            Response jsonResponse = list as Response;
-            AddressTB.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+            RootObject jsonResponse = list as RootObject;
+            AddressTB.Text = jsonResponse.results[0].formatted_address;
 
         }
 
@@ -104,16 +104,14 @@ namespace DEDI
             {
                 Bing.Maps.MapLayer.SetPosition(pin, location);
                 var client = new HttpClient();
-                Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + location.Latitude + "," + location.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
-                var response = await client.GetAsync(uri);
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Latitude + "," + location.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
                 var result = await response.Content.ReadAsStringAsync();
                 MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
                 var list = serializer.ReadObject(ms);
-                Response jsonResponse = list as Response;
-                ms.Flush();
-                if (jsonResponse.ResourceSets[0].EstimatedTotal != 0)
-                    AddressTB.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+                RootObject jsonResponse = list as RootObject;
+                AddressTB.Text = jsonResponse.results[0].formatted_address;
             }
         }
 
@@ -125,16 +123,14 @@ namespace DEDI
         {
 
             var client = new HttpClient();
-            Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + obj.Latitude + "," + obj.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
-            var response = await client.GetAsync(uri);
+            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + obj.Latitude + "," + obj.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+            var response = await client.GetAsync(Uri);
             var result = await response.Content.ReadAsStringAsync();
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Response));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
             var list = serializer.ReadObject(ms);
-            Response jsonResponse = list as Response;
-            ms.Flush();
-            if (jsonResponse.ResourceSets[0].EstimatedTotal != 0)
-                AddressTB.Text = jsonResponse.ResourceSets[0].Resources[0].Address.FormattedAddress;
+            RootObject jsonResponse = list as RootObject;
+            AddressTB.Text = jsonResponse.results[0].formatted_address;
         }
         private async void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -144,6 +140,7 @@ namespace DEDI
             }
             else
             {
+                SubmitBtn.IsEnabled = false;
                 Risk_Factor_Report r = new Risk_Factor_Report()
                 {
                     risk_factor = this.risk_factor,

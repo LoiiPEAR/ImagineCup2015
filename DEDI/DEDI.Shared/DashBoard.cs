@@ -8,8 +8,10 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
@@ -18,6 +20,7 @@ namespace DEDI
 {
     public sealed partial class DashBoard
     {
+        Map myMap;
         public class NumberOfCases
         {
             public string date { get; set; }
@@ -30,11 +33,21 @@ namespace DEDI
             user = e.Parameter as Health_Worker;
             loaddata();
         }
-
+        string user_postcode;
         private async void loaddata()
         {
             try
             {
+                var client = new HttpClient();
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                var list = serializer.ReadObject(ms);
+                RootObject jsonResponse = list as RootObject;
+                user_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+
                 int male = 0;
                 int female = 0;
                 int child = 0;
@@ -42,10 +55,25 @@ namespace DEDI
                 TextBlock no_case = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
                 no_case.Text = disease_report.Count+"";
                 foreach(Disease_Report report in disease_report){
-                    var patient = await App.MobileService.GetTable<Patient_Local>().ToListAsync();
-                    if (patient[0].gender == "F") female++;
-                    else male++;
-                    if (CalculateAge(patient[0].dob) <= 15) child++;
+                    Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                    response = await client.GetAsync(Uri);
+                    result = await response.Content.ReadAsStringAsync();
+                    ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                    list = serializer.ReadObject(ms);
+                    jsonResponse = list as RootObject;
+                    string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                    if (user_postcode.Equals(report_postcode))
+                    {
+                        var patient = await App.MobileService.GetTable<Patient_Local>().Where(p => p.id==report.patient_id).ToListAsync();
+                        if (patient.Count > 0)
+                        {
+                            if (patient[0].gender == "F") female++;
+                            else male++;
+                            if (CalculateAge(patient[0].dob) <= 15) child++;
+                        }
+                        
+                    }
+                   
                 }
                 TextBlock no_child = FindChildControl<TextBlock>(PredictionSection, "NoOfChildTbl") as TextBlock;
                 no_child.Text = child + "";
@@ -58,12 +86,14 @@ namespace DEDI
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
                 Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
                                                                                TimeSpan.FromSeconds(10));
-                Map myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
+                myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 10;
+                myMap.ZoomLevel = 17;
                 myMap.MapType = MapType.Road;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadgraph();
+                loadDisaster();
+                loadRF();
                 
             }
             catch (Exception ex)
@@ -183,6 +213,72 @@ namespace DEDI
             }
             return null;
         }
+        private async void loadDisaster()
+        {
+            var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
+            foreach (Disaster_Report report in reports)
+            {
+                var client = new HttpClient();
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                var list = serializer.ReadObject(ms);
+                RootObject jsonResponse = list as RootObject;
 
+                string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                if (user_postcode.Equals(report_postcode))
+                {
+                    Pushpin pushpin = new Pushpin();
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                    pushpin.Name = report.disaster;
+                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                    myMap.Children.Add(pushpin);
+                }
+            }
+
+        }
+        private async void loadRF()
+        {
+            var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
+            foreach (Risk_Factor_Report report in reports)
+            {
+                    var client = new HttpClient();
+                    Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                    var response = await client.GetAsync(Uri);
+                    var result = await response.Content.ReadAsStringAsync();
+                    MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                    var list = serializer.ReadObject(ms);
+                    RootObject jsonResponse = list as RootObject;
+
+                    string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count-1].long_name;
+                        if (user_postcode.Equals(report_postcode))
+                        {
+                            Pushpin pushpin = new Pushpin();
+                            pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                            pushpin.Name = report.risk_factor;
+                            MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                            myMap.Children.Add(pushpin);
+                        }
+                    
+                   
+            }
+
+        }
+        private async void loadDisease()
+        {
+
+
+        }
+
+
+
+        private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
+        {
+            MessageDialog dialog = new MessageDialog(((Pushpin)sender).Name);
+            await dialog.ShowAsync();
+        }
     }
 }
