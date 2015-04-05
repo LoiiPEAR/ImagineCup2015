@@ -127,6 +127,10 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(DashBoard),user);
         }
+        private void SignoutBtn_click(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LogInPage));
+        }
 
         private void GoToMapBtn_Click(object sender, RoutedEventArgs e)
         {

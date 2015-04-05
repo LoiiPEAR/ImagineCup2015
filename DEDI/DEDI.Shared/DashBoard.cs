@@ -67,10 +67,10 @@ namespace DEDI
                         var patient = await App.MobileService.GetTable<Patient>().Where(p => p.id==report.patient_id).ToListAsync();
                         if (patient.Count > 0)
                         {
-                            if (patient[0].gender == "F") female++;
-                            else male++;
-                            if (CalculateAge(patient[0].dob) <= 15) child++;
-                        }
+                    if (patient[0].gender == "F") female++;
+                    else male++;
+                    if (CalculateAge(patient[0].dob) <= 15) child++;
+                }
                         
                     }
                    
@@ -88,7 +88,7 @@ namespace DEDI
                                                                                TimeSpan.FromSeconds(10));
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 10;
+                myMap.ZoomLevel = 17;
                 myMap.MapType = MapType.Road;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadgraph();

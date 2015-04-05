@@ -48,7 +48,7 @@
                             <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="32" FontWeight="Bold" Foreground="#FF2D4D5A" />
                             <Image x:Name="___Image_" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,280,0,0" Source="Assets/address_icon.png" Height="80" Width="62"/>
                             <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="290,280,0,0" FontSize="14" Width="170" Text="" Foreground="#FF7296A8"/>
-                            <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/signout_btn.png" Margin="70,375,0,0" Height="120" Width="120"/>
+                            <Image x:Name="SignoutBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/signout_btn.png" Margin="70,375,0,0" Height="120" Width="120" Tapped="SignoutBtn_click"/>
                             <Image HorizontalAlignment="Center" Height="120" VerticalAlignment="Top" Width="120" Source="Assets/following_btn.png" Margin="0,375,0,0"/>
                             <Image HorizontalAlignment="Right" Height="120" VerticalAlignment="Top" Width="120" Source="Assets/followers_btn.png" Margin="0,375,70,0"/>
                             <Image HorizontalAlignment="Right" Height="187" VerticalAlignment="Bottom" Width="187" Source="Assets/myreports_btn.png" Margin="0,0,70,70"/>
