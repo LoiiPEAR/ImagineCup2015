@@ -64,7 +64,7 @@ namespace DEDI
                     string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
                     if (user_postcode.Equals(report_postcode))
                     {
-                        var patient = await App.MobileService.GetTable<Patient_Local>().Where(p => p.id==report.patient_id).ToListAsync();
+                        var patient = await App.MobileService.GetTable<Patient>().Where(p => p.id==report.patient_id).ToListAsync();
                         if (patient.Count > 0)
                         {
                             if (patient[0].gender == "F") female++;
@@ -88,7 +88,7 @@ namespace DEDI
                                                                                TimeSpan.FromSeconds(10));
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 17;
+                myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadgraph();
