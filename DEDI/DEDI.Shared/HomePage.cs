@@ -56,7 +56,22 @@ namespace DEDI
                 LastNameTbl.Text = user.lname;
                 TextBlock LocationTbl = FindChildControl<TextBlock>(ProfileSection, "LocationTbl") as TextBlock;
                 LocationTbl.Text = jsonResponse.results[0].formatted_address;
-               
+
+                var following = await App.MobileService.GetTable<Follow>().Where(p => p.following_hw_id == user.id).ToListAsync();
+                TextBlock followingTbl = FindChildControl<TextBlock>(ProfileSection, "followingTbl") as TextBlock;
+                followingTbl.Text = following.Count + "";
+
+                var follower = await App.MobileService.GetTable<Follow>().Where(p => p.follower_hw_id == user.id).ToListAsync();
+                TextBlock followerTbl = FindChildControl<TextBlock>(ProfileSection, "followersTbl") as TextBlock;
+                followerTbl.Text = follower.Count + "";
+
+                var disaster_rp = await App.MobileService.GetTable<Disaster_Report>().Where(p => p.hw_id == user.id).ToListAsync();
+                var disease_rp = await App.MobileService.GetTable<Disease_Report>().Where(p => p.hw_id == user.id).ToListAsync();
+                var rf_rp = await App.MobileService.GetTable<Risk_Factor_Report>().Where(p => p.hw_id == user.id).ToListAsync();
+                TextBlock myreport = FindChildControl<TextBlock>(ProfileSection, "myreportsTbl") as TextBlock;
+                int no_myreport = disaster_rp.Count + disease_rp.Count + rf_rp.Count;
+                myreport.Text = no_myreport + "";
+
                 myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
                 myMap.ZoomLevel = 10;

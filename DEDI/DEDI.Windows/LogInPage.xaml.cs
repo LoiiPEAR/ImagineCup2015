@@ -20,6 +20,12 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(MapsView));
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == "Phanumas" && hw.password == ComputeMD5("ppB023056123")).ToListAsync();
+            this.Frame.Navigate(typeof(ContractPage),user[0]);
+        }
        
     }
 }

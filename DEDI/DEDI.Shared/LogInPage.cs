@@ -29,13 +29,13 @@ namespace DEDI
             if (e.NavigationMode != NavigationMode.New)
                 return;
 
-            if (!App.MobileService.SyncContext.IsInitialized)
-            {
-                var store = new MobileServiceSQLiteStore("localsync.db");
-                store.DefineTable<Health_Worker>();
-                await App.MobileService.SyncContext.InitializeAsync(store, new SyncHandler(App.MobileService));
-            }
-            await RefreshHW();
+            //if (!App.MobileService.SyncContext.IsInitialized)
+            //{
+            //    var store = new MobileServiceSQLiteStore("localsync.db");
+            //    store.DefineTable<Health_Worker>();
+            //    await App.MobileService.SyncContext.InitializeAsync(store, new SyncHandler(App.MobileService));
+            //}
+            //await RefreshHW();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
