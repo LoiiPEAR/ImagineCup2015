@@ -150,6 +150,8 @@ namespace DEDI
             FemaleBtn.Visibility = Visibility.Collapsed;
             ExternalBtn.Visibility = Visibility.Visible;
             InternalBtn.Visibility = Visibility.Visible;
+            inMaleImg.Visibility = Visibility.Collapsed;
+            inFemaleImg.Visibility = Visibility.Collapsed;
             if (latestGender == "M")
             {
                 exFemaleImg.Visibility = Visibility.Collapsed;
