@@ -70,7 +70,7 @@ namespace DEDI
                     if (patient[0].gender == "F") female++;
                     else male++;
                     if (CalculateAge(patient[0].dob) <= 15) child++;
-                        }
+                }
                         
                     }
                    
@@ -231,21 +231,13 @@ namespace DEDI
                 if (user_postcode.Equals(report_postcode))
                 {
                     Pushpin pushpin = new Pushpin();
-                    pushpin.Tapped += new TappedEventHandler(pushpinTapped_Disaster);
-                    pushpin.Name = report.id;
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                    pushpin.Name = report.disaster;
                     MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                     myMap.Children.Add(pushpin);
                 }
             }
 
-        }
-
-        private async void pushpinTapped_Disaster(object sender, TappedRoutedEventArgs e)
-        {
-            var report = await App.MobileService.GetTable<Disaster_Report>().Where(p => p.id == ((Pushpin)sender).Name).ToListAsync();
-                       
-            MessageDialog dialog = new MessageDialog(report[0].disaster);
-            await dialog.ShowAsync();
         }
         private async void loadRF()
         {
@@ -265,8 +257,8 @@ namespace DEDI
                         if (user_postcode.Equals(report_postcode))
                         {
                             Pushpin pushpin = new Pushpin();
-                            pushpin.Tapped += new TappedEventHandler(pushpinTapped_RF);
-                            pushpin.Name = report.id;
+                            pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                            pushpin.Name = report.risk_factor;
                             MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                             myMap.Children.Add(pushpin);
                         }
@@ -274,14 +266,6 @@ namespace DEDI
                    
             }
 
-        }
-
-        private async void pushpinTapped_RF(object sender, TappedRoutedEventArgs e)
-        {
-            var report = await App.MobileService.GetTable<Risk_Factor_Report>().Where(p => p.id == ((Pushpin)sender).Name).ToListAsync();
-
-            MessageDialog dialog = new MessageDialog(report[0].risk_factor);
-            await dialog.ShowAsync();
         }
         private async void loadDisease()
         {
@@ -293,7 +277,6 @@ namespace DEDI
 
         private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
         {
-
             MessageDialog dialog = new MessageDialog(((Pushpin)sender).Name);
             await dialog.ShowAsync();
         }
