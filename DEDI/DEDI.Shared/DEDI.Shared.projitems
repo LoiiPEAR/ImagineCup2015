@@ -25,11 +25,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)DraggablePin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)google_api.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MeassageViewPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pushpin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ReportsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SendMessagePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />
   </ItemGroup>
 </Project>
