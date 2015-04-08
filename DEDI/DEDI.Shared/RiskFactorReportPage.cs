@@ -9,6 +9,7 @@ using System.Text;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace DEDI
@@ -73,25 +74,40 @@ namespace DEDI
 
         }
 
+        private void changeBG()
+        {
+            if (risk_factor == "Contaminated water") ContaminatedWaterBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/water_btn.png"));
+            else if (risk_factor == "Contaminated food") ContaminatedFoodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/food_btn.png"));
+            else if (risk_factor == "Crowding") CrowdingBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/crowding_btn.png"));
+            else if (risk_factor == "Poor sanitation") PoorSanitationBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/sanitation_btn.png"));
+        }
+
         private void ContraminatedWaterBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             risk_factor = "Contaminated water";
+            ContaminatedWaterBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/water_btn_pressed.png"));
         }
 
         private void ContraminatedFoodBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             risk_factor = "Contaminated food";
+            ContaminatedFoodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/food_btn_pressed.png"));
         }
 
         private void CrowdingBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             risk_factor = "Crowding";
+            CrowdingBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/crowding_btn_pressed.png"));
         }
 
         private void PoorsanitationBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             risk_factor = "Poor sanitation";
-
+            PoorSanitationBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/sanitation_btn_pressed.png"));
         }
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
         {

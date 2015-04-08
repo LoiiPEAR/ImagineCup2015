@@ -9,6 +9,8 @@ using System.Text;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace DEDI
@@ -33,27 +35,48 @@ namespace DEDI
         }
         private void FloodBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             disaster = "Flood";
+            FloodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/flood_btn_pressed.png"));
         }
         private void StromBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             disaster = "Storm";
+            StormBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/storm_btn_pressed.png"));
         }
         private void WildFireBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             disaster = "Wildfire";
+            WildFireBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/wildfire_btn_pressed.png"));
         }
         private void TsunamiBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             disaster = "Tsunami";
+            TsunamiBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/tsunami_btn_pressed.png"));
         }
         private void EarthQuakeBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             disaster = "Earthquake";
+            EarthQuakeBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/earthquake_btn_pressed.png"));
         }
-        private void VocanicEruptionBtn_Click(object sender, RoutedEventArgs e)
+        private void VolcanicEruptionBtn_Click(object sender, RoutedEventArgs e)
         {
+            changeBG();
             disaster = "Volcanic eruption";
+            VocanicEruptionBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/volcanic_btn_pressed.png"));
+        }
+        private void changeBG()
+        {
+            if (disaster == "Flood") FloodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/flood_btn.png"));
+            else if (disaster == "Wildfire") WildFireBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/wildfire_btn.png"));
+            else if (disaster == "Storm") StormBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/storm_btn.png"));
+            else if (disaster == "Volcanic eruption") VocanicEruptionBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/volcanic_btn.png"));
+            else if (disaster == "Tsunami") FloodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/tsunami_btn.png"));
+            else if (disaster == "Earthquake") FloodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/earthquake_btn.png"));
         }
         public async void InitializeMap()
         {

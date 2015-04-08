@@ -28,7 +28,44 @@ namespace DEDI
         public HomePage()
         {
             this.InitializeComponent();
-            
+           
+        }
+
+        private async void loadReports()
+        {
+            ListView lv = FindChildControl<ListView>(ReportsSection, "reportList") as ListView;
+                
+            var disasterReports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
+            var riskReports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
+            List<Report> all = new List<Report>();
+            foreach (Disaster_Report disasteritem in disasterReports)
+            {
+                all.Add(new Report
+                {
+                    name = disasteritem.disaster,
+                    hw_id = disasteritem.hw_id,
+                    latitude = disasteritem.latitude,
+                    longitude = disasteritem.longitude,
+                    description = disasteritem.description,
+                    reported_time = disasteritem.reported_time,
+                    ocurred_time = disasteritem.ocurred_time
+                });
+            }
+            foreach (Risk_Factor_Report riskitem in riskReports)
+            {
+                all.Add(new Report
+                {
+                    name = riskitem.risk_factor,
+                    hw_id = riskitem.hw_id,
+                    latitude = riskitem.latitude,
+                    longitude = riskitem.longitude,
+                    description = riskitem.description,
+                    reported_time = riskitem.reported_time,
+                    ocurred_time = riskitem.ocurred_time
+                });
+            }
+            all = all.OrderByDescending(o => o.ocurred_time).ToList();
+            lv.ItemsSource = all;
         }
 
         private async void loadData()
@@ -81,6 +118,7 @@ namespace DEDI
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadRF();
                 loadDisaster();
+                loadReports();
             }
             catch (MobileServiceInvalidOperationException e){
 
@@ -142,7 +180,7 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(DashBoard),user);
         }
-        private void SignoutBtn_click(object sender, TappedRoutedEventArgs e)
+        private void SignoutBtn_click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LogInPage));
         }

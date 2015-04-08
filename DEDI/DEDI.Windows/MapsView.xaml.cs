@@ -25,6 +25,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Collections.ObjectModel;
 using System.Text;
+using Windows.UI.Xaml.Media.Imaging;
 namespace DEDI
 {
     public sealed partial class MapsView:Page
@@ -69,6 +70,8 @@ namespace DEDI
                Pushpin pushpin = new Pushpin();
                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                pushpin.Name = report.disaster;
+               ImageBrush brush = new ImageBrush() { ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/disaster_pin.png")) };
+               pushpin.Background = brush;
                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude,report.longitude));
                myMap.Children.Add(pushpin);
            }
@@ -82,6 +85,8 @@ namespace DEDI
                Pushpin pushpin = new Pushpin();
                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                pushpin.Name = report.risk_factor;
+               ImageBrush brush = new ImageBrush() { ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/risk_pin.png")) };
+               pushpin.Background = brush;
                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                myMap.Children.Add(pushpin);
            }
@@ -89,6 +94,19 @@ namespace DEDI
        }
        private async void loadDisease()
        {
+           var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+           
+               foreach (Disease_Report item in reports)
+               {
+                   Pushpin pushpin = new Pushpin();
+                   pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                   pushpin.Name ="Disease Report";
+                   ImageBrush brush = new ImageBrush() { ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/risk_pin.png")) };
+                   pushpin.Background = brush;
+                   MapLayer.SetPosition(pushpin, new Bing.Maps.Location(item.latitude, item.longitude));
+                   myMap.Children.Add(pushpin);
+               }
+           
            
 
        }

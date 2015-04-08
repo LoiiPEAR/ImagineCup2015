@@ -26,9 +26,5 @@ namespace DEDI
         {
             this.InitializeComponent();
         }
-
-       
-
-        
     }
 }

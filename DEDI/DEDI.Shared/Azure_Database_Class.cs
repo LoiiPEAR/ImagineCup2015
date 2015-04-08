@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.WindowsAzure.MobileServices;
 using SQLite;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Media;
 
 namespace DEDI
 {
@@ -11,6 +13,7 @@ namespace DEDI
     {
         [PrimaryKey]
         public string id { get; set; }
+
         [JsonProperty(PropertyName = "latitude")]
         public double latitude { get; set; }
         [JsonProperty(PropertyName = "longitude")]
@@ -31,6 +34,28 @@ namespace DEDI
 
         [Version]
         public string Version { get; set; }
+    }
+
+    class Report
+    {
+        [PrimaryKey]
+        public string id { get; set; }
+        [JsonProperty(PropertyName = "icon")]
+        public ImageSource icon { get; set; }
+        [JsonProperty(PropertyName = "latitude")]
+        public double latitude { get; set; }
+        [JsonProperty(PropertyName = "longitude")]
+        public double longitude { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string description { get; set; }
+        [JsonProperty(PropertyName = "hw_id")]
+        public string hw_id { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string name { get; set; }
+        [JsonProperty(PropertyName = "reported_time")]
+        public DateTime reported_time { get; set; }
+        [JsonProperty(PropertyName = "ocurred_time")]
+        public DateTime ocurred_time { get; set; }
     }
 
     class Edited_Report
@@ -158,8 +183,6 @@ namespace DEDI
         public double latitude { get; set; }
         [JsonProperty(PropertyName = "longitude")]
         public double longitude { get; set; }
-        [JsonProperty(PropertyName = "disease_id")]
-        public string disease_id { get; set; }
         [JsonProperty(PropertyName = "description")]
         public string description { get; set; }
         [JsonProperty(PropertyName = "hw_id")]
@@ -170,7 +193,16 @@ namespace DEDI
         public DateTime reported_time { get; set; }
         [JsonProperty(PropertyName = "occurred_time")]
         public DateTime ocurred_time { get; set; }
-
+        [JsonProperty(PropertyName = "Cholera")]
+        public double cholera { get; set; }
+        [JsonProperty(PropertyName = "Shigella")]
+        public double shigella { get; set; }
+        [JsonProperty(PropertyName = "rotavirus")]
+        public double rotavirus { get; set; }
+        [JsonProperty(PropertyName = "simonelle")]
+        public double simolnelle { get; set; }
+        [JsonProperty(PropertyName = "others")]
+        public double others { get; set; }
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
 
@@ -178,21 +210,7 @@ namespace DEDI
         public string Version { get; set; }
     }
 
-    class Disease
-    {
-        [PrimaryKey]
-        public string id { get; set; }
-        [JsonProperty(PropertyName = "disease")]
-        public string disease { get; set; }
-
-        [JsonProperty(PropertyName = "complete")]
-        public bool Complete { get; set; }
-
-        [Version]
-        public string Version { get; set; }
-    }
-
-    class Reported_Symptom
+       class Reported_Symptom
     {
         [PrimaryKey]
         public string id { get; set; }
