@@ -9,11 +9,58 @@ using Windows.UI.Xaml.Media;
 
 namespace DEDI
 {
+    public class Bayesian_Prob
+    {
+        [PrimaryKey]
+        public string id { get; set; }
+        [JsonProperty(PropertyName = "Cholera")]
+        public double Cholera { get; set; }
+        [JsonProperty(PropertyName = "Eyes")]
+        public string Eyes { get; set; }
+        [JsonProperty(PropertyName = "Fever")]
+        public string Fever { get; set; }
+        [JsonProperty(PropertyName = "Food")]
+        public string Food { get; set; }
+        [JsonProperty(PropertyName = "Nature_of_Stool")]
+        public string Nature_of_Stool { get; set; }
+        [JsonProperty(PropertyName = "Others")]
+        public double Others { get; set; }
+        [JsonProperty(PropertyName = "Rotavirus")]
+        public double Rotavirus { get; set; }
+        [JsonProperty(PropertyName = "Samonella")]
+        public double Samonella { get; set; }
+        [JsonProperty(PropertyName = "Shigella")]
+        public double Shigella { get; set; }
+        [JsonProperty(PropertyName = "Skin_Temperature")]
+        public string Skin_Temperature { get; set; }
+        [JsonProperty(PropertyName = "Skin_Turgor")]
+        public string Skin_Turgor { get; set; }
+        [JsonProperty(PropertyName = "Stool_Frequency_per_Day")]
+        public string Stool_Frequency_per_Day { get; set; }
+        [JsonProperty(PropertyName = "Stool_Type")]
+        public string Stool_Type { get; set; }
+        [JsonProperty(PropertyName = "Thirst")]
+        public string Thirst { get; set; }
+        [JsonProperty(PropertyName = "Urine_Output")]
+        public string Urine_Output { get; set; }
+        [JsonProperty(PropertyName = "Vomiting")]
+        public string Vomiting { get; set; }
+        [JsonProperty(PropertyName = "Water")]
+        public string Water { get; set; }
+
+        [JsonProperty(PropertyName = "complete")]
+        public bool Complete { get; set; }
+
+        [Version]
+        public string Version { get; set; }
+    }
+
     class Disaster_Report
     {
         [PrimaryKey]
         public string id { get; set; }
-
+        [JsonProperty(PropertyName = "icon")]
+        public ImageSource icon { get; set; }
         [JsonProperty(PropertyName = "latitude")]
         public double latitude { get; set; }
         [JsonProperty(PropertyName = "longitude")]
@@ -104,6 +151,8 @@ namespace DEDI
         public string content { get; set; }
         [JsonProperty(PropertyName = "sent_time")]
         public DateTime sent_time { get; set; }
+        [JsonProperty(PropertyName = "status")]
+        public string status { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
@@ -179,6 +228,8 @@ namespace DEDI
     {
         [PrimaryKey]
         public string id { get; set; }
+        [JsonProperty(PropertyName = "icon")]
+        public ImageSource icon { get; set; }
         [JsonProperty(PropertyName = "latitude")]
         public double latitude { get; set; }
         [JsonProperty(PropertyName = "longitude")]
@@ -216,10 +267,10 @@ namespace DEDI
         public string id { get; set; }
         [JsonProperty(PropertyName = "disease_report_id")]
         public string disease_report_id { get; set; }
-        [JsonProperty(PropertyName = "symptom_id")]
-        public string symptom_id { get; set; }
-        [JsonProperty(PropertyName = "intensity_id")]
-        public string intensity_id { get; set; }
+        [JsonProperty(PropertyName = "symptom")]
+        public string symptom { get; set; }
+        [JsonProperty(PropertyName = "intensity")]
+        public string intensity { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
@@ -233,6 +284,8 @@ namespace DEDI
     {
         [PrimaryKey]
         public string id { get; set; }
+        [JsonProperty(PropertyName = "icon")]
+        public ImageSource icon { get; set; }
         [JsonProperty(PropertyName = "latitude")]
         public double latitude { get; set; }
         [JsonProperty(PropertyName = "longitude")]

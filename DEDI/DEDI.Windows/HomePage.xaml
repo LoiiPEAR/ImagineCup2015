@@ -47,7 +47,7 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ProfileSectionTemplate" TargetType="HubSection">
                         <Grid x:Name="ProfileSection" Margin="0,0,20,0" Width="530">
-                            <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Margin="50,180,0,0" Source="Assets/profile_img.png" Width="170"/>
+                            <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="185" VerticalAlignment="Top" Margin="50,165,0,0" Source="Assets/position_img.png" Width="170"/>
                             <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,190,0,0" FontSize="32" FontWeight="Bold" Foreground="#FF2D4D5A" />
                             <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="32" FontWeight="Bold" Foreground="#FF2D4D5A" />
                             <Image x:Name="___Image_" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,280,0,0" Source="Assets/address_icon.png" Height="80" Width="62"/>
@@ -60,6 +60,7 @@
                             <TextBlock x:Name="followingTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="284,427,0,0" Foreground="#FFF3F3F4" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock x:Name="followersTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="419,427,0,0" Foreground="#FF00BAD0" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
                             <TextBlock x:Name="myreportsTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="361,563,0,0" Foreground="#FFF4F5F6" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock x:Name="positionTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="74,309,0,0" TextAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFEE514A" Width="120" Height="30"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
@@ -164,14 +165,15 @@
                             <ListView x:Name="reportList" Margin="0,0,50,50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="400" Height="478">
                                 <ListView.ItemTemplate>
                                     <DataTemplate >
-                                        <StackPanel Orientation="Horizontal" Width="400" Height="100">
-                                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
-                                                <TextBlock Text="{Binding name}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                                                <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                                        <Grid Height="100" Width="400">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
+                                                <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                                             </StackPanel>
-                                            <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                                            <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
-                                        </StackPanel>
+                                            <TextBlock Text="{Binding name}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+
+                                            <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

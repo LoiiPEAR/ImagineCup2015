@@ -48,11 +48,11 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="370" Margin="90,250,90,0"/>
-                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7"/>
-                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A"/>
+                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="450" Margin="90,250,90,0"/>
+                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
+                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
                             <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,180,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
                         </Grid>
                     </ControlTemplate>
@@ -71,10 +71,9 @@
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_10.png"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,180,0,0" Source="Assets/patients.png"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,180,0,0" Source="Assets/prediction_case.png"/>
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="460" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,240,0,0"/>
-                            <SearchBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="730,180,0,0" Width="320" FontSize="18" BorderBrush="{x:Null}" Foreground="White"/>
-                            <ScrollViewer HorizontalAlignment="Left" Height="460" VerticalAlignment="Top" Width="320" Margin="730,240,0,0">
-                                <ListView HorizontalAlignment="Left" Height="460" VerticalAlignment="Top" Width="320">
+                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="520" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,180,0,0"/>
+                            <ScrollViewer HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320" Margin="730,180,0,0">
+                                <ListView HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320">
                                     <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="130">
                                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Report No. 123456" VerticalAlignment="Top" Margin="20,20,0,0" FontSize="20" FontWeight="Bold"/>
                                         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
@@ -165,7 +164,7 @@
                             <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Margin="351,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Margin="407,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="583,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="581,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Typhoid" VerticalAlignment="Top" Margin="587,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Margin="542,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>

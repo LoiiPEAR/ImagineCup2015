@@ -22,25 +22,25 @@ namespace DEDI
     {
         
         private SQLiteAsyncConnection conn = new SQLiteAsyncConnection("localsync.db");
-        private MobileServiceCollection<Health_Worker, Health_Worker> HWs;
-        private IMobileServiceSyncTable<Health_Worker> HWTable = App.MobileService.GetSyncTable<Health_Worker>();
+        private MobileServiceCollection<Bayesian_Prob, Bayesian_Prob> HWs;
+        private IMobileServiceSyncTable<Bayesian_Prob> HWTable = App.MobileService.GetSyncTable<Bayesian_Prob>();
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.NavigationMode != NavigationMode.New)
                 return;
 
-            //if (!App.MobileService.SyncContext.IsInitialized)
-            //{
-            //    var store = new MobileServiceSQLiteStore("localsync.db");
-            //    store.DefineTable<Health_Worker>();
-            //    await App.MobileService.SyncContext.InitializeAsync(store, new SyncHandler(App.MobileService));
-            //}
-            //await RefreshHW();
+            if (!App.MobileService.SyncContext.IsInitialized)
+            {
+                var store = new MobileServiceSQLiteStore("localsync.db");
+                store.DefineTable<Bayesian_Prob>();
+                await App.MobileService.SyncContext.InitializeAsync(store, new SyncHandler(App.MobileService));
+            }
+            await RefreshHW();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            Health_Worker selected = ListViews.Items[ListViews.SelectedIndex] as Health_Worker;
+            Bayesian_Prob selected = ListViews.Items[ListViews.SelectedIndex] as Bayesian_Prob;
             conn.DeleteAsync(selected);
         }
 
@@ -117,7 +117,7 @@ namespace DEDI
             MobileServiceInvalidOperationException exception = null;
             try
             {
-                HWs = await HWTable.OrderBy(Health_Worker => Health_Worker.id).ToCollectionAsync();
+                HWs = await HWTable.OrderBy(Bayesian_Prob => Bayesian_Prob.id).ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
             {
@@ -133,34 +133,35 @@ namespace DEDI
                 ListViews.ItemsSource = HWs;
                 this.SaveBtn.IsEnabled = true;
             }
+            SaveBtn.Content = ListViews.Items.Count;
         }
 
-        private async Task UpdateHW(Health_Worker hw)
+        private async Task UpdateHW(Bayesian_Prob hw)
         {
             await HWTable.UpdateAsync(hw);
         }
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            var hw = new Health_Worker
-            {
-                fname = "Prae",
-                lname = "Charkratpahu",
-                gender = "F",
-                dob = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 10, 39, 30),
-                telephone = "0123456789",
-                email = "abc@a.com",
-                organization = "DEDI",
-                username = "Loii.PEAR",
-                password = "z,iyd86I",
-                position = "Village Health Volunteer",
-                latitude = 13,
-                longitude = 100
-            };
-            await InsertHW(hw);
+            //var hw = new Health_Worker
+            //{
+            //    fname = "Prae",
+            //    lname = "Charkratpahu",
+            //    gender = "F",
+            //    dob = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 10, 39, 30),
+            //    telephone = "0123456789",
+            //    email = "abc@a.com",
+            //    organization = "DEDI",
+            //    username = "Loii.PEAR",
+            //    password = "z,iyd86I",
+            //    position = "Village Health Volunteer",
+            //    latitude = 13,
+            //    longitude = 100
+            //};
+            //await InsertHW(hw);
         }
 
-        private async Task InsertHW(Health_Worker hw)
+        private async Task InsertHW(Bayesian_Prob hw)
         {
             await HWTable.InsertAsync(hw);
             HWs.Add(hw);

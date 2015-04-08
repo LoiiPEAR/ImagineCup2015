@@ -97,9 +97,9 @@ namespace DEDI
             if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
 #if WINDOWS_APP
-                ComboBoxItem posItem = (ComboBoxItem)PositionCb.SelectedItem;
+                string posItem = (string)PositionCb.SelectedItem;
 
-                string pos_value = PositionCb.SelectedItem.ToString();
+                string pos_value = posItem;
                 Health_Worker user = new Health_Worker()
                 {
                     fname = FirstNameTb.Text,
@@ -139,6 +139,7 @@ namespace DEDI
           //  PositionCb.SelectedIndex = PositionCb.FindStringExact("Sunday");
 
         }
+
         public static bool isEmail(string inputEmail)
         {
             string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -19,7 +21,8 @@ namespace DEDI
         {
            
             user = e.Parameter as Health_Worker;
-            loadContact();
+            
+
         }
         private async void loadContact()
         {
@@ -88,6 +91,17 @@ namespace DEDI
                 await msgTable.InsertAsync(m);
                 this.Frame.Navigate(typeof(HomePage), user);
             }
+        }
+
+        public ToastNotification BuildToast(string content, string arg = null)
+        {
+            var template = ToastTemplateType.ToastText01;
+            var getTemplate = ToastNotificationManager.GetTemplateContent(template);
+            var getXML = getTemplate.GetElementsByTagName("text");
+            var text = getTemplate.CreateTextNode(content);
+            getXML[0].AppendChild(text);
+            getXML = getTemplate.GetElementsByTagName("image");
+            return new ToastNotification(getTemplate);
         }
     }
 }

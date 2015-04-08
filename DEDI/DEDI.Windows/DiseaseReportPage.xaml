@@ -30,7 +30,7 @@
                 <Button x:Name="SymptomsBtn" Content="Symptoms" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,200,0,0" FontSize="36" Click="SymptomsBtn_Click" Background="#FF00AEC8" Foreground="White"/>
                 <Button x:Name="LocationTimeBtn" Content="Location and Time" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,320,0,0" FontSize="36" Click="LocationTimeBtn_Click" Background="#FF00AEC8" Foreground="White"/>
             </Grid>
-            <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="966" Height="628" d:IsHidden="True">
+            <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="966" Height="628">
                 <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Margin="0" Visibility="Collapsed">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="40,210,0,0"/>
@@ -77,7 +77,7 @@
                     <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="160 cm" VerticalAlignment="Top" FontSize="18" Margin="0,362,112,0"/>
                     <TextBlock x:Name="ShowIDTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="123456" VerticalAlignment="Top" FontSize="18" Margin="0,162,112,0"/>
                 </Grid>
-                <Grid x:Name="NewPatient" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Visibility="Collapsed">
+                <Grid x:Name="NewPatient" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
                     <Button x:Name="AddPatientInfoBtn_Copy" Content="Add New Patient" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Margin="0,200,120,0" Width="200" Height="200">
                         <Button.Resources>
@@ -132,7 +132,7 @@
                     <Image x:Name="inMaleImg" Source="/Assets/male-internal.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="213,20,212,0" Height="500" Width="141" Visibility="Collapsed"/>
                     <Image x:Name="inFemaleImg" Source="/Assets/female-internal.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="218,20,218,0" Height="500" Width="130" Visibility="Collapsed"/>
                 </Grid>
-                <Grid x:Name="Symptoms" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400">
+                <Grid x:Name="Symptoms" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Visibility="Collapsed">
                     <ListView x:Name="selectSymptom" HorizontalAlignment="Left" Height="330" VerticalAlignment="Top" Width="350" Margin="0,34,0,0" SelectionChanged="SelectSymptom_Tap" FontSize="20" FontWeight="Bold" Foreground="#FF00AEC8">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -143,17 +143,19 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <Grid x:Name="SymptomIntensity" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
-                        <Controls:ImageButton x:Name="pooBtn" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" Click="pooBtn_Click"/>
+                        <Controls:ImageButton x:Name="pooBtn" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" Click="pooBtn_Click" NormalStateImageSource="Assets/poo_btn.png" HoverStateImageSource="Assets/poo_btn_pressed.png" PressedStateImageSource="Assets/poo_btn_pressed.png"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
-                        <Controls:ImageButton x:Name="poopooBtn" Stretch="Fill" Width="80" Height="80" Margin="220,50,50,160" Click="poopooBtn_Click"/>
+                        <Controls:ImageButton x:Name="poopooBtn" Stretch="Fill" Width="80" Height="80" Margin="220,50,50,160" Click="poopooBtn_Click" NormalStateImageSource="Assets/poopoo_btn.png" HoverStateImageSource="Assets/poopoo_btn_pressed.png" PressedStateImageSource="Assets/poopoo_btn_pressed.png"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="&lt; 4 times/day" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="&gt; 4 times/day" VerticalAlignment="Top" FontSize="16" Margin="212,130,0,0" Foreground="#FF00AEC8"/>
-                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Stool types" VerticalAlignment="Top" FontSize="16" Margin="30,170,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
-                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Natures of stool" VerticalAlignment="Top" FontSize="16" Margin="200,170,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
-                        <RadioButton Content="Blood" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,195,0,0" Foreground="#FF00AEC8" FontSize="16"/>
-                        <RadioButton Content="Mucus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,226,0,0" Foreground="#FF00AEC8" FontSize="16"/>
-                        <RadioButton Content="Watery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,195,0,0" Foreground="#FF00AEC8" FontSize="16"/>
-                        <RadioButton Content="Loose" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,226,0,0" Foreground="#FF00AEC8" FontSize="16"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Stool types" VerticalAlignment="Top" FontSize="16" Margin="30,163,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Natures of stool" VerticalAlignment="Top" FontSize="16" Margin="200,163,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
+                        <RadioButton x:Name="bloodRBtn" Content="Blood" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,188,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="bloodRBtn_Checked"/>
+                        <RadioButton x:Name="mucusRBtn" Content="Mucus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,219,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="mucusRBtn_Checked"/>
+                        <RadioButton x:Name="normalRBtn" Content="Normal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,250,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="normalRBtn_Checked"/>
+                        <RadioButton x:Name="wateryRBtn" Content="Watery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,188,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="wateryRBtn_Checked"/>
+                        <RadioButton x:Name="looseRBtn" Content="Loose" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,219,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="looseRBtn_Checked"/>
+                        <Button x:Name="addBtn" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,8,0,0" Click="addBtn_Click"/>
                     </Grid>
                     <ListView x:Name="addSymptom" HorizontalAlignment="Left" Height="180" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,50" SelectionChanged="addSymptom_SelectionChanged" Foreground="#FF00AEC8" FontSize="20" FontWeight="Bold">
                         <ListView.ItemTemplate>
@@ -166,9 +168,30 @@
                     </ListView>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Choose symptoms" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Selected symptoms" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A" Margin="0,369,0,0"/>
+                    <Grid x:Name="urineOutput" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
+                        <Controls:ImageButton x:Name="lt" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" NormalStateImageSource="Assets/urine_btn.png" HoverStateImageSource="Assets/urine_btn_pressed.png" PressedStateImageSource="Assets/urine_btn_pressed.png" Click="lt_Click"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
+                        <Controls:ImageButton x:Name="llt" Stretch="Fill" Width="80" Height="80" Margin="220,50,50,160" NormalStateImageSource="Assets/reduced_urine_btn.png" HoverStateImageSource="Assets/reduced_urine_btn_pressed.png" PressedStateImageSource="Assets/reduced_urine_btn_pressed.png" Click="llt_Click"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="&lt; 1 ml/kg/hr" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="&lt;&lt; 1 ml/kg/hr" VerticalAlignment="Top" FontSize="16" Margin="210,130,0,0" Foreground="#FF00AEC8"/>
+                    </Grid>
+                    <Grid x:Name="skinTurgor" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
+                        <Controls:ImageButton x:Name="delay" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" NormalStateImageSource="Assets/skin_btn.png" HoverStateImageSource="Assets/skin_btn_pressed.png" PressedStateImageSource="Assets/skin_btn_pressed.png" Click="delay_Click"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
+                        <Controls:ImageButton x:Name="delaydelay" Stretch="Fill" Width="80" Height="80" Margin="220,50,50,160" NormalStateImageSource="Assets/deskin_btn.png" HoverStateImageSource="Assets/deskin_btn_pressed.png" PressedStateImageSource="Assets/deskin_btn_pressed.png" Click="delaydelay_Click"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Delay 2-5 sec" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Delay > 5 sec" VerticalAlignment="Top" FontSize="16" Margin="210,130,0,0" Foreground="#FF00AEC8"/>
+                    </Grid>
+                    <Grid x:Name="thirst" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
+                        <Controls:ImageButton x:Name="thirsty" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" NormalStateImageSource="Assets/thirst_btn.png" HoverStateImageSource="Assets/thirst_btn_pressed.png" PressedStateImageSource="Assets/thirst_btn_pressed.png" Click="thirsty_Click"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
+                        <Controls:ImageButton x:Name="unabletodrink" Stretch="Fill" Width="80" Height="80" Margin="220,50,50,160" NormalStateImageSource="Assets/unable_btn.png" HoverStateImageSource="Assets/unable_btn_pressed.png" PressedStateImageSource="Assets/unable_btn_pressed.png" Click="unabletodrink_Click"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Thirsty" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Unable to drink" VerticalAlignment="Top" FontSize="16" Margin="210,130,0,0" Foreground="#FF00AEC8"/>
+                    </Grid>
                 </Grid>
             </Grid>
-            <Grid x:Name="LocationNTime" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="966">
+            <Grid x:Name="LocationNTime" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="966" Visibility="Collapsed">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="100,80,0,0" Foreground="#FF2B5360"/>
                 <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="360" Margin="100,150,463,0"/>
                 <Button x:Name="Submit" Content="Submit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,46" FontSize="24" Background="#FFADDFF8" Foreground="#FF104C5B" Click="Submit_Click"/>

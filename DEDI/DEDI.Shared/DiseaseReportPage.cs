@@ -34,6 +34,12 @@ namespace DEDI
         List<Symptom> symtoms;
         private Health_Worker user;
         DraggablePin pin;
+        string stoolfrequency = "";
+        string stooltype = "";
+        string stoolnature = "";
+        string thirststate = "";
+        string urine = "";
+        string skinturgor = "";
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -58,36 +64,152 @@ namespace DEDI
             if (!addSymptom.Items.Contains(selectSymptom.SelectedItem))
             {
                 Symptom current = selectSymptom.SelectedItem as Symptom;
-                //if (current.symptom == "Diarrhea")
-                //{
-                //    selectSymptom.Height = 50;
-                //    SymptomIntensity.Visibility = Visibility.Visible;
-                //    pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn.png"));
-                //    pooBtn.HoverStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn_pressed.png"));
-                //    poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn.png"));
-                //    poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn_pressed.png"));
-                //    addSymptom.Items.Add(selectSymptom.SelectedItem);
-                //}
-                //else
-                //{
+                if (current.symptom == "Diarrhea")
+                {
+                    selectSymptom.Height = 50;
+                    SymptomIntensity.Visibility = Visibility.Visible;
+                    urineOutput.Visibility = Visibility.Collapsed;
+                    skinTurgor.Visibility = Visibility.Collapsed;
+                    thirst.Visibility = Visibility.Collapsed;
+                }
+                else if(current.symptom == "Decreased skin turgor")
+                {
+                    selectSymptom.Height = 50;
+                    SymptomIntensity.Visibility = Visibility.Collapsed;
+                    urineOutput.Visibility = Visibility.Collapsed;
+                    skinTurgor.Visibility = Visibility.Visible;
+                    thirst.Visibility = Visibility.Collapsed;
+                }
+                else if (current.symptom == "Reduced urine")
+                {
+                    selectSymptom.Height = 50;
+                    SymptomIntensity.Visibility = Visibility.Collapsed;
+                    urineOutput.Visibility = Visibility.Visible;
+                    skinTurgor.Visibility = Visibility.Collapsed;
+                    thirst.Visibility = Visibility.Collapsed;
+                }
+                else if (current.symptom == "Thirst")
+                {
+                    selectSymptom.Height = 50;
+                    SymptomIntensity.Visibility = Visibility.Collapsed;
+                    urineOutput.Visibility = Visibility.Collapsed;
+                    skinTurgor.Visibility = Visibility.Collapsed;
+                    thirst.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    SymptomIntensity.Visibility = Visibility.Collapsed;
                     addSymptom.Items.Add(selectSymptom.SelectedItem);
-                //}
+                    urineOutput.Visibility = Visibility.Collapsed;
+                    skinTurgor.Visibility = Visibility.Collapsed;
+                    thirst.Visibility = Visibility.Collapsed;
+                }
                 
             }
         }
 
+        private void lt_Click(object sender, RoutedEventArgs e)
+        {
+            urine = "lt_1ml_kg_hr";
+            addSymptom.Items.Add(selectSymptom.SelectedItem);
+        }
+
+        private void llt_Click(object sender, RoutedEventArgs e)
+        {
+            urine = "llt_1ml_kg_hr";
+            addSymptom.Items.Add(selectSymptom.SelectedItem);
+        }
+
+        private void delay_Click(object sender, RoutedEventArgs e)
+        {
+            skinturgor = "delay_2_5s";
+            addSymptom.Items.Add(selectSymptom.SelectedItem);
+        }
+
+        private void delaydelay_Click(object sender, RoutedEventArgs e)
+        {
+            skinturgor = "delay_mt_5s";
+            addSymptom.Items.Add(selectSymptom.SelectedItem);
+        }
+
+        private void thirsty_Click(object sender, RoutedEventArgs e)
+        {
+            thirststate = "thirsty";
+            addSymptom.Items.Add(selectSymptom.SelectedItem);
+        }
+
+        private void unabletodrink_Click(object sender, RoutedEventArgs e)
+        {
+            thirststate = "unable_to_drink";
+            addSymptom.Items.Add(selectSymptom.SelectedItem);
+        }
+
+        private void bloodRBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            stooltype = "blood";
+            mucusRBtn.IsChecked = false;
+            normalRBtn.IsChecked = false;
+        }
+
+        private void mucusRBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            stooltype = "mucus";
+            normalRBtn.IsChecked = false;
+            bloodRBtn.IsChecked = false;
+        }
+
+        private void normalRBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            stooltype = "normal";
+            bloodRBtn.IsChecked = false;
+            mucusRBtn.IsChecked = false;
+        }
+
+        private void wateryRBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            stoolnature = "watery";
+            looseRBtn.IsChecked = false;
+        }
+
+        private void looseRBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            stoolnature = "loose";
+            wateryRBtn.IsChecked = false;
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (stoolfrequency != "" && stooltype != "" && stoolnature != "")
+                addSymptom.Items.Add(selectSymptom.SelectedItem);
+            SymptomIntensity.Visibility = Visibility.Collapsed;
+        }
+
         private void pooBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (stoolfrequency == "mt_4") poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn.png"));
+            pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn_pressed.png"));
+            stoolfrequency = "lt_4";
         }
 
         private void poopooBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (stoolfrequency == "lt_4") pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn.png"));
+            poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn_pressed"));
+            stoolfrequency = "mt_4";
         }
 
         private void addSymptom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Symptom s = addSymptom.SelectedItem as Symptom;
+            if (s.symptom.Equals("Diarrhea"))
+            {
+                stoolnature = "";
+                stooltype = "";
+                stoolfrequency = "";
+            }
+            else if (s.symptom == "Thirst") thirststate = "";
+            else if (s.symptom == "Reduced urine") urine = "";
+            else if (s.symptom == "Decreased skin turgor") skinturgor = "";
             addSymptom.Items.Remove(addSymptom.SelectedItem);
         }
      
@@ -335,6 +457,74 @@ namespace DEDI
                 };
                 await dTable.InsertAsync(d);
 #endif
+                IMobileServiceTable<Reported_Symptom> rTable = App.MobileService.GetTable<Reported_Symptom>();
+                foreach(Symptom item in addSymptom.Items){
+                    if (item.symptom == "Cholera")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = stoolfrequency
+                        };
+                        await rTable.InsertAsync(r);
+                        r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = stoolnature
+                        };
+                        await rTable.InsertAsync(r);
+                        r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = stooltype
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    else if (item.symptom == "Decreased skin turgor")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = skinturgor
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    else if (item.symptom == "Reduced urine")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = urine
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    else if (item.symptom == "Thirst")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = thirststate
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    else
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = item.symptom,
+                            intensity = "present"
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    
+                }
                 this.Frame.Navigate(typeof(ReportsView), user);
             }
             Submit.IsEnabled = true;

@@ -33,5 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SendMessagePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncHandler.cs" />
   </ItemGroup>
 </Project>

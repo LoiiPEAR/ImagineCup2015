@@ -25,8 +25,6 @@ namespace DEDI
         public DiseaseReportPage()
         {
             this.InitializeComponent();
-        }
-
-        
+        }    
     }
 }

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Notifications;
 
 namespace DEDI
 {
@@ -77,8 +78,8 @@ namespace DEDI
             else if (disaster == "Wildfire") WildFireBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/wildfire_btn.png"));
             else if (disaster == "Storm") StormBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/storm_btn.png"));
             else if (disaster == "Volcanic eruption") VocanicEruptionBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/volcanic_btn.png"));
-            else if (disaster == "Tsunami") FloodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/tsunami_btn.png"));
-            else if (disaster == "Earthquake") FloodBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/earthquake_btn.png"));
+            else if (disaster == "Tsunami") TsunamiBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/tsunami_btn.png"));
+            else if (disaster == "Earthquake") EarthQuakeBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/earthquake_btn.png"));
         }
         public async void InitializeMap()
         {

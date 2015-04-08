@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 
@@ -15,6 +16,11 @@ namespace DEDI
             //navigationHelper.OnNavigatedTo(e);
             user = e.Parameter as Health_Worker;
             loadContract();
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HomePage), user);
         }
 
         private async void loadContract()

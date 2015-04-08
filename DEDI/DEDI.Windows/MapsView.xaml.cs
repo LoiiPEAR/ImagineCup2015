@@ -70,8 +70,6 @@ namespace DEDI
                Pushpin pushpin = new Pushpin();
                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                pushpin.Name = report.disaster;
-               ImageBrush brush = new ImageBrush() { ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/disaster_pin.png")) };
-               pushpin.Background = brush;
                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude,report.longitude));
                myMap.Children.Add(pushpin);
            }
@@ -85,8 +83,6 @@ namespace DEDI
                Pushpin pushpin = new Pushpin();
                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                pushpin.Name = report.risk_factor;
-               ImageBrush brush = new ImageBrush() { ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/risk_pin.png")) };
-               pushpin.Background = brush;
                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                myMap.Children.Add(pushpin);
            }
