@@ -1,4 +1,6 @@
-﻿using Bing.Maps;
+﻿#if WINDOWS_APP
+    using Bing.Maps;
+#endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,9 @@ namespace DEDI
 {
     public sealed partial class DashBoard
     {
+#if WINDOWS_APP
         Map myMap;
+#endif
         public class NumberOfCases
         {
             public string date { get; set; }
@@ -86,6 +90,7 @@ namespace DEDI
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
                 Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
                                                                                TimeSpan.FromSeconds(10));
+#if WINDOW_APP
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
                 myMap.ZoomLevel = 17;
@@ -94,6 +99,7 @@ namespace DEDI
                 loadgraph();
                 loadDisaster();
                 loadRF();
+#endif
                 
             }
             catch (Exception ex)
@@ -230,11 +236,13 @@ namespace DEDI
                 string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
                 if (user_postcode.Equals(report_postcode))
                 {
+#if WINDOWS_APP
                     Pushpin pushpin = new Pushpin();
                     pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                     pushpin.Name = report.disaster;
                     MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                     myMap.Children.Add(pushpin);
+#endif
                 }
             }
 
@@ -256,11 +264,13 @@ namespace DEDI
                     string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count-1].long_name;
                         if (user_postcode.Equals(report_postcode))
                         {
+#if WINDOWS_APP
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                             pushpin.Name = report.risk_factor;
                             MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                             myMap.Children.Add(pushpin);
+#endif
                         }
                     
                    
@@ -277,8 +287,10 @@ namespace DEDI
 
         private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
         {
+#if WINDOWS_APP
             MessageDialog dialog = new MessageDialog(((Pushpin)sender).Name);
             await dialog.ShowAsync();
+#endif
         }
     }
 }

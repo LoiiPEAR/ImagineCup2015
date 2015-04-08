@@ -1,5 +1,7 @@
 ﻿
-using Bing.Maps;
+#if WINDOWS_APP
+    using Bing.Maps;
+#endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
@@ -94,26 +96,29 @@ namespace DEDI
             }
             if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
-                //ComboBoxItem posItem = (ComboBoxItem)PositionCb.SelectedItem;
-                
+#if WINDOWS_APP
+                ComboBoxItem posItem = (ComboBoxItem)PositionCb.SelectedItem;
+
                 string pos_value = PositionCb.SelectedItem.ToString();
-                Health_Worker user = new Health_Worker() { 
-                fname = FirstNameTb.Text,
-                lname = LastNameTb.Text,
-                password = ComputeMD5(PasswordTb.Password),
-                username =UsernameTb.Text,
-                position = pos_value,
-                organization = OrganizationTb.Text,
-                latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
-                longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
-                email = EmailTb.Text,
-                telephone = TelTb.Text,
-                dob = DOBDpk.Date.UtcDateTime,
-                gender = this.gender
+                Health_Worker user = new Health_Worker()
+                {
+                    fname = FirstNameTb.Text,
+                    lname = LastNameTb.Text,
+                    password = ComputeMD5(PasswordTb.Password),
+                    username = UsernameTb.Text,
+                    position = pos_value,
+                    organization = OrganizationTb.Text,
+                    latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
+                    longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
+                    email = EmailTb.Text,
+                    telephone = TelTb.Text,
+                    dob = DOBDpk.Date.UtcDateTime,
+                    gender = this.gender
                 };
-                IMobileServiceTable<Health_Worker> hwTable =  App.MobileService.GetTable<Health_Worker>();
+                IMobileServiceTable<Health_Worker> hwTable = App.MobileService.GetTable<Health_Worker>();
                 await hwTable.InsertAsync(user);
                 this.Frame.Navigate(typeof(LogInPage));
+#endif
             }
         }
         private void MaleRBtn_Checked(object sender, RoutedEventArgs e)
@@ -185,7 +190,7 @@ namespace DEDI
         DraggablePin pin;
         public async void InitializeMap()
         {
-
+#if WINDOWS_APP
 
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 10;
@@ -219,10 +224,12 @@ namespace DEDI
             var list = serializer.ReadObject(ms);
             RootObject jsonResponse = list as RootObject;
             AddressTbl.Text = jsonResponse.results[0].formatted_address;
+#endif
         }
 
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
         {
+#if WINDOWS_APP
             var pointerPosition = e.GetCurrentPoint(((Map)sender));
 
             Bing.Maps.Location location = null;
@@ -241,12 +248,13 @@ namespace DEDI
                 RootObject jsonResponse = list as RootObject;
                 AddressTbl.Text = jsonResponse.results[0].formatted_address;
             }
+#endif
         }
 
        
 
         
-
+#if WINDOWS_APP
         private async void Pin_Dragged(Bing.Maps.Location obj)
         {
             
@@ -271,6 +279,7 @@ namespace DEDI
             RootObject jsonResponse = list as RootObject;
             AddressTbl.Text = jsonResponse.results[0].formatted_address;
         }
+#endif
 
         public static string ComputeMD5(string str)
         {

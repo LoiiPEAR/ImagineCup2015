@@ -15,11 +15,6 @@ namespace DEDI
         Health_Worker user;
         Health_Worker rec;
         List<Health_Worker> contact;
-        public SendMessagePage()
-        {
-            this.InitializeComponent();
-            
-        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
            

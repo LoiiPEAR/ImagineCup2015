@@ -1,4 +1,6 @@
-﻿using Bing.Maps;
+﻿#if WINDOWS_APP
+    using Bing.Maps;
+#endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Linq;
@@ -24,11 +26,18 @@ namespace DEDI
     public sealed partial class HomePage
     {
         private Health_Worker user;
+#if WINDOWS_APP
         Map myMap;
+#endif
         public HomePage()
         {
             this.InitializeComponent();
            
+        }
+
+        private void emergencyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MessageViewPage), user);
         }
 
         private async void loadReports()
@@ -109,16 +118,16 @@ namespace DEDI
                 int no_myreport = disaster_rp.Count + disease_rp.Count + rf_rp.Count;
                 myreport.Text = no_myreport + "";
 
-                myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
-                myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 10;
-                myMap.MapType = MapType.Road;
-                myMap.Width = 420;
-                myMap.Height = 480;
-                myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
-                loadRF();
-                loadDisaster();
-                loadReports();
+                //myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
+                //myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                //myMap.ZoomLevel = 10;
+                //myMap.MapType = MapType.Road;
+                //myMap.Width = 420;
+                //myMap.Height = 480;
+                //myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
+                //loadRF();
+                //loadDisaster();
+                //loadReports();
             }
             catch (MobileServiceInvalidOperationException e){
 
@@ -222,6 +231,7 @@ namespace DEDI
         }
         private async void loadDisaster()
         {
+#if WINDOWS_APP
             var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
             foreach (Disaster_Report report in reports)
             {
@@ -231,10 +241,11 @@ namespace DEDI
                 MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                 myMap.Children.Add(pushpin);
             }
-
+#endif
         }
         private async void loadRF()
         {
+#if WINDOWS_APP
             var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
             foreach (Risk_Factor_Report report in reports)
             {
@@ -244,7 +255,7 @@ namespace DEDI
                 MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                 myMap.Children.Add(pushpin);
             }
-
+#endif
         }
         private async void loadDisease()
         {
@@ -256,8 +267,10 @@ namespace DEDI
 
         private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
         {
+#if WINDOWS_APP
             MessageDialog dialog = new MessageDialog(((Pushpin)sender).Name);
             await dialog.ShowAsync();
+#endif
         }
     }
 }

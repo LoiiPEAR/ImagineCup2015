@@ -1,4 +1,6 @@
-﻿using Bing.Maps;
+﻿#if WINDOWS_APP
+    using Bing.Maps;
+#endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
@@ -81,7 +83,7 @@ namespace DEDI
         public async void InitializeMap()
         {
 
-
+#if WINDOWS_APP
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 10;
             myMap.MapType = MapType.Road;
@@ -114,10 +116,12 @@ namespace DEDI
             var list = serializer.ReadObject(ms);
             RootObject jsonResponse = list as RootObject;
             AddressTB.Text = jsonResponse.results[0].formatted_address;
+#endif
         }
 
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
         {
+#if WINDOWS_APP
             var pointerPosition = e.GetCurrentPoint(((Map)sender));
 
             Bing.Maps.Location location = null;
@@ -136,12 +140,13 @@ namespace DEDI
                 RootObject jsonResponse = list as RootObject;
                 AddressTB.Text = jsonResponse.results[0].formatted_address;
            }
+#endif
         }
 
 
 
 
-
+#if WINDOWS_APP
         private async void Pin_Dragged(Bing.Maps.Location obj)
         {
 
@@ -155,6 +160,7 @@ namespace DEDI
             RootObject jsonResponse = list as RootObject;
             AddressTB.Text = jsonResponse.results[0].formatted_address; 
         }
+#endif
         private async void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             if (disaster == "")
@@ -163,6 +169,7 @@ namespace DEDI
             }
             else
             {
+#if WINDOWS_APP
                 SubmitBtn.IsEnabled = false;
                 Disaster_Report d = new Disaster_Report()
                 {
@@ -177,6 +184,7 @@ namespace DEDI
                 IMobileServiceTable<Disaster_Report> hwTable = App.MobileService.GetTable<Disaster_Report>();
                 await hwTable.InsertAsync(d);
                 this.Frame.Navigate(typeof(ReportsView),user);
+#endif
             }
         }
     }

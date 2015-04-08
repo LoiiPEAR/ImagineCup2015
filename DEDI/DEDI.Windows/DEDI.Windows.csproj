@@ -141,12 +141,6 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HubPage1.xaml.cs">
-      <DependentUpon>HubPage1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LocalDB.xaml.cs">
-      <DependentUpon>LocalDB.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MapsView.xaml.cs">
       <DependentUpon>MapsView.xaml</DependentUpon>
     </Compile>
@@ -178,6 +172,7 @@
     <Content Include="Assets\app_icon_small.png" />
     <Content Include="Assets\back_btn.png" />
     <Content Include="Assets\back_btn_hover.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\bladder_btn.png" />
     <Content Include="Assets\bladder_btn_hover.png" />
     <Content Include="Assets\brain_btn.png" />
@@ -253,6 +248,10 @@
     <Content Include="Assets\sign_out_btn_hover.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-180.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-80.png" />
+    <Content Include="Assets\Square70x70Logo.scale-100.png" />
     <Content Include="Assets\startup_bg.png" />
     <Content Include="Assets\stomach_btn.png" />
     <Content Include="Assets\stomach_btn_hover.png" />
@@ -270,6 +269,7 @@
     <Content Include="Assets\volcanic_btn_pressed.png" />
     <Content Include="Assets\water_btn.png" />
     <Content Include="Assets\water_btn_pressed.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\wildfire_btn.png" />
     <Content Include="Assets\wildfire_btn_pressed.png" />
   </ItemGroup>
@@ -299,14 +299,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HomePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HubPage1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LocalDB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,6 @@
-﻿using Bing.Maps;
+﻿#if WINDOWS_APP
+    using Bing.Maps;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +11,7 @@ namespace DEDI
 {
     public sealed partial class DraggablePin : UserControl
     {
+        #if WINDOWS_APP
         #region Private Properties
 
         private Map _map;
@@ -156,5 +159,6 @@ namespace DEDI
         }
 
         #endregion
+        #endif
     }
 }

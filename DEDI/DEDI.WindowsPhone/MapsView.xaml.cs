@@ -44,30 +44,30 @@ namespace DEDI
 
        public void InitializeMap()
         {
-            double lat = 0;
-            double lon = 0;
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 17;
-            myMap.Width = 300;
-            myMap.Height = 800;
-            myMap.LandmarksVisible = true;
-            /* [{"Lat":"13.815361","Lon":"100.560822","LocationName":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","LocationName":"MRT Phaholyothin"}] */
-            string strJSON = string.Empty;
-            strJSON = " [{\"Lat\":\"13.815361\",\"Lon\":\"100.560822\",\"LocationName\":\"Central Patpharo\"},{\"Lat\":\"13.81433\",\"Lon\":\"100.560162\",\"LocationName\":\"MRT Phaholyothin\"}]";
+            //double lat = 0;
+            //double lon = 0;
+            //myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            //myMap.ZoomLevel = 17;
+            //myMap.Width = 300;
+            //myMap.Height = 800;
+            //myMap.LandmarksVisible = true;
+            ///* [{"Lat":"13.815361","Lon":"100.560822","LocationName":"Central Patpharo"},{"Lat":"13.81433","Lon":"100.560162","LocationName":"MRT Phaholyothin"}] */
+            //string strJSON = string.Empty;
+            //strJSON = " [{\"Lat\":\"13.815361\",\"Lon\":\"100.560822\",\"LocationName\":\"Central Patpharo\"},{\"Lat\":\"13.81433\",\"Lon\":\"100.560162\",\"LocationName\":\"MRT Phaholyothin\"}]";
 
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(strJSON));
-            ObservableCollection<Response> list = new ObservableCollection<Response>();
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Response>));
-            list = (ObservableCollection<Response>)serializer.ReadObject(ms);
+            //MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(strJSON));
+            //ObservableCollection<Response> list = new ObservableCollection<Response>();
+            //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Response>));
+            //list = (ObservableCollection<Response>)serializer.ReadObject(ms);
 
-            foreach (Response loc in list)
-            {
-                AddPushpin(new BasicGeoposition() { Latitude=loc.Lat,Longitude=loc.Lon}, loc.LocationName);
-                lat = loc.Lat;
-                lon = loc.Lon;
-            }
+            //foreach (Response loc in list)
+            //{
+            //    AddPushpin(new BasicGeoposition() { Latitude=loc.Lat,Longitude=loc.Lon}, loc.LocationName);
+            //    lat = loc.Lat;
+            //    lon = loc.Lon;
+            //}
 
-            myMap.Center = new Geopoint(new BasicGeoposition() { Latitude=lat,Longitude=lon});
+            //myMap.Center = new Geopoint(new BasicGeoposition() { Latitude=lat,Longitude=lon});
            
 
 

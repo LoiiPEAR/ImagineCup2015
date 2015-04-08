@@ -11,7 +11,7 @@ namespace DEDI
         Health_Worker user;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedTo(e);
+            //navigationHelper.OnNavigatedTo(e);
             user = e.Parameter as Health_Worker;
             loadContract();
         }
@@ -25,7 +25,7 @@ namespace DEDI
                 Health_Worker sender = hw[0];
                 list.Add(new MessageItem() { topic = m.topic, content = m.content, sender = hw[0].fname + " " + hw[0].lname, sent_time = m.sent_time, sender_id = hw[0].id });
             }
-            DefaultViewModel["Items"] = list;
+            //DefaultViewModel["Items"] = list;
         }
         
     }
