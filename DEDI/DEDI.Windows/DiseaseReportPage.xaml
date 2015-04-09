@@ -150,12 +150,9 @@
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="&gt; 4 times/day" VerticalAlignment="Top" FontSize="16" Margin="212,130,0,0" Foreground="#FF00AEC8"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Stool types" VerticalAlignment="Top" FontSize="16" Margin="30,163,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Natures of stool" VerticalAlignment="Top" FontSize="16" Margin="200,163,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
-                        <RadioButton x:Name="bloodRBtn" Content="Blood" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,188,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="bloodRBtn_Checked"/>
-                        <RadioButton x:Name="mucusRBtn" Content="Mucus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,219,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="mucusRBtn_Checked"/>
-                        <RadioButton x:Name="normalRBtn" Content="Normal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,250,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="normalRBtn_Checked"/>
-                        <RadioButton x:Name="wateryRBtn" Content="Watery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,188,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="wateryRBtn_Checked"/>
-                        <RadioButton x:Name="looseRBtn" Content="Loose" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,219,0,0" Foreground="#FF00AEC8" FontSize="16" Checked="looseRBtn_Checked"/>
                         <Button x:Name="addBtn" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,8,0,0" Click="addBtn_Click"/>
+                        <ComboBox x:Name="stoolType" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,200,0,0" SelectionChanged="stoolType_SelectionChanged"/>
+                        <ComboBox x:Name="stoolNature" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="200,200,0,0" SelectionChanged="stoolNature_SelectionChanged"/>
                     </Grid>
                     <ListView x:Name="addSymptom" HorizontalAlignment="Left" Height="180" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,50" SelectionChanged="addSymptom_SelectionChanged" Foreground="#FF00AEC8" FontSize="20" FontWeight="Bold">
                         <ListView.ItemTemplate>

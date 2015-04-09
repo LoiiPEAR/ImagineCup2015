@@ -59,6 +59,32 @@ namespace DEDI
     {
         [PrimaryKey]
         public string id { get; set; }
+        [JsonProperty(PropertyName = "latitude")]
+        public double latitude { get; set; }
+        [JsonProperty(PropertyName = "longitude")]
+        public double longitude { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string description { get; set; }
+        [JsonProperty(PropertyName = "hw_id")]
+        public string hw_id { get; set; }
+        [JsonProperty(PropertyName = "disaster")]
+        public string disaster { get; set; }
+        [JsonProperty(PropertyName = "reported_time")]
+        public DateTime reported_time { get; set; }
+        [JsonProperty(PropertyName = "ocurred_time")]
+        public DateTime ocurred_time { get; set; }
+
+        [JsonProperty(PropertyName = "complete")]
+        public bool Complete { get; set; }
+
+        [Version]
+        public string Version { get; set; }
+    }
+
+    class Disaster_Report_View
+    {
+        [PrimaryKey]
+        public string id { get; set; }
         [JsonProperty(PropertyName = "icon")]
         public ImageSource icon { get; set; }
         [JsonProperty(PropertyName = "latitude")]
@@ -82,7 +108,6 @@ namespace DEDI
         [Version]
         public string Version { get; set; }
     }
-
     class Report
     {
         [PrimaryKey]
@@ -228,6 +253,41 @@ namespace DEDI
     {
         [PrimaryKey]
         public string id { get; set; }
+        [JsonProperty(PropertyName = "latitude")]
+        public double latitude { get; set; }
+        [JsonProperty(PropertyName = "longitude")]
+        public double longitude { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string description { get; set; }
+        [JsonProperty(PropertyName = "hw_id")]
+        public string hw_id { get; set; }
+        [JsonProperty(PropertyName = "patient_id")]
+        public string patient_id { get; set; }
+        [JsonProperty(PropertyName = "reported_time")]
+        public DateTime reported_time { get; set; }
+        [JsonProperty(PropertyName = "occurred_time")]
+        public DateTime ocurred_time { get; set; }
+        [JsonProperty(PropertyName = "Cholera")]
+        public double cholera { get; set; }
+        [JsonProperty(PropertyName = "Shigella")]
+        public double shigella { get; set; }
+        [JsonProperty(PropertyName = "rotavirus")]
+        public double rotavirus { get; set; }
+        [JsonProperty(PropertyName = "simonelle")]
+        public double simolnelle { get; set; }
+        [JsonProperty(PropertyName = "others")]
+        public double others { get; set; }
+        [JsonProperty(PropertyName = "complete")]
+        public bool Complete { get; set; }
+
+        [Version]
+        public string Version { get; set; }
+    }
+
+    class Disease_Report_View
+    {
+        [PrimaryKey]
+        public string id { get; set; }
         [JsonProperty(PropertyName = "icon")]
         public ImageSource icon { get; set; }
         [JsonProperty(PropertyName = "latitude")]
@@ -260,7 +320,6 @@ namespace DEDI
         [Version]
         public string Version { get; set; }
     }
-
        class Reported_Symptom
     {
         [PrimaryKey]
@@ -281,6 +340,32 @@ namespace DEDI
 
     
     class Risk_Factor_Report
+    {
+        [PrimaryKey]
+        public string id { get; set; }
+        [JsonProperty(PropertyName = "latitude")]
+        public double latitude { get; set; }
+        [JsonProperty(PropertyName = "longitude")]
+        public double longitude { get; set; }
+        [JsonProperty(PropertyName = "hw_id")]
+        public string hw_id { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string description { get; set; }
+        [JsonProperty(PropertyName = "risk_factor")]
+        public string risk_factor { get; set; }
+        [JsonProperty(PropertyName = "reported_time")]
+        public DateTime reported_time { get; set; }
+        [JsonProperty(PropertyName = "occurred_time")]
+        public DateTime ocurred_time { get; set; }
+
+        [JsonProperty(PropertyName = "complete")]
+        public bool Complete { get; set; }
+
+        [Version]
+        public string Version { get; set; }
+    }
+
+    class Risk_Factor_Report_View
     {
         [PrimaryKey]
         public string id { get; set; }

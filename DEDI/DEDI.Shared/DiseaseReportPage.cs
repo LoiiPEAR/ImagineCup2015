@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls;
+using SQLite;
 
 namespace DEDI
 {
@@ -40,6 +41,7 @@ namespace DEDI
         string thirststate = "";
         string urine = "";
         string skinturgor = "";
+        SQLiteAsyncConnection conn = new SQLiteAsyncConnection("localsync.db");
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -52,6 +54,47 @@ namespace DEDI
             NewPatient.Visibility = Visibility.Visible;
             PatientInfo.Visibility = Visibility.Collapsed;
 
+            stoolNature.Items.Add("watery");
+            stoolNature.Items.Add("loose");
+            stoolType.Items.Add("blood");
+            stoolType.Items.Add("mucus");
+            stoolType.Items.Add("normal");
+        }
+
+        private void findStat()
+        {
+            StringBuilder query = new StringBuilder();
+            query.Append("SELECT Cholera");
+            query.Append("FROM Bayesian_Prob WHERE");
+            
+            //for (int i=0;i<addSymptom.Items.Count;i++)
+            //{
+            //    Symptom 
+            //    if(item.symptom.Equals("Diarrhea")){
+            //        query.Append("nature_of_stool='"+stoolnature+"' AND stool_frequency_per_day='"+stoolfrequency+"' AND stool_type='"+stooltype+"'");
+            //    }
+            //    else if(item.symptom.Equals("Reduced urine")){
+            //        query.Append("urine_output='"+urine+"'");
+            //    }
+            //    else if(item.symptom.Equals("Fever")){
+            //        query.Append("fever='present'");
+            //    }
+            //    else if(item.symptom.Equals("Decreased skin turgor")){
+            //        query.Append("skin_turgor='"+skinturgor+"'");
+            //    }
+            //    else if(item.symptom.Equals("Vomiting")){
+            //        query.Append("vomiting='present'");
+            //    }
+            //    else if(item.symptom.Equals("Cold skin")){
+            //        query.Append("skin_temperature='cold'");
+            //    }
+            //    else if(item.symptom.Equals("Thirst")){
+            //        query.Append("thirst='"+thirst+"'");
+            //    }
+            //    else if(item.symptom.Equals("Sunken eyes")){
+            //        query.Append("eyes='sunken'");
+            //    }
+            //}
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -110,71 +153,44 @@ namespace DEDI
 
         private void lt_Click(object sender, RoutedEventArgs e)
         {
-            urine = "lt_1ml_kg_hr";
+            urine = "lt 1ml kg hr";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
+            urineOutput.Visibility = Visibility.Collapsed;
         }
 
         private void llt_Click(object sender, RoutedEventArgs e)
         {
-            urine = "llt_1ml_kg_hr";
+            urine = "llt 1ml kg hr";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
+            urineOutput.Visibility = Visibility.Collapsed;
         }
 
         private void delay_Click(object sender, RoutedEventArgs e)
         {
-            skinturgor = "delay_2_5s";
+            skinturgor = "delay 2 5s";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
+            skinTurgor.Visibility = Visibility.Collapsed;
         }
 
         private void delaydelay_Click(object sender, RoutedEventArgs e)
         {
-            skinturgor = "delay_mt_5s";
+            skinturgor = "delay mt 5s";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
+            skinTurgor.Visibility = Visibility.Collapsed;
         }
 
         private void thirsty_Click(object sender, RoutedEventArgs e)
         {
             thirststate = "thirsty";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
+            thirst.Visibility = Visibility.Collapsed;
         }
 
         private void unabletodrink_Click(object sender, RoutedEventArgs e)
         {
-            thirststate = "unable_to_drink";
+            thirststate = "unable to drink";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
-        }
-
-        private void bloodRBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            stooltype = "blood";
-            mucusRBtn.IsChecked = false;
-            normalRBtn.IsChecked = false;
-        }
-
-        private void mucusRBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            stooltype = "mucus";
-            normalRBtn.IsChecked = false;
-            bloodRBtn.IsChecked = false;
-        }
-
-        private void normalRBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            stooltype = "normal";
-            bloodRBtn.IsChecked = false;
-            mucusRBtn.IsChecked = false;
-        }
-
-        private void wateryRBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            stoolnature = "watery";
-            looseRBtn.IsChecked = false;
-        }
-
-        private void looseRBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            stoolnature = "loose";
-            wateryRBtn.IsChecked = false;
+            thirst.Visibility = Visibility.Collapsed;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
@@ -200,18 +216,18 @@ namespace DEDI
 
         private void addSymptom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Symptom s = addSymptom.SelectedItem as Symptom;
-            if (s.symptom.Equals("Diarrhea"))
-            {
-                stoolnature = "";
-                stooltype = "";
-                stoolfrequency = "";
-            }
-            else if (s.symptom == "Thirst") thirststate = "";
-            else if (s.symptom == "Reduced urine") urine = "";
-            else if (s.symptom == "Decreased skin turgor") skinturgor = "";
             addSymptom.Items.Remove(addSymptom.SelectedItem);
         }
+
+        private void stoolType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            stooltype = (string)stoolType.SelectedItem;
+        }
+
+        private void stoolNature_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            stoolnature = (string)stoolNature.SelectedItem;
+        }   
      
         private void AddConfirmBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -425,6 +441,7 @@ namespace DEDI
             }
             else
             {
+                
                 string patient_location = "";
                 if (CurrentLocationRBtn.IsChecked == true)
                 {

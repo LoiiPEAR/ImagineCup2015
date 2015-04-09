@@ -24,7 +24,7 @@ namespace DEDI
         {
             var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
             ImageSource src = null;
-            List<Disaster_Report> disasterView = new List<Disaster_Report>();
+            List<Disaster_Report_View> disasterView = new List<Disaster_Report_View>();
             if (reports.Count > 0)
             {
                 foreach (Disaster_Report item in reports)
@@ -37,7 +37,7 @@ namespace DEDI
                         else if (item.disaster.Equals("Wildfire")) src = new BitmapImage(new Uri("ms-appx:/Assets/wildfire_btn.png"));
                         else if (item.disaster.Equals("Tsunami")) src = new BitmapImage(new Uri("ms-appx:/Assets/tsunami_btn.png"));
                         else if (item.disaster.Equals("Volcanic eruption")) src = new BitmapImage(new Uri("ms-appx:/Assets/volcanic_btn.png"));
-                        disasterView.Add(new Disaster_Report
+                        disasterView.Add(new Disaster_Report_View
                         {
                             disaster = item.disaster,
                             hw_id = item.hw_id,
@@ -59,7 +59,7 @@ namespace DEDI
         {
             var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
             ImageSource src = null;
-            List<Risk_Factor_Report> riskView = new List<Risk_Factor_Report>();
+            List<Risk_Factor_Report_View> riskView = new List<Risk_Factor_Report_View>();
             if (reports.Count > 0)
             {
                 foreach (Risk_Factor_Report item in reports)
@@ -70,7 +70,7 @@ namespace DEDI
                         else if (item.risk_factor.Equals("Contaminated water")) src = new BitmapImage(new Uri("ms-appx:/Assets/water_btn.png"));
                         else if (item.risk_factor.Equals("Crowding")) src = new BitmapImage(new Uri("ms-appx:/Assets/crowding_btn.png"));
                         else if (item.risk_factor.Equals("Poor sanitation")) src = new BitmapImage(new Uri("ms-appx:/Assets/sanitation_btn.png"));
-                        riskView.Add(new Risk_Factor_Report
+                        riskView.Add(new Risk_Factor_Report_View
                         {
                             risk_factor = item.risk_factor,
                             hw_id = item.hw_id,
@@ -91,14 +91,14 @@ namespace DEDI
         {
             var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
             ImageSource src = null;
-            List<Disease_Report> diseaseView = new List<Disease_Report>();
+            List<Disease_Report_View> diseaseView = new List<Disease_Report_View>();
             if (reports.Count > 0)
             {
                 foreach (Disease_Report item in reports)
                 {
                     if (item.id != "") DiseaseReportsViewLv.ItemsSource = reports;
                     src = new BitmapImage(new Uri("ms-appx:/Assets/disease_report_btn.png"));
-                    diseaseView.Add(new Disease_Report
+                    diseaseView.Add(new Disease_Report_View
                     {
                         id = "Disease report",
                         hw_id = item.hw_id,
