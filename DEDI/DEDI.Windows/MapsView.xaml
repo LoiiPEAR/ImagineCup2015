@@ -1,14 +1,17 @@
 ﻿<Page
-    x:Class="DEDI.MapsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DEDI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bm="using:Bing.Maps" xmlns:Controls="using:WinRTXamlToolkit.Controls"
+    x:Class="DEDI.MapsView"
     mc:Ignorable="d"
-    xmlns:bm="using:Bing.Maps">
+    >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <bm:Map x:Name="myMap"></bm:Map>
+        <bm:Map x:Name="myMap"/>
+        <TextBlock x:Name="pageTitle1" VerticalAlignment="Top" Text="Maps" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="128,10,40,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="62,11,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
     </Grid>
 </Page>

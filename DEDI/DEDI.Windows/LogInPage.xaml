@@ -20,12 +20,12 @@
             <HyperlinkButton x:Name="RegisterHL" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,66,40" Click="RegisterHL_Click" Foreground="#FFADDFF8" FontWeight="Bold"/>
             <TextBlock x:Name="errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="274,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
         </Grid>
-        <Button Content="Map" HorizontalAlignment="Left" Margin="1127,516,0,0" VerticalAlignment="Top" Click="gotoMap"/>
-        <Button x:Name="PushBtn" Content="Push" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,7,0,0" Click="PushBtn_Click"/>
-        <Button x:Name="PullBtn" Content="Pull" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="269,8,0,0" Click="PullBtn_Click"/>
-        <Button x:Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="361,8,0,0" Click="RefreshBtn_Click"/>
-        <Button x:Name="SaveBtn" Content="Save" Margin="91,8,0,726" Click="SaveBtn_Click"/>
-        <ListView x:Name="ListViews" HorizontalAlignment="Left" Height="399" VerticalAlignment="Top" Width="315" Margin="61,119,0,0"/>
+        <Button Content="Map" HorizontalAlignment="Left" Margin="1127,516,0,0" VerticalAlignment="Top" Click="gotoMap" Visibility="Collapsed"/>
+        <Button x:Name="PushBtn" Content="Push" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,7,0,0" Click="PushBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="PullBtn" Content="Pull" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="269,8,0,0" Click="PullBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="361,8,0,0" Click="RefreshBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="SaveBtn" Content="Save" Margin="91,8,0,726" Click="SaveBtn_Click" Visibility="Collapsed"/>
+        <ListView x:Name="ListViews" HorizontalAlignment="Left" Height="399" VerticalAlignment="Top" Width="315" Margin="61,119,0,0" Visibility="Collapsed"/>
         <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="469,8,0,0" Click="DeleteBtn_Click" Visibility="Collapsed"/>
         <Button Content="Contact" HorizontalAlignment="Left" Margin="124,624,0,0" VerticalAlignment="Top" Click="Button_Click" Visibility="Collapsed"/>
         <Button Content="Message Veiw" HorizontalAlignment="Left" Margin="127,591,0,0" VerticalAlignment="Top" Click="Button_Click_1" Visibility="Collapsed"/>

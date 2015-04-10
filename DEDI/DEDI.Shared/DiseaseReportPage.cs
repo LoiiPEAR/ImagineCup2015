@@ -210,7 +210,7 @@ namespace DEDI
         private void poopooBtn_Click(object sender, RoutedEventArgs e)
         {
             if (stoolfrequency == "lt_4") pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn.png"));
-            poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn_pressed"));
+            poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn_pressed.png"));
             stoolfrequency = "mt_4";
         }
 

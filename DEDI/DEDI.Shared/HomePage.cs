@@ -20,6 +20,7 @@ using Newtonsoft.Json.Linq;
 using Windows.Data.Json;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI;
 
 
 namespace DEDI
@@ -30,6 +31,7 @@ namespace DEDI
 #if WINDOWS_APP
         Map myMap;
 #endif
+        string user_postcode;
         public HomePage()
         {
             this.InitializeComponent();
@@ -106,7 +108,71 @@ namespace DEDI
             all = all.OrderByDescending(o => o.ocurred_time).ToList();
             lv.ItemsSource = all;
         }
+        private async void loadNoti()
+        {
 
+            ImageBrush myBrush = new ImageBrush();
+            Image image = new Image();
+            image.Source = new BitmapImage(
+                new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
+            myBrush.ImageSource = image.Source;
+
+            StackPanel allnoti = FindChildControl<StackPanel>(NotiSection, "AllNotiStack") as StackPanel;
+            List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
+            foreach (Message m in msg)
+            {
+                List<Health_Worker> hw = await App.MobileService.GetTable<Health_Worker>().Where(h => h.id == m.hw_sender_id).ToListAsync();
+                TextBlock name = new TextBlock();
+                name.Text = hw[0].fname + " " + hw[0].lname;
+                TextBlock sent_time = new TextBlock();
+                sent_time.Text = m.sent_time.Date + "";
+                TextBlock topic = new TextBlock();
+                topic.Text = m.topic;
+                Health_Worker sender = hw[0];
+                Grid item = new Grid()
+                {
+                    Width = 360,
+                    Margin = new Windows.UI.Xaml.Thickness(10),
+                    Height = 86
+                };
+                item.Background = myBrush;
+                item.Children.Add(topic);
+                item.Children.Add(name);
+                item.Children.Add(sent_time);
+                item.HorizontalAlignment = HorizontalAlignment.Left;
+                item.VerticalAlignment = VerticalAlignment.Top;
+
+                // Define the Columns
+                ColumnDefinition colDef1 = new ColumnDefinition();
+                ColumnDefinition colDef2 = new ColumnDefinition();
+                ColumnDefinition colDef3 = new ColumnDefinition();
+                item.ColumnDefinitions.Add(colDef1);
+                item.ColumnDefinitions.Add(colDef2);
+                item.ColumnDefinitions.Add(colDef3);
+
+                // Define the Rows
+                RowDefinition rowDef1 = new RowDefinition();
+                RowDefinition rowDef2 = new RowDefinition();
+                RowDefinition rowDef3 = new RowDefinition();
+                RowDefinition rowDef4 = new RowDefinition();
+                RowDefinition rowDef5 = new RowDefinition();
+                item.RowDefinitions.Add(rowDef1);
+                item.RowDefinitions.Add(rowDef2);
+                item.RowDefinitions.Add(rowDef3);
+                item.RowDefinitions.Add(rowDef4);
+                item.RowDefinitions.Add(rowDef5);
+                Grid.SetRow(topic, 1);
+                Grid.SetColumn(topic, 1);
+                Grid.SetRow(name, 2);
+                Grid.SetColumn(name, 1);
+                Grid.SetRow(sent_time, 3);
+                Grid.SetColumn(sent_time, 1);
+                allnoti.Children.Insert(0, item);
+            }
+
+
+        }
+        
         private async void loadData()
         {
             try
@@ -158,9 +224,22 @@ namespace DEDI
                 myMap.Width = 420;
                 myMap.Height = 480;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
+                if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
+                {
+                    Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                    response = await client.GetAsync(Uri);
+                    result = await response.Content.ReadAsStringAsync();
+                    ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                    serializer = new DataContractJsonSerializer(typeof(RootObject));
+                    list = serializer.ReadObject(ms);
+                    jsonResponse = list as RootObject;
+                    user_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                }
                 loadRF();
                 loadDisaster();
                 loadReports();
+                loadDisease();
+                loadNoti();
 #endif
             }
             catch (MobileServiceInvalidOperationException e){
@@ -208,24 +287,7 @@ namespace DEDI
            
         }
 
-        private async void loadNoti()
-        {
-            var Messages = await App.MobileService.GetTable<Message>().ToListAsync();
-            List<Message> noti = new List<Message>();
-            StackPanel AllNotiStack = FindChildControl<StackPanel>(NotiSection, "AllNotiStack") as StackPanel;
-            ImageSource src = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_green.png"));
-            foreach (Message item in Messages)
-            {
-                Image tab = new Image();
-                
-                if(item.status=="normal") src = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_green.png"));
-                else if(item.status=="important") src = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
-                else if(item.status=="very important") src = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_red.png"));
-                tab.Source = src;
-
-                AllNotiStack.Children.Add(tab);
-            }
-        }
+        
 
         private void CreateReportBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -276,37 +338,135 @@ namespace DEDI
             ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
             NearbyScrollView.Visibility = Visibility.Collapsed;
         }
+        #if WINDOWS_APP
         private async void loadDisaster()
         {
-#if WINDOWS_APP
+
             var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
-            foreach (Disaster_Report report in reports)
+            if(user.position =="Village Health Volunteer"||user.position=="Tambon Health Promoting Hospital Officer"||user.position=="District Public Health Officer")
             {
-                Pushpin pushpin = new Pushpin();
-                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                pushpin.Name = report.disaster;
-                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                myMap.Children.Add(pushpin);
+                var client = new HttpClient();
+                foreach (Disaster_Report report in reports)
+                {
+                        var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                        var response = await client.GetAsync(Uri);
+                        var result = await response.Content.ReadAsStringAsync();
+                        var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                        var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                        var list = serializer.ReadObject(ms);
+                        var jsonResponse = list as RootObject;
+                        string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                 
+                        if(postcode==user_postcode){
+                    Pushpin pushpin = new Pushpin();
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                            pushpin.Name = report.id;
+
+                            pushpin.Background = new SolidColorBrush(Colors.GreenYellow); 
+                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                    myMap.Children.Add(pushpin);
+                    }
+                }
+        
             }
-#endif
+            else {
+                foreach (Disaster_Report report in reports)
+                {
+                    Pushpin pushpin = new Pushpin();
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                    pushpin.Name = report.id;
+
+                    pushpin.Background = new SolidColorBrush(Colors.GreenYellow); 
+                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                    myMap.Children.Add(pushpin);
+                }
+            }
+
         }
         private async void loadRF()
         {
-#if WINDOWS_APP
+
             var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
-            foreach (Risk_Factor_Report report in reports)
+            if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
             {
-                Pushpin pushpin = new Pushpin();
-                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                pushpin.Name = report.risk_factor;
-                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                myMap.Children.Add(pushpin);
+                var client = new HttpClient();
+                foreach (Risk_Factor_Report report in reports)
+                {
+                    var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                    var response = await client.GetAsync(Uri);
+                    var result = await response.Content.ReadAsStringAsync();
+                    var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                    var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                    var list = serializer.ReadObject(ms);
+                    var jsonResponse = list as RootObject;
+                    string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                    if (postcode == user_postcode)
+                    {
+                        Pushpin pushpin = new Pushpin();
+                        pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+
+                        pushpin.Background = new SolidColorBrush(Colors.Blue); 
+                        pushpin.Name = report.id;
+                        MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                        myMap.Children.Add(pushpin);
+                    }
+                }
+
             }
-#endif
+            else
+            {
+                foreach (Risk_Factor_Report report in reports)
+                {
+                    Pushpin pushpin = new Pushpin();
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                    pushpin.Name = report.id;
+
+                    pushpin.Background = new SolidColorBrush(Colors.Blue); 
+                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                    myMap.Children.Add(pushpin);
+                }
+            }
         }
+
         private async void loadDisease()
         {
+            var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+            if(user.position =="Village Health Volunteer"||user.position=="Tambon Health Promoting Hospital Officer"||user.position=="District Public Health Officer"){
+                var client = new HttpClient();
+                foreach (Disease_Report report in reports)
+                {
+                        var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                        var response = await client.GetAsync(Uri);
+                        var result = await response.Content.ReadAsStringAsync();
+                        var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                        var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                        var list = serializer.ReadObject(ms);
+                        var jsonResponse = list as RootObject;
+                        string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                        if(postcode==user_postcode){
+                            Pushpin pushpin = new Pushpin();
+                            pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                            pushpin.Name = report.id;
 
+                            pushpin.Background = new SolidColorBrush(Colors.DeepPink); 
+                            MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                            myMap.Children.Add(pushpin);
+                        }
+                }
+
+            }
+            else{
+                   foreach (Disease_Report report in reports)
+                {
+                    Pushpin pushpin = new Pushpin();
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                    pushpin.Name = report.id;
+
+                    pushpin.Background = new SolidColorBrush(Colors.DeepPink); 
+                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                    myMap.Children.Add(pushpin);
+                }
+            }
 
         }
 
@@ -314,10 +474,43 @@ namespace DEDI
 
         private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
         {
-#if WINDOWS_APP
-            MessageDialog dialog = new MessageDialog(((Pushpin)sender).Name);
+            MessageDialog dialog;
+            var disaster_reports = await App.MobileService.GetTable<Disaster_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+            if (disaster_reports.Count > 0)
+            {
+                string Title = disaster_reports[0].disaster;
+                string Content = disaster_reports[0].description + "\n" + disaster_reports[0].ocurred_time.Date;
+                dialog = new MessageDialog(Content, Title);
+                await dialog.ShowAsync();
+              
+            }
+            var disease_reports = await App.MobileService.GetTable<Disease_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+            if (disease_reports.Count > 0)
+            {
+                string Title = "Chance of cholera:"+disease_reports[0].cholera+"\nChance of shigella:"+disease_reports[0].shigella+"\nChance of salmonella:"+disease_reports[0].simolnelle+"\nChance of rotavirus:"+disease_reports[0].rotavirus+"\nChance of others:"+disease_reports[0].others;
+                string Content = disease_reports[0].description + "\n" + disease_reports[0].ocurred_time.Date;
+                dialog = new MessageDialog(Content, Title);
+                await dialog.ShowAsync();
+             
+            }
+            var rf_reports = await App.MobileService.GetTable<Risk_Factor_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+            if (rf_reports.Count > 0)
+            {
+                string Title = rf_reports[0].risk_factor;
+                string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
+                dialog = new MessageDialog(Content, Title);
             await dialog.ShowAsync();
-#endif
+              
+            }
+         
+            
         }
+ #endif  
+        private void MyReport_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MyReportPage), user);
+
+        }
+    
     }
 }
