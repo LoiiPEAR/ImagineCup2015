@@ -20,8 +20,13 @@ namespace DEDI
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RiskFactorReportPage : Page
+    public sealed partial class MyReportPage : Page
     {
+        public MyReportPage()
+        {
+            this.InitializeComponent();
+        }
+
         
     }
 }

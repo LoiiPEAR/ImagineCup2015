@@ -91,7 +91,7 @@ namespace DEDI
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
                 Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
                                                                                TimeSpan.FromSeconds(10));
-
+#if WINDOWS_APP
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
                 myMap.ZoomLevel = 17;
@@ -100,7 +100,7 @@ namespace DEDI
                 loadgraph();
                 loadDisaster();
                 loadRF();
-
+#endif
                 
             }
             catch (Exception ex)

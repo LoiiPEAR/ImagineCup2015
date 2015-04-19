@@ -22,13 +22,17 @@ namespace DEDI
         Health_Worker user;
         DraggablePin pin;
         private string risk_factor = "";
+        public RiskFactorReportPage(){
+            this.InitializeComponent();
+        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             user = e.Parameter as Health_Worker;
-            InitializeMap();
+            
             // Set the MinDate and MaxDate.
             DatePicker.MinYear = new DateTime(1985, 6, 20);
             DatePicker.MaxYear = DateTime.Today;
+            InitializeMap();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

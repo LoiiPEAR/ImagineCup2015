@@ -26,5 +26,9 @@ namespace DEDI
         {
             this.InitializeComponent();
         }
+        void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }

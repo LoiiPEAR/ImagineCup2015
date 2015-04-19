@@ -461,19 +461,21 @@ namespace DEDI
                 };
                 await pTable.InsertAsync(p);
                 IMobileServiceTable<Disease_Report> dTable = App.MobileService.GetTable<Disease_Report>();
-#if WINDOWS_APP
+
                 Disease_Report d = new Disease_Report()
                 {
                     description = DescriptionTb.Text,
                     hw_id = user.id,
+#if WINDOWS_APP
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
+#endif
                     reported_time = DateTime.Today,
                     ocurred_time = DatePicker.Date.UtcDateTime,
                     patient_id = p.id
                 };
                 await dTable.InsertAsync(d);
-#endif
+
                 IMobileServiceTable<Reported_Symptom> rTable = App.MobileService.GetTable<Reported_Symptom>();
                 foreach(Symptom item in addSymptom.Items){
                     if (item.symptom == "Cholera")
