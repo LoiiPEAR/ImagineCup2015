@@ -37,7 +37,7 @@
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" FontSize="20" Margin="40,160,0,0"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="40,310,0,0"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="40,360,0,0"/>
-                    <Button x:Name="EditPatientInfoBtn" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="244,84,0,0" Click="EditPatientInfoBtn_Click">
+                    <Button x:Name="EditPatientInfoBtn" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="244,84,0,0" Click="EditPatientInfoBtn_Click" FontFamily="Global User Interface">
                         <Button.Resources>
                             <Flyout x:Name="EditFlyout" x:Key="EditPatientInfo" Placement="Bottom">
                                 <Grid Height="600" Width="289" UseLayoutRounding="True">

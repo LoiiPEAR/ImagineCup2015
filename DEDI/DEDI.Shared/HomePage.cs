@@ -202,11 +202,11 @@ namespace DEDI
                 TextBlock positionTbl = FindChildControl<TextBlock>(ProfileSection, "positionTbl") as TextBlock;
                 positionTbl.Text = user.position;
 
-                var following = await App.MobileService.GetTable<Follow>().Where(p => p.following_hw_id == user.id).ToListAsync();
+                var following = await App.MobileService.GetTable<Follow>().Where(p => p.follower_hw_id == user.id).ToListAsync();
                 TextBlock followingTbl = FindChildControl<TextBlock>(ProfileSection, "followingTbl") as TextBlock;
                 followingTbl.Text = following.Count + "";
 
-                var follower = await App.MobileService.GetTable<Follow>().Where(p => p.follower_hw_id == user.id).ToListAsync();
+                var follower = await App.MobileService.GetTable<Follow>().Where(p => p.following_hw_id == user.id).ToListAsync();
                 TextBlock followerTbl = FindChildControl<TextBlock>(ProfileSection, "followersTbl") as TextBlock;
                 followerTbl.Text = follower.Count + "";
 

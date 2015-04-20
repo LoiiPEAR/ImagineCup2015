@@ -69,6 +69,12 @@ namespace DEDI
             // TODO: Assign a collection of bindable groups to this.DefaultViewModel["Groups"]
         }
 
+       
+
+      
+
+       
+
         #region NavigationHelper registration
 
         /// The methods provided in this section are simply used to allow

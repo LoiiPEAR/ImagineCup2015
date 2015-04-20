@@ -25,6 +25,42 @@
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Contract</x:String>
+        <Flyout x:Key="HealthWorkerList">
+            <Grid Height="445" Width="361">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="55*"/>
+                    <ColumnDefinition Width="140*"/>
+                    <ColumnDefinition Width="109*"/>
+                    <ColumnDefinition Width="51*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="61*"/>
+                    <RowDefinition Height="46*"/>
+                    <RowDefinition Height="267*"/>
+                    <RowDefinition Height="72*"/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="HealthWorkerLV" HorizontalAlignment="Left" Height="312" Margin="0.749,1,0,0" Grid.Row="1" VerticalAlignment="Top" Width="350.502" Grid.ColumnSpan="5" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="3" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <ListView.RenderTransform>
+                        <CompositeTransform SkewX="-0.639" TranslateX="1.489"/>
+                    </ListView.RenderTransform>
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Grid Height="100" Width="400">
+                      
+                                <TextBlock Text="{Binding fname}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding position}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+
+                                <TextBlock Text="{Binding organization}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Add" HorizontalAlignment="Left" Margin="7,31,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="2" Click="Add_Click"/>
+                <Button Content="Cancel" Grid.Column="3" HorizontalAlignment="Left" Margin="36,31,-3,0" Grid.Row="3" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="3,10,0,0" TextWrapping="Wrap" Text="Health Worker List" VerticalAlignment="Top" Height="41" Width="192" Grid.ColumnSpan="2" FontSize="20"/>
+            </Grid>
+        </Flyout>
     </Page.Resources>
 
     <!--
@@ -101,6 +137,9 @@
             <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-9,-5,-11,-10" Height="155" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
             <TextBlock x:Name="pageTitle_Copy" VerticalAlignment="Top" Text="Following" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="2,32,38,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A" Grid.Column="1"/>
             <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="56,33,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+            <Button x:Name="AddFollow" Content="Add Follow" Grid.Column="1" HorizontalAlignment="Left" Margin="1059,99,0,7" VerticalAlignment="Stretch" RenderTransformOrigin="-0.429,0.24" Click="AddFollow_Click" Flyout="{StaticResource HealthWorkerList}">
+
+            </Button>
         </Grid>
 
     </Grid>

@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using System.Linq;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace DEDI
 {
@@ -38,6 +39,30 @@ namespace DEDI
             
             var h = hw.GroupBy(u => u.position).OrderBy(t => t.Key.ToString()); ;
             DefaultViewModel["Groups"] = h;
+        }
+        private async void AddFollow_Click(object sender, RoutedEventArgs e)
+        {
+            List<Health_Worker> hw_list = new List<Health_Worker>();
+            List<Health_Worker> h = await App.MobileService.GetTable<Health_Worker>().Where( hw => hw.id!=user.id).ToListAsync();
+            foreach (Health_Worker hw in h)
+            {
+                List<Follow> followingHW = await App.MobileService.GetTable<Follow>().Where(follower => follower.following_hw_id == hw.id).ToListAsync();
+                if (followingHW.Count == 0) hw_list.Add(hw);
+            }
+
+            HealthWorkerLV.ItemsSource = hw_list;
+        }
+        private async void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Health_Worker h = HealthWorkerLV.SelectedItem as Health_Worker;
+            Follow f = new Follow()
+            {
+                following_hw_id = h.id,
+                follower_hw_id = user.id
+            };
+            IMobileServiceTable<Follow> followTable = App.MobileService.GetTable<Follow>();
+            await followTable.InsertAsync(f);
+            loadContract();
         }
         
     }
