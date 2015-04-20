@@ -107,6 +107,7 @@ namespace DEDI
             }
             all = all.OrderByDescending(o => o.ocurred_time).ToList();
             lv.ItemsSource = all;
+            lv.SelectionMode = ListViewSelectionMode.None;
         }
         private async void loadNoti()
         {
@@ -511,6 +512,14 @@ namespace DEDI
             this.Frame.Navigate(typeof(MyReportPage), user);
 
         }
-    
+        private void Following_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(FollowingPage), user);
+        }
+
+        private void Follower_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(FollowerPage), user);
+        }
     }
 }

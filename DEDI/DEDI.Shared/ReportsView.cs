@@ -52,6 +52,7 @@ namespace DEDI
                     }
                 }
                 DisasterReportsViewLv.ItemsSource = disasterView;
+                DisasterReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
 
         }
@@ -85,6 +86,7 @@ namespace DEDI
                     }
                 }
                 RiskFactorReportsViewLv.ItemsSource = riskView;
+                RiskFactorReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
         }
         private async void loadDisease()
@@ -111,6 +113,7 @@ namespace DEDI
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;
+                DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
                 
         }

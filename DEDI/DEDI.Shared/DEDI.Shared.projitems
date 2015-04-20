@@ -23,6 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Azure_Database_Class.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DraggablePin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FollowerPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FollowingPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)google_api.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MeassageViewPage.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Navigation;
@@ -18,14 +19,15 @@ namespace DEDI
         string status = "normal";
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
             user = e.Parameter as Health_Worker;
             loadContact();
-            loadContract();
+            
         }
 
-        private async void loadContract()
+        private async void loadContact()
         {
+            contact = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.id != user.id).ToListAsync();
+
             List<MessageItem> list = new List<MessageItem>();
             List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
             foreach(Message m in msg){
@@ -38,7 +40,8 @@ namespace DEDI
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(HomePage),user);
+           
+            this.Frame.Navigate(typeof(HomePage), user);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -53,11 +56,7 @@ namespace DEDI
             itemDetailTitlePanel.Visibility = Visibility.Visible;
         }
 
-        private async void loadContact()
-        {
-            contact = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.id != user.id).ToListAsync();
-
-        }
+       
         private void ReceiverTb_TextChange(object sender, TextChangedEventArgs e)
         {
             string typed_str = ReceiverTb.Text;

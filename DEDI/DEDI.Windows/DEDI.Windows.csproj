@@ -127,6 +127,12 @@
     <Compile Include="DraggablePin.xaml.cs">
       <DependentUpon>DraggablePin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FollowerPage.xaml.cs">
+      <DependentUpon>FollowerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FollowingPage.xaml.cs">
+      <DependentUpon>FollowingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -315,6 +321,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DraggablePin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FollowerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FollowingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
