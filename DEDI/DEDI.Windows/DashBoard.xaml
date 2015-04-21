@@ -195,7 +195,7 @@
                     </Grid>
                 </DataTemplate>
             </HubSection>
-            <HubSection x:Name="OfficialMsgSection" Width="520" Header="Section 2">
+            <HubSection x:Name="OfficialMsgSection" Width="520" Header="Section 2" Visibility="Collapsed">
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>

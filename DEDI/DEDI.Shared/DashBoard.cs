@@ -1,6 +1,5 @@
-﻿#if WINDOWS_APP
-    using Bing.Maps;
-#endif
+﻿
+using Bing.Maps;
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
@@ -22,9 +21,8 @@ namespace DEDI
 {
     public sealed partial class DashBoard
     {
-#if WINDOWS_APP
+
         Map myMap;
-#endif
         public class NumberOfCases
         {
             public string date { get; set; }
@@ -90,7 +88,6 @@ namespace DEDI
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
                 Geoposition currentPosition = await geolocator.GetGeopositionAsync(TimeSpan.FromMinutes(1),
                                                                                TimeSpan.FromSeconds(10));
-#if WINDOW_APP
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
                 myMap.ZoomLevel = 17;
@@ -99,7 +96,6 @@ namespace DEDI
                 loadgraph();
                 loadDisaster();
                 loadRF();
-#endif
                 
             }
             catch (Exception ex)
