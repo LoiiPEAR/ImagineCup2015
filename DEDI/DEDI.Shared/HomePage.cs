@@ -171,7 +171,6 @@ namespace DEDI
                 allnoti.Children.Insert(0, item);
             }
 
-
         }
         
         private async void loadData()

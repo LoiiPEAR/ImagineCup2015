@@ -25,7 +25,7 @@
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Contract</x:String>
-        <Flyout x:Key="HealthWorkerList">
+        <Flyout x:Name="followFlyout"  x:Key="HealthWorkerList">
             <Grid Height="445" Width="361">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7*"/>
@@ -48,16 +48,16 @@
                         <DataTemplate >
                             <Grid Height="100" Width="400">
                       
-                                <TextBlock Text="{Binding fname}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding fname}"  TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding position}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
 
-                                <TextBlock Text="{Binding organization}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
+                                <TextBlock Text="{Binding organization}" FontSize="12" Opacity="0.49"  VerticalAlignment="Center" Height="38"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Content="Add" HorizontalAlignment="Left" Margin="7,31,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="2" Click="Add_Click"/>
-                <Button Content="Cancel" Grid.Column="3" HorizontalAlignment="Left" Margin="36,31,-3,0" Grid.Row="3" VerticalAlignment="Top"/>
+                <Button Content="Cancel" Grid.Column="3" HorizontalAlignment="Left" Margin="36,31,-3,0" Grid.Row="3" VerticalAlignment="Top" Click="Cancel_Click"/>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="3,10,0,0" TextWrapping="Wrap" Text="Health Worker List" VerticalAlignment="Top" Height="41" Width="192" Grid.ColumnSpan="2" FontSize="20"/>
             </Grid>
         </Flyout>
@@ -93,13 +93,13 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left" Width="250" Height="250">
                         <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                            <Image Source="\Assets\profile_img.png" Stretch="UniformToFill" AutomationProperties.Name="{Binding position}"/>
                         </Border>
                         <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
                             <TextBlock Text="{Binding fname}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
                             <TextBlock Text="{Binding email}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                         </StackPanel>
-                        <Button Content="Follow" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        <Button x:Name="UnfollowBtn" Content="Unfollow" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="UnfollowBtn_Click"/>
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
