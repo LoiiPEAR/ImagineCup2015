@@ -1,5 +1,7 @@
 ﻿
-    using Bing.Maps;
+#if WINDOWS_APP
+using Bing.Maps;
+#endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
@@ -22,8 +24,9 @@ namespace DEDI
 {
     public sealed partial class DashBoard
     {
-
+#if WINDOWS_APP
         Map myMap;
+#endif
         public class NumberOfCases
         {
             public string date { get; set; }

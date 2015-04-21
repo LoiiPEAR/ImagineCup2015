@@ -106,6 +106,7 @@ namespace DEDI
                     }
                     if (i != addSymptom.Items.Count - 1) query.Append(" AND ");
                 }
+                
             }
         }
 
