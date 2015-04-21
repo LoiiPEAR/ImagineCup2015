@@ -62,7 +62,19 @@ namespace DEDI
             };
             IMobileServiceTable<Follow> followTable = App.MobileService.GetTable<Follow>();
             await followTable.InsertAsync(f);
+            followFlyout.Hide();
             loadContract();
+        }
+        private async void UnfollowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //Follow following = ;
+            //List<Follow> followingHW = await App.MobileService.GetTable<Follow>().Where(follower => follower.following_hw_id == following.id && follower.follower_hw_id==user.id).ToListAsync();
+            //IMobileServiceTable<Follow> followTable = App.MobileService.GetTable<Follow>();
+            //await followTable.DeleteAsync(followingHW[0]);
+        }
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            followFlyout.Hide();
         }
         
     }
