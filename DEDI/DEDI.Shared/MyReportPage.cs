@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DEDI
 {
-    public sealed partial class ReportsView
+    public sealed partial class MyReportPage
     {
         Health_Worker user;
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -22,7 +22,7 @@ namespace DEDI
 
         private async void loadDisaster()
         {
-            var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
+            var reports = await App.MobileService.GetTable<Disaster_Report>().Where(r => r.hw_id == user.id).ToListAsync();
             ImageSource src = null;
             List<Disaster_Report_View> disasterView = new List<Disaster_Report_View>();
             if (reports.Count > 0)
@@ -31,8 +31,8 @@ namespace DEDI
                 {
                     if (item.disaster != "")
                     {
-                        if(item.disaster.Equals("Earthquake")) src = new BitmapImage(new Uri("ms-appx:/Assets/earthquake_btn.png"));
-                        else if(item.disaster.Equals("Flood")) src = new BitmapImage(new Uri("ms-appx:/Assets/flood_btn.png"));
+                        if (item.disaster.Equals("Earthquake")) src = new BitmapImage(new Uri("ms-appx:/Assets/earthquake_btn.png"));
+                        else if (item.disaster.Equals("Flood")) src = new BitmapImage(new Uri("ms-appx:/Assets/flood_btn.png"));
                         else if (item.disaster.Equals("Storm")) src = new BitmapImage(new Uri("ms-appx:/Assets/storm_btn.png"));
                         else if (item.disaster.Equals("Wildfire")) src = new BitmapImage(new Uri("ms-appx:/Assets/wildfire_btn.png"));
                         else if (item.disaster.Equals("Tsunami")) src = new BitmapImage(new Uri("ms-appx:/Assets/tsunami_btn.png"));
@@ -58,7 +58,7 @@ namespace DEDI
         }
         private async void loadRF()
         {
-            var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
+            var reports = await App.MobileService.GetTable<Risk_Factor_Report>().Where(r => r.hw_id == user.id).ToListAsync();
             ImageSource src = null;
             List<Risk_Factor_Report_View> riskView = new List<Risk_Factor_Report_View>();
             if (reports.Count > 0)
@@ -82,7 +82,7 @@ namespace DEDI
                             ocurred_time = item.ocurred_time,
                             icon = src
                         });
-                        
+
                     }
                 }
                 RiskFactorReportsViewLv.ItemsSource = riskView;
@@ -91,7 +91,7 @@ namespace DEDI
         }
         private async void loadDisease()
         {
-            var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+            var reports = await App.MobileService.GetTable<Disease_Report>().Where(r => r.hw_id == user.id).ToListAsync();
             ImageSource src = null;
             List<Disease_Report_View> diseaseView = new List<Disease_Report_View>();
             if (reports.Count > 0)
@@ -115,31 +115,12 @@ namespace DEDI
                 DiseaseReportsViewLv.ItemsSource = diseaseView;
                 DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
-                
+
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(HomePage), user);
         }
-
-        //private void loadFilter()
-        //{
-        //    FilterCb.Items.Add("Disaster Report");
-        //    FilterCb.Items.Add("Disease Report");
-        //    FilterCb.Items.Add("Risk Factor Report");
-        //    FilterCb.SelectedIndex = FilterCb.Items.IndexOf("Disaster Report");
-        //}
-        //private void Change_Filter(object sender, SelectionChangedEventArgs e)
-        //{
-        //    //ComboBoxItem typeItem = (ComboBoxItem)FilterCb.SelectedItem;
-        //    string type = FilterCb.SelectedItem.ToString();
-        //    if (type.Equals("Disaster Report")) loadDisaster();
-        //    else if (type.Equals( "Disease Report")) loadDisease();
-        //    else if (type.Equals("Risk Factor Report")) loadRF();
-        //}
-
-        
-        
     }
 }

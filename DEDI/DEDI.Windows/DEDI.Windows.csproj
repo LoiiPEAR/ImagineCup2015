@@ -127,11 +127,20 @@
     <Compile Include="DraggablePin.xaml.cs">
       <DependentUpon>DraggablePin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FollowerPage.xaml.cs">
+      <DependentUpon>FollowerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FollowingPage.xaml.cs">
+      <DependentUpon>FollowingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageViewPage.xaml.cs">
       <DependentUpon>MessageViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyReportPage.xaml.cs">
+      <DependentUpon>MyReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendMessagePage.xaml.cs">
       <DependentUpon>SendMessagePage.xaml</DependentUpon>
@@ -315,6 +324,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FollowerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FollowingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,6 +345,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

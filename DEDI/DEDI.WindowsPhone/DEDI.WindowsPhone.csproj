@@ -112,6 +112,9 @@
     <Compile Include="MessageViewPage.xaml.cs">
       <DependentUpon>MessageViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyReportPage.xaml.cs">
+      <DependentUpon>MyReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
@@ -177,6 +180,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -242,10 +242,7 @@ namespace DEDI
 
        
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedFrom(e);
-        }
+      
 
         #endregion
     }
