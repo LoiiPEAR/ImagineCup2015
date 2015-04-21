@@ -1,6 +1,5 @@
-﻿#if WINDOWS_APP
+﻿
     using Bing.Maps;
-#endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
@@ -23,9 +22,8 @@ namespace DEDI
 {
     public sealed partial class DashBoard
     {
-#if WINDOWS_APP
+
         Map myMap;
-#endif
         public class NumberOfCases
         {
             public string date { get; set; }
@@ -231,27 +229,27 @@ namespace DEDI
                 foreach (Disaster_Report report in reports)
                 {
                     var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                    var response = await client.GetAsync(Uri);
-                    var result = await response.Content.ReadAsStringAsync();
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
                     var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
                     var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                    var list = serializer.ReadObject(ms);
+                var list = serializer.ReadObject(ms);
                     var jsonResponse = list as RootObject;
                     string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
 
                     if (postcode == user_postcode)
-                    {
-                        Pushpin pushpin = new Pushpin();
-                        pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                {
+                    Pushpin pushpin = new Pushpin();
+                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                         pushpin.Name = report.id;
 
                         pushpin.Background = new SolidColorBrush(Colors.GreenYellow);
-                        MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                        myMap.Children.Add(pushpin);
-                    }
+                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                    myMap.Children.Add(pushpin);
                 }
-
             }
+
+        }
             else
             {
                 foreach (Disaster_Report report in reports)
@@ -273,7 +271,7 @@ namespace DEDI
             var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
             if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
             {
-                var client = new HttpClient();
+                    var client = new HttpClient();
                 foreach (Risk_Factor_Report report in reports)
                 {
                     var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
@@ -298,20 +296,20 @@ namespace DEDI
 
             }
             else
-            {
+                        {
                 foreach (Risk_Factor_Report report in reports)
                 {
-                    Pushpin pushpin = new Pushpin();
-                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                            Pushpin pushpin = new Pushpin();
+                            pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                     pushpin.Name = report.id;
 
                     pushpin.Background = new SolidColorBrush(Colors.Blue);
-                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                    myMap.Children.Add(pushpin);
+                            MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                            myMap.Children.Add(pushpin);
                 }
             }
-        }
-
+                        }
+                    
         private async void loadDisease()
         {
             var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
@@ -333,18 +331,18 @@ namespace DEDI
                         Pushpin pushpin = new Pushpin();
                         pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                         pushpin.Name = report.id;
-
+                   
                         pushpin.Background = new SolidColorBrush(Colors.DeepPink);
                         MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                         myMap.Children.Add(pushpin);
                     }
-                }
-
             }
+
+        }
             else
             {
                 foreach (Disease_Report report in reports)
-                {
+        {
                     Pushpin pushpin = new Pushpin();
                     pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                     pushpin.Name = report.id;
@@ -386,13 +384,13 @@ namespace DEDI
                 string Title = rf_reports[0].risk_factor;
                 string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
-                await dialog.ShowAsync();
+            await dialog.ShowAsync();
 
             }
 
 
         }
-#endif 
+#endif
 
 
 
