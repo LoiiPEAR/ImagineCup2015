@@ -30,7 +30,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)google_api.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MeassageViewPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyDisasterReportDetailPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyDiseaseReportDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MyReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyRiskFactorDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pushpin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.cs" />

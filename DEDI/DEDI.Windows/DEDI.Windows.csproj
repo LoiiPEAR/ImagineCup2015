@@ -145,8 +145,17 @@
     <Compile Include="MessageViewPage.xaml.cs">
       <DependentUpon>MessageViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyDisasterReportDetailPage.xaml.cs">
+      <DependentUpon>MyDisasterReportDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyDiseaseReportDetailPage.xaml.cs">
+      <DependentUpon>MyDiseaseReportDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyReportPage.xaml.cs">
       <DependentUpon>MyReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyRiskFactorDetailPage.xaml.cs">
+      <DependentUpon>MyRiskFactorDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RiskFactorReportDetailPage.xaml.cs">
       <DependentUpon>RiskFactorReportDetailPage.xaml</DependentUpon>
@@ -365,7 +374,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyDisasterReportDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyDiseaseReportDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyRiskFactorDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
