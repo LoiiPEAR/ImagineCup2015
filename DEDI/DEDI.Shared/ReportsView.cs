@@ -53,7 +53,6 @@ namespace DEDI
                     }
                 }
                 DisasterReportsViewLv.ItemsSource = disasterView;
-                DisasterReportsViewLv.SelectionMode = ListViewSelectionMode.Single;
             }
 
         }
@@ -88,7 +87,6 @@ namespace DEDI
                 }
                 
                 RiskFactorReportsViewLv.ItemsSource = riskView;
-                RiskFactorReportsViewLv.SelectionMode = ListViewSelectionMode.Single;
             }
         }
         private void DisasterReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
@@ -113,7 +111,16 @@ namespace DEDI
             };
             this.Frame.Navigate(typeof(RiskFactorReportDetailPage), r);
         }
-       
+        private void DiseaseReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+            Disease_Report_View disease = DiseaseReportsViewLv.SelectedItem as Disease_Report_View;
+            DiseaseReportDetail r = new DiseaseReportDetail()
+            {
+                hw = user,
+                report = disease
+            };
+            this.Frame.Navigate(typeof(DiseaseReportDetailPage), r);
+        }
         private async void loadDisease()
         {
             var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
@@ -127,18 +134,19 @@ namespace DEDI
                     src = new BitmapImage(new Uri("ms-appx:/Assets/disease_report_btn.png"));
                     diseaseView.Add(new Disease_Report_View
                     {
-                        id = "Disease report",
+                        id = item.id,
+                        type ="Disase Report",
                         hw_id = item.hw_id,
                         latitude = item.latitude,
                         longitude = item.longitude,
                         description = item.description,
                         reported_time = item.reported_time,
                         ocurred_time = item.ocurred_time,
-                        icon = src
+                        icon = src,
+                        patient_id = item.patient_id
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;
-                DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.Single;
             }
                 
         }

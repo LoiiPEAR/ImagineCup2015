@@ -30,28 +30,27 @@
                 <Button x:Name="LocationTimeBtn" Content="Location and Time" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,320,0,0" FontSize="36" Click="LocationTimeBtn_Click" Background="#FF00AEC8" Foreground="White"/>
             </Grid>
             <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="966" Height="628">
-                <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Margin="0" Visibility="Collapsed">
+                <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Margin="0" d:IsHidden="True" >
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="40,210,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" FontSize="20" Margin="40,160,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="40,310,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="40,360,0,0"/>
-                    
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="40,260,0,0"/>
-                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="20,0,0,120" Stroke="Black" VerticalAlignment="Bottom" Width="289"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="40,0,0,166" FontWeight="Bold"/>
-                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel. 12-3456-7890" VerticalAlignment="Top" Margin="130,474,0,0" FontSize="20"/>
-                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mary Mary" VerticalAlignment="Top" FontSize="18" Margin="0,212,112,0"/>
-                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" FontSize="18" Margin="0,260,112,0"/>
-                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="50 kg" VerticalAlignment="Top" FontSize="18" Margin="0,312,112,0"/>
-                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="160 cm" VerticalAlignment="Top" FontSize="18" Margin="0,362,112,0"/>
-                    <TextBlock x:Name="ShowIDTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="123456" VerticalAlignment="Top" FontSize="18" Margin="0,162,112,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="72,153,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="72,253,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="72,303,0,0"/>
+
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="72,203,0,0"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="54,0,0,177" Stroke="Black" VerticalAlignment="Bottom" Width="289"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="72,0,0,223" FontWeight="Bold"/>
+                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel. 12-3456-7890" VerticalAlignment="Top" Margin="162,417,0,0" FontSize="20"/>
+                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,155,80,0"/>
+                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,203,79,0"/>
+                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,255,80,0"/>
+                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,305,80,0"/>
                 </Grid>
                 <Grid x:Name="Avatar" HorizontalAlignment="Left" Height="628" VerticalAlignment="Top" Width="566">
-                    <Image x:Name="AvatarImg" Source="/Assets/male-external.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="213,20,212,0" Height="500" Width="141"/>
+                    <Image x:Name="AvatarImg" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="213,20,212,0" Height="500" Width="141"/>
                 </Grid>
                 <Grid x:Name="Symptoms" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Visibility="Collapsed">
-                    <ListView x:Name="SymptomLv" HorizontalAlignment="Left" Height="330" VerticalAlignment="Top" Width="350" Margin="0,34,0,0" SelectionChanged="SelectSymptom_Tap" FontSize="20" FontWeight="Bold" Foreground="#FF00AEC8">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Symptoms" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+                    <ListView x:Name="SymptomLv" HorizontalAlignment="Left" Height="240" VerticalAlignment="Top" Width="350" Margin="0,34,0,0" SelectionChanged="SelectSymptom_Tap" FontSize="20" FontWeight="Bold" Foreground="#FF00AEC8" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -60,29 +59,27 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Grid x:Name="SymptomIntensity" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
-                        <Image x:Name="pooImage" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" Click="pooBtn_Click" NormalStateImageSource="Assets/poo_btn.png" HoverStateImageSource="Assets/poo_btn_pressed.png" PressedStateImageSource="Assets/poo_btn_pressed.png"/>
+                    <Grid x:Name="DiarrheaIntensity" HorizontalAlignment="Left" Height="239" VerticalAlignment="Bottom" Width="368" Margin="0,0,0,79" Visibility="Collapsed">
+                        <Image x:Name="pooImage"  Width="80" Height="80" Margin="50,50,220,160" />
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
                         <TextBlock x:Name="pooTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Stool types" VerticalAlignment="Top" FontSize="16" Margin="30,163,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Natures of stool" VerticalAlignment="Top" FontSize="16" Margin="200,163,0,0" Foreground="#FF2D4D5A" FontWeight="Bold"/>
-                        <TextBlock x:Name="stoolTypeTbl" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,200,0,0" SelectionChanged="stoolType_SelectionChanged"/>
-                        <TextBlock x:Name="stoolNatureTbl" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="200,200,0,0" SelectionChanged="stoolNature_SelectionChanged"/>
+                        <TextBlock x:Name="stoolTypeTbl" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="30,200,0,0"/>
+                        <TextBlock x:Name="stoolNatureTbl" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="200,200,0,0" />
                     </Grid>
-                    
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Symptoms" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-                    <Grid x:Name="urineOutput" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
-                        <Image x:Name="urineImage" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" NormalStateImageSource="Assets/urine_btn.png" HoverStateImageSource="Assets/urine_btn_pressed.png" PressedStateImageSource="Assets/urine_btn_pressed.png" Click="lt_Click"/>
+                    <Grid x:Name="urineOutput" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,79" Visibility="Collapsed">
+                        <Image x:Name="urineImage" Width="80" Height="80" Margin="50,50,220,160"/>
                         <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
                         <TextBlock x:Name="urineTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="&lt; 1 ml/kg/hr" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
                     </Grid>
-                    <Grid x:Name="skinTurgor" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
-                        <Image x:Name="skinTurgorImage" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" NormalStateImageSource="Assets/skin_btn.png" HoverStateImageSource="Assets/skin_btn_pressed.png" PressedStateImageSource="Assets/skin_btn_pressed.png" Click="delay_Click"/>
+                    <Grid x:Name="skinTurgor" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,79" Visibility="Collapsed">
+                        <Image x:Name="skinTurgorImage"  Width="80" Height="80" Margin="50,50,220,160" />
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
                         <TextBlock x:Name="skinTurgorTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Delay 2-5 sec" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
                     </Grid>
-                    <Grid x:Name="thirst" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,260" Visibility="Collapsed">
-                        <Image x:Name="thirstyImage" Stretch="Fill" Width="80" Height="80" Margin="50,50,220,160" NormalStateImageSource="Assets/thirst_btn.png" HoverStateImageSource="Assets/thirst_btn_pressed.png" PressedStateImageSource="Assets/thirst_btn_pressed.png" Click="thirsty_Click"/>
+                    <Grid x:Name="thirst" HorizontalAlignment="Left" Height="290" VerticalAlignment="Bottom" Width="350" Margin="0,0,0,79" Visibility="Collapsed">
+                        <Image x:Name="thirstyImage"  Width="80" Height="80" Margin="50,50,220,160" />
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="More information" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" Foreground="#FF2D4D5A" Margin="0,10,0,0"/>
                         <TextBlock x:Name="thirstyTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Thirsty" VerticalAlignment="Top" FontSize="16" Margin="42,130,0,0" Foreground="#FF00AEC8"/>
                     </Grid>
