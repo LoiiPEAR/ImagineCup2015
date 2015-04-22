@@ -73,10 +73,10 @@ namespace DEDI
                         var patient = await App.MobileService.GetTable<Patient>().Where(p => p.id==report.patient_id).ToListAsync();
                         if (patient.Count > 0)
                         {
-                    if (patient[0].gender == "F") female++;
-                    else male++;
-                    if (CalculateAge(patient[0].dob) <= 15) child++;
-                }
+                            if (patient[0].gender == "F") female++;
+                            else male++;
+                            if (CalculateAge(patient[0].dob) <= 15) child++;
+                        }
                         
                     }
                    
