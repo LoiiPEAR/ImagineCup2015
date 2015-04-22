@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="DisasterReportsViewLv" Margin="50,242,0,50" Width="400" HorizontalAlignment="Left" >
+        <ListView x:Name="DisasterReportsViewLv" Margin="50,242,0,50" Width="400" HorizontalAlignment="Left" SelectionChanged="DisasterReportsViewLv_ItemClick" >
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid Height="100" Width="400">
@@ -39,7 +39,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="RiskFactorReportsViewLv" Margin="0,242,50,50" Width="400" HorizontalAlignment="Right" >
+        <ListView x:Name="RiskFactorReportsViewLv" Margin="0,242,50,50" Width="400" HorizontalAlignment="Right" SelectionChanged="RiskFactorReportsViewLv_ItemClick" >
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid Height="100" Width="400">

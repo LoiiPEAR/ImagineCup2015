@@ -118,8 +118,14 @@
     <Compile Include="DashBoard.xaml.cs">
       <DependentUpon>DashBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DisasterReportDetailPage.xaml.cs">
+      <DependentUpon>DisasterReportDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DisasterReportPage.xaml.cs">
       <DependentUpon>DisasterReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiseaseReportDetailPage.xaml.cs">
+      <DependentUpon>DiseaseReportDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DiseaseReportPage.xaml.cs">
       <DependentUpon>DiseaseReportPage.xaml</DependentUpon>
@@ -142,8 +148,8 @@
     <Compile Include="MyReportPage.xaml.cs">
       <DependentUpon>MyReportPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReportDetailPage.xaml.cs">
-      <DependentUpon>ReportDetailPage.xaml</DependentUpon>
+    <Compile Include="RiskFactorReportDetailPage.xaml.cs">
+      <DependentUpon>RiskFactorReportDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendMessagePage.xaml.cs">
       <DependentUpon>SendMessagePage.xaml</DependentUpon>
@@ -315,7 +321,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DisasterReportDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DisasterReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiseaseReportDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -359,7 +373,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReportDetailPage.xaml">
+    <Page Include="RiskFactorReportDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

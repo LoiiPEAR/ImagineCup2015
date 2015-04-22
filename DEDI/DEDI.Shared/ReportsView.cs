@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
@@ -52,7 +53,7 @@ namespace DEDI
                     }
                 }
                 DisasterReportsViewLv.ItemsSource = disasterView;
-                DisasterReportsViewLv.SelectionMode = ListViewSelectionMode.None;
+                DisasterReportsViewLv.SelectionMode = ListViewSelectionMode.Single;
             }
 
         }
@@ -85,10 +86,34 @@ namespace DEDI
                         
                     }
                 }
+                
                 RiskFactorReportsViewLv.ItemsSource = riskView;
-                RiskFactorReportsViewLv.SelectionMode = ListViewSelectionMode.None;
+                RiskFactorReportsViewLv.SelectionMode = ListViewSelectionMode.Single;
             }
         }
+        private void DisasterReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+
+            Disaster_Report_View disaster = DisasterReportsViewLv.SelectedItem as Disaster_Report_View;
+            DisasterReportDetail r = new DisasterReportDetail()
+            {
+                hw = user,
+                report = disaster
+            };
+            this.Frame.Navigate(typeof(DisasterReportDetailPage), r);
+        }
+        private void RiskFactorReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+
+            Risk_Factor_Report_View riskfactor = RiskFactorReportsViewLv.SelectedItem as Risk_Factor_Report_View;
+            RiskFactorReportDetail r = new RiskFactorReportDetail()
+            {
+                hw = user,
+                report = riskfactor
+            };
+            this.Frame.Navigate(typeof(RiskFactorReportDetailPage), r);
+        }
+       
         private async void loadDisease()
         {
             var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
@@ -113,7 +138,7 @@ namespace DEDI
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;
-                DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.None;
+                DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.Single;
             }
                 
         }

@@ -114,19 +114,22 @@ namespace DEDI
 
             ImageBrush myBrush = new ImageBrush();
             Image image = new Image();
-            image.Source = new BitmapImage(
-                new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
-            myBrush.ImageSource = image.Source;
+           
+            
 
             StackPanel allnoti = FindChildControl<StackPanel>(NotiSection, "AllNotiStack") as StackPanel;
             List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
             foreach (Message m in msg)
             {
+                if (m.status == "important") image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
+                else if (m.status == "very important") image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_red.png"));
+                else image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_green.png"));
+                myBrush.ImageSource = image.Source;
                 List<Health_Worker> hw = await App.MobileService.GetTable<Health_Worker>().Where(h => h.id == m.hw_sender_id).ToListAsync();
                 TextBlock name = new TextBlock();
                 name.Text = hw[0].fname + " " + hw[0].lname;
                 TextBlock sent_time = new TextBlock();
-                sent_time.Text = m.sent_time.Date + "";
+                sent_time.Text = m.sent_time + "";
                 TextBlock topic = new TextBlock();
                 topic.Text = m.topic;
                 Health_Worker sender = hw[0];
