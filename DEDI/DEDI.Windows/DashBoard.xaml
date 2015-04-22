@@ -83,7 +83,7 @@
                                                 <Rectangle x:Name="ShigellaBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding ShigellaWidth}"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,87,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
                                                 <TextBlock x:Name="CholeraPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding CholeraPercent}" VerticalAlignment="Top" Margin="0,58,30,0" FontSize="16" FontFamily="Global User Interface"/>
-                                                <TextBlock x:Name="ShigellaPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Shigella}" VerticalAlignment="Top" Margin="0,90,30,0" FontSize="16"/>
+                                                <TextBlock x:Name="ShigellaPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding ShigellaPercent}" VerticalAlignment="Top" Margin="0,90,30,0" FontSize="16"/>
                                                 <Button x:Name="MoreBtn" Content="More" Margin="0,20,20,0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Top" Click="MoreBtn_Click" FontFamily="Global User Interface"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Details" VerticalAlignment="Top" Margin="20,140,0,0"/>
                                                 <Button Content="Basic Treatment" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,200,0,0" Width="273"/>

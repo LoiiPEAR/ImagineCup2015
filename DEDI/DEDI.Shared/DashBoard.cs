@@ -57,6 +57,12 @@ namespace DEDI
                 int male = 0;
                 int female = 0;
                 int child = 0;
+                double cholera = 0;
+                double shigella = 0;
+                double rotavirus = 0;
+                double salmonella = 0;
+                List<Dashboard_Report> dashboard_report = new List<Dashboard_Report>();
+                
                 var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
                 TextBlock no_case = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
                 no_case.Text = disease_report.Count+"";
@@ -77,8 +83,23 @@ namespace DEDI
                             else male++;
                             if (CalculateAge(patient[0].dob) <= 15) child++;
                         }
-                        var prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(p => p.id == report.prob_id).ToListAsync();
+                        List<Bayesian_Prob> prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(p => p.id == report.prob_id).ToListAsync();
+                        cholera += prob[0].Cholera;
+                        shigella += prob[0].Shigella;
+                        rotavirus += prob[0].Rotavirus;
+                        salmonella += prob[0].Samonella;
 
+                        dashboard_report.Add(new Dashboard_Report() { 
+                            CholeraPercent = Math.Round((prob[0].Cholera*100),2)+"%",
+                            CholeraWidth = prob[0].Cholera*200,
+                            ShigellaPercent = Math.Round((prob[0].Shigella*100),2)+"%",
+                            ShigellaWidth = prob[0].Shigella*200,
+                            SalmonellaPercent = Math.Round((prob[0].Samonella * 100), 2) + "%",
+                            SalmonellaWidth = prob[0].Samonella * 200,
+                            RotavirusPercent = Math.Round((prob[0].Rotavirus * 100), 2) + "%",
+                            RotavirusWidth = prob[0].Rotavirus * 200
+
+                        });
                     }
                     
                     
@@ -90,6 +111,18 @@ namespace DEDI
                 no_male.Text = male + "";
                 TextBlock no_female = FindChildControl<TextBlock>(PredictionSection, "NoOfFemaleTbl") as TextBlock;
                 no_female.Text = female + "";
+
+                TextBlock NoCholeraTbl = FindChildControl<TextBlock>(PredictionSection, "NoCholeraTbl") as TextBlock;
+                NoCholeraTbl.Text = Math.Floor(cholera) + "";
+                TextBlock NoShigellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoShigellaTbl") as TextBlock;
+                NoShigellaTbl.Text = Math.Floor(shigella) + "";
+                TextBlock NoRotaTbl = FindChildControl<TextBlock>(PredictionSection, "NoRotaTbl") as TextBlock;
+                NoRotaTbl.Text = Math.Floor(rotavirus) + "";
+                TextBlock NoSalmonellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoSalmonellaTbl") as TextBlock;
+                NoSalmonellaTbl.Text = Convert.ToInt32(salmonella) + "";
+
+                ListView ReportLv = FindChildControl<ListView>(PredictionSection, "ReportLv") as ListView;
+                ReportLv.ItemsSource = dashboard_report;
 
                 Geolocator geolocator = new Geolocator();
                 geolocator.DesiredAccuracy = PositionAccuracy.High;
@@ -402,5 +435,16 @@ namespace DEDI
 
 
        
+    }
+    class Dashboard_Report
+    {
+        public double CholeraWidth { get; set; }
+        public double ShigellaWidth { get; set; }
+        public double RotavirusWidth { get; set; }
+        public double SalmonellaWidth { get; set; }
+        public string CholeraPercent { get; set; }
+        public string ShigellaPercent { get; set; }
+        public string RotavirusPercent { get; set; }
+        public string SalmonellaPercent { get; set; }
     }
 }
