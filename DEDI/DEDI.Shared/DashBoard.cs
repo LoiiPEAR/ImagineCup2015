@@ -62,8 +62,21 @@ namespace DEDI
                 double rotavirus = 0;
                 double salmonella = 0;
                 List<Dashboard_Report> dashboard_report = new List<Dashboard_Report>();
-                
+               
                 var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+                dashboard_report.Add(new Dashboard_Report()
+                {
+                    id = "ReportID: ",
+                    CholeraPercent = 45 + "%",
+                    CholeraWidth = 90,
+                    ShigellaPercent = 75 + "%",
+                    ShigellaWidth = 100,
+                    SalmonellaWidth = 20,
+                    SalmonellaPercent = "10%",
+                    RotavirusWidth = 50,
+                    RotavirusPercent = "25%"
+
+                });
                 TextBlock no_case = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
                 no_case.Text = disease_report.Count+"";
                 foreach(Disease_Report report in disease_report){
@@ -90,6 +103,7 @@ namespace DEDI
                         salmonella += prob[0].Samonella;
 
                         dashboard_report.Add(new Dashboard_Report() { 
+                            id ="ReportID: "+report.id.Substring(10),
                             CholeraPercent = Math.Round((prob[0].Cholera*100),2)+"%",
                             CholeraWidth = prob[0].Cholera*200,
                             ShigellaPercent = Math.Round((prob[0].Shigella*100),2)+"%",
@@ -438,6 +452,7 @@ namespace DEDI
     }
     class Dashboard_Report
     {
+        public string id { get; set; }
         public double CholeraWidth { get; set; }
         public double ShigellaWidth { get; set; }
         public double RotavirusWidth { get; set; }

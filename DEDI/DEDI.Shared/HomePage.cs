@@ -112,8 +112,8 @@ namespace DEDI
         private async void loadNoti()
         {
 
-            ImageBrush myBrush = new ImageBrush();
-            Image image = new Image();
+            
+            
            
             
 
@@ -121,6 +121,8 @@ namespace DEDI
             List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
             foreach (Message m in msg)
             {
+                ImageBrush myBrush = new ImageBrush();
+                Image image = new Image();
                 if (m.status == "important") image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
                 else if (m.status == "very important") image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_red.png"));
                 else image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_green.png"));
@@ -171,7 +173,7 @@ namespace DEDI
                 Grid.SetColumn(name, 1);
                 Grid.SetRow(sent_time, 3);
                 Grid.SetColumn(sent_time, 1);
-                allnoti.Children.Insert(0, item);
+                allnoti.Children.Insert(0,item);
             }
 
         }
