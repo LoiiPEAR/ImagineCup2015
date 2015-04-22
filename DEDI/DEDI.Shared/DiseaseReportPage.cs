@@ -31,7 +31,7 @@ namespace DEDI
         string latestOther;
         string latestTel;
         bool addStatus = false;
-        string latestGender;
+        string latestGender = "M";
         List<Symptom> symtoms;
         private Health_Worker user;
         DraggablePin pin;
@@ -154,6 +154,7 @@ namespace DEDI
                 }
                 else
                 {
+                    selectSymptom.Height = 180;
                     SymptomIntensity.Visibility = Visibility.Collapsed;
                     addSymptom.Items.Add(selectSymptom.SelectedItem);
                     urineOutput.Visibility = Visibility.Collapsed;
@@ -169,6 +170,7 @@ namespace DEDI
             urine = "lt 1ml kg hr";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
             urineOutput.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void llt_Click(object sender, RoutedEventArgs e)
@@ -176,6 +178,7 @@ namespace DEDI
             urine = "llt 1ml kg hr";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
             urineOutput.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void delay_Click(object sender, RoutedEventArgs e)
@@ -183,6 +186,7 @@ namespace DEDI
             skinturgor = "delay 2 5s";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
             skinTurgor.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void delaydelay_Click(object sender, RoutedEventArgs e)
@@ -190,6 +194,7 @@ namespace DEDI
             skinturgor = "delay mt 5s";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
             skinTurgor.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void thirsty_Click(object sender, RoutedEventArgs e)
@@ -197,6 +202,7 @@ namespace DEDI
             thirststate = "thirsty";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
             thirst.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void unabletodrink_Click(object sender, RoutedEventArgs e)
@@ -204,6 +210,7 @@ namespace DEDI
             thirststate = "unable to drink";
             addSymptom.Items.Add(selectSymptom.SelectedItem);
             thirst.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
@@ -211,20 +218,21 @@ namespace DEDI
             if (stoolfrequency != "" && stooltype != "" && stoolnature != "")
                 addSymptom.Items.Add(selectSymptom.SelectedItem);
             SymptomIntensity.Visibility = Visibility.Collapsed;
+            selectSymptom.Height = 180;
         }
 
         private void pooBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (stoolfrequency == "mt_4") poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn.png"));
+            if (stoolfrequency == "mt 4") poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn.png"));
             pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn_pressed.png"));
-            stoolfrequency = "lt_4";
+            stoolfrequency = "lt 4";
         }
 
         private void poopooBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (stoolfrequency == "lt_4") pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn.png"));
+            if (stoolfrequency == "lt 4") pooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poo_btn.png"));
             poopooBtn.NormalStateImageSource = new BitmapImage(new Uri("ms-appx:/Assets/poopoo_btn_pressed.png"));
-            stoolfrequency = "mt_4";
+            stoolfrequency = "mt 4";
         }
 
         private void addSymptom_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -473,6 +481,60 @@ namespace DEDI
                     telephone = TelTb.Text
                 };
                 await pTable.InsertAsync(p);
+                
+                var bTable = await App.MobileService.GetTable<Bayesian_Prob>().Where(bp => bp.id == "0002D6DB-71B6-4C2F-BCD6-AAD4710B6662").ToListAsync();
+                string empty = bTable[0].Fever;
+                string stool_frequency_per_day = empty;
+                string nature_of_stool = empty;
+                string stool_type = empty;
+                string skin_turgor = "delay 2 5s";
+                string urine_output = empty;
+                string thirst = empty;
+                string fever = empty;
+                string vomiting = empty;
+                string skin_temperature = empty;
+                string eyes = empty;
+                
+                foreach(Symptom item in addSymptom.Items){
+                    if (item.symptom == "Diarrhea")
+                    {
+                        stool_frequency_per_day = stoolfrequency;
+                        nature_of_stool = stoolnature;
+                        stool_type = stooltype;
+                    }
+                    else if (item.symptom == "Decreased skin turgor")
+                    {
+                        skin_turgor = skinturgor;
+                    }
+                    else if (item.symptom == "Reduced urine")
+                    {
+                        urine_output = urine;
+                    }
+                    else if (item.symptom == "Thirst")
+                    {
+                        thirst = thirststate;
+                    }
+                    else if (item.symptom == "Fever")
+                    {
+                        fever = "present";
+                    }
+                    else if (item.symptom == "Vomiting")
+                    {
+                        vomiting = "present";
+                    }
+                    else if (item.symptom == "Cold skin")
+                    {
+                        skin_temperature = "cold";
+                    }
+                    else if (item.symptom == "Sunken eyes")
+                    {
+                        eyes = "sunken";
+                    }
+                }
+                var Prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(prob => prob.Stool_Frequency_per_Day == stool_frequency_per_day && prob.Stool_Type == stool_type && prob.Nature_of_Stool == nature_of_stool
+                    && prob.Skin_Turgor == skin_turgor && prob.Urine_Output == urine_output && prob.Thirst == thirst && prob.Fever == fever && prob.Vomiting == vomiting && prob.Skin_Temperature == skin_temperature && prob.Eyes == eyes
+                    && prob.Food == "contaminated" && prob.Water == "contaminated").ToListAsync();
+                
                 IMobileServiceTable<Disease_Report> dTable = App.MobileService.GetTable<Disease_Report>();
 
                 Disease_Report d = new Disease_Report()
@@ -485,32 +547,38 @@ namespace DEDI
 #endif
                     reported_time = DateTime.Today,
                     ocurred_time = DatePicker.Date.UtcDateTime,
-                    patient_id = p.id
+                    patient_id = p.id,
+                    prob_id = Prob[0].id,
+                    cholera = Prob[0].Cholera,
+                    salmonella = Prob[0].Samonella,
+                    rotavirus = Prob[0].Rotavirus,
+                    shigella = Prob[0].Shigella
                 };
                 await dTable.InsertAsync(d);
 
                 IMobileServiceTable<Reported_Symptom> rTable = App.MobileService.GetTable<Reported_Symptom>();
-                foreach(Symptom item in addSymptom.Items){
-                    if (item.symptom == "Cholera")
+                foreach (Symptom item in addSymptom.Items)
+                {
+                    if (item.symptom == "Diarrhea")
                     {
                         Reported_Symptom r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "stool_frequency_per_day",
                             intensity = stoolfrequency
                         };
                         await rTable.InsertAsync(r);
                         r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "nature_of_stool",
                             intensity = stoolnature
                         };
                         await rTable.InsertAsync(r);
                         r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "stool_type",
                             intensity = stooltype
                         };
                         await rTable.InsertAsync(r);
@@ -520,7 +588,7 @@ namespace DEDI
                         Reported_Symptom r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "skin_turgor",
                             intensity = skinturgor
                         };
                         await rTable.InsertAsync(r);
@@ -530,7 +598,7 @@ namespace DEDI
                         Reported_Symptom r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "urine_output",
                             intensity = urine
                         };
                         await rTable.InsertAsync(r);
@@ -540,22 +608,52 @@ namespace DEDI
                         Reported_Symptom r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "thirst",
                             intensity = thirststate
                         };
                         await rTable.InsertAsync(r);
                     }
-                    else
+                    else if (item.symptom == "Fever")
                     {
                         Reported_Symptom r = new Reported_Symptom()
                         {
                             disease_report_id = d.id,
-                            symptom = item.symptom,
+                            symptom = "fever",
                             intensity = "present"
                         };
                         await rTable.InsertAsync(r);
                     }
-                    
+                    else if (item.symptom == "Vomiting")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = "vomiting",
+                            intensity = "present"
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    else if (item.symptom == "Cold skin")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = "skin_temperature",
+                            intensity = "cold"
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+                    else if (item.symptom == "Sunken eyes")
+                    {
+                        Reported_Symptom r = new Reported_Symptom()
+                        {
+                            disease_report_id = d.id,
+                            symptom = "eyes",
+                            intensity = "sunken"
+                        };
+                        await rTable.InsertAsync(r);
+                    }
+
                 }
                 this.Frame.Navigate(typeof(ReportsView), user);
             }

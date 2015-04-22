@@ -267,18 +267,20 @@ namespace DEDI
         public DateTime reported_time { get; set; }
         [JsonProperty(PropertyName = "occurred_time")]
         public DateTime ocurred_time { get; set; }
-        [JsonProperty(PropertyName = "Cholera")]
+        [JsonProperty(PropertyName = "cholera")]
         public double cholera { get; set; }
-        [JsonProperty(PropertyName = "Shigella")]
+        [JsonProperty(PropertyName = "shigella")]
         public double shigella { get; set; }
         [JsonProperty(PropertyName = "rotavirus")]
         public double rotavirus { get; set; }
-        [JsonProperty(PropertyName = "simonelle")]
-        public double simolnelle { get; set; }
+        [JsonProperty(PropertyName = "salmonella")]
+        public double salmonella { get; set; }
         [JsonProperty(PropertyName = "others")]
         public double others { get; set; }
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
+        [JsonProperty(PropertyName = "prob_id")]
+        public string prob_id { get; set; }
 
         [Version]
         public string Version { get; set; }
