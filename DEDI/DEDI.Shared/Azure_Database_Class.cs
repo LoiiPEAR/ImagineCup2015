@@ -321,6 +321,8 @@ namespace DEDI
 
         [Version]
         public string Version { get; set; }
+
+        public string type { get; set; }
     }
        class Reported_Symptom
     {

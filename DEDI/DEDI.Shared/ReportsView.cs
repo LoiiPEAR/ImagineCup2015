@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
@@ -52,7 +53,6 @@ namespace DEDI
                     }
                 }
                 DisasterReportsViewLv.ItemsSource = disasterView;
-                DisasterReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
 
         }
@@ -85,9 +85,41 @@ namespace DEDI
                         
                     }
                 }
+                
                 RiskFactorReportsViewLv.ItemsSource = riskView;
-                RiskFactorReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
+        }
+        private void DisasterReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+
+            Disaster_Report_View disaster = DisasterReportsViewLv.SelectedItem as Disaster_Report_View;
+            DisasterReportDetail r = new DisasterReportDetail()
+            {
+                hw = user,
+                report = disaster
+            };
+            this.Frame.Navigate(typeof(DisasterReportDetailPage), r);
+        }
+        private void RiskFactorReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+
+            Risk_Factor_Report_View riskfactor = RiskFactorReportsViewLv.SelectedItem as Risk_Factor_Report_View;
+            RiskFactorReportDetail r = new RiskFactorReportDetail()
+            {
+                hw = user,
+                report = riskfactor
+            };
+            this.Frame.Navigate(typeof(RiskFactorReportDetailPage), r);
+        }
+        private void DiseaseReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+            Disease_Report_View disease = DiseaseReportsViewLv.SelectedItem as Disease_Report_View;
+            DiseaseReportDetail r = new DiseaseReportDetail()
+            {
+                hw = user,
+                report = disease
+            };
+            this.Frame.Navigate(typeof(DiseaseReportDetailPage), r);
         }
         private async void loadDisease()
         {
@@ -102,18 +134,19 @@ namespace DEDI
                     src = new BitmapImage(new Uri("ms-appx:/Assets/disease_report_btn.png"));
                     diseaseView.Add(new Disease_Report_View
                     {
-                        id = "Disease report",
+                        id = item.id,
+                        type ="Disase Report",
                         hw_id = item.hw_id,
                         latitude = item.latitude,
                         longitude = item.longitude,
                         description = item.description,
                         reported_time = item.reported_time,
                         ocurred_time = item.ocurred_time,
-                        icon = src
+                        icon = src,
+                        patient_id = item.patient_id
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;
-                DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
                 
         }

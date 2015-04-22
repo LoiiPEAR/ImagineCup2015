@@ -112,21 +112,26 @@ namespace DEDI
         private async void loadNoti()
         {
 
-            ImageBrush myBrush = new ImageBrush();
-            Image image = new Image();
-            image.Source = new BitmapImage(
-                new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
-            myBrush.ImageSource = image.Source;
+
+            
+           
+            
 
             StackPanel allnoti = FindChildControl<StackPanel>(NotiSection, "AllNotiStack") as StackPanel;
             List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
             foreach (Message m in msg)
             {
+                ImageBrush myBrush = new ImageBrush();
+                Image image = new Image();
+                if (m.status == "important") image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_yellow.png"));
+                else if (m.status == "very important") image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_red.png"));
+                else image.Source = new BitmapImage(new Uri("ms-appx:/Assets/noti_tab_green.png"));
+                myBrush.ImageSource = image.Source;
                 List<Health_Worker> hw = await App.MobileService.GetTable<Health_Worker>().Where(h => h.id == m.hw_sender_id).ToListAsync();
                 TextBlock name = new TextBlock();
                 name.Text = hw[0].fname + " " + hw[0].lname;
                 TextBlock sent_time = new TextBlock();
-                sent_time.Text = m.sent_time.Date + "";
+                sent_time.Text = m.sent_time + "";
                 TextBlock topic = new TextBlock();
                 topic.Text = m.topic;
                 Health_Worker sender = hw[0];
@@ -168,7 +173,7 @@ namespace DEDI
                 Grid.SetColumn(name, 1);
                 Grid.SetRow(sent_time, 3);
                 Grid.SetColumn(sent_time, 1);
-                allnoti.Children.Insert(0, item);
+                allnoti.Children.Insert(0,item);
             }
 
         }
@@ -487,7 +492,8 @@ namespace DEDI
             var disease_reports = await App.MobileService.GetTable<Disease_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
             if (disease_reports.Count > 0)
             {
-                string Title = "Chance of cholera:"+disease_reports[0].cholera+"\nChance of shigella:"+disease_reports[0].shigella+"\nChance of salmonella:"+disease_reports[0].salmonella+"\nChance of rotavirus:"+disease_reports[0].rotavirus+"\nChance of others:"+disease_reports[0].others;
+                //string Title = "Chance of cholera:"+disease_reports[0].cholera+"\nChance of shigella:"+disease_reports[0].shigella+"\nChance of salmonella:"+disease_reports[0].simolnelle+"\nChance of rotavirus:"+disease_reports[0].rotavirus+"\nChance of others:"+disease_reports[0].others;
+                string Title = "Disease Report";
                 string Content = disease_reports[0].description + "\n" + disease_reports[0].ocurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
                 await dialog.ShowAsync();

@@ -19,8 +19,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)CreateReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DashBoard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DateTimePicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DisasterReportDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DisasterReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Azure_Database_Class.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DiseaseReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DraggablePin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FollowerPage.cs" />
@@ -28,11 +30,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)google_api.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MeassageViewPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyDisasterReportDetailPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyDiseaseReportDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MyReportPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyRiskFactorDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pushpin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogInPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegisterPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ReportsView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RiskFactorReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SendMessagePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serializable.cs" />

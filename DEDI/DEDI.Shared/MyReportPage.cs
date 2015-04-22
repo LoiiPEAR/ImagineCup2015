@@ -52,7 +52,6 @@ namespace DEDI
                     }
                 }
                 DisasterReportsViewLv.ItemsSource = disasterView;
-                DisasterReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
 
         }
@@ -86,7 +85,6 @@ namespace DEDI
                     }
                 }
                 RiskFactorReportsViewLv.ItemsSource = riskView;
-                RiskFactorReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
         }
         private async void loadDisease()
@@ -113,7 +111,6 @@ namespace DEDI
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;
-                DiseaseReportsViewLv.SelectionMode = ListViewSelectionMode.None;
             }
 
         }
@@ -121,6 +118,38 @@ namespace DEDI
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(HomePage), user);
+        }
+        private void DisasterReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+
+            Disaster_Report_View disaster = DisasterReportsViewLv.SelectedItem as Disaster_Report_View;
+            DisasterReportDetail r = new DisasterReportDetail()
+            {
+                hw = user,
+                report = disaster
+            };
+            this.Frame.Navigate(typeof(DisasterReportDetailPage), r);
+        }
+        private void RiskFactorReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+
+            Risk_Factor_Report_View riskfactor = RiskFactorReportsViewLv.SelectedItem as Risk_Factor_Report_View;
+            RiskFactorReportDetail r = new RiskFactorReportDetail()
+            {
+                hw = user,
+                report = riskfactor
+            };
+            this.Frame.Navigate(typeof(MyRiskFactorDetailPage), r);
+        }
+        private void DiseaseReportsViewLv_ItemClick(object sender, SelectionChangedEventArgs e)
+        {
+            Disease_Report_View disease = DiseaseReportsViewLv.SelectedItem as Disease_Report_View;
+            DiseaseReportDetail r = new DiseaseReportDetail()
+            {
+                hw = user,
+                report = disease
+            };
+            this.Frame.Navigate(typeof(MyDiseaseReportDetailPage), r);
         }
     }
 }
