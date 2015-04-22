@@ -86,7 +86,7 @@ namespace DEDI
                         stoolTypeTbl.Text ="blood";
                     }
                 }
-                else if(symptom.symptom=="Reduced urine"){
+                else if(symptom.symptom=="urine_output"){
                     if(symptom.intensity=="llt 1ml kg hr"){
                         urineImage.Source = new BitmapImage(new Uri("ms-appx:/Assets/reduced_urine_btn.png"));
                         urineTbl.Text = ">> 1 ml/kg/hr";
@@ -98,7 +98,7 @@ namespace DEDI
                     s.Add(symptom);
                     
                 }
-                else if(symptom.symptom=="Decreased skin turgor"){
+                else if(symptom.symptom=="decreased_skin_turgor"){
                     if(symptom.intensity=="delay mt 5s"){
                         skinTurgorImage.Source = new BitmapImage(new Uri("ms-appx:/Assets/deskin_btn.png"));
                         skinTurgorTbl.Text = "Delay > 5 sec";
