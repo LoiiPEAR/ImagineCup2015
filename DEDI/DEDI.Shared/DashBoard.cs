@@ -157,6 +157,7 @@ namespace DEDI
             List<NumberOfCases> Shigella = new List<NumberOfCases>();
             List<NumberOfCases> Typhoid = new List<NumberOfCases>();
             List<NumberOfCases> Others = new List<NumberOfCases>();
+            
             All.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
             All.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
             All.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
