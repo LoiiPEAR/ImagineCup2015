@@ -63,8 +63,7 @@
                             <TextBlock Text="{Binding fname}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
                             <TextBlock Text="{Binding email}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                         </StackPanel>
-                        <Button Content="Follow" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                    </Grid>
+                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.ItemsPanel>

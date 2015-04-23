@@ -128,7 +128,7 @@ namespace DEDI
                     skinTurgor.Visibility = Visibility.Collapsed;
                     thirst.Visibility = Visibility.Collapsed;
                 }
-                else if(current.symptom == "Decreased skin turgor")
+                else if (current.symptom == "Decreased skin turgor")
                 {
                     selectSymptom.Height = 50;
                     SymptomIntensity.Visibility = Visibility.Collapsed;
@@ -256,9 +256,9 @@ namespace DEDI
             PatientInfo.Visibility = Visibility.Visible;
 
             int age = DateTime.Now.Year - DOBDpk.Date.Year;
-            if(DOBDpk.Date.AddYears(age) > DateTime.Now) age--;
+            if (DOBDpk.Date.AddYears(age) > DateTime.Now) age--;
 
-            ShowIDTbl.Text = "123456";
+        
             ShowNameTbl.Text = NameTb.Text;
             ShowAgeTbl.Text = age.ToString("G");
             ShowHeightTbl.Text = HeightTb.Text;
@@ -305,7 +305,7 @@ namespace DEDI
             int age = DateTime.Now.Year - EditDOBDpk.Date.Year;
             if (EditDOBDpk.Date.AddYears(age) > DateTime.Now) age--;
 
-            ShowIDTbl.Text = "123456";
+         
             ShowNameTbl.Text = EditNameTb.Text;
             ShowAgeTbl.Text = age.ToString("G");
             ShowHeightTbl.Text = EditHeightTb.Text;
@@ -355,8 +355,8 @@ namespace DEDI
             InternalBtn.Visibility = Visibility.Collapsed;
             MaleBtn.Visibility = Visibility.Visible;
             FemaleBtn.Visibility = Visibility.Visible;
-            if (addStatus==false) NewPatient.Visibility = Visibility.Visible;
-            else if (addStatus==true) PatientInfo.Visibility = Visibility.Visible;
+            if (addStatus == false) NewPatient.Visibility = Visibility.Visible;
+            else if (addStatus == true) PatientInfo.Visibility = Visibility.Visible;
         }
 
         private void SymptomsBtn_Click(object sender, RoutedEventArgs e)
@@ -439,8 +439,8 @@ namespace DEDI
         }
         private async void Submit_Click(object sender, RoutedEventArgs e)
         {
-            string error_msg =" is required*";
-            Submit.IsEnabled=false;
+            string error_msg = " is required*";
+            Submit.IsEnabled = false;
             if (NameTb.Text == "")
             {
                 errorTbl.Text = "Patient name" + error_msg;
@@ -449,7 +449,7 @@ namespace DEDI
             {
                 errorTbl.Text = "Patient telephone" + error_msg;
             }
-            else if (OtherRBtn.IsChecked == true && OtherTb.Text=="")
+            else if (OtherRBtn.IsChecked == true && OtherTb.Text == "")
             {
                 errorTbl.Text = "Patient location" + error_msg;
             }
@@ -457,7 +457,8 @@ namespace DEDI
             {
                 errorTbl.Text = "Patient location" + error_msg;
             }
-            else if(addSymptom.Items.Count==0){
+            else if (addSymptom.Items.Count == 0)
+            {
                 errorTbl.Text = "Symptom" + error_msg;
             }
             else
@@ -481,7 +482,7 @@ namespace DEDI
                     telephone = TelTb.Text
                 };
                 await pTable.InsertAsync(p);
-                
+
                 var bTable = await App.MobileService.GetTable<Bayesian_Prob>().Where(bp => bp.id == "0002D6DB-71B6-4C2F-BCD6-AAD4710B6662").ToListAsync();
                 string empty = bTable[0].Fever;
                 string stool_frequency_per_day = empty;
@@ -494,8 +495,9 @@ namespace DEDI
                 string vomiting = empty;
                 string skin_temperature = empty;
                 string eyes = empty;
-                
-                foreach(Symptom item in addSymptom.Items){
+
+                foreach (Symptom item in addSymptom.Items)
+                {
                     if (item.symptom == "Diarrhea")
                     {
                         stool_frequency_per_day = stoolfrequency;
@@ -533,8 +535,8 @@ namespace DEDI
                 }
                 var Prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(prob => prob.Stool_Frequency_per_Day == stool_frequency_per_day && prob.Stool_Type == stool_type && prob.Nature_of_Stool == nature_of_stool
                     && prob.Skin_Turgor == skin_turgor && prob.Urine_Output == urine_output && prob.Thirst == thirst && prob.Fever == fever && prob.Vomiting == vomiting && prob.Skin_Temperature == skin_temperature && prob.Eyes == eyes
-                    && prob.Food == "contaminated" && prob.Water == "contaminated").ToListAsync();
-                
+                    && prob.Food == empty && prob.Water == empty).ToListAsync();
+
                 IMobileServiceTable<Disease_Report> dTable = App.MobileService.GetTable<Disease_Report>();
 
                 Disease_Report d = new Disease_Report()
@@ -653,7 +655,7 @@ namespace DEDI
                         };
                         await rTable.InsertAsync(r);
                     }
-
+                    
                 }
                 this.Frame.Navigate(typeof(ReportsView), user);
             }

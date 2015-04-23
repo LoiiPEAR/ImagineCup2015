@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI;
+using System.Linq;
 
 namespace DEDI
 {
@@ -29,7 +30,7 @@ namespace DEDI
 #endif
         public class NumberOfCases
         {
-            public string date { get; set; }
+            public DateTime date { get; set; }
             public int cases { get; set; }
         }
         Health_Worker user;
@@ -75,8 +76,7 @@ namespace DEDI
                     list = serializer.ReadObject(ms);
                     jsonResponse = list as RootObject;
                     string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
-                    if (user_postcode.Equals(report_postcode))
-                    {
+                   
                         var patient = await App.MobileService.GetTable<Patient>().Where(p => p.id==report.patient_id).ToListAsync();
                         if (patient.Count > 0)
                         {
@@ -91,7 +91,7 @@ namespace DEDI
                         salmonella += prob[0].Samonella;
                         
                         dashboard_report.Add(new Dashboard_Report() { 
-                            id ="ReportID: "+report.id.Substring(10),
+                            id ="ReportID: "+report.id.Substring(0,10),
                             CholeraPercent = Math.Round((prob[0].Cholera*100),2)+"%",
                             CholeraWidth = prob[0].Cholera*200,
                             ShigellaPercent = Math.Round((prob[0].Shigella*100),2)+"%",
@@ -102,9 +102,9 @@ namespace DEDI
                             RotavirusWidth = prob[0].Rotavirus * 200
 
                         });
-                    }
                    
                     
+                   
                    
                 }
                 TextBlock no_child = FindChildControl<TextBlock>(PredictionSection, "NoOfChildTbl") as TextBlock;
@@ -148,52 +148,61 @@ namespace DEDI
             }
         }
 
-        private void loadgraph()
+        private async void loadgraph()
         {
             Random rand = new Random();
             List<NumberOfCases> All = new List<NumberOfCases>();
             List<NumberOfCases> Cholera = new List<NumberOfCases>();
             List<NumberOfCases> Rotavirus = new List<NumberOfCases>();
             List<NumberOfCases> Shigella = new List<NumberOfCases>();
-            List<NumberOfCases> Typhoid = new List<NumberOfCases>();
+            List<NumberOfCases> Salmonella = new List<NumberOfCases>();
             List<NumberOfCases> Others = new List<NumberOfCases>();
-            
-            All.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            All.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            All.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            All.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            All.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
-            Cholera.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            Cholera.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            Cholera.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            Cholera.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            Cholera.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
-            Rotavirus.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            Rotavirus.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            Rotavirus.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            Rotavirus.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            Rotavirus.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
-            Shigella.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            Shigella.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            Shigella.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            Shigella.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            Shigella.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
-            Typhoid.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            Typhoid.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            Typhoid.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            Typhoid.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            Typhoid.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
-            Others.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
-            Others.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
-            Others.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });
-            Others.Add(new NumberOfCases() { date = "2015-03-18", cases = rand.Next(0, 30) });
-            Others.Add(new NumberOfCases() { date = "2015-03-19", cases = rand.Next(0, 30) });
+
+            var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+       
+                var h = disease_report.GroupBy(d => d.ocurred_time.Date ).Select(d => new{dateOccurred=d.Key,noOfCases=d.Count()}).OrderBy(t => t.dateOccurred);
+                var cholera = disease_report.Where(d => d.cholera > 0.5).GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                var shigella = disease_report.Where(d => d.shigella > 0.5).GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                var salmonella = disease_report.Where(d => d.salmonella > 0.5).GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                var rotavirus = disease_report.Where(d => d.rotavirus > 0.5).GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                var others = disease_report.Where(d => d.others > 0.5).GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+
+                foreach(var report in h)
+                {
+                    All.Add(new NumberOfCases() {date = report.dateOccurred , cases = report.noOfCases});
+                }
+
+                foreach (var report in cholera)
+                {
+                    Cholera.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
+                }
+
+                foreach (var report in rotavirus)
+                {
+                    Rotavirus.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
+                }
+
+                foreach (var report in shigella)
+                {
+                    Shigella.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
+                }
+
+                foreach (var report in salmonella)
+                {
+                    Salmonella.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
+                }
+
+                foreach (var report in others)
+                {
+                    Others.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
+                }
+                    
             Chart NoOfCasesChart = FindChildControl<Chart>(PredictionSection, "NoOfCasesChart") as Chart;
             (NoOfCasesChart.Series[0] as ColumnSeries).ItemsSource = All;
             (NoOfCasesChart.Series[1] as ColumnSeries).ItemsSource = Cholera;
             (NoOfCasesChart.Series[2] as ColumnSeries).ItemsSource = Rotavirus;
             (NoOfCasesChart.Series[3] as ColumnSeries).ItemsSource = Shigella;
-            (NoOfCasesChart.Series[4] as ColumnSeries).ItemsSource = Typhoid;
+            (NoOfCasesChart.Series[4] as ColumnSeries).ItemsSource = Salmonella;
             (NoOfCasesChart.Series[5] as ColumnSeries).ItemsSource = Others;
             Button NoOfCasesBtn = FindChildControl<Button>(PredictionSection, "NoOfCasesBtn") as Button;
             NoOfCasesBtn.Visibility = Visibility.Collapsed;
