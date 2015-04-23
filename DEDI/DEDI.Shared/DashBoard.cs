@@ -139,6 +139,7 @@ namespace DEDI
                 loadgraph();
                 loadDisaster();
                 loadRF();
+                loadDisease();
 #endif
                 
             }
@@ -360,7 +361,7 @@ namespace DEDI
                 }
             }
                         }
-                    
+
         private async void loadDisease()
         {
             var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
@@ -382,18 +383,18 @@ namespace DEDI
                         Pushpin pushpin = new Pushpin();
                         pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                         pushpin.Name = report.id;
-                   
+
                         pushpin.Background = new SolidColorBrush(Colors.DeepPink);
                         MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                         myMap.Children.Add(pushpin);
                     }
-            }
+                }
 
-        }
+            }
             else
             {
                 foreach (Disease_Report report in reports)
-        {
+                {
                     Pushpin pushpin = new Pushpin();
                     pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                     pushpin.Name = report.id;
