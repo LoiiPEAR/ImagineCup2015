@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI;
+using System.Linq;
 
 namespace DEDI
 {
@@ -147,7 +148,7 @@ namespace DEDI
             }
         }
 
-        private void loadgraph()
+        private async void loadgraph()
         {
             Random rand = new Random();
             List<NumberOfCases> All = new List<NumberOfCases>();
@@ -156,6 +157,29 @@ namespace DEDI
             List<NumberOfCases> Shigella = new List<NumberOfCases>();
             List<NumberOfCases> Typhoid = new List<NumberOfCases>();
             List<NumberOfCases> Others = new List<NumberOfCases>();
+
+            var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+       
+               
+                double cholera = 0;
+                double shigella = 0;
+                double rotavirus = 0;
+                double salmonella = 0;
+                var h = disease_report.GroupBy(d => d.ocurred_time.Date ).OrderBy(t => t.Key); 
+            
+                foreach (Disease_Report report in h)
+                {
+                    List<Bayesian_Prob> prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(p => p.id == report.prob_id).ToListAsync();
+                        
+                    cholera += prob[0].Cholera;
+                    shigella += prob[0].Shigella;
+                    rotavirus += prob[0].Rotavirus;
+                    salmonella += prob[0].Samonella;
+
+                }
+                    
+                    
+
             All.Add(new NumberOfCases() { date = "2015-03-15", cases = rand.Next(0, 30) });
             All.Add(new NumberOfCases() { date = "2015-03-16", cases = rand.Next(0, 30) });
             All.Add(new NumberOfCases() { date = "2015-03-17", cases = rand.Next(0, 30) });

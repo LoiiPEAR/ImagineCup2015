@@ -33,10 +33,9 @@
             <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="966" Height="628">
                 <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Margin="0" Visibility="Collapsed">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="40,210,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" FontSize="20" Margin="40,160,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="40,310,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="40,360,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="40,153,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="40,253,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="40,303,0,0"/>
                     <Button x:Name="EditPatientInfoBtn" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="244,84,0,0" Click="EditPatientInfoBtn_Click" FontFamily="Global User Interface">
                         <Button.Resources>
                             <Flyout x:Name="EditFlyout" x:Key="EditPatientInfo" Placement="Bottom">
@@ -67,15 +66,14 @@
                             <StaticResource ResourceKey="EditPatientInfo"/>
                         </Button.Flyout>
                     </Button>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="40,260,0,0"/>
-                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="20,0,0,120" Stroke="Black" VerticalAlignment="Bottom" Width="289"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="40,0,0,166" FontWeight="Bold"/>
-                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel. 12-3456-7890" VerticalAlignment="Top" Margin="130,474,0,0" FontSize="20"/>
-                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mary Mary" VerticalAlignment="Top" FontSize="18" Margin="0,212,112,0"/>
-                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" FontSize="18" Margin="0,260,112,0"/>
-                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="50 kg" VerticalAlignment="Top" FontSize="18" Margin="0,312,112,0"/>
-                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="160 cm" VerticalAlignment="Top" FontSize="18" Margin="0,362,112,0"/>
-                    <TextBlock x:Name="ShowIDTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="123456" VerticalAlignment="Top" FontSize="18" Margin="0,162,112,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="40,203,0,0"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="20,0,0,177" Stroke="Black" VerticalAlignment="Bottom" Width="289"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="40,0,0,223" FontWeight="Bold"/>
+                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel." VerticalAlignment="Top" Margin="130,417,0,0" FontSize="20"/>
+                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,155,112,0"/>
+                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,203,111,0"/>
+                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,255,112,0"/>
+                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,305,112,0"/>
                 </Grid>
                 <Grid x:Name="NewPatient" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>

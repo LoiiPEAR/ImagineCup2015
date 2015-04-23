@@ -1,5 +1,5 @@
 ﻿#if WINDOWS_APP
-using Bing.Maps;
+    using Bing.Maps;
 #endif
 using Microsoft.WindowsAzure.MobileServices;
 using System;
@@ -41,7 +41,7 @@ namespace DEDI
         string thirststate = "";
         string urine = "";
         string skinturgor = "";
-
+       
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -106,7 +106,7 @@ namespace DEDI
                     }
                     if (i != addSymptom.Items.Count - 1) query.Append(" AND ");
                 }
-
+                
             }
         }
 
@@ -114,7 +114,7 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(CreateReportPage), user);
         }
-
+        
         private void SelectSymptom_Tap(object sender, SelectionChangedEventArgs e)
         {
             if (!addSymptom.Items.Contains(selectSymptom.SelectedItem))
@@ -161,7 +161,7 @@ namespace DEDI
                     skinTurgor.Visibility = Visibility.Collapsed;
                     thirst.Visibility = Visibility.Collapsed;
                 }
-
+                
             }
         }
 
@@ -248,8 +248,8 @@ namespace DEDI
         private void stoolNature_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             stoolnature = (string)stoolNature.SelectedItem;
-        }
-
+        }   
+     
         private void AddConfirmBtn_Click(object sender, RoutedEventArgs e)
         {
             NewPatient.Visibility = Visibility.Collapsed;
@@ -258,7 +258,7 @@ namespace DEDI
             int age = DateTime.Now.Year - DOBDpk.Date.Year;
             if (DOBDpk.Date.AddYears(age) > DateTime.Now) age--;
 
-            ShowIDTbl.Text = "123456";
+        
             ShowNameTbl.Text = NameTb.Text;
             ShowAgeTbl.Text = age.ToString("G");
             ShowHeightTbl.Text = HeightTb.Text;
@@ -305,7 +305,7 @@ namespace DEDI
             int age = DateTime.Now.Year - EditDOBDpk.Date.Year;
             if (EditDOBDpk.Date.AddYears(age) > DateTime.Now) age--;
 
-            ShowIDTbl.Text = "123456";
+         
             ShowNameTbl.Text = EditNameTb.Text;
             ShowAgeTbl.Text = age.ToString("G");
             ShowHeightTbl.Text = EditHeightTb.Text;
@@ -428,7 +428,7 @@ namespace DEDI
                 exMaleImg.Visibility = Visibility.Collapsed;
                 inMaleImg.Visibility = Visibility.Visible;
                 internalOrgan.Visibility = Visibility.Visible;
-
+                
             }
             else if (latestGender == "F")
             {
@@ -463,7 +463,7 @@ namespace DEDI
             }
             else
             {
-
+                
                 string patient_location = "";
                 if (CurrentLocationRBtn.IsChecked == true)
                 {
@@ -655,7 +655,7 @@ namespace DEDI
                         };
                         await rTable.InsertAsync(r);
                     }
-
+                    
                 }
                 this.Frame.Navigate(typeof(ReportsView), user);
             }
