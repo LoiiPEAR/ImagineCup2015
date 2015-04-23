@@ -76,8 +76,8 @@
                                 <ListView x:Name="ReportLv" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320">
                                     <ListView.ItemTemplate>
                                         <DataTemplate >
-                                            <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="130">
-                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Margin="20,20,0,0" FontSize="20" FontWeight="Bold"/>
+                                            <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="185">
+                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Margin="20,20,0,0" FontSize="16" FontWeight="Bold" FontFamily="Global User Interface"/>
                                                 <Rectangle x:Name="CholeraBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding CholeraWidth}"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,55,0,0" FontSize="16" FontStyle="Italic"/>
                                                 <Rectangle x:Name="ShigellaBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding ShigellaWidth}"/>
@@ -90,10 +90,7 @@
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,151,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
                                                 <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding SalmonellaPercent}" VerticalAlignment="Top" Margin="0,118,30,0" FontSize="16" FontFamily="Global User Interface"/>
                                                 <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding RotavirusPercent}" VerticalAlignment="Top" Margin="0,150,30,0" FontSize="16"/>
-                                                <Button x:Name="MoreBtn" Content="More" Margin="0,20,20,0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Top" Click="MoreBtn_Click" FontFamily="Global User Interface"/>
-                                                <Button Content="Basic Treatment" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,200,0,0" Width="273"/>
-                                                <Button x:Name="LessBtn" Content="Less" Margin="0,20,20,0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed" Click="LessBtn_Click"/>
-                                            </Grid>
+                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>

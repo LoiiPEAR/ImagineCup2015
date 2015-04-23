@@ -99,8 +99,7 @@
                             <TextBlock Text="{Binding fname}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
                             <TextBlock Text="{Binding email}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                         </StackPanel>
-                        <Button x:Name="UnfollowBtn" Content="Unfollow" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="UnfollowBtn_Click"/>
-                    </Grid>
+                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.ItemsPanel>

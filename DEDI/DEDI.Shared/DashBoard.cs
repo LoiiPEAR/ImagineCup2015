@@ -75,8 +75,7 @@ namespace DEDI
                     list = serializer.ReadObject(ms);
                     jsonResponse = list as RootObject;
                     string report_postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
-                    if (user_postcode.Equals(report_postcode))
-                    {
+                   
                         var patient = await App.MobileService.GetTable<Patient>().Where(p => p.id==report.patient_id).ToListAsync();
                         if (patient.Count > 0)
                         {
@@ -91,7 +90,7 @@ namespace DEDI
                         salmonella += prob[0].Samonella;
 
                         dashboard_report.Add(new Dashboard_Report() { 
-                            id ="ReportID: "+report.id.Substring(10),
+                            id ="ReportID: "+report.id.Substring(0,10),
                             CholeraPercent = Math.Round((prob[0].Cholera*100),2)+"%",
                             CholeraWidth = prob[0].Cholera*200,
                             ShigellaPercent = Math.Round((prob[0].Shigella*100),2)+"%",
@@ -102,7 +101,7 @@ namespace DEDI
                             RotavirusWidth = prob[0].Rotavirus * 200
 
                         });
-                    }
+                    
                     
                     
                    
