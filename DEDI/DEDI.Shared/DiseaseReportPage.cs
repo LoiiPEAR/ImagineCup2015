@@ -441,11 +441,11 @@ namespace DEDI
         {
             string error_msg = " is required*";
             Submit.IsEnabled = false;
-            if (NameTb.Text == "")
+            if (ShowNameTbl.Text == "")
             {
                 errorTbl.Text = "Patient name" + error_msg;
             }
-            else if (!isTel(TelTb.Text))
+            else if (ShowTelTbl.Text=="")
             {
                 errorTbl.Text = "Patient telephone" + error_msg;
             }
@@ -453,10 +453,7 @@ namespace DEDI
             {
                 errorTbl.Text = "Patient location" + error_msg;
             }
-            else if (OtherRBtn.IsChecked == true && OtherTb.Text == "")
-            {
-                errorTbl.Text = "Patient location" + error_msg;
-            }
+   
             else if (addSymptom.Items.Count == 0)
             {
                 errorTbl.Text = "Symptom" + error_msg;
@@ -661,15 +658,7 @@ namespace DEDI
             }
             Submit.IsEnabled = true;
         }
-        public static bool isTel(string inputTel)
-        {
-            string strRegex = @"^\d{9,11}$";
-            Regex re = new Regex(strRegex);
-            if (re.IsMatch(inputTel))
-                return (true);
-            else
-                return (false);
-        }
+       
         public async void InitializeMap()
         {
 
