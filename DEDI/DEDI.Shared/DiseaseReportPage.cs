@@ -467,16 +467,20 @@ namespace DEDI
                     patient_location = AddressTB.Text;
                 }
                 else patient_location = OtherTb.Text;
+                double h =0;
+                double w = 0;
+                if (ShowWeightTbl.Text != "") w =Convert.ToDouble(ShowWeightTbl.Text);
+                if (ShowHeightTbl.Text != "") h = Convert.ToDouble(ShowHeightTbl.Text);
                 IMobileServiceTable<Patient> pTable = App.MobileService.GetTable<Patient>();
                 Patient p = new Patient()
                 {
-                    name = NameTb.Text,
+                    name = ShowNameTbl.Text,
                     address = patient_location,
                     dob = DOBDpk.Date.UtcDateTime,
                     gender = latestGender,
-                    height = Convert.ToDouble(HeightTb.Text),
-                    weight = Convert.ToDouble(WeightTb.Text),
-                    telephone = TelTb.Text
+                    height =h,
+                    weight = w,
+                    telephone = ShowTelTbl.Text
                 };
                 await pTable.InsertAsync(p);
 
