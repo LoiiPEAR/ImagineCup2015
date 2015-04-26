@@ -9,46 +9,48 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="DisasterReportsViewLv" Margin="50,242,0,50" Width="400" HorizontalAlignment="Left" >
+        <ListView x:Name="DisasterReportsViewLv" Margin="50,242,0,50" Width="400" HorizontalAlignment="Left" SelectionChanged="DisasterReportsViewLv_ItemClick" >
             <ListView.ItemTemplate>
                 <DataTemplate >
-                    <StackPanel Orientation="Horizontal" Width="400" Height="100">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
-                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="80" Width="80" Stretch="Fill"/>
-                            <TextBlock Text="{Binding disaster}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                    <Grid Height="100" Width="400">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
+                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                         </StackPanel>
-                        <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                        <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
+                        <TextBlock Text="{Binding disaster}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+
+                        <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="DiseaseReportsViewLv" Margin="455,242,455,50" Width="400" >
+        <ListView x:Name="DiseaseReportsViewLv" Margin="455,242,455,50" Width="400" SelectionChanged="DiseaseReportsViewLv_ItemClick" >
             <ListView.ItemTemplate>
                 <DataTemplate >
-                    <StackPanel Orientation="Horizontal" Width="400" Height="100">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
-                            <TextBlock Text="{Binding disease}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                    <Grid Height="100" Width="400">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
+                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                         </StackPanel>
-                        <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                        <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
+                        <TextBlock Text="{Binding type}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+
+                        <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="RiskFactorReportsViewLv" Margin="0,242,50,50" Width="400" HorizontalAlignment="Right" >
+        <ListView x:Name="RiskFactorReportsViewLv" Margin="0,242,50,50" Width="400" HorizontalAlignment="Right" SelectionChanged="RiskFactorReportsViewLv_ItemClick" >
             <ListView.ItemTemplate>
                 <DataTemplate >
-                    <StackPanel Orientation="Horizontal" Width="400" Height="100">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
-                            <TextBlock Text="{Binding risk_factor}" Margin="10,2,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                            <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="11" FontWeight="Semilight" Margin="10,0,0,0" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface"/>
+                    <Grid Height="100" Width="400">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
+                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                         </StackPanel>
-                        <TextBlock Text="{Binding reported_time}" FontSize="11" Opacity="0.49" Margin="40,2,0,0" TextTrimming="{Binding description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Global User Interface"/>
-                        <TextBlock Text="{Binding description}" FontSize="11" Opacity="0.49" Margin="40,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
+                        <TextBlock Text="{Binding risk_factor}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+
+                        <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -36,8 +36,10 @@ namespace DEDI
                 }
             }
 
-            var h = hw.GroupBy(u => u.position).OrderBy(t => t.Key.ToString()); ;
+            var h = hw.GroupBy(u => u.position).OrderBy(t => t.Key.ToString());
+#if WINDOWS_APP
             DefaultViewModel["Groups"] = h;
+#endif
         }
 
     }

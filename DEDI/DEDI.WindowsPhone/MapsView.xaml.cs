@@ -26,6 +26,7 @@ namespace DEDI
     /// </summary>
     public sealed partial class MapsView
     {
+        private Health_Worker user;
         public MapsView()
         {
             this.InitializeComponent();
@@ -102,6 +103,11 @@ namespace DEDI
             MapControl.SetLocation(pin, new Geopoint(location));
            
             myMap.Children.Add(pin);
+        }
+
+        private void backButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HomePage),user);
         }
 
         

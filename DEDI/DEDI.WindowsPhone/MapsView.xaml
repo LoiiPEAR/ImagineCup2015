@@ -6,11 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     >
 
     <Grid>
         <maps:MapControl x:Name="myMap"  />
+        <TextBlock x:Name="pageTitle1" VerticalAlignment="Top" Text="Maps" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="128,10,40,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="62,11,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
     </Grid>
 </Page>

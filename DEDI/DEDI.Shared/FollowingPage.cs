@@ -38,7 +38,9 @@ namespace DEDI
             }
             
             var h = hw.GroupBy(u => u.position).OrderBy(t => t.Key.ToString()); ;
+#if WINDOWS_APP
             DefaultViewModel["Groups"] = h;
+#endif
         }
         private async void AddFollow_Click(object sender, RoutedEventArgs e)
         {

@@ -160,9 +160,6 @@
     <Compile Include="RiskFactorReportDetailPage.xaml.cs">
       <DependentUpon>RiskFactorReportDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SendMessagePage.xaml.cs">
-      <DependentUpon>SendMessagePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
@@ -403,10 +400,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RiskFactorReportPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SendMessagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

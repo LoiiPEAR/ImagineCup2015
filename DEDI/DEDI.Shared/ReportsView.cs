@@ -23,7 +23,7 @@ namespace DEDI
 
         private async void loadDisaster()
         {
-            var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
+            var reports = await App.MobileService.GetTable<Disaster_Report>().OrderByDescending(x => x.ocurred_time).ToListAsync();
             ImageSource src = null;
             List<Disaster_Report_View> disasterView = new List<Disaster_Report_View>();
             if (reports.Count > 0)

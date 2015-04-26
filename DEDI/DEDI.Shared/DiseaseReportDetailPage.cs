@@ -1,4 +1,6 @@
-﻿using Bing.Maps;
+﻿#if WINDOWS_APP
+using Bing.Maps;
+#endif
 using System;
 using System.Collections.Generic;
 using System.IO;
