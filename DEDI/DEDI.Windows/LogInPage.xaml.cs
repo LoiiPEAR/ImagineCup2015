@@ -26,18 +26,6 @@ namespace DEDI
             var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == "Phanumas" && hw.password == ComputeMD5("ppB023056123")).ToListAsync();
             this.Frame.Navigate(typeof(ContractPage),user[0]);
         }
-
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == "Loii.PEAR" && hw.password == ComputeMD5("z,iyd86I")).ToListAsync();
-            this.Frame.Navigate(typeof(MessageViewPage), user[0]);
-        }
-
-        private async void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == "Phanumas" && hw.password == ComputeMD5("ppB023056123")).ToListAsync();
-            this.Frame.Navigate(typeof(SendMessagePage), user[0]);
-        }
        
     }
 }

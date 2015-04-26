@@ -28,8 +28,5 @@
         <ListView x:Name="ListViews" HorizontalAlignment="Left" Height="399" VerticalAlignment="Top" Width="315" Margin="61,119,0,0" Visibility="Collapsed"/>
         <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="469,8,0,0" Click="DeleteBtn_Click" Visibility="Collapsed"/>
         <Button Content="Contact" HorizontalAlignment="Left" Margin="124,624,0,0" VerticalAlignment="Top" Click="Button_Click" Visibility="Collapsed"/>
-        <Button Content="Message Veiw" HorizontalAlignment="Left" Margin="127,591,0,0" VerticalAlignment="Top" Click="Button_Click_1" Visibility="Collapsed"/>
-        <Button Content="Send Message" HorizontalAlignment="Left" Margin="127,545,0,0" VerticalAlignment="Top" Click="Button_Click_2" Visibility="Collapsed"/>
-
     </Grid>
 </Page>
