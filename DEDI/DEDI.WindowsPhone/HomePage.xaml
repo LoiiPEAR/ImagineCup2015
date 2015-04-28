@@ -34,13 +34,13 @@
         <Hub>
             <Hub.Header>
                 <!-- Back button and page title -->
-                <Grid>
+                <Grid Width="390">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-46,-68,-54,-6" Height="155" Width="1386"/>
-                    <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="117" Width="253" Margin="-24,-58,0,0"/>
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-24,26,-158.667,0" Height="56" Width="411" Grid.ColumnSpan="2"/>
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="55" Width="118" Margin="0,28,0,0"/>
                 </Grid>
             </Hub.Header>
             <HubSection x:Name="ProfileSection" Width="530">
