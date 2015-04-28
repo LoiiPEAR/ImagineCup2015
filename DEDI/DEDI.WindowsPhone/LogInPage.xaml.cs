@@ -25,7 +25,6 @@ namespace DEDI
         public LogInPage()
         {
             this.InitializeComponent();
-
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 

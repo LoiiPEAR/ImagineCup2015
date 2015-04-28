@@ -13,7 +13,16 @@
 
     <Grid>
         <maps:MapControl x:Name="myMap"  />
-        <TextBlock x:Name="pageTitle1" VerticalAlignment="Top" Text="Maps" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="128,10,40,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="62,11,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        <Grid Margin="38,62,50,508">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle2" Text="Map" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        </Grid>
     </Grid>
 </Page>

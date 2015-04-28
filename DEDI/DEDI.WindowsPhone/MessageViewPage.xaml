@@ -164,10 +164,10 @@
                 <Grid x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
                     <TextBlock x:Name="itemTitle" Margin="180,150,0,0" Text="{Binding topic}" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="36" FontWeight="Normal" Foreground="White"/>
                     <TextBlock x:Name="itemSubtitle" Text="{Binding sender}" FontSize="20" Margin="180,230,0,-70" Foreground="White"/>
-                    <TextBlock Text="{Binding sent_time}" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="18" Margin="180,302,0,-142" Foreground="White"/>
+                    <TextBlock Text="{Binding sent_time}" FontSize="18" Margin="180,302,0,-142" Foreground="White"/>
                     <TextBlock x:Name="itemTitle_Copy" Margin="10,150,680,0" Text="Topic:" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="36" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
-                    <TextBlock x:Name="itemSubtitle_Copy" Text="Sender:" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="20" Margin="10,230,680,-70" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
-                    <TextBlock Text="Sent time:" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="18" Margin="8,300,680,-140" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
+                    <TextBlock x:Name="itemSubtitle_Copy" Text="Sender:" FontSize="20" Margin="10,230,680,-70" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
+                    <TextBlock Text="Sent time:" FontSize="18" Margin="8,300,680,-140" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
                     <TextBlock Margin="180,396,0,-236" Text="{Binding content}" Style="{StaticResource BodyTextBlockStyle}" FontSize="16" VerticalAlignment="Top" Foreground="White"/>
                 </Grid>
                 <Grid x:Name="sendGrid" Grid.ColumnSpan="1" HorizontalAlignment="Left" Height="658" Grid.RowSpan="1" VerticalAlignment="Top" Width="820" Background="#FF1E1E1E">

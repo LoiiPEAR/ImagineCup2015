@@ -31,24 +31,24 @@
         <Hub>
             <Hub.Header>
                 <!-- Back button and page title -->
-                <Grid>
+                <Grid Width="312.5" Height="70">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="55*"/>
                         <ColumnDefinition Width="548*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-46,-68,-54,-6" Height="155" Width="1386"/>
+                    <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-15,26,-72.5,-119" Height="163" Width="400"/>
                     <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" 
-						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="5,-31,-5,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1" FontSize="48"/>
-                    <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="19,-30,0,0" Height="45" Width="65" Click="backButton_Click" Grid.ColumnSpan="2" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="50,36,29.5,-3" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+                    <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-9,38,0,-3" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
                 </Grid>
             </Hub.Header>
 
-            <HubSection x:Name="ResponsibleAreaSection" Width="780" Margin="0">
+            <HubSection x:Name="ResponsibleAreaSection" Width="432" Margin="0">
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="450" Margin="90,250,90,0"/>
+                            <maps:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="342" Height="350" Margin="90,250,0,0"/>
                             <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
                             <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
@@ -72,7 +72,7 @@
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,180,0,0" Source="Assets/patients.png"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,180,0,0" Source="Assets/prediction_case.png"/>
                             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="520" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,180,0,0"/>
-                            <ScrollViewer HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320" Margin="730,180,0,0">
+                            <ScrollViewer HorizontalAlignment="Left" Height="461" VerticalAlignment="Top" Width="320" Margin="760,150,0,0">
                                 <ListView x:Name="ReportLv" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320">
                                     <ListView.ItemTemplate>
                                         <DataTemplate >
@@ -90,13 +90,13 @@
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,151,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
                                                 <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding SalmonellaPercent}" VerticalAlignment="Top" Margin="0,118,30,0" FontSize="16" FontFamily="Global User Interface"/>
                                                 <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding RotavirusPercent}" VerticalAlignment="Top" Margin="0,150,30,0" FontSize="16"/>
-                                             </Grid>
+                                            </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </ScrollViewer>
                             <Button x:Name="NoOfCasesBtn" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="607,669,0,0" Click="NoOfCasesBtn_Click"/>
-                            <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="640" Margin="40,400,0,0">
+                            <Grid HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="640" Margin="40,414,0,0">
                                 <Charting:Chart x:Name="NoOfCasesChart" Margin="0,10,0,0">
                                     <Charting:Chart.Palette>
                                         <Charting:ResourceDictionaryCollection>
