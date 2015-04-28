@@ -162,6 +162,9 @@
     </Compile>
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="TreatmentSuggestionPage.xaml.cs">
+      <DependentUpon>TreatmentSuggestionPage.xaml</DependentUpon>
+    </Compile>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +265,7 @@
     <Content Include="Assets\noti_tab_green.png" />
     <Content Include="Assets\noti_tab_red.png" />
     <Content Include="Assets\noti_tab_yellow.png" />
+    <Content Include="Assets\ors.gif" />
     <Content Include="Assets\patients.png" />
     <Content Include="Assets\poopoo_btn.png" />
     <Content Include="Assets\poopoo_btn_pressed.png" />
@@ -401,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RiskFactorReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreatmentSuggestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
