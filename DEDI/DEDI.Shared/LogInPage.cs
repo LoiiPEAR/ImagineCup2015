@@ -15,6 +15,8 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using System.IO;
+using System.Runtime.Serialization.Json;
 
 namespace DEDI
 {
@@ -179,6 +181,26 @@ namespace DEDI
             if (user.Count != 0)
             {
                 
+                 
+
+                    //var _Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                    //_Folder = await _Folder.GetFolderAsync("Assets");
+
+                    //// acquire file
+                    //var _File = await _Folder.GetFileAsync("prob3.txt");
+                
+                    //var _ReadThis = await Windows.Storage.FileIO.ReadTextAsync(_File);
+                    //MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(_ReadThis));
+                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(JSONB));
+                    //var list = serializer.ReadObject(ms);
+                    //JSONB jsonResponse = list as JSONB;
+                    //IMobileServiceTable<Bayesian_Prob> rTable = App.MobileService.GetTable<Bayesian_Prob>();
+                    //foreach (Bayesian_Prob p in jsonResponse.BayesianProb)
+                    //{
+                    //    await rTable.InsertAsync(p);
+                    //}
+
+               
                 this.Frame.Navigate(typeof(HomePage),user[0]);
                 
             }

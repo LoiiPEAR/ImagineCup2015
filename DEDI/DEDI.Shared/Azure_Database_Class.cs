@@ -9,6 +9,13 @@ using Windows.UI.Xaml.Media;
 
 namespace DEDI
 {
+
+   
+
+    //public class JSONB
+    //{
+    //    public List<Bayesian_Prob> BayesianProb { get; set; }
+    //}
     public class Bayesian_Prob
     {
         [PrimaryKey]

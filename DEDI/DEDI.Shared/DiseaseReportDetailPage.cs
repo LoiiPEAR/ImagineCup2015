@@ -36,7 +36,7 @@ namespace DEDI
             DateTbl.Text = report.ocurred_time+"";
             
             var hw = await App.MobileService.GetTable<Health_Worker>().Where(r => r.id == report.hw_id).ToListAsync();
-            //NameTb.Text = hw[0].fname + " " + hw[0].lname;
+            NameTb.Text = hw[0].fname + " " + hw[0].lname;
             var patient = await App.MobileService.GetTable<Patient>().Where(r => r.id == report.patient_id).ToListAsync();
             ShowHeightTbl.Text = patient[0].height+" cm.";
             ShowNameTbl.Text = patient[0].name;
@@ -52,8 +52,12 @@ namespace DEDI
             
             }
             else AvatarImg.Source = new BitmapImage(new Uri("ms-appx:/Assets/male-external.png"));
-            
-            
+
+            CholeraTbl.Text = Math.Round((report.cholera*100), 2) + " %";
+            ShigellaTbl.Text = Math.Round((report.shigella*100), 2) + " %";
+            SalmonellaTbl.Text = Math.Round((report.simolnelle*100), 2) + " %";
+            RotavirusTbl.Text = Math.Round((report.rotavirus*100), 2) + " %";
+            OtherTbl.Text = Math.Round((report.others*100), 2) + " %";
             List<Reported_Symptom> s = new List<Reported_Symptom>();
             var symptoms = await App.MobileService.GetTable<Reported_Symptom>().Where(r => r.disease_report_id == report.id).ToListAsync();
             foreach(Reported_Symptom symptom in symptoms){
@@ -209,6 +213,7 @@ namespace DEDI
             LocationNTime.Visibility = Visibility.Collapsed;
             PatientInfoNSymptoms.Visibility = Visibility.Visible;
             Symptoms.Visibility = Visibility.Collapsed;
+            Prob_Grid.Visibility = Visibility.Collapsed;
             }
 
         private void SymptomsBtn_Click(object sender, RoutedEventArgs e)
@@ -217,13 +222,21 @@ namespace DEDI
             PatientInfo.Visibility = Visibility.Collapsed;
             PatientInfoNSymptoms.Visibility = Visibility.Visible;
             Symptoms.Visibility = Visibility.Visible;
-            
+            Prob_Grid.Visibility = Visibility.Collapsed;
         }
 
         private void LocationTimeBtn_Click(object sender, RoutedEventArgs e)
         {
             PatientInfoNSymptoms.Visibility = Visibility.Collapsed;
             LocationNTime.Visibility = Visibility.Visible;
+            Prob_Grid.Visibility = Visibility.Collapsed;
+        }
+        private void ProbabilityBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Symptoms.Visibility = Visibility.Collapsed;
+            PatientInfoNSymptoms.Visibility = Visibility.Collapsed;
+            LocationNTime.Visibility = Visibility.Collapsed;
+            Prob_Grid.Visibility = Visibility.Visible;
         }
     }
     class DiseaseReportDetail

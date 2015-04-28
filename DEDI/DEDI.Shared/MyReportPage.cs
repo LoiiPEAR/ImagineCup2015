@@ -100,14 +100,21 @@ namespace DEDI
                     src = new BitmapImage(new Uri("ms-appx:/Assets/disease_report_btn.png"));
                     diseaseView.Add(new Disease_Report_View
                     {
-                        id = "Disease report",
+                        id = item.id,
+                        type = "Disase Report",
                         hw_id = item.hw_id,
                         latitude = item.latitude,
                         longitude = item.longitude,
                         description = item.description,
                         reported_time = item.reported_time,
                         ocurred_time = item.ocurred_time,
-                        icon = src
+                        icon = src,
+                        patient_id = item.patient_id,
+                        cholera = item.cholera,
+                        shigella = item.shigella,
+                        simolnelle = item.salmonella,
+                        others = item.others,
+                        rotavirus = item.rotavirus
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;

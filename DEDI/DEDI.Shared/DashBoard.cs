@@ -444,7 +444,10 @@ namespace DEDI
 
         }
 #endif
-
+        private void TreatmentSuggestion_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TreatmentSuggestionPage), user);
+        }
 
 
        
