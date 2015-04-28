@@ -143,7 +143,12 @@ namespace DEDI
                         reported_time = item.reported_time,
                         ocurred_time = item.ocurred_time,
                         icon = src,
-                        patient_id = item.patient_id
+                        patient_id = item.patient_id,
+                        cholera = item.cholera,
+                        shigella = item.shigella,
+                        simolnelle = item.salmonella,
+                        others = item.others,
+                        rotavirus = item.rotavirus
                     });
                 }
                 DiseaseReportsViewLv.ItemsSource = diseaseView;

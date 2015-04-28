@@ -556,7 +556,8 @@ namespace DEDI
                     cholera = Prob[0].Cholera,
                     salmonella = Prob[0].Samonella,
                     rotavirus = Prob[0].Rotavirus,
-                    shigella = Prob[0].Shigella
+                    shigella = Prob[0].Shigella,
+                    others = Prob[0].Others
                 };
                 await dTable.InsertAsync(d);
 
@@ -665,7 +666,7 @@ namespace DEDI
                 
                 //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
                 string Title = "Probability of this disease report";
-                string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n\n" + d.ocurred_time.Date;
+                string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n" + "Others: " + d.others+ "\n\n" + d.ocurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
                 dialog.Commands.Add(new UICommand(
                 "OK",

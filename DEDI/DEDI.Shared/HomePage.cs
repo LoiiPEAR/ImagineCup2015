@@ -489,12 +489,11 @@ namespace DEDI
                 await dialog.ShowAsync();
               
             }
-            var disease_reports = await App.MobileService.GetTable<Disease_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
-            if (disease_reports.Count > 0)
+            var d = await App.MobileService.GetTable<Disease_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+            if (d.Count > 0)
             {
-                //string Title = "Chance of cholera:"+disease_reports[0].cholera+"\nChance of shigella:"+disease_reports[0].shigella+"\nChance of salmonella:"+disease_reports[0].simolnelle+"\nChance of rotavirus:"+disease_reports[0].rotavirus+"\nChance of others:"+disease_reports[0].others;
-                string Title = "Disease Report";
-                string Content = disease_reports[0].description + "\n" + disease_reports[0].ocurred_time.Date;
+                string Title = "Probability of this disease report";
+                string Content = "Cholera: " + d[0].cholera + "\n" + "Shigella: " + d[0].shigella + "\n" + "Salmoella: " + d[0].salmonella + "\n" + "Rotavirus: " + d[0].rotavirus + "\n" + "Others: " + d[0].others + "\n\n" + d[0].ocurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
                 await dialog.ShowAsync();
              
