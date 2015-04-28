@@ -269,6 +269,7 @@
     <Content Include="Assets\poo_btn_pressed.png" />
     <Content Include="Assets\position_img.png" />
     <Content Include="Assets\prediction_case.png" />
+    <Content Include="Assets\prob3.txt" />
     <Content Include="Assets\profile_img.png" />
     <Content Include="Assets\reduced_urine_btn.png" />
     <Content Include="Assets\reduced_urine_btn_pressed.png" />
