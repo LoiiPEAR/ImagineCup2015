@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls;
 using SQLite;
+using Windows.UI.Popups;
 
 namespace DEDI
 {
@@ -658,9 +659,27 @@ namespace DEDI
                     }
                     
                 }
-                this.Frame.Navigate(typeof(ReportsView), user);
+                //this.Frame.Navigate(typeof(ReportsView), user);
+
+                MessageDialog dialog;
+                
+                //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
+                string Title = "Probability of this disease report";
+                string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n\n" + d.ocurred_time.Date;
+                dialog = new MessageDialog(Content, Title);
+                dialog.Commands.Add(new UICommand(
+                "OK",
+                new UICommandInvokedHandler(this.GotoReportPage)));
+                await dialog.ShowAsync();
+
             }
+            this.Frame.Navigate(typeof(ReportsView), user);
             Submit.IsEnabled = true;
+        }
+
+        private void GotoReportPage(IUICommand command)
+        {
+            this.Frame.Navigate(typeof(ReportsView), user);
         }
        
         public async void InitializeMap()
