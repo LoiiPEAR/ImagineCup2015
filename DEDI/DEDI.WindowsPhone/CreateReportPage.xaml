@@ -42,15 +42,6 @@
                     </Button.Background>
                 </Button>
             </Grid>
-            <Grid HorizontalAlignment="Right" Height="550" VerticalAlignment="Center" Width="300" Margin="200,39">
-                <Image HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="300" Margin="0"/>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Bottom" FontSize="36" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
-                <Button x:Name="RiskFactorBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="708" Click="RiskFactorBtn_Click" Margin="-63,-3,-63,-155">
-                    <Button.Background>
-                        <ImageBrush Stretch="Fill" ImageSource="Assets/risk_btn.png"/>
-                    </Button.Background>
-                </Button>
-            </Grid>
         </Grid>
 
         <!-- Back button and page title -->
@@ -62,6 +53,20 @@
         </Grid>
         <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-8,-6,-12,0" Height="155" HorizontalAlignment="Left" Grid.RowSpan="2"/>
         <TextBlock x:Name="pageTitle_Copy" VerticalAlignment="Top" Text="Create a new report" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="123,31,37,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="57,32,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="57,32,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill">
+            <Grid HorizontalAlignment="Right" Height="550" VerticalAlignment="Center" Width="300" Margin="0,0,-235,-505">
+                <Image HorizontalAlignment="Left" Height="301.612" VerticalAlignment="Top" Width="194" Margin="200.662,-28.841,-94.662,0" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="-90"/>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Bottom" FontSize="36" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
+                <Button x:Name="RiskFactorBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="708" Click="RiskFactorBtn_Click" Margin="-63,-3,-63,-155">
+                    <Button.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="Assets/risk_btn.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </Controls:ImageButton>
     </Grid>
 </Page>

@@ -9,22 +9,22 @@
     mc:Ignorable="d">
 
     <Grid Background="#FF00AEC7">
-        <Image x:Name="LogoImg" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,170,0,0" Source="Assets/logo_big.png" Height="225" Width="487"/>
-        <Grid HorizontalAlignment="Center" Height="300" VerticalAlignment="Bottom" Width="500" Margin="433,0,433,100">
-            <TextBlock x:Name="UsernameTbl" TextWrapping="Wrap" Text="Username" FontSize="28" Margin="40,50,320,166" VerticalAlignment="Top" Foreground="#FF2D4D5A" FontWeight="Bold"/>
-            <TextBlock x:Name="PasswordTbl" TextWrapping="Wrap" Text="Password" FontSize="28" Margin="40,110,320,112" VerticalAlignment="Top" Foreground="#FF2D4D5A" FontWeight="Bold"/>
-            <TextBox x:Name="UsernameTb" TextWrapping="Wrap" Margin="200,50,40,166" Width="250" Height="32" VerticalAlignment="Top" FontFamily="Global User Interface" Background="#FF143340" SelectionHighlightColor="{x:Null}" Foreground="White" FontSize="18" BorderThickness="1"/>
-            <PasswordBox x:Name="PasswordTb"  Margin="200,110,40,112" Width="250" Height="32" FontSize="18" VerticalAlignment="Top" FontFamily="Global User Interface" Background="#FF143340" Foreground="White" BorderThickness="1"/>
-            <Button x:Name="SignInBtn" Content="Sign In" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,80" Width="160" FontSize="24" Click="SignInBtn_Click" FontFamily="Global User Interface" Background="#FFADDFF8" Foreground="#FF104C5B" FontWeight="Bold"/>
-            <TextBlock x:Name="OrTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="or" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,158,47" Foreground="#FF104C5B" FontWeight="Bold"/>
-            <HyperlinkButton x:Name="RegisterHL" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,66,40" Click="RegisterHL_Click" Foreground="#FFADDFF8" FontWeight="Bold"/>
-            <TextBlock x:Name="errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="274,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
+        <Image x:Name="LogoImg" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="39,140,39,0" Source="Assets/logo_big.png" Height="149" Width="322"/>
+        <Grid HorizontalAlignment="Center" Height="280" VerticalAlignment="Bottom" Width="320" Margin="40,0,40,88">
+            <TextBlock x:Name="UsernameTbl" TextWrapping="Wrap" Text="Username" FontSize="24" Margin="0,60,0,0" VerticalAlignment="Top" Foreground="#FF2D4D5A" FontWeight="Bold"/>
+            <TextBlock x:Name="PasswordTbl" TextWrapping="Wrap" Text="Password" FontSize="24" Margin="0,120,0,0" VerticalAlignment="Top" Foreground="#FF2D4D5A" FontWeight="Bold"/>
+            <TextBox x:Name="UsernameTb" TextWrapping="Wrap" Margin="124,60,0,0" Height="32" VerticalAlignment="Top" FontFamily="Global User Interface" Background="#FF143340" SelectionHighlightColor="{x:Null}" Foreground="#FF00AEC7" FontSize="16" BorderThickness="1"/>
+            <PasswordBox x:Name="PasswordTb"  Margin="124,120,0,0" Height="32" FontSize="16" VerticalAlignment="Top" FontFamily="Global User Interface" Background="#FF143340" Foreground="#FF00AEC7" BorderThickness="1"/>
+            <Button x:Name="SignInBtn" Content="Sign In" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,43" Width="120" FontSize="22" Click="SignInBtn_Click" FontFamily="Global User Interface" Background="#FFADDFF8" Foreground="#FF104C5B" FontWeight="Bold" BorderBrush="{x:Null}"/>
+            <TextBlock x:Name="OrTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="or" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,86,23" Foreground="#FF104C5B" FontWeight="Bold"/>
+            <HyperlinkButton x:Name="RegisterHL" Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,14,19" Click="RegisterHL_Click" Foreground="#FFADDFF8" FontWeight="Bold"/>
+            <TextBlock x:Name="errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="144,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
         </Grid>
-        <Button x:Name="PushBtn" Content="Push" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,7,0,0" Click="PushBtn_Click" Visibility="Collapsed"/>
-        <Button x:Name="PullBtn" Content="Pull" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="269,8,0,0" Click="PullBtn_Click" Visibility="Collapsed"/>
-        <Button x:Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="361,8,0,0" Click="RefreshBtn_Click" Visibility="Collapsed"/>
-        <Button x:Name="SaveBtn" Content="Save" Margin="91,8,0,726" Click="SaveBtn_Click" Visibility="Collapsed"/>
-        <ListView x:Name="ListViews" HorizontalAlignment="Left" Height="399" VerticalAlignment="Top" Width="315" Margin="61,119,0,0" Visibility="Collapsed"/>
+        <Button x:Name="PushBtn" Content="Push" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="92,71,0,0" Click="PushBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="PullBtn" Content="Pull" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="192,72,0,0" Click="PullBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="284,72,0,0" Click="RefreshBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="SaveBtn" Content="Save" Margin="14,-4,0,587" Click="SaveBtn_Click" Visibility="Collapsed"/>
+        <ListView x:Name="ListViews" HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="165" Margin="61,119,0,0" Visibility="Collapsed"/>
         <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="469,8,0,0" Click="DeleteBtn_Click" Visibility="Collapsed"/>
         <Button Content="Contact" HorizontalAlignment="Left" Margin="124,624,0,0" VerticalAlignment="Top" Click="Button_Click" Visibility="Collapsed"/>
 
