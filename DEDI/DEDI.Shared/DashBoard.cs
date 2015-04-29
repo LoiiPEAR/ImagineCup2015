@@ -65,9 +65,10 @@ namespace DEDI
                 List<Dashboard_Report> dashboard_report = new List<Dashboard_Report>();
                
                 var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
-       
-                TextBlock no_case = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
-                no_case.Text = disease_report.Count+"";
+#if WINDOWS_APP
+                TextBlock NoOfCasesTbl = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
+#endif
+                NoOfCasesTbl.Text = disease_report.Count + "";
                 foreach(Disease_Report report in disease_report){
                     Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
                     response = await client.GetAsync(Uri);
@@ -107,23 +108,38 @@ namespace DEDI
                    
                    
                 }
-                TextBlock no_child = FindChildControl<TextBlock>(PredictionSection, "NoOfChildTbl") as TextBlock;
-                no_child.Text = child + "";
-                TextBlock no_male = FindChildControl<TextBlock>(PredictionSection, "NoOfMaleTbl") as TextBlock;
-                no_male.Text = male + "";
-                TextBlock no_female = FindChildControl<TextBlock>(PredictionSection, "NoOfFemaleTbl") as TextBlock;
-                no_female.Text = female + "";
+#if WINDOWS_APP
+                TextBlock NoOfChildTbl = FindChildControl<TextBlock>(PredictionSection, "NoOfChildTbl") as TextBlock;
+#endif
+                NoOfChildTbl.Text = child + "";
+#if WINDOWS_APP
+                TextBlock NoOfMaleTbl = FindChildControl<TextBlock>(PredictionSection, "NoOfMaleTbl") as TextBlock;
+#endif
+                NoOfMaleTbl.Text = male + "";
+#if WINDOWS_APP
+                TextBlock NoOfFemaleTbl = FindChildControl<TextBlock>(PredictionSection, "NoOfFemaleTbl") as TextBlock;
+#endif
+                NoOfFemaleTbl.Text = female + "";
 
+#if WINDOWS_APP
                 TextBlock NoCholeraTbl = FindChildControl<TextBlock>(PredictionSection, "NoCholeraTbl") as TextBlock;
+#endif
                 NoCholeraTbl.Text = Math.Floor(cholera) + "";
+#if WINDOWS_APP
                 TextBlock NoShigellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoShigellaTbl") as TextBlock;
+#endif
                 NoShigellaTbl.Text = Math.Floor(shigella) + "";
+#if WINDOWS_APP
                 TextBlock NoRotaTbl = FindChildControl<TextBlock>(PredictionSection, "NoRotaTbl") as TextBlock;
+#endif
                 NoRotaTbl.Text = Math.Floor(rotavirus) + "";
+#if WINDOWS_APP
                 TextBlock NoSalmonellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoSalmonellaTbl") as TextBlock;
+#endif
                 NoSalmonellaTbl.Text = Convert.ToInt32(salmonella) + "";
-
+#if WINDOWS_APP
                 ListView ReportLv = FindChildControl<ListView>(PredictionSection, "ReportLv") as ListView;
+#endif
                 ReportLv.ItemsSource = dashboard_report;
 
                 Geolocator geolocator = new Geolocator();
@@ -197,15 +213,18 @@ namespace DEDI
                 {
                     Others.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
                 }
-                    
+#if WINDOWS_APP
             Chart NoOfCasesChart = FindChildControl<Chart>(PredictionSection, "NoOfCasesChart") as Chart;
+#endif
             (NoOfCasesChart.Series[0] as ColumnSeries).ItemsSource = All;
             (NoOfCasesChart.Series[1] as ColumnSeries).ItemsSource = Cholera;
             (NoOfCasesChart.Series[2] as ColumnSeries).ItemsSource = Rotavirus;
             (NoOfCasesChart.Series[3] as ColumnSeries).ItemsSource = Shigella;
             (NoOfCasesChart.Series[4] as ColumnSeries).ItemsSource = Salmonella;
             (NoOfCasesChart.Series[5] as ColumnSeries).ItemsSource = Others;
+#if WINDOWS_APP
             Button NoOfCasesBtn = FindChildControl<Button>(PredictionSection, "NoOfCasesBtn") as Button;
+#endif
             NoOfCasesBtn.Visibility = Visibility.Collapsed;
         }
         public int CalculateAge(DateTime birthDate)
@@ -223,26 +242,6 @@ namespace DEDI
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(HomePage),user);
-        }
-
-        private void MoreBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Grid ProbReport = FindChildControl<Grid>(PredictionSection, "ProbReport") as Grid;
-            ProbReport.Height = 250;
-            Button MoreBtn = FindChildControl<Button>(PredictionSection, "MoreBtn") as Button;
-            MoreBtn.Visibility = Visibility.Collapsed;
-            Button LessBtn = FindChildControl<Button>(PredictionSection, "LessBtn") as Button;
-            LessBtn.Visibility = Visibility.Visible;
-        }
-
-        private void LessBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Grid ProbReport = FindChildControl<Grid>(PredictionSection, "ProbReport") as Grid;
-            ProbReport.Height = 130;
-            Button MoreBtn = FindChildControl<Button>(PredictionSection, "MoreBtn") as Button;
-            MoreBtn.Visibility = Visibility.Visible;
-            Button LessBtn = FindChildControl<Button>(PredictionSection, "LessBtn") as Button;
-            LessBtn.Visibility = Visibility.Collapsed;
         }
 
         private DependencyObject FindChildControl<T>(DependencyObject control, string ctrlName)

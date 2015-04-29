@@ -27,200 +27,140 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-
-        <Hub>
-            <Hub.Header>
-                <!-- Back button and page title -->
-                <Grid Width="312.5" Height="70">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="55*"/>
-                        <ColumnDefinition Width="548*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-15,26,-72.5,-119" Height="163" Width="400"/>
-                    <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" 
-						IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="50,36,29.5,-3" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
-                    <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-9,38,0,-3" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="640" VerticalAlignment="Top" Width="400" HorizontalScrollBarVisibility="Auto">
+            <Grid Height="640" Width="1562" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <Grid Margin="0,90,515,-27">
+                    <maps:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="397" Height="400" Margin="30,100,0,0"/>
+                    <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
+                    <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
+                    <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="30,30,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
                 </Grid>
-            </Hub.Header>
+                <Grid Margin="431,-18,-1331,0">
+                    <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,300,0,0" Source="Assets/total_case_lt_10.png"/>
+                    <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,300,0,0" Source="Assets/patients.png"/>
+                    <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,300,0,0" Source="Assets/prediction_case.png"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="431" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,180,0,0"/>
+                    <ScrollViewer HorizontalAlignment="Left" Height="431" VerticalAlignment="Top" Width="320" Margin="730,180,0,0">
+                        <ListView x:Name="ReportLv" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320">
+                            <ListView.ItemTemplate>
+                                <DataTemplate >
+                                    <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="250">
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Margin="20,20,0,0" FontSize="16" FontWeight="Bold" FontFamily="Global User Interface"/>
+                                        <Rectangle x:Name="CholeraBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding CholeraWidth}"/>
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,55,0,0" FontSize="16" FontStyle="Italic"/>
+                                        <Rectangle x:Name="ShigellaBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding ShigellaWidth}"/>
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,87,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
+                                        <TextBlock x:Name="CholeraPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding CholeraPercent}" VerticalAlignment="Top" Margin="0,58,30,0" FontSize="16" FontFamily="Global User Interface"/>
+                                        <TextBlock x:Name="ShigellaPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding ShigellaPercent}" VerticalAlignment="Top" Margin="0,90,30,0" FontSize="16"/>
+                                        <Rectangle  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,118,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding SalmonellaWidth}"/>
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,119,0,0" FontSize="16" FontStyle="Italic"/>
+                                        <Rectangle  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,150,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding RotavirusWidth}"/>
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,151,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
+                                        <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding SalmonellaPercent}" VerticalAlignment="Top" Margin="0,118,30,0" FontSize="16" FontFamily="Global User Interface"/>
+                                        <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding RotavirusPercent}" VerticalAlignment="Top" Margin="0,150,30,0" FontSize="16"/>
+                                        <Button x:Name="TreatmentSuggestion" Margin="0" FontFamily="Global User Interface" Content="Treatment Suggestion" Click="TreatmentSuggestion_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                    <Button x:Name="NoOfCasesBtn" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="607,669,0,0" Click="NoOfCasesBtn_Click"/>
+                    <Grid HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="640" Margin="40,414,0,0">
+                        <Charting:Chart x:Name="NoOfCasesChart" Visibility="Collapsed">
+                            <Charting:Chart.Palette>
+                                <Charting:ResourceDictionaryCollection>
+                                    <!-- Blue -->
+                                    <ResourceDictionary>
+                                        <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
+                                        <Style x:Key="DataPointStyle" TargetType="Control">
+                                            <Setter Property="Background" Value="{StaticResource Background}" />
+                                        </Style>
+                                        <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                            <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                            <Setter  Property="StrokeThickness" Value="2" />
+                                            <Setter Property="StrokeMiterLimit" Value="1" />
+                                            <Setter Property="Fill" Value="{StaticResource Background}" />
+                                        </Style>
+                                    </ResourceDictionary>
+                                    <!-- Red -->
+                                    <ResourceDictionary>
+                                        <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
+                                        <Style x:Key="DataPointStyle" TargetType="Control">
+                                            <Setter Property="Background" Value="{StaticResource Background}" />
+                                        </Style>
+                                        <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                            <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                            <Setter Property="StrokeThickness" Value="2" />
+                                            <Setter Property="StrokeMiterLimit" Value="1" />
+                                            <Setter Property="Fill" Value="{StaticResource Background}" />
+                                        </Style>
+                                    </ResourceDictionary>
+                                    <!-- Yellow -->
+                                    <ResourceDictionary>
+                                        <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
+                                        <Style x:Key="DataPointStyle" TargetType="Control">
+                                            <Setter Property="Background" Value="{StaticResource Background}" />
+                                        </Style>
+                                        <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                            <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                            <Setter Property="StrokeThickness" Value="2" />
+                                            <Setter Property="StrokeMiterLimit" Value="1" />
+                                            <Setter Property="Fill" Value="{StaticResource Background}" />
+                                        </Style>
+                                    </ResourceDictionary>
+                                    <!-- Green -->
+                                    <ResourceDictionary>
+                                        <SolidColorBrush x:Key="Background" Color="#FFAAD34F" />
+                                        <Style x:Key="DataPointStyle" TargetType="Control">
+                                            <Setter Property="Background" Value="{StaticResource Background}" />
+                                        </Style>
+                                        <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                            <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                            <Setter Property="StrokeThickness" Value="2" />
+                                            <Setter Property="StrokeMiterLimit" Value="1" />
+                                            <Setter Property="Fill" Value="{StaticResource Background}" />
+                                        </Style>
+                                    </ResourceDictionary>
+                                </Charting:ResourceDictionaryCollection>
+                            </Charting:Chart.Palette>
+                            <Charting:ColumnSeries Title="All" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                            <Charting:ColumnSeries Title="Cholera" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                            <Charting:ColumnSeries Title="Rotavirus" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                            <Charting:ColumnSeries Title="Shigella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                            <Charting:ColumnSeries Title="Typhoid" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                            <Charting:ColumnSeries Title="Others" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                        </Charting:Chart>
 
-            <HubSection x:Name="ResponsibleAreaSection" Width="432" Margin="0">
-                <HubSection.Resources>
-                    <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
-                        <Grid>
-                            <maps:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="342" Height="350" Margin="90,250,0,0"/>
-                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
-                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
-                            <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,180,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-                        </Grid>
-                    </ControlTemplate>
-                </HubSection.Resources>
-                <HubSection.Template>
-                    <StaticResource ResourceKey="ResponsibleAreaSectionTemplate"/>
-                </HubSection.Template>
-                <HubSection.Background>
-                    <ImageBrush Stretch="UniformToFill" />
-                </HubSection.Background>
-            </HubSection>
-            <HubSection x:Name="PredictionSection" Width="1300" Header="Section 1">
-                <HubSection.Resources>
-                    <ControlTemplate x:Key="PredictionSectionTemplate" TargetType="HubSection">
-                        <Grid>
-                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_10.png"/>
-                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,180,0,0" Source="Assets/patients.png"/>
-                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,180,0,0" Source="Assets/prediction_case.png"/>
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="520" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,180,0,0"/>
-                            <ScrollViewer HorizontalAlignment="Left" Height="461" VerticalAlignment="Top" Width="320" Margin="760,150,0,0">
-                                <ListView x:Name="ReportLv" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate >
-                                            <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="185">
-                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Margin="20,20,0,0" FontSize="16" FontWeight="Bold" FontFamily="Global User Interface"/>
-                                                <Rectangle x:Name="CholeraBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding CholeraWidth}"/>
-                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,55,0,0" FontSize="16" FontStyle="Italic"/>
-                                                <Rectangle x:Name="ShigellaBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding ShigellaWidth}"/>
-                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,87,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
-                                                <TextBlock x:Name="CholeraPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding CholeraPercent}" VerticalAlignment="Top" Margin="0,58,30,0" FontSize="16" FontFamily="Global User Interface"/>
-                                                <TextBlock x:Name="ShigellaPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding ShigellaPercent}" VerticalAlignment="Top" Margin="0,90,30,0" FontSize="16"/>
-                                                <Rectangle  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,118,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding SalmonellaWidth}"/>
-                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,119,0,0" FontSize="16" FontStyle="Italic"/>
-                                                <Rectangle  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,150,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding RotavirusWidth}"/>
-                                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,151,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
-                                                <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding SalmonellaPercent}" VerticalAlignment="Top" Margin="0,118,30,0" FontSize="16" FontFamily="Global User Interface"/>
-                                                <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding RotavirusPercent}" VerticalAlignment="Top" Margin="0,150,30,0" FontSize="16"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </ScrollViewer>
-                            <Button x:Name="NoOfCasesBtn" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="607,669,0,0" Click="NoOfCasesBtn_Click"/>
-                            <Grid HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="640" Margin="40,414,0,0">
-                                <Charting:Chart x:Name="NoOfCasesChart" Margin="0,10,0,0">
-                                    <Charting:Chart.Palette>
-                                        <Charting:ResourceDictionaryCollection>
-                                            <!-- Blue -->
-                                            <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
-                                                <Style x:Key="DataPointStyle" TargetType="Control">
-                                                    <Setter Property="Background" Value="{StaticResource Background}" />
-                                                </Style>
-                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                    <Setter  Property="StrokeThickness" Value="2" />
-                                                    <Setter Property="StrokeMiterLimit" Value="1" />
-                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
-                                                </Style>
-                                            </ResourceDictionary>
-                                            <!-- Red -->
-                                            <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
-                                                <Style x:Key="DataPointStyle" TargetType="Control">
-                                                    <Setter Property="Background" Value="{StaticResource Background}" />
-                                                </Style>
-                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                    <Setter Property="StrokeThickness" Value="2" />
-                                                    <Setter Property="StrokeMiterLimit" Value="1" />
-                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
-                                                </Style>
-                                            </ResourceDictionary>
-                                            <!-- Yellow -->
-                                            <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
-                                                <Style x:Key="DataPointStyle" TargetType="Control">
-                                                    <Setter Property="Background" Value="{StaticResource Background}" />
-                                                </Style>
-                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                    <Setter Property="StrokeThickness" Value="2" />
-                                                    <Setter Property="StrokeMiterLimit" Value="1" />
-                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
-                                                </Style>
-                                            </ResourceDictionary>
-                                            <!-- Green -->
-                                            <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFAAD34F" />
-                                                <Style x:Key="DataPointStyle" TargetType="Control">
-                                                    <Setter Property="Background" Value="{StaticResource Background}" />
-                                                </Style>
-                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                    <Setter Property="StrokeThickness" Value="2" />
-                                                    <Setter Property="StrokeMiterLimit" Value="1" />
-                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
-                                                </Style>
-                                            </ResourceDictionary>
-                                        </Charting:ResourceDictionaryCollection>
-                                    </Charting:Chart.Palette>
-                                    <Charting:ColumnSeries Title="All" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Cholera" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Rotavirus" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Shigella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Typhoid" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Others" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                </Charting:Chart>
-
-                            </Grid>
-                            <TextBlock x:Name="NoOfCasesTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="130,288,0,0" FontWeight="Bold" FontSize="36" Foreground="#FF6DC39F"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cases" VerticalAlignment="Top" Margin="110,317,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patients" VerticalAlignment="Top" Margin="315,160,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
-                            <TextBlock x:Name="NoOfFemaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="297,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="351,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="407,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="581,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Salmonella" VerticalAlignment="Top" Margin="581,280,0,0" Foreground="#FF2E4E5B" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock x:Name="NoCholeraTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="542,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="542,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                        </Grid>
-                    </ControlTemplate>
-                </HubSection.Resources>
-                <HubSection.Template>
-                    <StaticResource ResourceKey="PredictionSectionTemplate"/>
-                </HubSection.Template>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Image Stretch="Fill" Width="420" Height="280"/>
-                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
-							Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
-                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
-							Text="Description text:"/>
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
-							Text="Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. "/>
                     </Grid>
-                </DataTemplate>
-            </HubSection>
-            <HubSection x:Name="OfficialMsgSection" Width="520" Header="Section 2" Visibility="Collapsed">
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,10"
-            				Text="Item Title" />
-                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="1" 
-            				Text="Quisque in porta lorem dolor amet sed consectetuer ising elit, sed diam non my nibh uis mod wisi quip."/>
-                        <TextBlock Grid.Row="2" Margin="0,20,0,0"
-            				Text="Item Sub Title"/>
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
-            				Text="Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper."/>
-                    </Grid>
-                </DataTemplate>
-            </HubSection>
-        </Hub>
+                    <TextBlock x:Name="NoOfCasesTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="128,411,0,0" FontWeight="Bold" FontSize="24" Foreground="#FF6DC39F" TextAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cases" VerticalAlignment="Top" Margin="110,437,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patients" VerticalAlignment="Top" Margin="315,280,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
+                    <TextBlock x:Name="NoOfFemaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="297,455,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="351,455,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="407,455,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,378,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="581,378,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,399,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Salmonella" VerticalAlignment="Top" Margin="581,400,0,0" Foreground="#FF2E4E5B" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock x:Name="NoCholeraTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="542,339,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,339,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,424,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="542,424,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <Grid Margin="38,62,50,508">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle1" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        </Grid>
     </Grid>
 </Page>

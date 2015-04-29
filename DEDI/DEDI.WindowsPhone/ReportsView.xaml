@@ -9,56 +9,68 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="DisasterReportsViewLv" Margin="50,242,0,50" Width="400" HorizontalAlignment="Left" SelectionChanged="DisasterReportsViewLv_ItemClick" >
-            <ListView.ItemTemplate>
-                <DataTemplate >
-                    <Grid Height="100" Width="400">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
-                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
-                        </StackPanel>
-                        <TextBlock Text="{Binding disaster}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+        <Grid Margin="38,62,50,508">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle1" Text="Reports" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        </Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="400" Margin="0,90,0,0" HorizontalScrollBarVisibility="Auto">
+            <Grid Height="550" Width="1099">
+                <ListView x:Name="DisasterReportsViewLv" Margin="30,80,0,30" Width="300" HorizontalAlignment="Left" SelectionChanged="DisasterReportsViewLv_ItemClick" Height="440" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Grid Height="100" Width="300" Margin="0,0,0,10">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,0,0" Height="100" HorizontalAlignment="Left">
+                                    <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding disaster}" Margin="110,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0,0,10,0" FontStyle="Italic"/>
 
-                        <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <ListView x:Name="DiseaseReportsViewLv" Margin="455,242,455,50" Width="400" SelectionChanged="DiseaseReportsViewLv_ItemClick" >
-            <ListView.ItemTemplate>
-                <DataTemplate >
-                    <Grid Height="100" Width="400">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
-                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
-                        </StackPanel>
-                        <TextBlock Text="{Binding type}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+                                <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="110,39,20,23" VerticalAlignment="Center" Height="38"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="DiseaseReportsViewLv" Margin="380,80,0,0" Width="300" SelectionChanged="DiseaseReportsViewLv_ItemClick" Height="440" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Grid Height="100" Width="300" Margin="0,0,0,10">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,0,0" Height="100">
+                                    <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding type}" Margin="110,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0,0,10,0" FontStyle="Italic"/>
 
-                        <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <ListView x:Name="RiskFactorReportsViewLv" Margin="0,242,50,50" Width="400" HorizontalAlignment="Right" SelectionChanged="RiskFactorReportsViewLv_ItemClick" >
-            <ListView.ItemTemplate>
-                <DataTemplate >
-                    <Grid Height="100" Width="400">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,300,0" Height="100">
-                            <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
-                        </StackPanel>
-                        <TextBlock Text="{Binding risk_factor}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+                                <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="110,39,20,23" VerticalAlignment="Center" Height="38"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="RiskFactorReportsViewLv" Margin="730,80,0,0" Width="300" HorizontalAlignment="Left" SelectionChanged="RiskFactorReportsViewLv_ItemClick" Height="440" VerticalAlignment="Top" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Grid Height="100" Width="300" Margin="0,0,0,10">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,0,0" Height="100" HorizontalAlignment="Left">
+                                    <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding risk_factor}" Margin="110,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0,0,10,0" FontStyle="Italic"/>
 
-                        <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-8,-6,-12,0" Height="155" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="pageTitle_Copy" VerticalAlignment="Top" Text="Reports" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="123,31,37,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="57,32,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disaster Reports" VerticalAlignment="Top" Margin="50,200,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF285967"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disease Reports" VerticalAlignment="Top" Margin="483,200,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF285967"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Risk Factor Reports" VerticalAlignment="Top" Margin="916,200,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF285967"/>
+                                <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="110,39,20,23" VerticalAlignment="Center" Height="38"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disaster Reports" VerticalAlignment="Top" Margin="30,30,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF285967"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disease Reports" VerticalAlignment="Top" Margin="380,30,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF285967"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Risk Factor Reports" VerticalAlignment="Top" Margin="730,30,0,0" FontSize="36" FontWeight="Bold" Foreground="#FF285967"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

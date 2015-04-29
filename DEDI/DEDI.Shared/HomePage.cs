@@ -45,8 +45,9 @@ namespace DEDI
 
         private async void loadReports()
         {
-            ListView lv = FindChildControl<ListView>(ReportsSection, "reportList") as ListView;
-                
+#if WINDOWS_APP
+            ListView reportList = FindChildControl<ListView>(ReportsSection, "reportList") as ListView;
+#endif
             var disasterReports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
             var riskReports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
             var diseaseReports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
@@ -106,18 +107,19 @@ namespace DEDI
                 });
             }
             all = all.OrderByDescending(o => o.ocurred_time).ToList();
-            lv.ItemsSource = all;
-            lv.SelectionMode = ListViewSelectionMode.None;
+            reportList.ItemsSource = all;
+            reportList.SelectionMode = ListViewSelectionMode.None;
         }
         private async void loadNoti()
         {
 
 
-            
-           
-            
 
-            StackPanel allnoti = FindChildControl<StackPanel>(NotiSection, "AllNotiStack") as StackPanel;
+
+
+#if WINDOWS_APP
+            StackPanel AllNotiStack = FindChildControl<StackPanel>(NotiSection, "AllNotiStack") as StackPanel;
+#endif
             List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
             foreach (Message m in msg)
             {
@@ -137,9 +139,9 @@ namespace DEDI
                 Health_Worker sender = hw[0];
                 Grid item = new Grid()
                 {
-                    Width = 360,
+                    Width = 250,
                     Margin = new Windows.UI.Xaml.Thickness(10),
-                    Height = 86
+                    Height = 60
                 };
                 item.Background = myBrush;
                 item.Children.Add(topic);
@@ -151,10 +153,9 @@ namespace DEDI
                 // Define the Columns
                 ColumnDefinition colDef1 = new ColumnDefinition();
                 ColumnDefinition colDef2 = new ColumnDefinition();
-                ColumnDefinition colDef3 = new ColumnDefinition();
+                colDef2.Width = new GridLength(180);
                 item.ColumnDefinitions.Add(colDef1);
                 item.ColumnDefinitions.Add(colDef2);
-                item.ColumnDefinitions.Add(colDef3);
 
                 // Define the Rows
                 RowDefinition rowDef1 = new RowDefinition();
@@ -173,7 +174,7 @@ namespace DEDI
                 Grid.SetColumn(name, 1);
                 Grid.SetRow(sent_time, 3);
                 Grid.SetColumn(sent_time, 1);
-                allnoti.Children.Insert(0,item);
+                AllNotiStack.Children.Insert(0, item);
             }
 
         }
@@ -194,32 +195,45 @@ namespace DEDI
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
                 var list = serializer.ReadObject(ms);
                 RootObject jsonResponse = list as RootObject;
-            
-                
-                
+
+
+#if WINDOWS_APP
                 TextBlock FirstNameTbl = FindChildControl<TextBlock>(ProfileSection, "FirstNameTbl") as TextBlock;
+#endif
                 FirstNameTbl.Text = user.fname;
+#if WINDOWS_APP
                 TextBlock LastNameTbl = FindChildControl<TextBlock>(ProfileSection, "LastNameTbl") as TextBlock;
+#endif
                 LastNameTbl.Text = user.lname;
+#if WINDOWS_APP
                 TextBlock LocationTbl = FindChildControl<TextBlock>(ProfileSection, "LocationTbl") as TextBlock;
+#endif
                 LocationTbl.Text = jsonResponse.results[0].formatted_address;
+#if WINDOWS_APP
                 TextBlock positionTbl = FindChildControl<TextBlock>(ProfileSection, "positionTbl") as TextBlock;
+#endif
                 positionTbl.Text = user.position;
 
                 var following = await App.MobileService.GetTable<Follow>().Where(p => p.follower_hw_id == user.id).ToListAsync();
+#if WINDOWS_APP
                 TextBlock followingTbl = FindChildControl<TextBlock>(ProfileSection, "followingTbl") as TextBlock;
+#endif
                 followingTbl.Text = following.Count + "";
 
                 var follower = await App.MobileService.GetTable<Follow>().Where(p => p.following_hw_id == user.id).ToListAsync();
-                TextBlock followerTbl = FindChildControl<TextBlock>(ProfileSection, "followersTbl") as TextBlock;
-                followerTbl.Text = follower.Count + "";
+#if WINDOWS_APP
+                TextBlock followersTbl = FindChildControl<TextBlock>(ProfileSection, "followersTbl") as TextBlock;
+#endif
+                followersTbl.Text = follower.Count + "";
 
                 var disaster_rp = await App.MobileService.GetTable<Disaster_Report>().Where(p => p.hw_id == user.id).ToListAsync();
                 var disease_rp = await App.MobileService.GetTable<Disease_Report>().Where(p => p.hw_id == user.id).ToListAsync();
                 var rf_rp = await App.MobileService.GetTable<Risk_Factor_Report>().Where(p => p.hw_id == user.id).ToListAsync();
-                TextBlock myreport = FindChildControl<TextBlock>(ProfileSection, "myreportsTbl") as TextBlock;
+#if WINDOWS_APP
+                TextBlock myreportsTbl = FindChildControl<TextBlock>(ProfileSection, "myreportsTbl") as TextBlock;
+#endif
                 int no_myreport = disaster_rp.Count + disease_rp.Count + rf_rp.Count;
-                myreport.Text = no_myreport + "";
+                myreportsTbl.Text = no_myreport + "";
 
 #if WINDOWS_APP
                 myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
@@ -242,10 +256,10 @@ namespace DEDI
                 }
                 loadRF();
                 loadDisaster();
-                loadReports();
                 loadDisease();
-                loadNoti();
 #endif
+                loadReports();
+                loadNoti();
             }
             catch (MobileServiceInvalidOperationException e){
 
@@ -321,27 +335,27 @@ namespace DEDI
         {
             this.Frame.Navigate(typeof(CreateReportPage), user);
         }
-        private void NearbyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Image allBG = FindChildControl<Image>(NotiSection, "allBG") as Image;
-            allBG.Visibility = Visibility.Collapsed;
-            Image nearbyBG = FindChildControl<Image>(NotiSection, "nearbyBG") as Image;
-            nearbyBG.Visibility = Visibility.Visible;
-            ScrollViewer AllScrollView = FindChildControl<ScrollViewer>(NotiSection, "AllScrollView") as ScrollViewer;
-            AllScrollView.Visibility = Visibility.Collapsed;
-            ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
-            NearbyScrollView.Visibility = Visibility.Visible;
-        }
+        //private void NearbyBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Image allBG = FindChildControl<Image>(NotiSection, "allBG") as Image;
+        //    allBG.Visibility = Visibility.Collapsed;
+        //    Image nearbyBG = FindChildControl<Image>(NotiSection, "nearbyBG") as Image;
+        //    nearbyBG.Visibility = Visibility.Visible;
+        //    ScrollViewer AllScrollView = FindChildControl<ScrollViewer>(NotiSection, "AllScrollView") as ScrollViewer;
+        //    AllScrollView.Visibility = Visibility.Collapsed;
+        //    ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
+        //    NearbyScrollView.Visibility = Visibility.Visible;
+        //}
         private void AllBtn_Click(object sender, RoutedEventArgs e)
         {
+#if WINDOWS_APP
             Image allBG = FindChildControl<Image>(NotiSection, "allBG") as Image;
+#endif
             allBG.Visibility = Visibility.Visible;
-            Image nearbyBG = FindChildControl<Image>(NotiSection, "nearbyBG") as Image;
-            nearbyBG.Visibility = Visibility.Collapsed;
+#if WINDOWS_APP
             ScrollViewer AllScrollView = FindChildControl<ScrollViewer>(NotiSection, "AllScrollView") as ScrollViewer;
+#endif
             AllScrollView.Visibility = Visibility.Visible;
-            ScrollViewer NearbyScrollView = FindChildControl<ScrollViewer>(NotiSection, "NearbyScrollView") as ScrollViewer;
-            NearbyScrollView.Visibility = Visibility.Collapsed;
         }
         #if WINDOWS_APP
         private async void loadDisaster()

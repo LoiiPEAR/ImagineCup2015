@@ -11,7 +11,7 @@
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">DEDI</x:String>
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Height="146" Margin="-8,0,-15,-5" BorderBrush="{x:Null}">

@@ -6,41 +6,48 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Margin="38,62,50,508">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="20.833"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-8,-6,-12,-9" Height="155" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="pageTitle_Copy" VerticalAlignment="Top" Text="Treatment Suggestion" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="3,31,37,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A" Grid.Column="1" FontFamily="Global User Interface"/>
-            <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="57,32,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill" Grid.ColumnSpan="2"/>
-            <HyperlinkButton Content="More infomation" Grid.Column="1" HorizontalAlignment="Left" Margin="57,664,0,0" VerticalAlignment="Top" NavigateUri="http://www.who.int/mediacentre/factsheets/fs330/en/"/>
-            <Image Grid.Column="1" HorizontalAlignment="Left" Height="412" Margin="72,208,0,0" VerticalAlignment="Top" Width="527" Source="Assets/ors.gif" Stretch="UniformToFill"/>
-            <TextBlock x:Name="infoTbl" Grid.Column="1" HorizontalAlignment="Left" Margin="676,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="465" FontSize="16" >
-            	<Run Text="Rehydration: with oral rehydration salts (ORS) solution. ORS is a mixture of clean water, salt and sugar. It costs a few cents per treatment. ORS is absorbed in the small intestine and replaces the water and electrolytes lost in the faeces.     "/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="Zinc supplements: zinc supplements reduce the duration of a diarrhoea episode by 25% and are associated with a 30% reduction in stool volume.     "/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="Rehydration: with intravenous fluids in case of severe dehydration or shock.     "/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="Nutrient-rich foods: the vicious circle of malnutrition and diarrhoea can be broken by continuing to give nutrient-rich foods – including breast milk – during an episode, and by giving a nutritious diet – including exclusive breastfeeding for the first six months of life – to children when they are well.     "/>
-            	<LineBreak/>
-            	<Run/>
-            	<LineBreak/>
-            	<Run Text="Consulting a health professional , in particular for management of persistent diarrhoea or when there is blood in stool or if there are signs of dehydration. "/>
-            </TextBlock>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle1" Text="Treatment Suggestion" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+            <HyperlinkButton Content="More infomation" Grid.Column="2" HorizontalAlignment="Left" Margin="21.167,504,-26.333,-481" VerticalAlignment="Top" NavigateUri="http://www.who.int/mediacentre/factsheets/fs330/en/" Width="216"/>
         </Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="458" VerticalAlignment="Top" Width="400" Margin="0,90,0,0">
+            <Grid Height="1053">
+                <TextBlock x:Name="infoTbl" HorizontalAlignment="Center" Margin="34,0,34,303" TextWrapping="Wrap" Width="332" FontSize="16" >
+            		<Run Text="Rehydration: with oral rehydration salts (ORS) solution. ORS is a mixture of clean water, salt and sugar. It costs a few cents per treatment. ORS is absorbed in the small intestine and replaces the water and electrolytes lost in the faeces.     "/>
+            		<LineBreak/>
+            		<Run/>
+            		<LineBreak/>
+            		<Run Text="Zinc supplements: zinc supplements reduce the duration of a diarrhoea episode by 25% and are associated with a 30% reduction in stool volume.     "/>
+            		<LineBreak/>
+            		<Run/>
+            		<LineBreak/>
+            		<Run Text="Rehydration: with intravenous fluids in case of severe dehydration or shock.     "/>
+            		<LineBreak/>
+            		<Run/>
+            		<LineBreak/>
+            		<Run Text="Nutrient-rich foods: the vicious circle of malnutrition and diarrhoea can be broken by continuing to give nutrient-rich foods – including breast milk – during an episode, and by giving a nutritious diet – including exclusive breastfeeding for the first six months of life – to children when they are well.     "/>
+            		<LineBreak/>
+            		<Run/>
+            		<LineBreak/>
+            		<Run Text="Consulting a health professional , in particular for management of persistent diarrhoea or when there is blood in stool or if there are signs of dehydration. "/>
+                </TextBlock>
+                <Image HorizontalAlignment="Center" Height="458" Margin="24,552,25,0" VerticalAlignment="Top" Width="351" Source="Assets/ors.gif" Stretch="UniformToFill"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

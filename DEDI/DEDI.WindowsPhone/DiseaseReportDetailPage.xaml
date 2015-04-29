@@ -25,38 +25,32 @@
             TODO: Content should be placed within the following grid 
                   to show details for the current item
         -->
-        <Grid Grid.Row="1" x:Name="contentRegion">
-            <Grid HorizontalAlignment="Left" Height="628" VerticalAlignment="Top" Width="400">
-                <Button x:Name="PatientInfoBtn" Content="Patient Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,80,0,0" FontSize="36" Click="PatientInfoBtn_Click" Background="#FF00AEC8" Foreground="White"/>
-                <Button x:Name="SymptomsBtn" Content="Symptoms" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,200,0,0" FontSize="36" Click="SymptomsBtn_Click" Background="#FF00AEC8" Foreground="White"/>
-                <Button x:Name="LocationTimeBtn" Content="Location and Time" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="120" Margin="0,320,0,0" FontSize="36" Click="LocationTimeBtn_Click" Background="#FF00AEC8" Foreground="White"/>
-            </Grid>
-            <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="966" Height="628">
-                <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Margin="0" d:IsHidden="True" >
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,80,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="72,153,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="72,253,0,0"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="72,303,0,0"/>
+        <Grid x:Name="contentRegion" Margin="0,89,0,0" Grid.RowSpan="2">
+            <Grid x:Name="PatientInfoNSymptoms" HorizontalAlignment="Right" VerticalAlignment="Top" Width="400" Height="628" Margin="0,0,0,-77">
+                <Grid x:Name="PatientInfo" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="209" Margin="0,0,30,0" d:IsHidden="True" >
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patient" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="0,30,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="20" Margin="0,100,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Weight:" VerticalAlignment="Top" FontSize="20" Margin="0,180,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height:" VerticalAlignment="Top" FontSize="20" Margin="0,220,0,0"/>
 
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="72,203,0,0"/>
-                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="54,0,0,177" Stroke="Black" VerticalAlignment="Bottom" Width="289"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="72,0,0,223" FontWeight="Bold"/>
-                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel. 12-3456-7890" VerticalAlignment="Top" Margin="162,417,0,0" FontSize="20"/>
-                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,155,80,0"/>
-                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,203,79,0"/>
-                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,255,80,0"/>
-                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,305,80,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Age:" VerticalAlignment="Top" FontSize="20" Margin="0,140,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact Information" VerticalAlignment="Bottom" FontSize="20" Margin="18,0,-1,301" FontWeight="Bold"/>
+                    <TextBlock x:Name="ShowTelTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel. 12-3456-7890" VerticalAlignment="Top" Margin="45,332,0,0" FontSize="20"/>
+                    <TextBlock x:Name="ShowNameTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,100,0,0"/>
+                    <TextBlock x:Name="ShowAgeTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,140,0,0"/>
+                    <TextBlock x:Name="ShowWeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,180,0,0"/>
+                    <TextBlock x:Name="ShowHeightTbl" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Margin="0,220,0,0"/>
                 </Grid>
-                <Grid x:Name="Avatar" HorizontalAlignment="Left" Height="628" VerticalAlignment="Top" Width="566">
-                    <Image x:Name="AvatarImg" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="213,20,212,0" Height="500" Width="141"/>
+                <Grid x:Name="Avatar" HorizontalAlignment="Left" Height="489" VerticalAlignment="Top" Width="161" Margin="0">
+                    <Image x:Name="AvatarImg" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,90,27,0" Height="380" Width="115"/>
                 </Grid>
                 <Grid x:Name="Symptoms" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="400" Visibility="Collapsed">
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Symptoms" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-                    <ListView x:Name="SymptomLv" HorizontalAlignment="Left" Height="240" VerticalAlignment="Top" Width="350" Margin="0,34,0,0" SelectionChanged="SelectSymptom_Tap" FontSize="20" FontWeight="Bold" Foreground="#FF00AEC8" >
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Symptoms" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A" Margin="50,101,0,0"/>
+                    <ListView x:Name="SymptomLv" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" Margin="50,143,0,0" SelectionChanged="SelectSymptom_Tap" FontSize="20" FontWeight="Bold" Foreground="#FF00AEC8" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Padding="5" Text="{Binding symptom}"/>
+                                    <TextBlock Padding="5" Text="{Binding symptom}" FontSize="16"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -87,27 +81,51 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid x:Name="LocationNTime" HorizontalAlignment="Right" Height="628" VerticalAlignment="Top" Width="966" Visibility="Collapsed">
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="100,80,0,0" Foreground="#FF2B5360"/>
-                <maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="360" Margin="100,150,463,0"/>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="577,150,0,0" Foreground="#FF2B5360"/>
-                <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,190,100,0" FontSize="14" MinWidth="100" Width="289" Height="60" Foreground="#FF00AEC8"/>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="577,266,0,0" Foreground="#FF2B5360"/>
-                <TextBlock x:Name="DescriptionTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,306,100,0" FontSize="14" MinWidth="100" Width="289" Height="110" FontFamily="Global User Interface" Foreground="#FF00AEC8"/>
-                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,436,336,0" Foreground="#FF2B5360"/>
-                <TextBlock x:Name="DateTbl" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="577,476,0,0"/>
+            <ScrollViewer x:Name="LocationNTime" HorizontalAlignment="Right" Height="375" VerticalAlignment="Top" Width="400" Margin="0,90,0,0" Visibility="Collapsed">
+                <Grid Height="596">
+                    <maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="250" Margin="30,52,30,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,12,0,0" Foreground="#FF2B5360"/>
+                    <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,318,30,0" FontSize="14" MinWidth="100" Width="340" Height="60" Foreground="#FF00AEC8"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,388,0,0" Foreground="#FF2B5360"/>
+                    <TextBlock x:Name="DescriptionTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,428,30,0" FontSize="14" MinWidth="100" Width="340" Height="80" FontFamily="Global User Interface" Foreground="#FF00AEC8"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,523,317,0" Foreground="#FF2B5360"/>
+                    <TextBlock x:Name="DateTbl" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,562,0,0"/>
+                </Grid>
+            </ScrollViewer>
+            <Grid HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="400" Margin="0,491,0,0">
+                <Button x:Name="PatientInfoBtn" Content="    Patient&#xA;Information" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="130" Height="85" Margin="4,0,0,-12" FontSize="18" Click="PatientInfoBtn_Click" Background="#FF00AEC8" Foreground="White" BorderBrush="{x:Null}"/>
+                <Button x:Name="SymptomsBtn" Content="Symptoms" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="130" Height="85" Margin="135,0,135,-12" FontSize="18" Click="SymptomsBtn_Click" Background="#FF00AEC8" Foreground="White" BorderBrush="{x:Null}"/>
+                <Button x:Name="LocationTimeBtn" Content=" Location&#xA;and Time" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="130" Height="85" Margin="0,0,4,-12" FontSize="18" Click="LocationTimeBtn_Click" Background="#FF00AEC8" Foreground="White" BorderBrush="{x:Null}"/>
+                <TextBlock HorizontalAlignment="Left" Margin="42,515,0,-475" TextWrapping="Wrap" Text="By" VerticalAlignment="Top" FontSize="16"/>
+                <TextBlock x:Name="NameTb" HorizontalAlignment="Left" Margin="64,515,0,-475" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.109,1.414" Width="195"/>
+                <Button x:Name="ProbabilityBtn" Content="Probability" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="85" Margin="4,-487,0,0" FontSize="18" Click="ProbabilityBtn_Click" Background="#FF00AEC8" Foreground="White" BorderBrush="{x:Null}"/>
             </Grid>
         </Grid>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid x:Name="Prob_Grid" HorizontalAlignment="Left" Height="394" Margin="0,45,0,0" VerticalAlignment="Top" Width="400" Grid.Row="1" Visibility="Collapsed">
+            <TextBlock HorizontalAlignment="Left" Margin="70,69,0,0" TextWrapping="Wrap" Text="Cholera :" VerticalAlignment="Top" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="70,114,0,0" TextWrapping="Wrap" Text="Shigella :" VerticalAlignment="Top" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="70,165,0,0" TextWrapping="Wrap" Text="Salmonella :" VerticalAlignment="Top" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="70,219,0,0" TextWrapping="Wrap" Text="Rotavirus :" VerticalAlignment="Top" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" Margin="70,275,0,0" TextWrapping="Wrap" Text="Other :" VerticalAlignment="Top"  FontSize="18"/>
+            <TextBlock x:Name="CholeraTbl" HorizontalAlignment="Left" Margin="188,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="124" TextAlignment="Right"/>
+            <TextBlock x:Name="ShigellaTbl" HorizontalAlignment="Left" Margin="188,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="124" TextAlignment="Right"/>
+            <TextBlock x:Name="SalmonellaTbl" HorizontalAlignment="Left" Margin="188,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="124" TextAlignment="Right"/>
+            <TextBlock x:Name="RotavirusTbl" HorizontalAlignment="Left" Margin="188,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="124" TextAlignment="Right"/>
+            <TextBlock x:Name="OtherTbl" HorizontalAlignment="Left" Margin="188,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="124" TextAlignment="Right"/>
+            <TextBlock HorizontalAlignment="Left" Margin="30,10,0,0" TextWrapping="Wrap" Text="Probability" VerticalAlignment="Top" Height="54" Width="323" FontSize="36" Foreground="#FF2D4D5A" FontWeight="Bold"/>
+        </Grid>
+        <Grid Margin="38,62,50,8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
             </Grid.ColumnDefinitions>
-            <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-8,-6,-12,-9" Height="155" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="pageTitle_Copy" VerticalAlignment="Top" Text="Disease Report" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="3,31,37,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A" Grid.Column="1"/>
-            <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="57,32,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle1" Text="Disease Report" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
         </Grid>
     </Grid>
 </Page>

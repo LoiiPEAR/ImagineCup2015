@@ -9,7 +9,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DEDI</RootNamespace>
-    <AssemblyName>DEDI.WindowsPhone</AssemblyName>
+    <AssemblyName>DEDI</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
@@ -171,6 +171,7 @@
     <Content Include="Assets\app_icon_small_resize.png" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\ors.gif" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />

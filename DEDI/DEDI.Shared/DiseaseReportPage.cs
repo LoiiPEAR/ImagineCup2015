@@ -332,6 +332,9 @@ namespace DEDI
 
         private void EditPatientInfoBtn_Click(object sender, RoutedEventArgs e)
         {
+#if WINDOWS_PHONE_APP
+            Avatar.Visibility = Visibility.Visible;
+#endif
             latestName = EditNameTb.Text;
             latestDOB = EditDOBDpk.Date;
             latestHeight = EditHeightTb.Text;
@@ -344,16 +347,21 @@ namespace DEDI
 
         private void PatientInfoBtn_Click(object sender, RoutedEventArgs e)
         {
+#if WINDOWS_PHONE_APP
+            Avatar.Visibility = Visibility.Visible;
+#endif
             LocationNTime.Visibility = Visibility.Collapsed;
             PatientInfoNSymptoms.Visibility = Visibility.Visible;
             Symptoms.Visibility = Visibility.Collapsed;
             if (latestGender == "M") exMaleImg.Visibility = Visibility.Visible;
             else if (latestGender == "F") exFemaleImg.Visibility = Visibility.Visible;
+#if WINDOWS_APP
             inFemaleImg.Visibility = Visibility.Collapsed;
             inMaleImg.Visibility = Visibility.Collapsed;
             internalOrgan.Visibility = Visibility.Collapsed;
             ExternalBtn.Visibility = Visibility.Collapsed;
             InternalBtn.Visibility = Visibility.Collapsed;
+#endif
             MaleBtn.Visibility = Visibility.Visible;
             FemaleBtn.Visibility = Visibility.Visible;
             if (addStatus == false) NewPatient.Visibility = Visibility.Visible;
@@ -362,6 +370,9 @@ namespace DEDI
 
         private void SymptomsBtn_Click(object sender, RoutedEventArgs e)
         {
+#if WINDOWS_PHONE_APP
+            Avatar.Visibility = Visibility.Collapsed;
+#endif
             LocationNTime.Visibility = Visibility.Collapsed;
             NewPatient.Visibility = Visibility.Collapsed;
             PatientInfo.Visibility = Visibility.Collapsed;
@@ -369,11 +380,13 @@ namespace DEDI
             Symptoms.Visibility = Visibility.Visible;
             MaleBtn.Visibility = Visibility.Collapsed;
             FemaleBtn.Visibility = Visibility.Collapsed;
+#if WINDOWS_APP
             ExternalBtn.Visibility = Visibility.Visible;
             InternalBtn.Visibility = Visibility.Visible;
             inMaleImg.Visibility = Visibility.Collapsed;
             inFemaleImg.Visibility = Visibility.Collapsed;
             internalOrgan.Visibility = Visibility.Collapsed;
+#endif
             if (latestGender == "M")
             {
                 exFemaleImg.Visibility = Visibility.Collapsed;
@@ -410,14 +423,18 @@ namespace DEDI
         {
             if (latestGender == "M")
             {
+#if WINDOWS_APP
                 inMaleImg.Visibility = Visibility.Collapsed;
                 internalOrgan.Visibility = Visibility.Collapsed;
+#endif
                 exMaleImg.Visibility = Visibility.Visible;
             }
             else if (latestGender == "F")
             {
+#if WINDOWS_APP
                 inFemaleImg.Visibility = Visibility.Collapsed;
                 internalOrgan.Visibility = Visibility.Collapsed;
+#endif
                 exFemaleImg.Visibility = Visibility.Visible;
             }
         }
@@ -427,15 +444,19 @@ namespace DEDI
             if (latestGender == "M")
             {
                 exMaleImg.Visibility = Visibility.Collapsed;
+#if WINDOWS_APP
                 inMaleImg.Visibility = Visibility.Visible;
                 internalOrgan.Visibility = Visibility.Visible;
+#endif
                 
             }
             else if (latestGender == "F")
             {
                 exFemaleImg.Visibility = Visibility.Collapsed;
+#if WINDOWS_APP
                 inFemaleImg.Visibility = Visibility.Visible;
                 internalOrgan.Visibility = Visibility.Visible;
+#endif
             }
         }
         private async void Submit_Click(object sender, RoutedEventArgs e)

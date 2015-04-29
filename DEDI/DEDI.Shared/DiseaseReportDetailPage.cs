@@ -212,13 +212,20 @@ namespace DEDI
         {
             LocationNTime.Visibility = Visibility.Collapsed;
             PatientInfoNSymptoms.Visibility = Visibility.Visible;
+#if WINDOWS_PHONE_APP
+            Avatar.Visibility = Visibility.Visible;
+#endif
+            PatientInfo.Visibility = Visibility.Visible;
             Symptoms.Visibility = Visibility.Collapsed;
             Prob_Grid.Visibility = Visibility.Collapsed;
-            }
+        }
 
         private void SymptomsBtn_Click(object sender, RoutedEventArgs e)
         {
             LocationNTime.Visibility = Visibility.Collapsed;
+#if WINDOWS_PHONE_APP
+            Avatar.Visibility = Visibility.Collapsed;
+#endif
             PatientInfo.Visibility = Visibility.Collapsed;
             PatientInfoNSymptoms.Visibility = Visibility.Visible;
             Symptoms.Visibility = Visibility.Visible;

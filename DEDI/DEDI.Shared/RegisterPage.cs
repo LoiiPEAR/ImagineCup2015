@@ -63,11 +63,11 @@ namespace DEDI
             string warning_str =" is required*";
             if (UsernameTb.Text == "")
             {
-                Username_errorTbl.Text = "Firstname" + warning_str;
+                Username_errorTbl.Text = "Username" + warning_str;
             }
             if (PasswordTb.Password == "")
             {
-                Password_errorTbl.Text = "Lastname" + warning_str;
+                Password_errorTbl.Text = "Password" + warning_str;
             }
             if (FirstNameTb.Text == "")
             {

@@ -25,23 +25,27 @@
             TODO: Content should be placed within the following grid 
                   to show details for the current item
         -->
-        <Grid x:Name="contentRegion" Margin="0,90,0,0" Grid.RowSpan="2">
-            <Image x:Name="DisasterImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,80,0,0" Width="100" Height="100" Stretch="Fill"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disaster" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="30,30,0,0" Foreground="#FF2B5360"/>
-            <maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="100" Margin="30,243,30,0"/>
-            <TextBlock x:Name="Type_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="194,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
-            <TextBlock x:Name="TypeTb" HorizontalAlignment="Left" Margin="165,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
-            <TextBlock HorizontalAlignment="Left" Margin="165,120,0,0" TextWrapping="Wrap" Text="By" VerticalAlignment="Top" FontSize="16"/>
-            <TextBlock x:Name="NameTb" HorizontalAlignment="Left" Margin="194,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.109,1.414" Width="176" Height="40"/>
-        </Grid>
 
         <!-- Back button and page title -->
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,163,0,0" Foreground="#FF2B5360" Grid.Row="1"/>
-        <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,303,28,0" FontSize="14" MinWidth="100" Width="342" Height="41" Foreground="#FF00AEC8" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,348,0,0" Foreground="#FF2B5360" Grid.Row="1"/>
-        <TextBlock x:Name="DescriptionTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,380,28,0" FontSize="14" MinWidth="100" Width="342" Height="86" Foreground="#FF00AEC8" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,130,317,0" Foreground="#FF2B5360" Grid.Row="1"/>
-        <TextBlock x:Name="dateTb" HorizontalAlignment="Left" Margin="91,127,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="281" RenderTransformOrigin="0.496,-0.331" FontSize="18"/>
+        <ScrollViewer x:Name="contentRegion" Margin="0,90,0,0" Grid.RowSpan="2">
+            <Grid Height="788">
+                <Image x:Name="DisasterImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,52,0,0" Width="100" Height="100" Stretch="Fill"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disaster" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="30,2,0,0" Foreground="#FF2B5360"/>
+                <maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="250" Margin="30,259,30,0"/>
+                <TextBlock x:Name="Type_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="194,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
+                <TextBlock x:Name="TypeTb" HorizontalAlignment="Left" Margin="165,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
+                <TextBlock HorizontalAlignment="Left" Margin="165,92,0,0" TextWrapping="Wrap" Text="By" VerticalAlignment="Top" FontSize="16"/>
+                <TextBlock x:Name="NameTb" HorizontalAlignment="Left" Margin="194,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.109,1.414" Width="176"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,215,0,0" Foreground="#FF2B5360"/>
+                <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,521,30,-51" FontSize="14" MinWidth="100" Width="340" Height="80" Foreground="#FF00AEC8"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,626,0,-105" Foreground="#FF2B5360"/>
+                <TextBlock x:Name="DescriptionTb" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,670,30,0" FontSize="14" MinWidth="100" Width="340" Height="86" Foreground="#FF00AEC8"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,178,317,0" Foreground="#FF2B5360"/>
+                <TextBlock x:Name="dateTb" HorizontalAlignment="Left" Margin="91,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" RenderTransformOrigin="0.496,-0.331" FontSize="16"/>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Back button and page title -->
         <Grid Margin="38,62,50,8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
