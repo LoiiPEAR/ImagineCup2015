@@ -14,12 +14,9 @@
         <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
     <Page.BottomAppBar>
-        <CommandBar Height="146" Margin="-8,0,-15,-5" BorderBrush="{x:Null}">
-            <CommandBar.Background>
-                <ImageBrush Stretch="Fill" ImageSource="Assets/app_bar.png"/>
-            </CommandBar.Background>
-            <AppBarButton x:Name="DashboardBtn" Icon="TwoBars" Label="Dashboard" Click="DashboardBtn_Click" Margin="0,38,0,0"/>
-            <AppBarButton x:Name="CreateReportBtn" Icon="Add" Label="Create a New Report" Click="CreateReportBtn_Click" Margin="0,38,10,0"/>
+        <CommandBar>
+            <AppBarButton Icon="TwoBars" Label="Dashboard" Click="DashboardBtn_Click"/>
+            <AppBarButton Icon="Add" Label="New Report" Click="CreateReportBtn_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
     <!--
@@ -31,16 +28,18 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <Hub>
+        <!--<Hub>
             <Hub.Header>
-                <!-- Back button and page title -->
+                -->
+        <!-- Back button and page title -->
+        <!--
                 <Grid Width="390">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-24,26,-158.667,0" Height="56" Width="411" Grid.ColumnSpan="2"/>
-                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="55" Width="118" Margin="0,28,0,0"/>
+                    <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-15,26,0,-106" Height="163" Width="400"/>
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="81" Width="174" Margin="0,24,0,-22" Grid.ColumnSpan="2"/>
                 </Grid>
             </Hub.Header>
             <HubSection x:Name="ProfileSection" Width="530">
@@ -52,15 +51,15 @@
                             <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="32" FontWeight="Bold" Foreground="#FF2D4D5A" />
                             <Image x:Name="___Image_" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,280,0,0" Source="Assets/address_icon.png" Height="80" Width="62"/>
                             <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="290,280,0,0" FontSize="14" Width="170" Text="" Foreground="#FF7296A8"/>
-                            <Controls:ImageButton x:Name="SignoutBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,375,0,0" Height="120" Width="120" Click="SignoutBtn_click" NormalStateImageSource="Assets/signout_btn.png" HoverStateImageSource="Assets/sign_out_btn_hover.png" PressedStateImageSource="Assets/signout_btn.png" Stretch="Fill"/>
-                            <Controls:ImageButton HorizontalAlignment="Center" Height="120" VerticalAlignment="Top" Width="120" Margin="0,375,0,0" NormalStateImageSource="Assets/following_btn.png" HoverStateImageSource="Assets/following_btn_hover.png" PressedStateImageSource="Assets/following_btn.png" Stretch="Fill" Click="Following_Click"/>
-                            <Controls:ImageButton HorizontalAlignment="Right" Height="120" VerticalAlignment="Top" Width="120" Margin="0,375,70,0" NormalStateImageSource="Assets/followers_btn.png" HoverStateImageSource="Assets/follower_btn_hover.png" PressedStateImageSource="Assets/followers_btn.png" Stretch="Fill" Click="Follower_Click"/>
-                            <Controls:ImageButton HorizontalAlignment="Right" Height="187" VerticalAlignment="Bottom" Width="187" Margin="0,0,70,70" NormalStateImageSource="Assets/myreports_btn.png" HoverStateImageSource="Assets/my_reports_btn_hover.png" PressedStateImageSource="Assets/myreports_btn.png" Stretch="Fill" Click="MyReport_Click"/>
-                            <Controls:ImageButton x:Name="emergencyBtn" HorizontalAlignment="Left" Height="192" VerticalAlignment="Bottom" Width="192" Margin="70,0,0,70" NormalStateImageSource="Assets/emergency_btn.png" HoverStateImageSource="Assets/emergency_btn_hover.png" PressedStateImageSource="Assetsemergency_btn.png" Stretch="Fill" Click="emergencyBtn_Click"/>
-                            <TextBlock x:Name="followingTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="284,427,0,0" Foreground="#FFF3F3F4" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock x:Name="followersTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="419,427,0,0" Foreground="#FF00BAD0" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock x:Name="myreportsTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="361,563,0,0" Foreground="#FFF4F5F6" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
-                            <TextBlock x:Name="positionTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="74,309,0,0" TextAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFEE514A" Width="120" Height="30"/>
+                            <Controls:ImageButton x:Name="SignoutBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,356,0,0" Height="81" Width="81" Click="SignoutBtn_click" NormalStateImageSource="Assets/signout_btn.png" HoverStateImageSource="Assets/sign_out_btn_hover.png" PressedStateImageSource="Assets/signout_btn.png" Stretch="Fill"/>
+                            <Controls:ImageButton HorizontalAlignment="Center" Height="81" VerticalAlignment="Top" Width="81" Margin="160,356,289,0" NormalStateImageSource="Assets/following_btn.png" HoverStateImageSource="Assets/following_btn_hover.png" PressedStateImageSource="Assets/following_btn.png" Stretch="Fill" Click="Following_Click"/>
+                            <Controls:ImageButton HorizontalAlignment="Right" Height="81" VerticalAlignment="Top" Width="81" Margin="0,356,200,0" NormalStateImageSource="Assets/followers_btn.png" HoverStateImageSource="Assets/follower_btn_hover.png" PressedStateImageSource="Assets/followers_btn.png" Stretch="Fill" Click="Follower_Click"/>
+                            <Controls:ImageButton HorizontalAlignment="Right" Height="122" VerticalAlignment="Bottom" Width="121" Margin="0,0,200,34" NormalStateImageSource="Assets/myreports_btn.png" HoverStateImageSource="Assets/my_reports_btn_hover.png" PressedStateImageSource="Assets/myreports_btn.png" Stretch="Fill" Click="MyReport_Click"/>
+                            <Controls:ImageButton x:Name="emergencyBtn" HorizontalAlignment="Left" Height="122" VerticalAlignment="Bottom" Width="121" Margin="70,0,0,34" NormalStateImageSource="Assets/emergency_btn.png" HoverStateImageSource="Assets/emergency_btn_hover.png" PressedStateImageSource="Assetsemergency_btn.png" Stretch="Fill" Click="emergencyBtn_Click"/>
+                            <TextBlock x:Name="followingTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="194,392,0,0" Foreground="#FFF3F3F4" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock x:Name="followersTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="282,392,0,0" Foreground="#FF00BAD0" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock x:Name="myreportsTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="269,492,0,0" Foreground="#FFF4F5F6" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
+                            <TextBlock x:Name="positionTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="74,311,0,0" TextAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFEE514A" Width="120" Height="30"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
@@ -76,12 +75,12 @@
                     <ControlTemplate x:Key="NotificationSectionTemplate" TargetType="HubSection">
                         <Grid>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="notifications" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48" Foreground="#FF2D4D5A"/>
-                            <Image x:Name="allBG" HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Assets/noti_all_active.png" Margin="50,0,50,50"/>
-                            <ScrollViewer x:Name="AllScrollView" HorizontalAlignment="Center" VerticalAlignment="Center" Width="372" Margin="65,297,63,59" Height="412" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
+                            <Image x:Name="allBG" HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Assets/noti_all_active.png" Margin="53,0,0,39" Height="350" Width="294"/>
+                            <ScrollViewer x:Name="AllScrollView" HorizontalAlignment="Center" VerticalAlignment="Center" Width="277" Margin="63,254,160,47" Height="306" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
                                 <StackPanel x:Name="AllNotiStack" Orientation="Vertical" Width="360" Margin="0">
                                 </StackPanel>
                             </ScrollViewer>
-                            <HyperlinkButton x:Name="AllBtn" Content="ALL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,245,0,0" FontSize="24" FontWeight="Bold" Width="134" Height="44" Foreground="#FF00AEC8" Click="AllBtn_Click"/>
+                            <HyperlinkButton x:Name="AllBtn" Content="ALL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,223,0,0" FontSize="18" FontWeight="Bold" Width="90" Height="30" Foreground="#FF00AEC8" Click="AllBtn_Click"/>
 
                         </Grid>
                     </ControlTemplate>
@@ -112,7 +111,7 @@
                     <ControlTemplate x:Key="MapSectionTemplate" TargetType="HubSection">
                         <Grid>
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="map" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48" Foreground="#FF2D4D5A"/>
-                            <bm:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,50,50"/>
+                            <bm:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,240,0,0" Height="321"/>
                             <Controls:ImageButton x:Name="GoToMapBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,165,0,0" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="GoToMapBtn_Click" Stretch="Fill" NormalStateImageSource="Assets/goto.png" HoverStateImageSource="Assets/goto_btn_hover.png" PressedStateImageSource="Assets/goto.png"/>
                         </Grid>
                     </ControlTemplate>
@@ -132,7 +131,7 @@
 							Text="Item Title" />
                         <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="1" 
 							Text="Quisque in porta lorem dolor amet sed consectetuer ising elit, sed diam non my nibh uis mod wisi quip."/>
-                        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Grid.Row="2" Margin="0,20,0,0"
+                        <TextBlock Grid.Row="2" Margin="0,20,0,0"
 							Text="Item Sub Title"/>
                         <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
 							Text="Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper."/>
@@ -145,7 +144,7 @@
                         <Grid Width="500">
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="reports" VerticalAlignment="Top" FontSize="48" Margin="50,160,0,0" Foreground="#FF2D4D5A"/>
                             <Controls:ImageButton x:Name="GoToReportBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="GoToReportBtn_Click" Stretch="Fill" NormalStateImageSource="Assets/goto.png" HoverStateImageSource="Assets/goto_btn_hover.png" PressedStateImageSource="Assets/goto.png" Margin="220,165,0,0"/>
-                            <ListView x:Name="reportList" Margin="0,0,50,50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="400" Height="478">
+                            <ListView x:Name="reportList" Margin="0,0,150,50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="300" Height="335">
                                 <ListView.ItemTemplate>
                                     <DataTemplate >
                                         <Grid Height="100" Width="400">
@@ -167,7 +166,9 @@
                     <StaticResource ResourceKey="ReportSectionTemplate"/>
                 </HubSection.Template>
                 <DataTemplate>
-                    <!-- width of 400 -->
+                    -->
+        <!-- width of 400 -->
+        <!--
                     <StackPanel Orientation="Vertical">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -195,6 +196,67 @@
                     </StackPanel>
                 </DataTemplate>
             </HubSection>
-        </Hub>
+        </Hub>-->
+        <Grid Margin="13,-27,-3,524">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-15,26,0,-106" Height="163" Width="400"/>
+            <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/logo_big.png" Height="81" Width="174" Margin="0,24,0,-22" Grid.ColumnSpan="2"/>
+        </Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="640" VerticalAlignment="Top" Margin="0,0,-3,-60" Width="403" HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled" HorizontalScrollBarVisibility="Auto">
+            <Grid Width="1513">
+                <Grid x:Name="ProfileSection" Margin="0,-60,983,60" Width="530">
+                    <Image x:Name="ProfileImg" HorizontalAlignment="Left" Height="185" VerticalAlignment="Top" Margin="50,165,0,0" Source="Assets/position_img.png" Width="170"/>
+                    <TextBlock x:Name="FirstNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,190,0,0" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A" />
+                    <TextBlock x:Name="LastNameTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,230,0,0" FontSize="24" FontWeight="Bold" Foreground="#FF2D4D5A" />
+                    <Image x:Name="___Image_" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,280,0,0" Source="Assets/address_icon.png" Height="80" Width="62"/>
+                    <TextBlock x:Name="LocationTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="290,280,0,0" Width="129" Text="" Foreground="#FF7296A8"/>
+                    <Controls:ImageButton x:Name="SignoutBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,356,0,0" Height="97" Width="97" Click="SignoutBtn_click" NormalStateImageSource="Assets/signout_btn.png" HoverStateImageSource="Assets/sign_out_btn_hover.png" PressedStateImageSource="Assets/signout_btn.png" Stretch="Fill"/>
+                    <Controls:ImageButton HorizontalAlignment="Center" Height="97" VerticalAlignment="Top" Width="97" Margin="177,356,256,0" NormalStateImageSource="Assets/following_btn.png" HoverStateImageSource="Assets/following_btn_hover.png" PressedStateImageSource="Assets/following_btn.png" Stretch="Fill" Click="Following_Click"/>
+                    <Controls:ImageButton HorizontalAlignment="Right" Height="97" VerticalAlignment="Top" Width="96" Margin="0,356,150,0" NormalStateImageSource="Assets/followers_btn.png" HoverStateImageSource="Assets/follower_btn_hover.png" PressedStateImageSource="Assets/followers_btn.png" Stretch="Fill" Click="Follower_Click"/>
+                    <Controls:ImageButton HorizontalAlignment="Right" Height="145" VerticalAlignment="Bottom" Width="144" Margin="0,0,150,28" NormalStateImageSource="Assets/myreports_btn.png" HoverStateImageSource="Assets/my_reports_btn_hover.png" PressedStateImageSource="Assets/myreports_btn.png" Stretch="Fill" Click="MyReport_Click"/>
+                    <Controls:ImageButton x:Name="emergencyBtn" HorizontalAlignment="Left" Height="145" VerticalAlignment="Bottom" Width="144" Margin="70,0,0,28" NormalStateImageSource="Assets/emergency_btn.png" HoverStateImageSource="Assets/emergency_btn_hover.png" PressedStateImageSource="Assetsemergency_btn.png" Stretch="Fill" Click="emergencyBtn_Click"/>
+                    <TextBlock x:Name="followingTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="238,400,0,0" Foreground="#FFF3F3F4" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock x:Name="followersTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="346,400,0,0" Foreground="#FF00BAD0" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock x:Name="myreportsTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="303,508,0,0" Foreground="#FFF4F5F6" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock x:Name="positionTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="74,311,0,0" TextAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFEE514A" Width="120" Height="30"/>
+                </Grid>
+                <Grid Margin="383,-60,734,60">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="notifications" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48" Foreground="#FF2D4D5A"/>
+                    <Image x:Name="allBG" HorizontalAlignment="Left" VerticalAlignment="Bottom" Source="Assets/noti_all_active.png" Margin="53,0,0,39" Height="350" Width="294"/>
+                    <ScrollViewer x:Name="AllScrollView" HorizontalAlignment="Center" VerticalAlignment="Center" Width="277" Margin="61,286,58,48" Height="306" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled">
+                        <StackPanel x:Name="AllNotiStack" Orientation="Vertical" Width="277" Margin="0"/>
+                    </ScrollViewer>
+                    <HyperlinkButton x:Name="AllBtn" Content="ALL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,255,0,0" FontSize="18" FontWeight="Bold" Width="90" Height="30" Foreground="#FF00AEC8"/>
+
+                </Grid>
+                <Grid Margin="729,-60,403,64">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="map" VerticalAlignment="Top" Margin="50,160,0,0" FontSize="48" Foreground="#FF2D4D5A"/>
+                    <bm:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,251,0,0" Height="346" Width="280"/>
+                    <Controls:ImageButton x:Name="GoToMapBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,165,0,0" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="GoToMapBtn_Click" Stretch="Fill" NormalStateImageSource="Assets/goto.png" HoverStateImageSource="Assets/goto_btn_hover.png" PressedStateImageSource="Assets/goto.png"/>
+                </Grid>
+                <Grid Margin="1110,-60,92,60">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="reports" VerticalAlignment="Top" FontSize="48" Margin="-1,160,0,0" Foreground="#FF2D4D5A"/>
+                    <Controls:ImageButton x:Name="GoToReportBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="GoToReportBtn_Click" Stretch="Fill" NormalStateImageSource="Assets/goto.png" HoverStateImageSource="Assets/goto_btn_hover.png" PressedStateImageSource="Assets/goto.png" Margin="174,165,0,0"/>
+                    <ListView x:Name="reportList" Margin="0,0,0,50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="300" Height="335">
+                        <ListView.ItemTemplate>
+                            <DataTemplate >
+                                <Grid Height="100" Width="300" Margin="0,0,0,10">
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0" Height="100" HorizontalAlignment="Left">
+                                        <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding name}" Margin="110,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0,0,10,0" FontStyle="Italic"/>
+
+                                    <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="110,39,20,23" VerticalAlignment="Center" Height="38"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

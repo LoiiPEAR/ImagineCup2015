@@ -36,7 +36,7 @@
             <Grid HorizontalAlignment="Left" Height="550" VerticalAlignment="Center" Width="300" Margin="200,39,533,39">
                 <Image HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="300" Margin="0"/>
                 <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Disaster" VerticalAlignment="Bottom" FontSize="36" Margin="0" Foreground="#FF00AEC8" FontWeight="Bold"/>
-                <Button x:Name="DisasterBtn" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="300" Height="500" Click="DisasterBtn_Click" Margin="-62,-3,-62,-155">
+                <Button x:Name="DisasterBtn" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="500" Click="DisasterBtn_Click" Margin="0" Width="300">
                     <Button.Background>
                         <ImageBrush Stretch="Fill" ImageSource="Assets/disaster_btn.png"/>
                     </Button.Background>
@@ -45,7 +45,7 @@
             <Grid HorizontalAlignment="Right" Height="550" VerticalAlignment="Center" Width="300" Margin="200,39">
                 <Image HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="300" Margin="0"/>
                 <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Bottom" FontSize="36" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
-                <Button x:Name="RiskFactorBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="500" Click="RiskFactorBtn_Click" Margin="3,-3,-3,0">
+                <Button x:Name="RiskFactorBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="500" Click="RiskFactorBtn_Click" Margin="0">
                     <Button.Background>
                         <ImageBrush Stretch="Fill" ImageSource="Assets/risk_btn.png"/>
                     </Button.Background>

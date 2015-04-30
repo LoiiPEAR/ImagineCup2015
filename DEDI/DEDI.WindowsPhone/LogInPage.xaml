@@ -26,7 +26,6 @@
         <Button x:Name="SaveBtn" Content="Save" Margin="14,-4,0,587" Click="SaveBtn_Click" Visibility="Collapsed"/>
         <ListView x:Name="ListViews" HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="165" Margin="61,119,0,0" Visibility="Collapsed"/>
         <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="469,8,0,0" Click="DeleteBtn_Click" Visibility="Collapsed"/>
-        <Button Content="Contact" HorizontalAlignment="Left" Margin="124,624,0,0" VerticalAlignment="Top" Click="Button_Click" Visibility="Collapsed"/>
-
+        
     </Grid>
 </Page>

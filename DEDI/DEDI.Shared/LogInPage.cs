@@ -176,7 +176,7 @@ namespace DEDI
 
         private async void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            SignInBtn.IsEnabled = false;
+            //SignInBtn.IsEnabled = false;
             var user = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.username == UsernameTb.Text && hw.password == ComputeMD5(PasswordTb.Password)).ToListAsync();
             if (user.Count != 0)
             {
@@ -200,7 +200,9 @@ namespace DEDI
                     //    await rTable.InsertAsync(p);
                     //}
 
-               
+                UsernameTb.Text = "";
+                PasswordTb.Password = "";
+                errorTbl.Text = "";
                 this.Frame.Navigate(typeof(HomePage),user[0]);
                 
             }

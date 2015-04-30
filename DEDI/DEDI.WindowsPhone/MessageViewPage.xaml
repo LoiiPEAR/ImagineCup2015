@@ -52,9 +52,6 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="secondaryColumn" Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemDetail" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Padding">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="120,0,90,60"/>
                         </ObjectAnimationUsingKeyFrames>
@@ -75,20 +72,11 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemDetail" Storyboard.TargetProperty="(Grid.Row)">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemDetail" Storyboard.TargetProperty="(Grid.RowSpan)">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="titlePanel" Storyboard.TargetProperty="(Grid.Column)">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemDetailGrid" Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="0,0,0,60"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemDetail" Storyboard.TargetProperty="Padding">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="120,0,90,0"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -101,15 +89,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
-
-        <!-- Vertical scrolling item list -->
         <ListView
 			x:Name="itemListView"
 			AutomationProperties.AutomationId="ItemsListView"
 			AutomationProperties.Name="Items"
 			TabIndex="1"
 			Grid.Row="1"
-			Margin="-10,65,0,0"
+			Margin="29,32,46,33"
 			Padding="20,0,20,60"
 			ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
 			IsSwipeEnabled="False"
@@ -124,6 +110,7 @@
 
                         <StackPanel Grid.Column="1" Margin="10,0,0,0">
                             <TextBlock Text="{Binding topic}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40"/>
+                            <TextBlock Text="{Binding content}" TextWrapping="NoWrap" HorizontalAlignment="Left" FontSize="14" FontStyle="Italic" MaxWidth="250"/>
                             <TextBlock Text="{Binding sender}" TextWrapping="NoWrap"/>
                             <TextBlock Text="{Binding sent_time}" Margin="0,0,0,20" />
                             <TextBlock Text="{Binding status}" Margin="0,0,0,20" HorizontalAlignment="Right"/>
@@ -137,21 +124,16 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+        <Grid
+        	x:Name="itemDetail"
+        	AutomationProperties.AutomationId="ItemDetailScrollViewer"
+        	Grid.RowSpan="2"
+        	DataContext="{Binding SelectedItem, ElementName=itemListView}"
+        	ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+        	ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Enabled"
+        	ScrollViewer.ZoomMode="Disabled" Margin="0,0,20,0" RenderTransformOrigin="0.5,0.5">
 
-
-        <!-- Details for selected item -->
-        <ScrollViewer
-			x:Name="itemDetail"
-			AutomationProperties.AutomationId="ItemDetailScrollViewer"
-			Grid.Column="1"
-			Grid.RowSpan="2"
-			Padding="60,0,66,0"
-			DataContext="{Binding SelectedItem, ElementName=itemListView}"
-			HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
-			ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Enabled"
-			ScrollViewer.ZoomMode="Disabled" Background="#FF1E1E1E">
-
-            <Grid x:Name="itemDetailGrid" Margin="0,60,0,50">
+            <Grid x:Name="itemDetailGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -161,53 +143,56 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
-                    <TextBlock x:Name="itemTitle" Margin="180,150,0,0" Text="{Binding topic}" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="36" FontWeight="Normal" Foreground="White"/>
-                    <TextBlock x:Name="itemSubtitle" Text="{Binding sender}" FontSize="20" Margin="180,230,0,-70" Foreground="White"/>
-                    <TextBlock Text="{Binding sent_time}" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="18" Margin="180,302,0,-142" Foreground="White"/>
-                    <TextBlock x:Name="itemTitle_Copy" Margin="10,150,680,0" Text="Topic:" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="36" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
-                    <TextBlock x:Name="itemSubtitle_Copy" Text="Sender:" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="20" Margin="10,230,680,-70" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
-                    <TextBlock Text="Sent time:" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="18" Margin="8,300,680,-140" HorizontalAlignment="Right" Foreground="#FF00AEC8"/>
-                    <TextBlock Margin="180,396,0,-236" Text="{Binding content}" Style="{StaticResource BodyTextBlockStyle}" FontSize="16" VerticalAlignment="Top" Foreground="White"/>
-                </Grid>
-                <Grid x:Name="sendGrid" Grid.ColumnSpan="1" HorizontalAlignment="Left" Height="658" Grid.RowSpan="1" VerticalAlignment="Top" Width="820" Background="#FF1E1E1E">
-                    <TextBlock HorizontalAlignment="Left" Margin="22,153,0,0" TextWrapping="Wrap" Text="To:" VerticalAlignment="Top" Height="35" Width="127" FontSize="30" FontWeight="Bold" Foreground="White" TextAlignment="Right"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="22,207,0,0" TextWrapping="Wrap" Text="Subject:" VerticalAlignment="Top" Height="35" Width="127" FontSize="30" FontWeight="Bold" Foreground="White" TextAlignment="Right"/>
-                    <TextBox x:Name="ReceiverTb" HorizontalAlignment="Left" Height="38" Margin="180,150,0,0" VerticalAlignment="Top" Width="640" TextChanged="ReceiverTb_TextChange" FontSize="16"/>
-                    <TextBox x:Name="TopicTb" HorizontalAlignment="Left" Margin="180,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" RenderTransformOrigin="0.173,-0.831" FontSize="16" Width="640"/>
-                    <TextBox x:Name="ContentTb" HorizontalAlignment="Left" Margin="180,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="150" Width="640" FontFamily="Global User Interface" FontSize="16"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="22,263,0,0" TextWrapping="Wrap" Text="Content:" VerticalAlignment="Top" Height="35" Width="127" FontSize="30" RenderTransformOrigin="0.53,2.811" Foreground="White" FontWeight="Bold" TextAlignment="Right"/>
-                    <Button x:Name="Send_btn" Content="Send" HorizontalAlignment="Left" Margin="723,575,-3,0" VerticalAlignment="Top" Width="100" Click="Send_Click"  Background="#FFADDFF8" Foreground="#FF104C5B" FontSize="24"/>
-                    <Button x:Name="Cancel_btn" Content="Cancel" HorizontalAlignment="Left" Margin="613,575,0,0" VerticalAlignment="Top" Width="100" Click="Cancel_Click"  Background="#FFADDFF8" Foreground="#FF104C5B" FontSize="24"/>
-                    <ListBox x:Name="AutocompleteLb" Margin="180,188,0,271" Visibility="Collapsed" SelectionChanged="AutocompleteLb_SelectionChange" FontSize="16" >
+                <Grid x:Name="sendGrid" Grid.ColumnSpan="1" HorizontalAlignment="Left" Height="570" Grid.RowSpan="2" VerticalAlignment="Top" Width="400" Margin="0,70,0,0" Visibility="Collapsed">
+                    <TextBlock HorizontalAlignment="Left" Margin="20,99,0,0" TextWrapping="Wrap" Text="To:" VerticalAlignment="Top" Height="35" Width="84" FontSize="20" FontWeight="Bold" Foreground="Black" TextAlignment="Right"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="20,153,0,0" TextWrapping="Wrap" Text="Subject:" VerticalAlignment="Top" Height="35" Width="84" FontSize="20" FontWeight="Bold" Foreground="Black" TextAlignment="Right"/>
+                    <TextBox x:Name="ReceiverTb" HorizontalAlignment="Left" Height="38" Margin="126,94,0,0" VerticalAlignment="Top" Width="242" TextChanged="ReceiverTb_TextChange" FontSize="16"/>
+                    <TextBox x:Name="TopicTb" HorizontalAlignment="Left" Margin="126,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" RenderTransformOrigin="0.173,-0.831" FontSize="16" Width="242"/>
+                    <TextBox x:Name="ContentTb" HorizontalAlignment="Left" Margin="126,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="150" Width="242" FontFamily="Global User Interface" FontSize="16"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="20,209,0,0" TextWrapping="Wrap" Text="Content:" VerticalAlignment="Top" Height="35" Width="84" FontSize="20" RenderTransformOrigin="0.53,2.811" Foreground="Black" FontWeight="Bold" TextAlignment="Right"/>
+                    <Button x:Name="Send_btn" Content="Send" HorizontalAlignment="Left" Margin="218,488,0,0" VerticalAlignment="Top" Width="150" Click="Send_Click"  Background="#FFADDFF8" Foreground="#FF104C5B" FontSize="24" BorderBrush="{x:Null}"/>
+                    <Button x:Name="Cancel_btn" Content="Cancel" HorizontalAlignment="Left" Margin="30,488,0,0" VerticalAlignment="Top" Width="150" Click="Cancel_Click"  Background="#FFADDFF8" Foreground="#FF104C5B" FontSize="24" BorderBrush="{x:Null}"/>
+                    <ListBox x:Name="AutocompleteLb" Margin="126,137,32,322" SelectionChanged="AutocompleteLb_SelectionChange" FontSize="16" Visibility="Collapsed" >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
                                     <TextBlock>
-                    					<Run Text="{Binding fname}"/>
-                    					<Run Text="  "/>
-                    					<Run Text="{Binding lname}"/>
-                    					<Run Text="  "/>
-                    					<Run Text="{Binding position}"/>
+        								<Run Text="{Binding fname}"/>
+        								<Run Text="  "/>
+        								<Run Text="{Binding lname}"/>
+        								<Run Text="  "/>
+        								<Run Text="{Binding position}"/>
                                     </TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <TextBlock x:Name="Reciever_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="640,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
-                    <TextBlock x:Name="Subject_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="640,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
-                    <TextBlock HorizontalAlignment="Left" Margin="22,439,0,0" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Height="35" Width="127" FontSize="30" RenderTransformOrigin="0.53,2.811" Foreground="White" FontWeight="Bold" TextAlignment="Right"/>
-                    <RadioButton x:Name="normalCb" Content="Normal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="177,442,0,0" FontSize="18" Foreground="White" IsChecked="False" Checked="normalCb_Checked"/>
-                    <RadioButton x:Name="importantCb" Content="Important" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="294,442,0,0" FontSize="18" Foreground="White" Checked="importantCb_Checked"/>
-                    <RadioButton x:Name="veryimportantCb" Content="Very important" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="429,442,0,0" FontSize="18" Foreground="White" Checked="veryimportantCb_Checked"/>
-                    <TextBlock x:Name="checkStatus" HorizontalAlignment="Left" TextWrapping="Wrap" Text="*" VerticalAlignment="Top" Margin="44,437,0,0" Foreground="Maroon" FontSize="20" Visibility="Collapsed"/>
+                    <TextBlock x:Name="Reciever_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="192,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
+                    <TextBlock x:Name="Subject_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="192,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
+                    <TextBlock HorizontalAlignment="Left" Margin="20,385,0,0" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Height="35" Width="84" FontSize="20" RenderTransformOrigin="0.53,2.811" Foreground="Black" FontWeight="Bold" TextAlignment="Right"/>
+                    <RadioButton x:Name="normalCb" Content="Normal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,370,0,0" FontSize="18" Foreground="Black" IsChecked="False" Checked="normalCb_Checked"/>
+                    <RadioButton x:Name="importantCb" Content="Important" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,401,0,0" FontSize="18" Foreground="Black" Checked="importantCb_Checked"/>
+                    <RadioButton x:Name="veryimportantCb" Content="Very important" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,432,0,0" FontSize="18" Foreground="Black" Checked="veryimportantCb_Checked"/>
+                    <TextBlock x:Name="checkStatus" HorizontalAlignment="Left" TextWrapping="Wrap" Text="*" VerticalAlignment="Top" Margin="109,385,0,0" Foreground="Maroon" FontSize="20" Visibility="Collapsed"/>
                 </Grid>
             </Grid>
-        </ScrollViewer>
+        </Grid>
 
-        <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-7,-7,-13,0" Height="163" HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <TextBlock x:Name="pageTitle1" VerticalAlignment="Top" Text="Message" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="124,30,44,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A" Grid.ColumnSpan="2"/>
-        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="58,31,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
-        <Button Content="New Message" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,20,0" Grid.Row="1" Background="#FFADDFF8" Foreground="#FF104C5B" FontSize="24" Click="Button_Click"/>
+        <!-- Vertical scrolling item list -->
+
+
+        <!-- Details for selected item -->
+        <Button Content="New Message" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,92,45,0" Background="#FFADDFF8" Foreground="#FF104C5B" FontSize="24" Click="Button_Click" Grid.RowSpan="2" BorderBrush="{x:Null}"/>
+        <Grid Margin="38,62,70,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle2" Text="Message" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
+        </Grid>
     </Grid>
 </Page>

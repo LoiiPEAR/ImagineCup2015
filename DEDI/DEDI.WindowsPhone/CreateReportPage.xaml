@@ -23,50 +23,50 @@
             TODO: Content should be placed within the following grid 
                   to show details for the current item
         -->
-        <Grid Grid.Row="1" x:Name="contentRegion">
-            <Grid HorizontalAlignment="Center" Height="550" VerticalAlignment="Center" Width="300">
-                <Image HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="300" Margin="0"/>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Disease" VerticalAlignment="Bottom" FontSize="36" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
-                <Button x:Name="DiseaseBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="500" Click="DiseaseBtn_Click" Margin="0,-2,0,0">
+        <Grid x:Name="contentRegion" Margin="0,109,0,31" Grid.RowSpan="2">
+            <Grid HorizontalAlignment="Center" Height="160" VerticalAlignment="Center" Width="320" Margin="40,165,40,175">
+                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" Width="320" Height="142"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Disease" VerticalAlignment="Bottom" FontSize="20" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
+                <Button x:Name="DiseaseBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="142" Click="DiseaseBtn_Click" Margin="0" BorderBrush="{x:Null}">
                     <Button.Background>
-                        <ImageBrush Stretch="Fill" ImageSource="Assets/disease_btn.png"/>
+                        <ImageBrush Stretch="None" ImageSource="Assets/disease_btn.png"/>
                     </Button.Background>
                 </Button>
             </Grid>
-            <Grid HorizontalAlignment="Left" Height="550" VerticalAlignment="Center" Width="300" Margin="200,39,533,39">
-                <Image HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="300" Margin="0"/>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Disaster" VerticalAlignment="Bottom" FontSize="36" Margin="0" Foreground="#FF00AEC8" FontWeight="Bold"/>
-                <Button x:Name="DisasterBtn" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="708" Click="DisasterBtn_Click" Margin="-62,-3,-62,-155">
+            <Grid HorizontalAlignment="Left" Height="160" VerticalAlignment="Center" Width="320" Margin="40,0,0,340">
+                <Image HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="320" Margin="0"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Disaster" VerticalAlignment="Bottom" FontSize="20" Margin="0" Foreground="#FF00AEC8" FontWeight="Bold"/>
+                <Button x:Name="DisasterBtn" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="142" Click="DisasterBtn_Click" Margin="0" BorderBrush="{x:Null}">
                     <Button.Background>
-                        <ImageBrush Stretch="Fill" ImageSource="Assets/disaster_btn.png"/>
+                        <ImageBrush Stretch="None" ImageSource="Assets/disaster_btn.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Right" Height="160" VerticalAlignment="Center" Width="320" Margin="0,330,40,10">
+                <Image HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="320" Margin="0"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Bottom" FontSize="20" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
+                <Button x:Name="RiskFactorBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="142" Click="RiskFactorBtn_Click" Margin="0" BorderBrush="{x:Null}">
+                    <Button.Foreground>
+                        <ImageBrush Stretch="Fill"/>
+                    </Button.Foreground>
+                    <Button.Background>
+                        <ImageBrush Stretch="None" ImageSource="Assets/risk_btn.png"/>
                     </Button.Background>
                 </Button>
             </Grid>
         </Grid>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Margin="38,62,50,8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="548*"/>
             </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-38,-63,-50.333,-30" Height="163" Width="400"/>
+            <TextBlock x:Name="pageTitle1" Text="Create a new report" Style="{StaticResource HeaderTextBlockStyle}" 
+        		IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="26,-52,53.667,0" Foreground="#FF2D4D5A" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="24"/>
+            <Controls:ImageButton x:Name="backBtn1" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="-29,-52,0,0" Height="35" Width="55" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill"/>
         </Grid>
-        <Image Width="1386" VerticalAlignment="Top" Source="Assets/home_header.png" Margin="-8,-6,-12,0" Height="155" HorizontalAlignment="Left" Grid.RowSpan="2"/>
-        <TextBlock x:Name="pageTitle_Copy" VerticalAlignment="Top" Text="Create a new report" TextWrapping="NoWrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="123,31,37,0" IsHitTestVisible="false" FontSize="48" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-        <Controls:ImageButton x:Name="backBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Margin="57,32,0,0" Height="45" Width="65" Click="backButton_Click" NormalStateImageSource="Assets/back_btn.png" HoverStateImageSource="Assets/back_btn_hover.png" PressedStateImageSource="Assets/back_btn.png" Stretch="Fill">
-            <Grid HorizontalAlignment="Right" Height="550" VerticalAlignment="Center" Width="300" Margin="0,0,-235,-505">
-                <Image HorizontalAlignment="Left" Height="301.612" VerticalAlignment="Top" Width="194" Margin="200.662,-28.841,-94.662,0" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                    <Image.RenderTransform>
-                        <CompositeTransform Rotation="-90"/>
-                    </Image.RenderTransform>
-                </Image>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Bottom" FontSize="36" Margin="0" FontWeight="Bold" Foreground="#FF00AEC8"/>
-                <Button x:Name="RiskFactorBtn" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="708" Click="RiskFactorBtn_Click" Margin="-63,-3,-63,-155">
-                    <Button.Background>
-                        <ImageBrush Stretch="Fill" ImageSource="Assets/risk_btn.png"/>
-                    </Button.Background>
-                </Button>
-            </Grid>
-        </Controls:ImageButton>
     </Grid>
 </Page>

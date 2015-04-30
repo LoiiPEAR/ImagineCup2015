@@ -15,7 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ContactPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateReportPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DashBoard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DateTimePicker.cs" />
