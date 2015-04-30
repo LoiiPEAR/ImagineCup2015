@@ -161,7 +161,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1" d:IsHidden="True">
+                <Grid x:Name="itemDetailTitlePanel" Grid.Row="1" Grid.Column="1">
                     <TextBlock x:Name="itemTitle" Margin="180,150,0,0" Text="{Binding topic}" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="36" FontWeight="Normal" Foreground="White"/>
                     <TextBlock x:Name="itemSubtitle" Text="{Binding sender}" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="20" Margin="180,230,0,-70" Foreground="White"/>
                     <TextBlock Text="{Binding sent_time}" Style="{StaticResource SubtitleTextBlockStyle}" FontSize="18" Margin="180,302,0,-142" Foreground="White"/>

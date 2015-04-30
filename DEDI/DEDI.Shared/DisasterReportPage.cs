@@ -15,13 +15,24 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Notifications;
+#if WINDOWS_PHONE_APP
+using Windows.UI.Xaml.Controls.Maps;
+#endif
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Shapes;
+using Windows.UI;
 
 namespace DEDI
 {
     public sealed partial class DisasterReportPage
     {
         private string disaster = "";
+#if WINDOWS_APP
         DraggablePin pin;
+#endif
+#if WINDOWS_PHONE_APP
+        Grid pin;
+#endif
         Health_Worker user;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -118,6 +129,35 @@ namespace DEDI
             RootObject jsonResponse = list as RootObject;
             AddressTB.Text = jsonResponse.results[0].formatted_address;
 #endif
+#if WINDOWS_PHONE_APP
+            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.ZoomLevel = 10;
+
+            pin = new Grid()
+            {
+                Width = 30,
+                Height = 30,
+                Margin = new Windows.UI.Xaml.Thickness(-12)
+            };
+
+
+            pin.Children.Add(new Ellipse()
+            {
+                Fill = new SolidColorBrush(Colors.Blue),
+                Stroke = new SolidColorBrush(Colors.White),
+                StrokeThickness = 3,
+                Width = 30,
+                Height = 30
+            });
+
+            // Get my current location.
+            Geolocator myGeolocator = new Geolocator();
+            Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
+            Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
+            MapControl.SetLocation(pin, myGeocoordinate.Point);
+            myMap.Center = myGeocoordinate.Point;
+            myMap.Children.Add(pin);
+#endif
         }
 
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
@@ -143,7 +183,22 @@ namespace DEDI
            }
 #endif
         }
-
+#if WINDOWS_PHONE_APP
+        private async void MapControl_MapTapped(MapControl sender, MapInputEventArgs args)
+        {
+            var client = new HttpClient();
+            Geopoint location = args.Location;
+            MapControl.SetLocation(pin, location);
+            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+            var response = await client.GetAsync(Uri);
+            var result = await response.Content.ReadAsStringAsync();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+            var list = serializer.ReadObject(ms);
+            RootObject jsonResponse = list as RootObject;
+            AddressTB.Text = jsonResponse.results[0].formatted_address;
+        }
+#endif
 
 
 
@@ -170,14 +225,20 @@ namespace DEDI
             }
             else
             {
-#if WINDOWS_APP
+
                 SubmitBtn.IsEnabled = false;
                 Disaster_Report d = new Disaster_Report()
                 {
                     disaster = this.disaster,
                     description = DescriptionTb.Text,
+#if WINDOW_APP
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
+#endif
+#if WINDOWS_PHONE_APP
+                    longitude = MapControl.GetLocation(pin).Position.Longitude,
+                    latitude = MapControl.GetLocation(pin).Position.Latitude,
+#endif
                     ocurred_time = DatePicker.Date.UtcDateTime,
                     hw_id = user.id,
                     reported_time = DateTime.Now.Date
@@ -185,7 +246,7 @@ namespace DEDI
                 IMobileServiceTable<Disaster_Report> hwTable = App.MobileService.GetTable<Disaster_Report>();
                 await hwTable.InsertAsync(d);
                 this.Frame.Navigate(typeof(ReportsView),user);
-#endif
+
             }
         }
     }

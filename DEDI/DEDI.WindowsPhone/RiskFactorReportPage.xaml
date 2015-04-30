@@ -34,7 +34,7 @@
                 <Controls:ImageButton x:Name="PoorSanitationBtn" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,210,80,0" Width="100" Height="100" Click="PoorsanitationBtn_Click" Stretch="Fill" NormalStateImageSource="Assets/sanitation_btn.png" HoverStateImageSource="Assets/sanitation_btn_pressed.png" PressedStateImageSource="Assets/sanitation_btn_pressed.png"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Risk Factor" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="30,30,0,0" Foreground="#FF2B5360"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="30,350,0,0" Foreground="#FF2B5360"/>
-                <Maps:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="340" Height="250" Margin="30,400,0,0"/>
+                <Maps:MapControl MapTapped="MapControl_MapTapped" x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="340" Height="250" Margin="30,400,0,0"/>
                 <Button x:Name="SubmitBtn" Content="Submit" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="24" Click="SubmitBtn_Click" Background="#FFADDFF8" Foreground="#FF104C5B" Margin="0,1050,30,0"/>
                 <TextBlock x:Name="Type_errorTbl" Foreground="Maroon" HorizontalAlignment="Left" Margin="194,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="176" TextAlignment="Right" />
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,670,0,0" Foreground="#FF2B5360"/>

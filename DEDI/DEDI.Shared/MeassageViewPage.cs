@@ -47,9 +47,7 @@ namespace DEDI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             sendGrid.Visibility = Visibility.Visible;
-#if WINDOWS_APP
             itemDetailTitlePanel.Visibility = Visibility.Collapsed;
-#endif
 #if WINDOWS_PHONE_APP
             itemListView.Visibility = Visibility.Collapsed;
 #endif
@@ -58,8 +56,9 @@ namespace DEDI
         private void itemListView_GotFocus(object sender, RoutedEventArgs e)
         {
             sendGrid.Visibility = Visibility.Collapsed;
-#if WINDOWS_APP
             itemDetailTitlePanel.Visibility = Visibility.Visible;
+#if WINDOWS_PHONE_APP
+            itemListView.Visibility = Visibility.Collapsed;
 #endif
         }
 
@@ -180,6 +179,15 @@ namespace DEDI
             getXML = getTemplate.GetElementsByTagName("image");
             return new ToastNotification(getTemplate);
         }
+
+#if WINDOWS_PHONE_APP
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            sendGrid.Visibility = Visibility.Collapsed;
+            itemDetailTitlePanel.Visibility = Visibility.Collapsed;
+            itemListView.Visibility = Visibility.Visible;
+        }
+#endif
         
     }
 

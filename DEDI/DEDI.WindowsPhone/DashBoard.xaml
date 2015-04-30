@@ -28,7 +28,7 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
         <ScrollViewer HorizontalAlignment="Left" Height="640" VerticalAlignment="Top" Width="400" HorizontalScrollBarVisibility="Auto">
-            <Grid Height="640" Width="1562" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <Grid Height="640" ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="1028">
                 <Grid Margin="0,90,515,-27">
                     <maps:MapControl x:Name="myMap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="397" Height="400" Margin="30,100,0,0"/>
                     <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
@@ -37,12 +37,12 @@
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
                     <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="30,30,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
                 </Grid>
-                <Grid Margin="431,-18,-1331,0">
-                    <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,300,0,0" Source="Assets/total_case_lt_10.png"/>
-                    <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,300,0,0" Source="Assets/patients.png"/>
-                    <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,300,0,0" Source="Assets/prediction_case.png"/>
-                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="431" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,180,0,0"/>
-                    <ScrollViewer HorizontalAlignment="Left" Height="431" VerticalAlignment="Top" Width="320" Margin="730,180,0,0">
+                <Grid Margin="431,-18,0,0">
+                    <Image HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="170" Margin="40,115,0,0" Source="Assets/total_case_lt_10.png"/>
+                    <Image HorizontalAlignment="Left" Height="152" VerticalAlignment="Top" Width="152" Margin="51,313,0,0" Source="Assets/patients.png"/>
+                    <Image HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="171" Margin="40,471,0,0" Source="Assets/prediction_case.png"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="431" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="248,180,0,0"/>
+                    <ScrollViewer HorizontalAlignment="Left" Height="431" VerticalAlignment="Top" Width="320" Margin="248,180,0,0">
                         <ListView x:Name="ReportLv" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="320">
                             <ListView.ItemTemplate>
                                 <DataTemplate >
@@ -134,20 +134,20 @@
                         </Charting:Chart>
 
                     </Grid>
-                    <TextBlock x:Name="NoOfCasesTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="128,411,0,0" FontWeight="Bold" FontSize="24" Foreground="#FF6DC39F" TextAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cases" VerticalAlignment="Top" Margin="110,437,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patients" VerticalAlignment="Top" Margin="315,280,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold"/>
-                    <TextBlock x:Name="NoOfFemaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="297,455,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                    <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="351,455,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                    <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="407,455,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,378,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="581,378,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,399,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Salmonella" VerticalAlignment="Top" Margin="581,400,0,0" Foreground="#FF2E4E5B" FontSize="16" FontWeight="Bold"/>
-                    <TextBlock x:Name="NoCholeraTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="542,339,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                    <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,339,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                    <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,424,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                    <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="542,424,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                    <TextBlock x:Name="NoOfCasesTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="112,209,0,0" FontWeight="Bold" FontSize="18" Foreground="#FF6DC39F" TextAlignment="Center" Height="25" Width="30"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cases" VerticalAlignment="Top" Margin="100,231,0,0" Foreground="#FF00AEC8" FontSize="24" FontWeight="Bold" Height="25" Width="50"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Patients" VerticalAlignment="Top" Margin="92,298,0,0" Foreground="#FF00AEC8" FontSize="20" FontWeight="Bold" Height="22" Width="69"/>
+                    <TextBlock x:Name="NoOfFemaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="80,431,0,0" FontWeight="Bold" FontSize="20" Foreground="White" Height="27" Width="35"/>
+                    <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="120,431,0,0" FontWeight="Bold" FontSize="20" Foreground="White" Height="27" Width="36"/>
+                    <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="163,431,0,0" FontWeight="Bold" FontSize="20" Foreground="White" Height="27" Width="35"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="64,538,0,0" Foreground="#FF2E4E5B" FontSize="14" FontWeight="Bold" Height="18" Width="55"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="126,538,0,0" Foreground="#FF2E4E5B" FontSize="14" FontWeight="Bold" Height="18" Width="69"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="64,556,0,0" Foreground="#FF2E4E5B" FontSize="14" FontWeight="Bold" Height="18" Width="57"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Salmonella" VerticalAlignment="Top" Margin="126,557,0,0" Foreground="#FF2E4E5B" FontSize="12" FontWeight="Bold" Height="16" Width="71"/>
+                    <TextBlock x:Name="NoCholeraTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="90,504,0,0" FontWeight="Bold" FontSize="24" Foreground="White" Height="31" Width="42"/>
+                    <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="142,504,0,0" FontWeight="Bold" FontSize="24" Foreground="White" Height="31" Width="42"/>
+                    <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="142,577,0,0" FontWeight="Bold" FontSize="24" Foreground="White" Height="31" Width="42"/>
+                    <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="90,577,0,0" FontWeight="Bold" FontSize="24" Foreground="White" Height="31" Width="42"/>
                 </Grid>
             </Grid>
         </ScrollViewer>

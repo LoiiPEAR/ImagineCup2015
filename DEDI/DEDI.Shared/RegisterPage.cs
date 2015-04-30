@@ -18,15 +18,27 @@ using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+#if WINDOWS_PHONE_APP
+using Windows.UI.Xaml.Controls.Maps;
+#endif
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 namespace DEDI
 {
     public sealed partial class RegisterPage
     {
+#if WINDOWS_APP
+        DraggablePin pin;
+#endif
+#if WINDOWS_PHONE_APP
+        Grid pin;
+#endif
         string gender = "";
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -96,7 +108,7 @@ namespace DEDI
             }
             if (Username_errorTbl.Text == "" && Password_errorTbl.Text == "" && Firstname_errorTbl.Text == "" && Gender_errorTbl.Text==""&&Lastname_errorTbl.Text == "" && Email_errorTbl.Text == "" && Organization_errorTbl.Text == "" && Position_errorTbl.Text == "" )
             {
-#if WINDOWS_APP
+
                 string posItem = (string)PositionCb.SelectedItem;
 
                 string pos_value = posItem;
@@ -108,8 +120,10 @@ namespace DEDI
                     username = UsernameTb.Text,
                     position = pos_value,
                     organization = OrganizationTb.Text,
+#if WINDOWS_APP
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
+#endif
                     email = EmailTb.Text,
                     telephone = TelTb.Text,
                     dob = DOBDpk.Date.UtcDateTime,
@@ -118,7 +132,7 @@ namespace DEDI
                 IMobileServiceTable<Health_Worker> hwTable = App.MobileService.GetTable<Health_Worker>();
                 await hwTable.InsertAsync(user);
                 this.Frame.Navigate(typeof(LogInPage));
-#endif
+
             }
         }
         private void MaleRBtn_Checked(object sender, RoutedEventArgs e)
@@ -188,7 +202,7 @@ namespace DEDI
             }
             else Password_errorTbl.Text = "";
         }
-        DraggablePin pin;
+     
         public async void InitializeMap()
         {
 #if WINDOWS_APP
@@ -226,6 +240,35 @@ namespace DEDI
             RootObject jsonResponse = list as RootObject;
             AddressTbl.Text = jsonResponse.results[0].formatted_address;
 #endif
+#if WINDOWS_PHONE_APP
+            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.ZoomLevel = 10;
+
+            pin = new Grid()
+            {
+                Width = 30,
+                Height = 30,
+                Margin = new Windows.UI.Xaml.Thickness(-12)
+            };
+
+
+            pin.Children.Add(new Ellipse()
+            {
+                Fill = new SolidColorBrush(Colors.Blue),
+                Stroke = new SolidColorBrush(Colors.White),
+                StrokeThickness = 3,
+                Width = 30,
+                Height = 30
+            });
+
+            // Get my current location.
+            Geolocator myGeolocator = new Geolocator();
+            Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
+            Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
+            MapControl.SetLocation(pin, myGeocoordinate.Point);
+            myMap.Center = myGeocoordinate.Point;
+            myMap.Children.Add(pin);
+#endif
         }
 
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
@@ -251,7 +294,22 @@ namespace DEDI
             }
 #endif
         }
-
+#if WINDOWS_PHONE_APP
+        private async void MapControl_MapTapped(MapControl sender, MapInputEventArgs args)
+        {
+            var client = new HttpClient();
+            Geopoint location = args.Location;
+            MapControl.SetLocation(pin, location);
+            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+            var response = await client.GetAsync(Uri);
+            var result = await response.Content.ReadAsStringAsync();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+            var list = serializer.ReadObject(ms);
+            RootObject jsonResponse = list as RootObject;
+            AddressTbl.Text = jsonResponse.results[0].formatted_address;
+        }
+#endif
        
 
         

@@ -173,7 +173,7 @@
             </Grid>
             <ScrollViewer x:Name="LocationNTime" HorizontalAlignment="Right" Height="465" VerticalAlignment="Top" Width="400" Visibility="Collapsed">
                 <Grid Height="835">
-                    <Maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="250" Margin="30,70,30,0"/>
+                    <Maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" MapTapped="MapControl_MapTapped" Width="340" Height="250" Margin="30,70,30,0"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,30,0,0" Foreground="#FF2B5360"/>
                     <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,335,30,0" FontSize="14" MinWidth="100" Width="340" Height="60" Foreground="#FF00AEC8"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="30,405,0,0" Foreground="#FF2B5360"/>

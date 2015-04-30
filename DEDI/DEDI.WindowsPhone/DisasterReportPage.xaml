@@ -36,7 +36,7 @@
                 <Controls:ImageButton x:Name="VocanicEruptionBtn" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="100" FontFamily="Global User Interface" Click="VolcanicEruptionBtn_Click" NormalStateImageSource="Assets/volcanic_btn.png" HoverStateImageSource="Assets/volcanic_btn_pressed.png" PressedStateImageSource="Assets/volcanic_btn_pressed.png" Stretch="Fill" Margin="0,210,30,0"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disaster" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Margin="30,30,0,0" Foreground="#FF2B5360"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Map" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Foreground="#FF2B5360" Margin="30,350,0,0"/>
-                <Maps:MapControl x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="250" Margin="30,400,30,-99"/>
+                <Maps:MapControl MapTapped="MapControl_MapTapped" x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="250" Margin="30,400,30,-99"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2B5360" Margin="30,670,0,-145"/>
                 <TextBlock x:Name="AddressTB" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" MinWidth="100" Width="340" Height="60" Foreground="#FF00AEC8" Margin="0,700,30,-210"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF2B5360" Margin="30,770,0,0"/>

@@ -42,52 +42,23 @@
         </Grid.RowDefinitions>
 
         <!-- Horizontal scrolling grid -->
-        <GridView
-			x:Name="itemGridView"
-			AutomationProperties.AutomationId="ItemGridView"
-			AutomationProperties.Name="Grouped Items"
-			Grid.RowSpan="2"
-			Padding="116,137,40,46"
-			ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-			SelectionMode="None"
-			IsSwipeEnabled="false">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Width="250" Height="250">
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        </Border>
-                        <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
-                            <TextBlock Text="{Binding fname}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
-                            <TextBlock Text="{Binding email}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid GroupPadding="0,0,70,0"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,0,0,2">
-                                <Button Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
-									AutomationProperties.Name="Group Title"
-									Style="{StaticResource TextBlockButtonStyle}" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Key}" Margin="0,-11,10,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-                                        <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-11,0,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </GridView.GroupStyle>
-        </GridView>
+
+        <!-- Back button and page title -->
+        <Grid Grid.RowSpan="2" Margin="0,90,0,0">
+            <Grid HorizontalAlignment="Left" Width="175" Margin="35,100,0,365" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <CompositeTransform ScaleY="-1"/>
+                </Grid.RenderTransform>
+                <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock Text="{Binding fname}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
+                    <TextBlock Text="{Binding email}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                </StackPanel>
+            </Grid>
+            <ScrollViewer HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="340" Margin="30,90,0,0">
+                <Grid Width="340"/>
+            </ScrollViewer>
+
+        </Grid>
 
         <!-- Back button and page title -->
         <Grid Margin="38,62,50,8">

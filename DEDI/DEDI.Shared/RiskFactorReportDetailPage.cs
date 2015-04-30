@@ -7,11 +7,17 @@ using System.IO;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Windows.Devices.Geolocation;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+#if WINDOWS_PHONE_APP
+using Windows.UI.Xaml.Controls.Maps;
+#endif
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 namespace DEDI
 {
@@ -62,6 +68,36 @@ namespace DEDI
             var list = serializer.ReadObject(ms);
             RootObject jsonResponse = list as RootObject;
             AddressTB.Text = jsonResponse.results[0].formatted_address;
+#endif
+#if WINDOWS_PHONE_APP
+            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.ZoomLevel = 10;
+
+
+            var pin = new Grid()
+            {
+                Width = 30,
+                Height = 30,
+                Margin = new Windows.UI.Xaml.Thickness(-12)
+            };
+
+
+            pin.Children.Add(new Ellipse()
+            {
+                Fill = new SolidColorBrush(Colors.Blue),
+                Stroke = new SolidColorBrush(Colors.White),
+                StrokeThickness = 3,
+                Width = 30,
+                Height = 30
+            });
+
+
+            BasicGeoposition location = new BasicGeoposition();
+            location.Latitude = report.latitude;
+            location.Longitude = report.longitude;
+            MapControl.SetLocation(pin, new Geopoint(location));
+            myMap.Center =  new Geopoint(location);
+            myMap.Children.Add(pin);
 #endif
         }
         private void backButton_Click(object sender, RoutedEventArgs e)

@@ -11,6 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEDI.Windows", "DEDI\DEDI.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEDI.WindowsPhone", "DEDI\DEDI.WindowsPhone\DEDI.WindowsPhone.csproj", "{01CD7821-C05A-4483-9950-D159AA181DE0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{CBDB37D7-1415-4EA1-9D91-171D28C483D3}"
+	ProjectSection(SolutionItems) = preProject
+		Build.proj = Build.proj
+		.build\MSBuild.Community.Tasks.dll = .build\MSBuild.Community.Tasks.dll
+		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		DEDI\DEDI.Shared\DEDI.Shared.projitems*{c9a08454-c66c-4181-ad8f-0acaa49c6ff5}*SharedItemsImports = 13

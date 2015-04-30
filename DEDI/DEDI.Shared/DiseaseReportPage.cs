@@ -18,6 +18,12 @@ using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls;
 using SQLite;
 using Windows.UI.Popups;
+#if WINDOWS_PHONE_APP
+using Windows.UI.Xaml.Controls.Maps;
+#endif
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
+using Windows.UI;
 
 namespace DEDI
 {
@@ -35,7 +41,12 @@ namespace DEDI
         string latestGender = "M";
         List<Symptom> symtoms;
         private Health_Worker user;
+#if WINDOWS_APP
         DraggablePin pin;
+#endif
+#if WINDOWS_PHONE_APP
+        Grid pin;
+#endif
         string stoolfrequency = "";
         string stooltype = "";
         string stoolnature = "";
@@ -570,6 +581,10 @@ namespace DEDI
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
 #endif
+#if WINDOWS_PHONE_APP
+                    longitude = MapControl.GetLocation(pin).Position.Longitude,
+                    latitude = MapControl.GetLocation(pin).Position.Latitude,
+#endif
                     reported_time = DateTime.Today,
                     ocurred_time = DatePicker.Date.UtcDateTime,
                     patient_id = p.id,
@@ -741,6 +756,35 @@ namespace DEDI
             RootObject jsonResponse = list as RootObject;
             AddressTB.Text = jsonResponse.results[0].formatted_address;
 #endif
+#if WINDOWS_PHONE_APP
+            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.ZoomLevel = 10;
+
+            pin = new Grid()
+            {
+                Width = 30,
+                Height = 30,
+                Margin = new Windows.UI.Xaml.Thickness(-12)
+            };
+
+
+            pin.Children.Add(new Ellipse()
+            {
+                Fill = new SolidColorBrush(Colors.Blue),
+                Stroke = new SolidColorBrush(Colors.White),
+                StrokeThickness = 3,
+                Width = 30,
+                Height = 30
+            });
+
+            // Get my current location.
+            Geolocator myGeolocator = new Geolocator();
+            Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
+            Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
+            MapControl.SetLocation(pin, myGeocoordinate.Point);
+            myMap.Center = myGeocoordinate.Point;
+            myMap.Children.Add(pin);
+#endif
         }
 
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
@@ -766,9 +810,22 @@ namespace DEDI
             }
 #endif
         }
-
-
-
+#if WINDOWS_PHONE_APP
+        private async void MapControl_MapTapped(MapControl sender, MapInputEventArgs args)
+        {
+            var client = new HttpClient();
+            Geopoint location = args.Location;
+            MapControl.SetLocation(pin, location);
+            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+            var response = await client.GetAsync(Uri);
+            var result = await response.Content.ReadAsStringAsync();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+            var list = serializer.ReadObject(ms);
+            RootObject jsonResponse = list as RootObject;
+            AddressTB.Text = jsonResponse.results[0].formatted_address;
+        }
+#endif
 
 #if WINDOWS_APP
         private async void Pin_Dragged(Bing.Maps.Location obj)
