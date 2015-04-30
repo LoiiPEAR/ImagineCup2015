@@ -220,35 +220,39 @@ namespace DEDI
 
        private async void pushpinTapped(object sender, TappedRoutedEventArgs e)
        {
-           MessageDialog dialog;
-           var disaster_reports = await App.MobileService.GetTable<Disaster_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
-           if (disaster_reports.Count > 0)
+           try
            {
-               string Title = disaster_reports[0].disaster;
-               string Content = disaster_reports[0].description + "\n" + disaster_reports[0].ocurred_time.Date;
-               dialog = new MessageDialog(Content, Title);
-               await dialog.ShowAsync();
+               MessageDialog dialog;
+               var disaster_reports = await App.MobileService.GetTable<Disaster_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+               if (disaster_reports.Count > 0)
+               {
+                   string Title = disaster_reports[0].disaster;
+                   string Content = disaster_reports[0].description + "\n" + disaster_reports[0].ocurred_time.Date;
+                   dialog = new MessageDialog(Content, Title);
+                   await dialog.ShowAsync();
 
-           }
-           var d = await App.MobileService.GetTable<Disease_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
-           if (d.Count > 0)
-           {
-               //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
-               string Title = "Probability of this disease report";
-               string Content = "Cholera: " + Math.Round((d[0].cholera * 100), 2) + " %" + "\n" + "Shigella: " + Math.Round((d[0].shigella * 100), 2) + " %" + "\n" + "Salmoella: " + Math.Round((d[0].salmonella * 100), 2) + " %" + "\n" + "Rotavirus: " + Math.Round((d[0].rotavirus * 100), 2) + " %" + "\n" + "Others: " + Math.Round((d[0].others * 100), 2) + " %" + "\n\n" + d[0].ocurred_time.Date;
-               dialog = new MessageDialog(Content, Title);
-               await dialog.ShowAsync();
+               }
+               var d = await App.MobileService.GetTable<Disease_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+               if (d.Count > 0)
+               {
+                   //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
+                   string Title = "Probability of this disease report";
+                   string Content = "Cholera: " + Math.Round((d[0].cholera * 100), 2) + " %" + "\n" + "Shigella: " + Math.Round((d[0].shigella * 100), 2) + " %" + "\n" + "Salmoella: " + Math.Round((d[0].salmonella * 100), 2) + " %" + "\n" + "Rotavirus: " + Math.Round((d[0].rotavirus * 100), 2) + " %" + "\n" + "Others: " + Math.Round((d[0].others * 100), 2) + " %" + "\n\n" + d[0].ocurred_time.Date;
+                   dialog = new MessageDialog(Content, Title);
+                   await dialog.ShowAsync();
 
-           }
-           var rf_reports = await App.MobileService.GetTable<Risk_Factor_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
-           if (rf_reports.Count > 0)
-           {
-               string Title = rf_reports[0].risk_factor;
-               string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
-               dialog = new MessageDialog(Content, Title);
-               await dialog.ShowAsync();
+               }
+               var rf_reports = await App.MobileService.GetTable<Risk_Factor_Report>().Where(r => r.id == ((Pushpin)sender).Name).ToListAsync();
+               if (rf_reports.Count > 0)
+               {
+                   string Title = rf_reports[0].risk_factor;
+                   string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
+                   dialog = new MessageDialog(Content, Title);
+                   await dialog.ShowAsync();
 
+               }
            }
+            catch (Exception ex) { }
 
 
        }

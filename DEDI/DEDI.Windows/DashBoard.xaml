@@ -78,15 +78,15 @@
                                         <DataTemplate >
                                             <Grid x:Name="ProbReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="220">
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Margin="20,20,0,0" FontSize="16" FontWeight="Bold" FontFamily="Global User Interface"/>
-                                                <Rectangle x:Name="CholeraBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding CholeraWidth}"/>
+                                                <Rectangle x:Name="CholeraBar" Fill="#FFFEC644" HorizontalAlignment="Left" Height="25" Margin="30,54,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="{Binding CholeraWidth}"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,55,0,0" FontSize="16" FontStyle="Italic"/>
-                                                <Rectangle x:Name="ShigellaBar" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,86,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding ShigellaWidth}"/>
+                                                <Rectangle x:Name="ShigellaBar" Fill="#FF6DC39F" HorizontalAlignment="Left" Height="25" Margin="30,86,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="{Binding ShigellaWidth}"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,87,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
                                                 <TextBlock x:Name="CholeraPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding CholeraPercent}" VerticalAlignment="Top" Margin="0,58,30,0" FontSize="16" FontFamily="Global User Interface"/>
                                                 <TextBlock x:Name="ShigellaPercentTbl" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding ShigellaPercent}" VerticalAlignment="Top" Margin="0,90,30,0" FontSize="16"/>
-                                                <Rectangle  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,118,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding SalmonellaWidth}"/>
+                                                <Rectangle  Fill="#FF00AEC8" HorizontalAlignment="Left" Height="25" Margin="30,118,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="{Binding SalmonellaWidth}"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="36,119,0,0" FontSize="16" FontStyle="Italic"/>
-                                                <Rectangle  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="25" Margin="30,150,0,0" Stroke="Black" VerticalAlignment="Top" Width="{Binding RotavirusWidth}"/>
+                                                <Rectangle  Fill="#FFEE514A" HorizontalAlignment="Left" Height="25" Margin="30,150,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="{Binding RotavirusWidth}"/>
                                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="36,151,0,0" FontSize="16" FontStyle="Italic" FontFamily="Global User Interface"/>
                                                 <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding SalmonellaPercent}" VerticalAlignment="Top" Margin="0,118,30,0" FontSize="16" FontFamily="Global User Interface"/>
                                                 <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding RotavirusPercent}" VerticalAlignment="Top" Margin="0,150,30,0" FontSize="16"/>
@@ -101,22 +101,9 @@
                                 <Charting:Chart x:Name="NoOfCasesChart" Margin="0,10,0,0">
                                     <Charting:Chart.Palette>
                                         <Charting:ResourceDictionaryCollection>
-                                            <!-- Blue -->
+                                            <!-- Yellow -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
-                                                <Style x:Key="DataPointStyle" TargetType="Control">
-                                                    <Setter Property="Background" Value="{StaticResource Background}" />
-                                                </Style>
-                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
-                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                                    <Setter  Property="StrokeThickness" Value="2" />
-                                                    <Setter Property="StrokeMiterLimit" Value="1" />
-                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
-                                                </Style>
-                                            </ResourceDictionary>
-                                            <!-- Red -->
-                                            <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
+                                                <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>
@@ -127,9 +114,9 @@
                                                     <Setter Property="Fill" Value="{StaticResource Background}" />
                                                 </Style>
                                             </ResourceDictionary>
-                                            <!-- Yellow -->
+                                            <!-- Red -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
+                                                <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>
@@ -153,14 +140,25 @@
                                                     <Setter Property="Fill" Value="{StaticResource Background}" />
                                                 </Style>
                                             </ResourceDictionary>
+                                            <!-- Blue -->
+                                            <ResourceDictionary>
+                                                <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
+                                                <Style x:Key="DataPointStyle" TargetType="Control">
+                                                    <Setter Property="Background" Value="{StaticResource Background}" />
+                                                </Style>
+                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                                    <Setter  Property="StrokeThickness" Value="2" />
+                                                    <Setter Property="StrokeMiterLimit" Value="1" />
+                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
+                                                </Style>
+                                            </ResourceDictionary>
                                         </Charting:ResourceDictionaryCollection>
                                     </Charting:Chart.Palette>
-                                    <Charting:ColumnSeries Title="All" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                     <Charting:ColumnSeries Title="Cholera" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                     <Charting:ColumnSeries Title="Rotavirus" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                     <Charting:ColumnSeries Title="Shigella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Typhoid" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
-                                    <Charting:ColumnSeries Title="Others" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Salmonella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                 </Charting:Chart>
 
                             </Grid>

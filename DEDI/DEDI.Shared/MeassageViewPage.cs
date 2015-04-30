@@ -26,16 +26,21 @@ namespace DEDI
 
         private async void loadContact()
         {
-            contact = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.id != user.id).ToListAsync();
+            try
+            {
+                contact = await App.MobileService.GetTable<Health_Worker>().Where(hw => hw.id != user.id).ToListAsync();
 
-            List<MessageItem> list = new List<MessageItem>();
-            List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
-            foreach(Message m in msg){
-                List<Health_Worker> hw = await App.MobileService.GetTable<Health_Worker>().Where(h => h.id==m.hw_sender_id).ToListAsync();
-                Health_Worker sender = hw[0];
-                list.Add(new MessageItem() { topic = m.topic, content = m.content, sender = hw[0].fname + " " + hw[0].lname + " (" + hw[0].position + ")", sent_time = m.sent_time, sender_id = hw[0].id, status = m.status });
+                List<MessageItem> list = new List<MessageItem>();
+                List<Message> msg = await App.MobileService.GetTable<Message>().Where(r => r.hw_receiver_id == user.id).ToListAsync();
+                foreach (Message m in msg)
+                {
+                    List<Health_Worker> hw = await App.MobileService.GetTable<Health_Worker>().Where(h => h.id == m.hw_sender_id).ToListAsync();
+                    Health_Worker sender = hw[0];
+                    list.Add(new MessageItem() { topic = m.topic, content = m.content, sender = hw[0].fname + " " + hw[0].lname + " (" + hw[0].position + ")", sent_time = m.sent_time, sender_id = hw[0].id, status = m.status });
+                }
+                itemsViewSource.Source = list;
             }
-            itemsViewSource.Source = list;
+            catch (Exception e) { }
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -107,33 +112,37 @@ namespace DEDI
         }
         private async void Send_Click(object sender, RoutedEventArgs e)
         {
-            Send_btn.IsEnabled = false;
-            if (rec == null)
+            try
             {
-                Reciever_errorTbl.Text = "Receiver is invalid";
-                Send_btn.IsEnabled = true;
-            }
-            if (rec != null && (normalCb.IsChecked == true || importantCb.IsChecked == true || veryimportantCb.IsChecked == true))
-            {
-                Message m = new Message()
+                Send_btn.IsEnabled = false;
+                if (rec == null)
                 {
-                    topic = TopicTb.Text,
-                    hw_receiver_id = rec.id,
-                    hw_sender_id = user.id,
-                    content = ContentTb.Text,
-                    sent_time = DateTime.Today,
-                    status = this.status
-                };
-                IMobileServiceTable<Message> msgTable = App.MobileService.GetTable<Message>();
-                await msgTable.InsertAsync(m);
-                
-                this.Frame.Navigate(typeof(HomePage), user);
+                    Reciever_errorTbl.Text = "Receiver is invalid";
+                    Send_btn.IsEnabled = true;
+                }
+                if (rec != null && (normalCb.IsChecked == true || importantCb.IsChecked == true || veryimportantCb.IsChecked == true))
+                {
+                    Message m = new Message()
+                    {
+                        topic = TopicTb.Text,
+                        hw_receiver_id = rec.id,
+                        hw_sender_id = user.id,
+                        content = ContentTb.Text,
+                        sent_time = DateTime.Today,
+                        status = this.status
+                    };
+                    IMobileServiceTable<Message> msgTable = App.MobileService.GetTable<Message>();
+                    await msgTable.InsertAsync(m);
+
+                    this.Frame.Navigate(typeof(HomePage), user);
+                }
+                else
+                {
+                    checkStatus.Visibility = Visibility.Visible;
+                    Send_btn.IsEnabled = true;
+                }
             }
-            else {
-                checkStatus.Visibility = Visibility.Visible;
-                Send_btn.IsEnabled = true;
-            }
-            
+            catch (Exception ex) { }
         }
 
         private void normalCb_Checked(object sender, RoutedEventArgs e)

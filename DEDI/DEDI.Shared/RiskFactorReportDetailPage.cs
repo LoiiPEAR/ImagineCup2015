@@ -35,18 +35,23 @@ namespace DEDI
         }
         private async void loaddata()
         {
-            user = reportdetail.hw;
-            report = reportdetail.report;
-            DescriptionTb.Text = report.description;
-            dateTb.Text = report.ocurred_time+"";
-            RiskFactorImage.Source = report.icon;
-            TypeTb.Text = report.risk_factor;
-            var hw = await App.MobileService.GetTable<Health_Worker>().Where(r => r.id == report.hw_id).ToListAsync();
-            NameTb.Text = hw[0].fname + " " + hw[0].lname;
-            
+            try
+            {
+                user = reportdetail.hw;
+                report = reportdetail.report;
+                DescriptionTb.Text = report.description;
+                dateTb.Text = report.ocurred_time + "";
+                RiskFactorImage.Source = report.icon;
+                TypeTb.Text = report.risk_factor;
+                var hw = await App.MobileService.GetTable<Health_Worker>().Where(r => r.id == report.hw_id).ToListAsync();
+                NameTb.Text = hw[0].fname + " " + hw[0].lname;
+            }
+            catch (Exception e) { }
         }
         private async void InitializeMap()
         {
+            try
+            {
 #if WINDOWS_APP
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 17;
@@ -70,35 +75,37 @@ namespace DEDI
             AddressTB.Text = jsonResponse.results[0].formatted_address;
 #endif
 #if WINDOWS_PHONE_APP
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 10;
+                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.ZoomLevel = 10;
 
 
-            var pin = new Grid()
-            {
-                Width = 30,
-                Height = 30,
-                Margin = new Windows.UI.Xaml.Thickness(-12)
-            };
+                var pin = new Grid()
+                {
+                    Width = 30,
+                    Height = 30,
+                    Margin = new Windows.UI.Xaml.Thickness(-12)
+                };
 
 
-            pin.Children.Add(new Ellipse()
-            {
-                Fill = new SolidColorBrush(Colors.Blue),
-                Stroke = new SolidColorBrush(Colors.White),
-                StrokeThickness = 3,
-                Width = 30,
-                Height = 30
-            });
+                pin.Children.Add(new Ellipse()
+                {
+                    Fill = new SolidColorBrush(Colors.Blue),
+                    Stroke = new SolidColorBrush(Colors.White),
+                    StrokeThickness = 3,
+                    Width = 30,
+                    Height = 30
+                });
 
 
-            BasicGeoposition location = new BasicGeoposition();
-            location.Latitude = report.latitude;
-            location.Longitude = report.longitude;
-            MapControl.SetLocation(pin, new Geopoint(location));
-            myMap.Center =  new Geopoint(location);
-            myMap.Children.Add(pin);
+                BasicGeoposition location = new BasicGeoposition();
+                location.Latitude = report.latitude;
+                location.Longitude = report.longitude;
+                MapControl.SetLocation(pin, new Geopoint(location));
+                myMap.Center = new Geopoint(location);
+                myMap.Children.Add(pin);
 #endif
+            }
+            catch (Exception e) { }
         }
         private void backButton_Click(object sender, RoutedEventArgs e)
         {

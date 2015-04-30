@@ -53,6 +53,8 @@ namespace DEDI
         }
         private async void InitializeMap()
         {
+            try
+            {
 #if WINDOWS_APP
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 10;
@@ -88,49 +90,55 @@ namespace DEDI
             AddressTB.Text = jsonResponse.results[0].formatted_address;
 #endif
 #if WINDOWS_PHONE_APP
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 10;
+                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.ZoomLevel = 10;
 
-            pin = new Grid()
-            {
-                Width = 30,
-                Height = 30,
-                Margin = new Windows.UI.Xaml.Thickness(-12)
-            };
+                pin = new Grid()
+                {
+                    Width = 30,
+                    Height = 30,
+                    Margin = new Windows.UI.Xaml.Thickness(-12)
+                };
 
 
-            pin.Children.Add(new Ellipse()
-            {
-                Fill = new SolidColorBrush(Colors.Blue),
-                Stroke = new SolidColorBrush(Colors.White),
-                StrokeThickness = 3,
-                Width = 30,
-                Height = 30
-            });
+                pin.Children.Add(new Ellipse()
+                {
+                    Fill = new SolidColorBrush(Colors.Blue),
+                    Stroke = new SolidColorBrush(Colors.White),
+                    StrokeThickness = 3,
+                    Width = 30,
+                    Height = 30
+                });
 
-            // Get my current location.
-            Geolocator myGeolocator = new Geolocator();
-            Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
-            Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
-            MapControl.SetLocation(pin, myGeocoordinate.Point);
-            myMap.Center = myGeocoordinate.Point;
-            myMap.Children.Add(pin);
+                // Get my current location.
+                Geolocator myGeolocator = new Geolocator();
+                Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
+                Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
+                MapControl.SetLocation(pin, myGeocoordinate.Point);
+                myMap.Center = myGeocoordinate.Point;
+                myMap.Children.Add(pin);
 #endif
+            }
+            catch (Exception e) { }
         }
 #if WINDOWS_PHONE_APP
         private async void MapControl_MapTapped(MapControl sender, MapInputEventArgs args)
         {
-            var client = new HttpClient();
-            Geopoint location = args.Location;
-            MapControl.SetLocation(pin, location);
-            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-            var response = await client.GetAsync(Uri);
-            var result = await response.Content.ReadAsStringAsync();
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
-            var list = serializer.ReadObject(ms);
-            RootObject jsonResponse = list as RootObject;
-            AddressTB.Text = jsonResponse.results[0].formatted_address;
+            try
+            {
+                var client = new HttpClient();
+                Geopoint location = args.Location;
+                MapControl.SetLocation(pin, location);
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                var list = serializer.ReadObject(ms);
+                RootObject jsonResponse = list as RootObject;
+                AddressTB.Text = jsonResponse.results[0].formatted_address;
+            }
+            catch (Exception e) { }
         }
 #endif
         private void changeBG()
@@ -170,6 +178,8 @@ namespace DEDI
         }
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
         {
+            try
+            {
 #if WINDOWS_APP
             var pointerPosition = e.GetCurrentPoint(((Map)sender));
 
@@ -190,6 +200,8 @@ namespace DEDI
                 AddressTB.Text = jsonResponse.results[0].formatted_address;
             }
 #endif
+            }
+            catch (Exception ex) { }
         }
 
 

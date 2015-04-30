@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)FollowingPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)google_api.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InternetChecker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MeassageViewPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MyDisasterReportDetailPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MyDiseaseReportDetailPage.cs" />

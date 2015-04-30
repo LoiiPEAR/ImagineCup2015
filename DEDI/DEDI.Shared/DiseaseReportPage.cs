@@ -472,246 +472,250 @@ namespace DEDI
         }
         private async void Submit_Click(object sender, RoutedEventArgs e)
         {
-            string error_msg = " is required*";
-            Submit.IsEnabled = false;
-            if (ShowNameTbl.Text == "")
+            try
             {
-                errorTbl.Text = "Patient name" + error_msg;
-            }
-            else if (ShowTelTbl.Text=="")
-            {
-                errorTbl.Text = "Patient telephone" + error_msg;
-            }
-            else if (OtherRBtn.IsChecked == true && OtherTb.Text == "")
-            {
-                errorTbl.Text = "Patient location" + error_msg;
-            }
-   
-            else if (addSymptom.Items.Count == 0)
-            {
-                errorTbl.Text = "Symptom" + error_msg;
-            }
-            else
-            {
-                
-                string patient_location = "";
-                if (CurrentLocationRBtn.IsChecked == true)
+                string error_msg = " is required*";
+                Submit.IsEnabled = false;
+                if (ShowNameTbl.Text == "")
                 {
-                    patient_location = AddressTB.Text;
+                    errorTbl.Text = "Patient name" + error_msg;
                 }
-                else patient_location = OtherTb.Text;
-                double h =0;
-                double w = 0;
-                if (ShowWeightTbl.Text != "") w =Convert.ToDouble(ShowWeightTbl.Text);
-                if (ShowHeightTbl.Text != "") h = Convert.ToDouble(ShowHeightTbl.Text);
-                IMobileServiceTable<Patient> pTable = App.MobileService.GetTable<Patient>();
-                Patient p = new Patient()
+                else if (ShowTelTbl.Text == "")
                 {
-                    name = ShowNameTbl.Text,
-                    address = patient_location,
-                    dob = DOBDpk.Date.UtcDateTime,
-                    gender = latestGender,
-                    height =h,
-                    weight = w,
-                    telephone = ShowTelTbl.Text
-                };
-                await pTable.InsertAsync(p);
-
-                var bTable = await App.MobileService.GetTable<Bayesian_Prob>().Where(bp => bp.id == "0002D6DB-71B6-4C2F-BCD6-AAD4710B6662").ToListAsync();
-                string empty = bTable[0].Fever;
-                string stool_frequency_per_day = empty;
-                string nature_of_stool = empty;
-                string stool_type = empty;
-                string skin_turgor = "delay 2 5s";
-                string urine_output = empty;
-                string thirst = empty;
-                string fever = empty;
-                string vomiting = empty;
-                string skin_temperature = empty;
-                string eyes = empty;
-
-                foreach (Symptom item in addSymptom.Items)
-                {
-                    if (item.symptom == "Diarrhea")
-                    {
-                        stool_frequency_per_day = stoolfrequency;
-                        nature_of_stool = stoolnature;
-                        stool_type = stooltype;
-                    }
-                    else if (item.symptom == "Decreased skin turgor")
-                    {
-                        skin_turgor = skinturgor;
-                    }
-                    else if (item.symptom == "Reduced urine")
-                    {
-                        urine_output = urine;
-                    }
-                    else if (item.symptom == "Thirst")
-                    {
-                        thirst = thirststate;
-                    }
-                    else if (item.symptom == "Fever")
-                    {
-                        fever = "present";
-                    }
-                    else if (item.symptom == "Vomiting")
-                    {
-                        vomiting = "present";
-                    }
-                    else if (item.symptom == "Cold skin")
-                    {
-                        skin_temperature = "cold";
-                    }
-                    else if (item.symptom == "Sunken eyes")
-                    {
-                        eyes = "sunken";
-                    }
+                    errorTbl.Text = "Patient telephone" + error_msg;
                 }
-                var Prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(prob => prob.Stool_Frequency_per_Day == stool_frequency_per_day && prob.Stool_Type == stool_type && prob.Nature_of_Stool == nature_of_stool
-                    && prob.Skin_Turgor == skin_turgor && prob.Urine_Output == urine_output && prob.Thirst == thirst && prob.Fever == fever && prob.Vomiting == vomiting && prob.Skin_Temperature == skin_temperature && prob.Eyes == eyes
-                    && prob.Food == empty && prob.Water == empty).ToListAsync();
-
-                IMobileServiceTable<Disease_Report> dTable = App.MobileService.GetTable<Disease_Report>();
-
-                Disease_Report d = new Disease_Report()
+                else if (OtherRBtn.IsChecked == true && OtherTb.Text == "")
                 {
-                    description = DescriptionTb.Text,
-                    hw_id = user.id,
+                    errorTbl.Text = "Patient location" + error_msg;
+                }
+
+                else if (addSymptom.Items.Count == 0)
+                {
+                    errorTbl.Text = "Symptom" + error_msg;
+                }
+                else
+                {
+
+                    string patient_location = "";
+                    if (CurrentLocationRBtn.IsChecked == true)
+                    {
+                        patient_location = AddressTB.Text;
+                    }
+                    else patient_location = OtherTb.Text;
+                    double h = 0;
+                    double w = 0;
+                    if (ShowWeightTbl.Text != "") w = Convert.ToDouble(ShowWeightTbl.Text);
+                    if (ShowHeightTbl.Text != "") h = Convert.ToDouble(ShowHeightTbl.Text);
+                    IMobileServiceTable<Patient> pTable = App.MobileService.GetTable<Patient>();
+                    Patient p = new Patient()
+                    {
+                        name = ShowNameTbl.Text,
+                        address = patient_location,
+                        dob = DOBDpk.Date.UtcDateTime,
+                        gender = latestGender,
+                        height = h,
+                        weight = w,
+                        telephone = ShowTelTbl.Text
+                    };
+                    await pTable.InsertAsync(p);
+
+                    var bTable = await App.MobileService.GetTable<Bayesian_Prob>().Where(bp => bp.id == "0002D6DB-71B6-4C2F-BCD6-AAD4710B6662").ToListAsync();
+                    string empty = bTable[0].Fever;
+                    string stool_frequency_per_day = empty;
+                    string nature_of_stool = empty;
+                    string stool_type = empty;
+                    string skin_turgor = "delay 2 5s";
+                    string urine_output = empty;
+                    string thirst = empty;
+                    string fever = empty;
+                    string vomiting = empty;
+                    string skin_temperature = empty;
+                    string eyes = empty;
+
+                    foreach (Symptom item in addSymptom.Items)
+                    {
+                        if (item.symptom == "Diarrhea")
+                        {
+                            stool_frequency_per_day = stoolfrequency;
+                            nature_of_stool = stoolnature;
+                            stool_type = stooltype;
+                        }
+                        else if (item.symptom == "Decreased skin turgor")
+                        {
+                            skin_turgor = skinturgor;
+                        }
+                        else if (item.symptom == "Reduced urine")
+                        {
+                            urine_output = urine;
+                        }
+                        else if (item.symptom == "Thirst")
+                        {
+                            thirst = thirststate;
+                        }
+                        else if (item.symptom == "Fever")
+                        {
+                            fever = "present";
+                        }
+                        else if (item.symptom == "Vomiting")
+                        {
+                            vomiting = "present";
+                        }
+                        else if (item.symptom == "Cold skin")
+                        {
+                            skin_temperature = "cold";
+                        }
+                        else if (item.symptom == "Sunken eyes")
+                        {
+                            eyes = "sunken";
+                        }
+                    }
+                    var Prob = await App.MobileService.GetTable<Bayesian_Prob>().Where(prob => prob.Stool_Frequency_per_Day == stool_frequency_per_day && prob.Stool_Type == stool_type && prob.Nature_of_Stool == nature_of_stool
+                        && prob.Skin_Turgor == skin_turgor && prob.Urine_Output == urine_output && prob.Thirst == thirst && prob.Fever == fever && prob.Vomiting == vomiting && prob.Skin_Temperature == skin_temperature && prob.Eyes == eyes
+                        && prob.Food == empty && prob.Water == empty).ToListAsync();
+
+                    IMobileServiceTable<Disease_Report> dTable = App.MobileService.GetTable<Disease_Report>();
+
+                    Disease_Report d = new Disease_Report()
+                    {
+                        description = DescriptionTb.Text,
+                        hw_id = user.id,
 #if WINDOWS_APP
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
 #endif
 #if WINDOWS_PHONE_APP
-                    longitude = MapControl.GetLocation(pin).Position.Longitude,
-                    latitude = MapControl.GetLocation(pin).Position.Latitude,
+                        longitude = MapControl.GetLocation(pin).Position.Longitude,
+                        latitude = MapControl.GetLocation(pin).Position.Latitude,
 #endif
-                    reported_time = DateTime.Today,
-                    ocurred_time = DatePicker.Date.UtcDateTime,
-                    patient_id = p.id,
-                    prob_id = Prob[0].id,
-                    cholera = Prob[0].Cholera,
-                    salmonella = Prob[0].Samonella,
-                    rotavirus = Prob[0].Rotavirus,
-                    shigella = Prob[0].Shigella,
-                    others = Prob[0].Others
-                };
-                await dTable.InsertAsync(d);
+                        reported_time = DateTime.Today,
+                        ocurred_time = DatePicker.Date.UtcDateTime,
+                        patient_id = p.id,
+                        prob_id = Prob[0].id,
+                        cholera = Prob[0].Cholera,
+                        salmonella = Prob[0].Samonella,
+                        rotavirus = Prob[0].Rotavirus,
+                        shigella = Prob[0].Shigella,
+                        others = Prob[0].Others
+                    };
+                    await dTable.InsertAsync(d);
 
-                IMobileServiceTable<Reported_Symptom> rTable = App.MobileService.GetTable<Reported_Symptom>();
-                foreach (Symptom item in addSymptom.Items)
-                {
-                    if (item.symptom == "Diarrhea")
+                    IMobileServiceTable<Reported_Symptom> rTable = App.MobileService.GetTable<Reported_Symptom>();
+                    foreach (Symptom item in addSymptom.Items)
                     {
-                        Reported_Symptom r = new Reported_Symptom()
+                        if (item.symptom == "Diarrhea")
                         {
-                            disease_report_id = d.id,
-                            symptom = "stool_frequency_per_day",
-                            intensity = stoolfrequency
-                        };
-                        await rTable.InsertAsync(r);
-                        r = new Reported_Symptom()
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "stool_frequency_per_day",
+                                intensity = stoolfrequency
+                            };
+                            await rTable.InsertAsync(r);
+                            r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "nature_of_stool",
+                                intensity = stoolnature
+                            };
+                            await rTable.InsertAsync(r);
+                            r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "stool_type",
+                                intensity = stooltype
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Decreased skin turgor")
                         {
-                            disease_report_id = d.id,
-                            symptom = "nature_of_stool",
-                            intensity = stoolnature
-                        };
-                        await rTable.InsertAsync(r);
-                        r = new Reported_Symptom()
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "skin_turgor",
+                                intensity = skinturgor
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Reduced urine")
                         {
-                            disease_report_id = d.id,
-                            symptom = "stool_type",
-                            intensity = stooltype
-                        };
-                        await rTable.InsertAsync(r);
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "urine_output",
+                                intensity = urine
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Thirst")
+                        {
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "thirst",
+                                intensity = thirststate
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Fever")
+                        {
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "fever",
+                                intensity = "present"
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Vomiting")
+                        {
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "vomiting",
+                                intensity = "present"
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Cold skin")
+                        {
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "skin_temperature",
+                                intensity = "cold"
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+                        else if (item.symptom == "Sunken eyes")
+                        {
+                            Reported_Symptom r = new Reported_Symptom()
+                            {
+                                disease_report_id = d.id,
+                                symptom = "eyes",
+                                intensity = "sunken"
+                            };
+                            await rTable.InsertAsync(r);
+                        }
+
                     }
-                    else if (item.symptom == "Decreased skin turgor")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "skin_turgor",
-                            intensity = skinturgor
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    else if (item.symptom == "Reduced urine")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "urine_output",
-                            intensity = urine
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    else if (item.symptom == "Thirst")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "thirst",
-                            intensity = thirststate
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    else if (item.symptom == "Fever")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "fever",
-                            intensity = "present"
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    else if (item.symptom == "Vomiting")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "vomiting",
-                            intensity = "present"
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    else if (item.symptom == "Cold skin")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "skin_temperature",
-                            intensity = "cold"
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    else if (item.symptom == "Sunken eyes")
-                    {
-                        Reported_Symptom r = new Reported_Symptom()
-                        {
-                            disease_report_id = d.id,
-                            symptom = "eyes",
-                            intensity = "sunken"
-                        };
-                        await rTable.InsertAsync(r);
-                    }
-                    
+                    //this.Frame.Navigate(typeof(ReportsView), user);
+
+                    MessageDialog dialog;
+
+                    //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
+                    string Title = "Probability of this disease report";
+                    string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n" + "Others: " + d.others + "\n\n" + d.ocurred_time.Date;
+                    dialog = new MessageDialog(Content, Title);
+                    dialog.Commands.Add(new UICommand(
+                    "OK",
+                    new UICommandInvokedHandler(this.GotoReportPage)));
+                    await dialog.ShowAsync();
+
                 }
-                //this.Frame.Navigate(typeof(ReportsView), user);
-
-                MessageDialog dialog;
-                
-                //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
-                string Title = "Probability of this disease report";
-                string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n" + "Others: " + d.others+ "\n\n" + d.ocurred_time.Date;
-                dialog = new MessageDialog(Content, Title);
-                dialog.Commands.Add(new UICommand(
-                "OK",
-                new UICommandInvokedHandler(this.GotoReportPage)));
-                await dialog.ShowAsync();
-
+                this.Frame.Navigate(typeof(ReportsView), user);
+                Submit.IsEnabled = true;
             }
-            this.Frame.Navigate(typeof(ReportsView), user);
-            Submit.IsEnabled = true;
+            catch (Exception ex) { }
         }
 
         private void GotoReportPage(IUICommand command)
@@ -721,7 +725,8 @@ namespace DEDI
        
         public async void InitializeMap()
         {
-
+            try
+            {
 #if WINDOWS_APP
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 10;
@@ -757,38 +762,42 @@ namespace DEDI
             AddressTB.Text = jsonResponse.results[0].formatted_address;
 #endif
 #if WINDOWS_PHONE_APP
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 10;
+                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.ZoomLevel = 10;
 
-            pin = new Grid()
-            {
-                Width = 30,
-                Height = 30,
-                Margin = new Windows.UI.Xaml.Thickness(-12)
-            };
+                pin = new Grid()
+                {
+                    Width = 30,
+                    Height = 30,
+                    Margin = new Windows.UI.Xaml.Thickness(-12)
+                };
 
 
-            pin.Children.Add(new Ellipse()
-            {
-                Fill = new SolidColorBrush(Colors.Blue),
-                Stroke = new SolidColorBrush(Colors.White),
-                StrokeThickness = 3,
-                Width = 30,
-                Height = 30
-            });
+                pin.Children.Add(new Ellipse()
+                {
+                    Fill = new SolidColorBrush(Colors.Blue),
+                    Stroke = new SolidColorBrush(Colors.White),
+                    StrokeThickness = 3,
+                    Width = 30,
+                    Height = 30
+                });
 
-            // Get my current location.
-            Geolocator myGeolocator = new Geolocator();
-            Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
-            Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
-            MapControl.SetLocation(pin, myGeocoordinate.Point);
-            myMap.Center = myGeocoordinate.Point;
-            myMap.Children.Add(pin);
+                // Get my current location.
+                Geolocator myGeolocator = new Geolocator();
+                Geoposition myGeoposition = await myGeolocator.GetGeopositionAsync();
+                Geocoordinate myGeocoordinate = myGeoposition.Coordinate;
+                MapControl.SetLocation(pin, myGeocoordinate.Point);
+                myMap.Center = myGeocoordinate.Point;
+                myMap.Children.Add(pin);
 #endif
+            }
+            catch (Exception e) { }
         }
 
         private async void myMap_PointerPressedOverride(object sender, PointerRoutedEventArgs e)
         {
+            try
+            {
 #if WINDOWS_APP
             var pointerPosition = e.GetCurrentPoint(((Map)sender));
 
@@ -809,37 +818,46 @@ namespace DEDI
                 AddressTB.Text = jsonResponse.results[0].formatted_address;
             }
 #endif
+            }
+            catch (Exception ex) { }
         }
 #if WINDOWS_PHONE_APP
         private async void MapControl_MapTapped(MapControl sender, MapInputEventArgs args)
         {
-            var client = new HttpClient();
-            Geopoint location = args.Location;
-            MapControl.SetLocation(pin, location);
-            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-            var response = await client.GetAsync(Uri);
-            var result = await response.Content.ReadAsStringAsync();
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
-            var list = serializer.ReadObject(ms);
-            RootObject jsonResponse = list as RootObject;
-            AddressTB.Text = jsonResponse.results[0].formatted_address;
+            try
+            {
+                var client = new HttpClient();
+                Geopoint location = args.Location;
+                MapControl.SetLocation(pin, location);
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + location.Position.Latitude + "," + location.Position.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                var list = serializer.ReadObject(ms);
+                RootObject jsonResponse = list as RootObject;
+                AddressTB.Text = jsonResponse.results[0].formatted_address;
+            }
+            catch (Exception e) { }
         }
 #endif
 
 #if WINDOWS_APP
         private async void Pin_Dragged(Bing.Maps.Location obj)
         {
-
-            var client = new HttpClient();
-            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + obj.Latitude + "," + obj.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-            var response = await client.GetAsync(Uri);
-            var result = await response.Content.ReadAsStringAsync();
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
-            var list = serializer.ReadObject(ms);
-            RootObject jsonResponse = list as RootObject;
-            AddressTB.Text = jsonResponse.results[0].formatted_address;
+            try
+            {
+                var client = new HttpClient();
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + obj.Latitude + "," + obj.Longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                var list = serializer.ReadObject(ms);
+                RootObject jsonResponse = list as RootObject;
+                AddressTB.Text = jsonResponse.results[0].formatted_address;
+            }
+            catch (Exception e) { }
         }
 #endif
     }

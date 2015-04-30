@@ -34,18 +34,23 @@ namespace DEDI
         }
         private async void loaddata()
         {
-            user = reportdetail.hw;
-            report = reportdetail.report;
-            DescriptionTb.Text = report.description;
-            dateTb.Text = report.ocurred_time + "";
-            DisasterImage.Source = report.icon;
-            TypeTb.Text = report.disaster;
-            var hw = await App.MobileService.GetTable<Health_Worker>().Where(r => r.id == report.hw_id).ToListAsync();
-            NameTb.Text = hw[0].fname + " " + hw[0].lname;
-
+            try
+            {
+                user = reportdetail.hw;
+                report = reportdetail.report;
+                DescriptionTb.Text = report.description;
+                dateTb.Text = report.ocurred_time + "";
+                DisasterImage.Source = report.icon;
+                TypeTb.Text = report.disaster;
+                var hw = await App.MobileService.GetTable<Health_Worker>().Where(r => r.id == report.hw_id).ToListAsync();
+                NameTb.Text = hw[0].fname + " " + hw[0].lname;
+            }
+            catch (Exception e) { }
         }
         private async void InitializeMap()
         {
+            try
+            {
 #if WINDOWS_APP
             myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
             myMap.ZoomLevel = 17;
@@ -58,29 +63,29 @@ namespace DEDI
             myMap.Center = new Bing.Maps.Location(report.latitude, report.longitude);
 #endif
 
-            var client = new HttpClient();
-            Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-            var response = await client.GetAsync(Uri);
-            var result = await response.Content.ReadAsStringAsync();
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
-            var list = serializer.ReadObject(ms);
-            RootObject jsonResponse = list as RootObject;
-            AddressTB.Text = jsonResponse.results[0].formatted_address;
+                var client = new HttpClient();
+                Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                var response = await client.GetAsync(Uri);
+                var result = await response.Content.ReadAsStringAsync();
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RootObject));
+                var list = serializer.ReadObject(ms);
+                RootObject jsonResponse = list as RootObject;
+                AddressTB.Text = jsonResponse.results[0].formatted_address;
 
 #if WINDOWS_PHONE_APP
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 10;
+                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.ZoomLevel = 10;
 
 
-            var pin = new Grid()
-            {
-                Width = 30,
-                Height = 30,
-                Margin = new Windows.UI.Xaml.Thickness(-12)
-            };
+                var pin = new Grid()
+                {
+                    Width = 30,
+                    Height = 30,
+                    Margin = new Windows.UI.Xaml.Thickness(-12)
+                };
 
-          
+
                 pin.Children.Add(new Ellipse()
                 {
                     Fill = new SolidColorBrush(Colors.Blue),
@@ -89,17 +94,18 @@ namespace DEDI
                     Width = 30,
                     Height = 30
                 });
-            
-            
-            BasicGeoposition location =new BasicGeoposition();
-            location.Latitude = report.latitude;
-            location.Longitude = report.longitude;
-            MapControl.SetLocation(pin, new Geopoint(location));
-            myMap.Center = new Geopoint(location);
-            myMap.Children.Add(pin);
-#endif
-        
 
+
+                BasicGeoposition location = new BasicGeoposition();
+                location.Latitude = report.latitude;
+                location.Longitude = report.longitude;
+                MapControl.SetLocation(pin, new Geopoint(location));
+                myMap.Center = new Geopoint(location);
+                myMap.Children.Add(pin);
+#endif
+
+            }
+            catch (Exception e) { }
 
         }
         private void backButton_Click(object sender, RoutedEventArgs e)
