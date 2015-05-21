@@ -48,12 +48,21 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="450" Margin="90,250,90,0"/>
-                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
-                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
+                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="326" Margin="90,250,90,0"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,680,0,0" Foreground="#FF2D4D5A"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,720,0,0" Foreground="#FF2D4D5A"/>
                             <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,180,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+                            <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="199,676,0,0" VerticalAlignment="Top"/>
+                            <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="199,716,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="AllBtn" Content="All" HorizontalAlignment="Left" Margin="196,595,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="CholeraBtn" Content="Cholera" HorizontalAlignment="Left" Margin="259,595,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="RotavirusBtn" Content="Rotavirus" HorizontalAlignment="Left" Margin="358,595,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="SalmonellaBtn" Content="Salmonella" HorizontalAlignment="Left" Margin="466,595,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="ShigellaBtn" Content="Shigella" HorizontalAlignment="Left" Margin="585,595,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="OtherBtn" Content="Other" HorizontalAlignment="Left" Margin="683,595,0,0" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disease" VerticalAlignment="Top" FontSize="20" Margin="90,602,0,0" Foreground="#FF2D4D5A"/>
+                            <Slider x:Name="ProbabilitySider" HorizontalAlignment="Left" Margin="199,633,0,0" VerticalAlignment="Top" Width="554" LargeChange="1" Value="50"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Probability" VerticalAlignment="Top" FontSize="20" Margin="90,641,0,0" Foreground="#FF2D4D5A"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
