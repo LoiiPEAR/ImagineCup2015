@@ -21,6 +21,7 @@ using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI;
 using System.Linq;
 using Windows.UI.Xaml.Shapes;
+using Windows.UI.Xaml.Controls.Primitives;
 #if WINDOWS_PHONE_APP
 using Windows.UI.Xaml.Controls.Maps;
 #endif
@@ -33,6 +34,12 @@ namespace DEDI
         double shigella = 0;
         double rotavirus = 0;
         double salmonella = 0;
+        int check_cholera = 0;
+        int check_shigella = 0;
+        int check_rotavirus = 0;
+        int check_salmonella = 0;
+        int check_other = 0;
+
 #if WINDOWS_APP
         Map myMap;
 #endif
@@ -51,8 +58,10 @@ namespace DEDI
         string user_postcode;
         private async void loaddata()
         {
+            
             try
             {
+                
                 var client = new HttpClient();
                 Uri Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
                 var response = await client.GetAsync(Uri);
@@ -113,6 +122,10 @@ namespace DEDI
                    
                    
                 }
+                var today = DateTime.Today;
+                var month = new DateTime(today.Year, today.Month - 1, 1);
+                DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
+                startdate.Date = month;
 #if WINDOWS_APP
                 TextBlock NoOfChildTbl = FindChildControl<TextBlock>(PredictionSection, "NoOfChildTbl") as TextBlock;
 #endif
@@ -129,19 +142,19 @@ namespace DEDI
 #if WINDOWS_APP
                 TextBlock NoCholeraTbl = FindChildControl<TextBlock>(PredictionSection, "NoCholeraTbl") as TextBlock;
 #endif
-                NoCholeraTbl.Text = Math.Floor(cholera) + "";
+                NoCholeraTbl.Text = Math.Round(cholera) + "";
 #if WINDOWS_APP
                 TextBlock NoShigellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoShigellaTbl") as TextBlock;
 #endif
-                NoShigellaTbl.Text = Math.Floor(shigella) + "";
+                NoShigellaTbl.Text = Math.Round(shigella) + "";
 #if WINDOWS_APP
                 TextBlock NoRotaTbl = FindChildControl<TextBlock>(PredictionSection, "NoRotaTbl") as TextBlock;
 #endif
-                NoRotaTbl.Text = Math.Floor(rotavirus) + "";
+                NoRotaTbl.Text = Math.Round(rotavirus) + "";
 #if WINDOWS_APP
                 TextBlock NoSalmonellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoSalmonellaTbl") as TextBlock;
 #endif
-                NoSalmonellaTbl.Text = Convert.ToInt32(salmonella) + "";
+                NoSalmonellaTbl.Text = Math.Round(salmonella) + "";
 #if WINDOWS_APP
                 ListView ReportLv = FindChildControl<ListView>(PredictionSection, "ReportLv") as ListView;
 #endif
@@ -154,13 +167,15 @@ namespace DEDI
 #if WINDOWS_APP
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
                 myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-                myMap.ZoomLevel = 17;
+                myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadgraph();
+                ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+                AllBtn.IsChecked = true;
+                loadDisease();
                 loadDisaster();
                 loadRF();
-                loadDisease();
 #endif
 #if WINDOWS_PHONE_APP
                 InitializeMap();
@@ -275,22 +290,21 @@ namespace DEDI
             try
             {
                 var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
-                if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
-                {
+               
                     var client = new HttpClient();
                     foreach (Disaster_Report report in reports)
                     {
-                        var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                        var response = await client.GetAsync(Uri);
-                        var result = await response.Content.ReadAsStringAsync();
-                        var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                        var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                        var list = serializer.ReadObject(ms);
-                        var jsonResponse = list as RootObject;
-                        string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                        //var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                        //var response = await client.GetAsync(Uri);
+                        //var result = await response.Content.ReadAsStringAsync();
+                        //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                        //var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                        //var list = serializer.ReadObject(ms);
+                        //var jsonResponse = list as RootObject;
+                        //string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
 
-                        if (postcode == user_postcode)
-                        {
+                        //if (postcode == user_postcode)
+                        //{
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                             pushpin.Name = report.id;
@@ -298,23 +312,10 @@ namespace DEDI
                             pushpin.Background = new SolidColorBrush(Colors.GreenYellow);
                             MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                             myMap.Children.Add(pushpin);
-                        }
+                        //}
                     }
 
-                }
-                else
-                {
-                    foreach (Disaster_Report report in reports)
-                    {
-                        Pushpin pushpin = new Pushpin();
-                        pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                        pushpin.Name = report.id;
-
-                        pushpin.Background = new SolidColorBrush(Colors.GreenYellow);
-                        MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                        myMap.Children.Add(pushpin);
-                    }
-                }
+                
             }
             catch (Exception e) { }
 
@@ -324,21 +325,20 @@ namespace DEDI
             try
             {
                 var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
-                if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
-                {
+                
                     var client = new HttpClient();
                     foreach (Risk_Factor_Report report in reports)
                     {
-                        var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                        var response = await client.GetAsync(Uri);
-                        var result = await response.Content.ReadAsStringAsync();
-                        var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                        var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                        var list = serializer.ReadObject(ms);
-                        var jsonResponse = list as RootObject;
-                        string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
-                        if (postcode == user_postcode)
-                        {
+                        //var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                        //var response = await client.GetAsync(Uri);
+                        //var result = await response.Content.ReadAsStringAsync();
+                        //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                        //var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                        //var list = serializer.ReadObject(ms);
+                        //var jsonResponse = list as RootObject;
+                        //string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                        //if (postcode == user_postcode)
+                        //{
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
 
@@ -346,23 +346,11 @@ namespace DEDI
                             pushpin.Name = report.id;
                             MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                             myMap.Children.Add(pushpin);
-                        }
+                        //}
                     }
 
-                }
-                else
-                {
-                    foreach (Risk_Factor_Report report in reports)
-                    {
-                        Pushpin pushpin = new Pushpin();
-                        pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                        pushpin.Name = report.id;
-
-                        pushpin.Background = new SolidColorBrush(Colors.Blue);
-                        MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                        myMap.Children.Add(pushpin);
-                    }
-                }
+                
+                
             }
             catch (Exception e) { }
         }
@@ -371,46 +359,44 @@ namespace DEDI
         {
             try
             {
+                myMap.Children.Clear();
+
                 var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
-                if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
-                {
+                Slider Prob = FindChildControl<Slider>(ResponsibleAreaSection, "ProbabilitySider") as Slider;
+            
                     var client = new HttpClient();
                     foreach (Disease_Report report in reports)
                     {
-                        var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                        var response = await client.GetAsync(Uri);
-                        var result = await response.Content.ReadAsStringAsync();
-                        var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                        var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                        var list = serializer.ReadObject(ms);
-                        var jsonResponse = list as RootObject;
-                        string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
-                        if (postcode == user_postcode)
-                        {
-                            Pushpin pushpin = new Pushpin();
-                            pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                            pushpin.Name = report.id;
+                        //var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                        //var response = await client.GetAsync(Uri);
+                        //var result = await response.Content.ReadAsStringAsync();
+                        //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                        //var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                        //var list = serializer.ReadObject(ms);
+                        //var jsonResponse = list as RootObject;
+                        //string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                        //if (postcode == user_postcode)
+                        //{
+                        DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
+                        DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
+                
+                            if(((check_cholera ==1 && report.cholera>Prob.Value/100)||
+                                (check_rotavirus == 1 && report.rotavirus > Prob.Value / 100) ||
+                                (check_salmonella ==1 && report.salmonella>Prob.Value/100)||
+                                (check_shigella ==1 && report.shigella>Prob.Value/100)||
+                                (check_other ==1 && report.others>Prob.Value/100))&&
+                                report.ocurred_time<enddate.Date&&report.ocurred_time>startdate.Date){
+                                    Pushpin pushpin = new Pushpin();
+                                    pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                                    pushpin.Name = report.id;
 
-                            pushpin.Background = new SolidColorBrush(Colors.DeepPink);
-                            MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                            myMap.Children.Add(pushpin);
-                        }
+                                    pushpin.Background = new SolidColorBrush(Colors.DeepPink);
+                                    MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                                    myMap.Children.Add(pushpin);
+                            }
+                           
+                        //}
                     }
-
-                }
-                else
-                {
-                    foreach (Disease_Report report in reports)
-                    {
-                        Pushpin pushpin = new Pushpin();
-                        pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                        pushpin.Name = report.id;
-
-                        pushpin.Background = new SolidColorBrush(Colors.DeepPink);
-                        MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                        myMap.Children.Add(pushpin);
-                    }
-                }
             }
             catch (Exception e) { }
 
@@ -455,13 +441,149 @@ namespace DEDI
             catch (Exception ex) { }
 
         }
+        private void AllBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+            ToggleButton CholeraBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "CholeraBtn") as ToggleButton;
+            ToggleButton RotavirusBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "RotavirusBtn") as ToggleButton;
+            ToggleButton SalmonellaBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "SalmonellaBtn") as ToggleButton;
+            ToggleButton ShigellaBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "ShigellaBtn") as ToggleButton;
+            ToggleButton OtherBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "OtherBtn") as ToggleButton;
+            AllBtn.IsEnabled = false;
+            CholeraBtn.IsChecked = false;
+            RotavirusBtn.IsChecked = false;
+            SalmonellaBtn.IsChecked = false;
+            ShigellaBtn.IsChecked = false;
+            OtherBtn.IsChecked = false;
+            check_cholera = 1;
+            check_other = 1;
+            check_rotavirus = 1;
+            check_salmonella = 1;
+            check_shigella =  1;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void CholeraBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+            AllBtn.IsChecked = false;
+            AllBtn.IsEnabled = true;
+            check_cholera = 1;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void RotavirusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+            AllBtn.IsChecked = false;
+            AllBtn.IsEnabled = true;
+            check_rotavirus = 1;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void SalmonellaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+            AllBtn.IsChecked = false;
+            AllBtn.IsEnabled = true;
+            check_salmonella = 1;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void ShigellaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+            AllBtn.IsChecked = false;
+            AllBtn.IsEnabled = true;
+            check_shigella = 1;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void OtherBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
+            AllBtn.IsChecked = false;
+            AllBtn.IsEnabled = true;
+            check_other = 1;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+        private void OtherBtn_unClick(object sender, RoutedEventArgs e)
+        {
+            check_other = 0;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void ShigellaBtn_unClick(object sender, RoutedEventArgs e)
+        {
+            check_shigella = 0;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void SalmonellaBtn_unClick(object sender, RoutedEventArgs e)
+        {
+            check_salmonella = 0;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void RotavirusBtn_unClick(object sender, RoutedEventArgs e)
+        {
+            check_rotavirus = 0;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void CholeraBtn_unClick(object sender, RoutedEventArgs e)
+        {
+            check_cholera = 0;
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+        private void ProbabilitySider_Change(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+        private void StartDate_Change(object sender, DatePickerValueChangedEventArgs e)
+        {
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
+
+        private void EndDate_Change(object sender, DatePickerValueChangedEventArgs e)
+        {
+            loadDisease();
+            loadDisaster();
+            loadRF();
+        }
 #endif
 #if WINDOWS_PHONE_APP
         public async void InitializeMap()
         {
 
             myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
-            myMap.ZoomLevel = 10;
+            myMap.ZoomLevel = 17;
 
 
             // Get my current location.
@@ -485,26 +607,24 @@ namespace DEDI
             try
             {
                 var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
-                //if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
-                //{
-                //    var client = new HttpClient();
+                var client = new HttpClient();
                 foreach (Disease_Report report in reports)
                 {
-                    //        var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                    //        var response = await client.GetAsync(Uri);
-                    //        var result = await response.Content.ReadAsStringAsync();
-                    //        var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                    //        var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                    //        var list = serializer.ReadObject(ms);
-                    //        var jsonResponse = list as RootObject;
-                    //        string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
-                    //        //if (postcode == user_postcode)
-                    //        //{
-                    AddPushpin(new BasicGeoposition() { Latitude = report.latitude, Longitude = report.longitude }, report.id, "p");
+                            var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                            var response = await client.GetAsync(Uri);
+                            var result = await response.Content.ReadAsStringAsync();
+                            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                            var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                            var list = serializer.ReadObject(ms);
+                            var jsonResponse = list as RootObject;
+                            string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                            if (postcode == user_postcode)
+                            {
+                                AddPushpin(new BasicGeoposition() { Latitude = report.latitude, Longitude = report.longitude }, report.id, "p");
 
-                    //        //}
+                            }
                 }
-                //}
+                
             }
             catch (Exception e) { }
         }
@@ -514,35 +634,26 @@ namespace DEDI
             try
             {
                 var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
-                //if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
-                //{
-                //    var client = new HttpClient();
+                var client = new HttpClient();
                 foreach (Disaster_Report report in reports)
                 {
-                    //var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                    //var response = await client.GetAsync(Uri);
-                    //var result = await response.Content.ReadAsStringAsync();
-                    //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                    //var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                    //var list = serializer.ReadObject(ms);
-                    //var jsonResponse = list as RootObject;
-                    //string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                    var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                    var response = await client.GetAsync(Uri);
+                    var result = await response.Content.ReadAsStringAsync();
+                    var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                    var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                    var list = serializer.ReadObject(ms);
+                    var jsonResponse = list as RootObject;
+                    string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
 
-                    //if (postcode == user_postcode)
-                    //{
+                    if (postcode == user_postcode)
+                    {
                     AddPushpin(new BasicGeoposition() { Latitude = report.latitude, Longitude = report.longitude }, report.id, "g");
 
-                    //}
+                    }
                 }
 
-                //}
-                //else
-                //{
-                //    foreach (Disaster_Report report in reports)
-                //    {
-                //        AddPushpin(new BasicGeoposition() { Latitude = report.latitude, Longitude = report.longitude }, report.id,"g");
-                //    }
-                //}
+               
             }
             catch (Exception e) { }
 
@@ -553,35 +664,25 @@ namespace DEDI
             try
             {
                 var reports = await App.MobileService.GetTable<Risk_Factor_Report>().ToListAsync();
-                //if (user.position == "Village Health Volunteer" || user.position == "Tambon Health Promoting Hospital Officer" || user.position == "District Public Health Officer")
-                //{
-                //    var client = new HttpClient();
+                var client = new HttpClient();
                 foreach (Risk_Factor_Report report in reports)
                 {
-                    //var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + user.latitude + "," + user.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
-                    //var response = await client.GetAsync(Uri);
-                    //var result = await response.Content.ReadAsStringAsync();
-                    //var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-                    //var serializer = new DataContractJsonSerializer(typeof(RootObject));
-                    //var list = serializer.ReadObject(ms);
-                    //var jsonResponse = list as RootObject;
-                    //string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
-                    //if (postcode == user_postcode)
-                    //{
+                    var Uri = new Uri("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + report.latitude + "," + report.longitude + "&key=AIzaSyDeJZgbdA56eyfwk660AZY0HrljWgpRtVc");
+                    var response = await client.GetAsync(Uri);
+                    var result = await response.Content.ReadAsStringAsync();
+                    var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+                    var serializer = new DataContractJsonSerializer(typeof(RootObject));
+                    var list = serializer.ReadObject(ms);
+                    var jsonResponse = list as RootObject;
+                    string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
+                    if (postcode == user_postcode)
+                    {
                     AddPushpin(new BasicGeoposition() { Latitude = report.latitude, Longitude = report.longitude }, report.id, "b");
 
-                    //}
+                    }
                 }
 
-                //}
-                //else
-                //{
-                //    foreach (Risk_Factor_Report report in reports)
-                //    {
-                //        AddPushpin(new BasicGeoposition() { Latitude = report.latitude, Longitude = report.longitude }, report.id,"b");
-
-                //    }
-                //}
+                
             }
             catch (Exception e) { }
         }
