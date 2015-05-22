@@ -39,6 +39,7 @@ namespace DEDI
         int check_rotavirus = 0;
         int check_salmonella = 0;
         int check_other = 0;
+        int check_all = 0;
 
 #if WINDOWS_APP
         Map myMap;
@@ -172,7 +173,18 @@ namespace DEDI
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
                 loadgraph();
                 ToggleButton AllBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "AllBtn") as ToggleButton;
-                AllBtn.IsChecked = true;
+                ToggleButton CholeraBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "CholeraBtn") as ToggleButton;
+                ToggleButton RotavirusBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "RotavirusBtn") as ToggleButton;
+                ToggleButton SalmonellaBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "SalmonellaBtn") as ToggleButton;
+                ToggleButton ShigellaBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "ShigellaBtn") as ToggleButton;
+                ToggleButton OtherBtn = FindChildControl<ToggleButton>(ResponsibleAreaSection, "OtherBtn") as ToggleButton;
+                AllBtn.IsEnabled = false;
+                CholeraBtn.IsChecked = false;
+                RotavirusBtn.IsChecked = false;
+                SalmonellaBtn.IsChecked = false;
+                ShigellaBtn.IsChecked = false;
+                OtherBtn.IsChecked = false;
+                check_all = 1;
                 loadDisease();
                 loadDisaster();
                 loadRF();
@@ -212,10 +224,10 @@ namespace DEDI
 
                 foreach (var report in all)
                 {
-                    Cholera.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)cholera });
-                    Rotavirus.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)rotavirus });
-                    Shigella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)shigella });
-                    Salmonella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)salmonella });
+                    Cholera.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(cholera)});
+                    Rotavirus.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(rotavirus) });
+                    Shigella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(shigella) });
+                    Salmonella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(salmonella) });
                 }
                 //foreach (var report in others)
                 //{
@@ -380,11 +392,11 @@ namespace DEDI
                         DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
                         DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
                 
-                            if(((check_cholera ==1 && report.cholera>Prob.Value/100)||
-                                (check_rotavirus == 1 && report.rotavirus > Prob.Value / 100) ||
-                                (check_salmonella ==1 && report.salmonella>Prob.Value/100)||
-                                (check_shigella ==1 && report.shigella>Prob.Value/100)||
-                                (check_other ==1 && report.others>Prob.Value/100))&&
+                            if((((check_cholera ==1||check_all==1) && report.cholera>Prob.Value/100)||
+                                ((check_rotavirus == 1||check_all==1) && report.rotavirus > Prob.Value / 100) ||
+                                ((check_salmonella ==1||check_all==1) && report.salmonella>Prob.Value/100)||
+                                ((check_shigella ==1||check_all==1) && report.shigella>Prob.Value/100)||
+                                ((check_other ==1||check_all==1) && report.others>Prob.Value/100))&&
                                 report.ocurred_time<enddate.Date&&report.ocurred_time>startdate.Date){
                                     Pushpin pushpin = new Pushpin();
                                     pushpin.Tapped += new TappedEventHandler(pushpinTapped);
@@ -455,11 +467,12 @@ namespace DEDI
             SalmonellaBtn.IsChecked = false;
             ShigellaBtn.IsChecked = false;
             OtherBtn.IsChecked = false;
-            check_cholera = 1;
-            check_other = 1;
-            check_rotavirus = 1;
-            check_salmonella = 1;
-            check_shigella =  1;
+            check_cholera = 0;
+            check_other = 0;
+            check_rotavirus = 0;
+            check_salmonella = 0;
+            check_shigella =  0;
+            check_all = 1;
             loadDisease();
             loadDisaster();
             loadRF();
@@ -471,9 +484,9 @@ namespace DEDI
             AllBtn.IsChecked = false;
             AllBtn.IsEnabled = true;
             check_cholera = 1;
+            check_all = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void RotavirusBtn_Click(object sender, RoutedEventArgs e)
@@ -482,9 +495,9 @@ namespace DEDI
             AllBtn.IsChecked = false;
             AllBtn.IsEnabled = true;
             check_rotavirus = 1;
+            check_all = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void SalmonellaBtn_Click(object sender, RoutedEventArgs e)
@@ -493,9 +506,9 @@ namespace DEDI
             AllBtn.IsChecked = false;
             AllBtn.IsEnabled = true;
             check_salmonella = 1;
+            check_all = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void ShigellaBtn_Click(object sender, RoutedEventArgs e)
@@ -504,9 +517,9 @@ namespace DEDI
             AllBtn.IsChecked = false;
             AllBtn.IsEnabled = true;
             check_shigella = 1;
+            check_all = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void OtherBtn_Click(object sender, RoutedEventArgs e)
@@ -515,67 +528,72 @@ namespace DEDI
             AllBtn.IsChecked = false;
             AllBtn.IsEnabled = true;
             check_other = 1;
+            check_all = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
         private void OtherBtn_unClick(object sender, RoutedEventArgs e)
         {
             check_other = 0;
+            check_all = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void ShigellaBtn_unClick(object sender, RoutedEventArgs e)
         {
             check_shigella = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void SalmonellaBtn_unClick(object sender, RoutedEventArgs e)
         {
             check_salmonella = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void RotavirusBtn_unClick(object sender, RoutedEventArgs e)
         {
             check_rotavirus = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
 
         private void CholeraBtn_unClick(object sender, RoutedEventArgs e)
         {
             check_cholera = 0;
             loadDisease();
-            loadDisaster();
-            loadRF();
+            
         }
         private void ProbabilitySider_Change(object sender, RangeBaseValueChangedEventArgs e)
         {
             loadDisease();
-            loadDisaster();
-            loadRF();
+            if (check_all == 1)
+            {
+                loadDisaster();
+                loadRF();
+            }
         }
         private void StartDate_Change(object sender, DatePickerValueChangedEventArgs e)
         {
             loadDisease();
-            loadDisaster();
-            loadRF();
+            if (check_all == 1)
+            {
+                loadDisaster();
+                loadRF();
+            }
         }
 
         private void EndDate_Change(object sender, DatePickerValueChangedEventArgs e)
         {
             loadDisease();
-            loadDisaster();
-            loadRF();
+            if (check_all == 1)
+            {
+                loadDisaster();
+                loadRF();
+            }
         }
 #endif
 #if WINDOWS_PHONE_APP
