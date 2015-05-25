@@ -48,12 +48,21 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="450" Margin="90,250,90,0"/>
-                            <Slider x:Name="StartDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,640,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
-                            <Slider x:Name="EndDateSlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Margin="190,680,0,0" Background="#FF00AEC7" Visibility="Collapsed"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,649,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,689,0,0" Foreground="#FF2D4D5A" Visibility="Collapsed"/>
+                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="326" Margin="90,250,90,0"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,680,0,0" Foreground="#FF2D4D5A"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,720,0,0" Foreground="#FF2D4D5A"/>
                             <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,180,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+                            <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="199,676,0,0" VerticalAlignment="Top" DateChanged="StartDate_Change"/>
+                            <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="199,716,0,0" VerticalAlignment="Top" DateChanged="EndDate_Change"/>
+                            <ToggleButton x:Name="AllBtn" Content="All" HorizontalAlignment="Left" Margin="196,595,0,0" VerticalAlignment="Top" Click="AllBtn_Click"/>
+                            <ToggleButton x:Name="CholeraBtn" Content="Cholera" HorizontalAlignment="Left" Margin="259,595,0,0" VerticalAlignment="Top" Checked="CholeraBtn_Click" Unchecked="CholeraBtn_unClick"/>
+                            <ToggleButton x:Name="RotavirusBtn" Content="Rotavirus" HorizontalAlignment="Left" Margin="358,595,0,0" VerticalAlignment="Top" Checked="RotavirusBtn_Click" Unchecked="RotavirusBtn_unClick"/>
+                            <ToggleButton x:Name="SalmonellaBtn" Content="Salmonella" HorizontalAlignment="Left" Margin="466,595,0,0" VerticalAlignment="Top" Checked="SalmonellaBtn_Click" Unchecked="SalmonellaBtn_unClick"/>
+                            <ToggleButton x:Name="ShigellaBtn" Content="Shigella" HorizontalAlignment="Left" Margin="585,595,0,0" VerticalAlignment="Top" Checked="ShigellaBtn_Click" Unchecked="ShigellaBtn_unClick"/>
+                            <ToggleButton x:Name="OtherBtn" Content="Other" HorizontalAlignment="Left" Margin="683,595,0,0" VerticalAlignment="Top" Checked="OtherBtn_Click" Unchecked="OtherBtn_unClick"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disease" VerticalAlignment="Top" FontSize="20" Margin="90,602,0,0" Foreground="#FF2D4D5A"/>
+                            <Slider x:Name="ProbabilitySider" HorizontalAlignment="Left" Margin="199,633,0,0" VerticalAlignment="Top" Width="554" LargeChange="1" Value="50" ValueChanged="ProbabilitySider_Change"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Probability" VerticalAlignment="Top" FontSize="20" Margin="90,641,0,0" Foreground="#FF2D4D5A"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
@@ -103,7 +112,7 @@
                                         <Charting:ResourceDictionaryCollection>
                                             <!-- Yellow -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFD6DC3B" />
+                                                <SolidColorBrush x:Key="Background" Color="#FFFEC644" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>
@@ -116,7 +125,7 @@
                                             </ResourceDictionary>
                                             <!-- Red -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFDC443F" />
+                                                <SolidColorBrush x:Key="Background" Color="#FFEE504A" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>
@@ -129,7 +138,7 @@
                                             </ResourceDictionary>
                                             <!-- Green -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FFAAD34F" />
+                                                <SolidColorBrush x:Key="Background" Color="#FF6DC39F" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>
@@ -142,7 +151,7 @@
                                             </ResourceDictionary>
                                             <!-- Blue -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="#FF4586D8" />
+                                                <SolidColorBrush x:Key="Background" Color="#FF00AEC8" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>
@@ -153,12 +162,26 @@
                                                     <Setter Property="Fill" Value="{StaticResource Background}" />
                                                 </Style>
                                             </ResourceDictionary>
+                                            <!-- Grey -->
+                                            <ResourceDictionary>
+                                                <SolidColorBrush x:Key="Background" Color="Gray" />
+                                                <Style x:Key="DataPointStyle" TargetType="Control">
+                                                    <Setter Property="Background" Value="{StaticResource Background}" />
+                                                </Style>
+                                                <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                                    <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                                    <Setter Property="StrokeThickness" Value="2" />
+                                                    <Setter Property="StrokeMiterLimit" Value="1" />
+                                                    <Setter Property="Fill" Value="{StaticResource Background}" />
+                                                </Style>
+                                            </ResourceDictionary>
                                         </Charting:ResourceDictionaryCollection>
                                     </Charting:Chart.Palette>
                                     <Charting:ColumnSeries Title="Cholera" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                     <Charting:ColumnSeries Title="Rotavirus" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                     <Charting:ColumnSeries Title="Shigella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                     <Charting:ColumnSeries Title="Salmonella" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
+                                    <Charting:ColumnSeries Title="Others" IndependentValuePath="date" DependentValuePath="cases" IsSelectionEnabled="True"/>
                                 </Charting:Chart>
 
                             </Grid>
@@ -176,6 +199,8 @@
                             <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="542,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Others" VerticalAlignment="Top" Margin="581,380,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock x:Name="NoOthersTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="642,380,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
