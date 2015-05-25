@@ -823,7 +823,7 @@ namespace DEDI
 
                 }
             }
-            catch (Exception e) { }
+            catch (Exception ex) { }
 
         }
 #endif

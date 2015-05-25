@@ -129,19 +129,19 @@ namespace DEDI
 #if WINDOWS_APP
                 TextBlock NoCholeraTbl = FindChildControl<TextBlock>(PredictionSection, "NoCholeraTbl") as TextBlock;
 #endif
-                NoCholeraTbl.Text = Math.Floor(cholera) + "";
+                NoCholeraTbl.Text = Math.Round(cholera) + "";
 #if WINDOWS_APP
                 TextBlock NoShigellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoShigellaTbl") as TextBlock;
 #endif
-                NoShigellaTbl.Text = Math.Floor(shigella) + "";
+                NoShigellaTbl.Text = Math.Round(shigella) + "";
 #if WINDOWS_APP
                 TextBlock NoRotaTbl = FindChildControl<TextBlock>(PredictionSection, "NoRotaTbl") as TextBlock;
 #endif
-                NoRotaTbl.Text = Math.Floor(rotavirus) + "";
+                NoRotaTbl.Text = Math.Round(rotavirus) + "";
 #if WINDOWS_APP
                 TextBlock NoSalmonellaTbl = FindChildControl<TextBlock>(PredictionSection, "NoSalmonellaTbl") as TextBlock;
 #endif
-                NoSalmonellaTbl.Text = Convert.ToInt32(salmonella) + "";
+                NoSalmonellaTbl.Text = Math.Round(salmonella) + "";
 #if WINDOWS_APP
                 ListView ReportLv = FindChildControl<ListView>(PredictionSection, "ReportLv") as ListView;
 #endif
@@ -197,10 +197,10 @@ namespace DEDI
 
                 foreach (var report in all)
                 {
-                    Cholera.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)cholera });
-                    Rotavirus.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)rotavirus });
-                    Shigella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)shigella });
-                    Salmonella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)salmonella });
+                    Cholera.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(cholera) });
+                    Rotavirus.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(rotavirus) });
+                    Shigella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(shigella) });
+                    Salmonella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(salmonella) });
                 }
                 //foreach (var report in others)
                 //{
@@ -674,7 +674,7 @@ namespace DEDI
 
                 }
             }
-            catch (Exception e) { }
+            catch (Exception ex) { }
 
         }
 #endif
