@@ -165,7 +165,7 @@
                                             </ResourceDictionary>
                                             <!-- Grey -->
                                             <ResourceDictionary>
-                                                <SolidColorBrush x:Key="Background" Color="Gray" />
+                                                <SolidColorBrush x:Key="Background" Color="#FFA9ABAE" />
                                                 <Style x:Key="DataPointStyle" TargetType="Control">
                                                     <Setter Property="Background" Value="{StaticResource Background}" />
                                                 </Style>

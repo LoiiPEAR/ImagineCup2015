@@ -447,20 +447,70 @@ namespace DEDI
                         DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
                         DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
                 
-                            if((((check_cholera ==1||check_all==1) && report.cholera>Prob.Value/100)||
-                                ((check_rotavirus == 1||check_all==1) && report.rotavirus > Prob.Value / 100) ||
-                                ((check_salmonella ==1||check_all==1) && report.salmonella>Prob.Value/100)||
-                                ((check_shigella ==1||check_all==1) && report.shigella>Prob.Value/100)||
-                                ((check_other ==1||check_all==1) && report.others>Prob.Value/100))&&
+                            if(((check_cholera ==1||check_all==1) && report.cholera>Prob.Value/100)&&
                                 report.ocurred_time<enddate.Date&&report.ocurred_time>startdate.Date){
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                             pushpin.Name = report.id;
 
-                            pushpin.Background = new SolidColorBrush(Colors.DeepPink);
+                            pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFE, 0xC6, 0x44));
                             MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                             myMap.Children.Add(pushpin);
                         }
+                            else if (((check_rotavirus == 1 || check_all == 1) && report.rotavirus > Prob.Value / 100) &&
+                            report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                            {
+                                Pushpin pushpin = new Pushpin();
+                                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                                pushpin.Name = report.id;
+
+                                pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xA9, 0xAB, 0xAE));
+                                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                                myMap.Children.Add(pushpin);
+                            }
+                            else if (((check_salmonella == 1 || check_all == 1) && report.salmonella > Prob.Value / 100) &&
+                        report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                            {
+                                Pushpin pushpin = new Pushpin();
+                                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                                pushpin.Name = report.id;
+
+                                pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0xAE, 0xC8));
+                                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                                myMap.Children.Add(pushpin);
+                            }
+                            else if (((check_shigella == 1 || check_all == 1) && report.shigella > Prob.Value / 100) &&
+                    report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                            {
+                                Pushpin pushpin = new Pushpin();
+                                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                                pushpin.Name = report.id;
+
+                                pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x6D, 0xC3, 0x9F));
+                                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                                myMap.Children.Add(pushpin);
+                            }
+                            else if (((check_other == 1 || check_all == 1) && report.others > Prob.Value / 100) &&
+                report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                            {
+                                Pushpin pushpin = new Pushpin();
+                                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                                pushpin.Name = report.id;
+                                
+                                pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF,0xA9,0xAB,0xAE));
+                                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                                myMap.Children.Add(pushpin);
+                            }
+                            else
+                            {
+                                Pushpin pushpin = new Pushpin();
+                                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
+                                pushpin.Name = report.id;
+
+                                pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xA9, 0xAB, 0xAE));
+                                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
+                                myMap.Children.Add(pushpin);
+                            }
 
                         //}
                 }
