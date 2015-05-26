@@ -48,21 +48,21 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="ResponsibleAreaSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="326" Margin="90,250,90,0"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,680,0,0" Foreground="#FF2D4D5A"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,720,0,0" Foreground="#FF2D4D5A"/>
-                            <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,180,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
-                            <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="199,676,0,0" VerticalAlignment="Top" DateChanged="StartDate_Change"/>
-                            <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="199,716,0,0" VerticalAlignment="Top" DateChanged="EndDate_Change"/>
-                            <ToggleButton x:Name="AllBtn" Content="All" HorizontalAlignment="Left" Margin="196,595,0,0" VerticalAlignment="Top" Click="AllBtn_Click"/>
-                            <ToggleButton x:Name="CholeraBtn" Content="Cholera" HorizontalAlignment="Left" Margin="259,595,0,0" VerticalAlignment="Top" Checked="CholeraBtn_Click" Unchecked="CholeraBtn_unClick"/>
-                            <ToggleButton x:Name="RotavirusBtn" Content="Rotavirus" HorizontalAlignment="Left" Margin="358,595,0,0" VerticalAlignment="Top" Checked="RotavirusBtn_Click" Unchecked="RotavirusBtn_unClick"/>
-                            <ToggleButton x:Name="SalmonellaBtn" Content="Salmonella" HorizontalAlignment="Left" Margin="466,595,0,0" VerticalAlignment="Top" Checked="SalmonellaBtn_Click" Unchecked="SalmonellaBtn_unClick"/>
-                            <ToggleButton x:Name="ShigellaBtn" Content="Shigella" HorizontalAlignment="Left" Margin="585,595,0,0" VerticalAlignment="Top" Checked="ShigellaBtn_Click" Unchecked="ShigellaBtn_unClick"/>
-                            <ToggleButton x:Name="OtherBtn" Content="Other" HorizontalAlignment="Left" Margin="683,595,0,0" VerticalAlignment="Top" Checked="OtherBtn_Click" Unchecked="OtherBtn_unClick"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disease" VerticalAlignment="Top" FontSize="20" Margin="90,602,0,0" Foreground="#FF2D4D5A"/>
-                            <Slider x:Name="ProbabilitySider" HorizontalAlignment="Left" Margin="199,633,0,0" VerticalAlignment="Top" Width="554" LargeChange="1" Value="50" ValueChanged="ProbabilitySider_Change"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Probability" VerticalAlignment="Top" FontSize="20" Margin="90,641,0,0" Foreground="#FF2D4D5A"/>
+                            <Maps:Map x:Name="myMap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="326" Margin="90,312,90,0"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top" FontSize="20" Margin="90,222,0,0" Foreground="#FF2D4D5A"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top" FontSize="20" Margin="90,262,0,0" Foreground="#FF2D4D5A"/>
+                            <TextBlock x:Name="AreaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Responsible Area" VerticalAlignment="Top" FontSize="36" Margin="90,160,0,0" FontWeight="Bold" Foreground="#FF2D4D5A"/>
+                            <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Left" Margin="199,218,0,0" VerticalAlignment="Top" DateChanged="StartDate_Change" Width="280"/>
+                            <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="199,258,0,0" VerticalAlignment="Top" DateChanged="EndDate_Change"/>
+                            <ToggleButton x:Name="AllBtn" Content="All" HorizontalAlignment="Left" Margin="196,659,0,0" VerticalAlignment="Top" Click="AllBtn_Click" Background="White" BorderBrush="{x:Null}"/>
+                            <ToggleButton x:Name="CholeraBtn" Content="Cholera" HorizontalAlignment="Left" Margin="247,659,0,0" VerticalAlignment="Top" Checked="CholeraBtn_Click" Unchecked="CholeraBtn_unClick" Background="#FFFEC644" BorderBrush="{x:Null}"/>
+                            <ToggleButton x:Name="RotavirusBtn" Content="Rotavirus" HorizontalAlignment="Left" Margin="332,659,0,0" VerticalAlignment="Top" Checked="RotavirusBtn_Click" Unchecked="RotavirusBtn_unClick" Background="#FFED4B4A" BorderBrush="{x:Null}"/>
+                            <ToggleButton x:Name="SalmonellaBtn" Content="Salmonella" HorizontalAlignment="Left" Margin="428,659,0,0" VerticalAlignment="Top" Checked="SalmonellaBtn_Click" Unchecked="SalmonellaBtn_unClick" Background="#FF00AEC8" BorderBrush="{x:Null}"/>
+                            <ToggleButton x:Name="ShigellaBtn" Content="Shigella" HorizontalAlignment="Left" Margin="534,659,0,0" VerticalAlignment="Top" Checked="ShigellaBtn_Click" Unchecked="ShigellaBtn_unClick" Background="#FF6DC39F" BorderBrush="{x:Null}"/>
+                            <ToggleButton x:Name="OtherBtn" Content="Other" HorizontalAlignment="Left" Margin="620,659,0,0" VerticalAlignment="Top" Checked="OtherBtn_Click" Unchecked="OtherBtn_unClick" Background="#FFA9ABAE" BorderBrush="{x:Null}"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Disease" VerticalAlignment="Top" FontSize="20" Margin="90,666,0,0" Foreground="#FF2D4D5A"/>
+                            <Slider x:Name="ProbabilitySider" HorizontalAlignment="Left" Margin="199,701,0,0" VerticalAlignment="Top" Width="491" LargeChange="1" Value="50" ValueChanged="ProbabilitySider_Change"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Probability" VerticalAlignment="Top" FontSize="20" Margin="90,709,0,0" Foreground="#FF2D4D5A"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
@@ -77,7 +77,9 @@
                 <HubSection.Resources>
                     <ControlTemplate x:Key="PredictionSectionTemplate" TargetType="HubSection">
                         <Grid>
-                            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_10.png"/>
+                            <Image x:Name="lt5" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_10.png" Visibility="Collapsed"/>
+                            <Image x:Name="lt10" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_lt_20.png" Visibility="Collapsed"/>
+                            <Image x:Name="mt10" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="40,180,0,0" Source="Assets/total_case_mt_20.png" Visibility="Collapsed"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="260,180,0,0" Source="Assets/patients.png"/>
                             <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="480,180,0,0" Source="Assets/prediction_case.png"/>
                             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="520" Stroke="Black" VerticalAlignment="Top" Width="320" Margin="730,180,0,0"/>
@@ -105,7 +107,6 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </ScrollViewer>
-                            <Button x:Name="NoOfCasesBtn" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="607,669,0,0" Click="NoOfCasesBtn_Click"/>
                             <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="640" Margin="40,400,0,0">
                                 <Charting:Chart x:Name="NoOfCasesChart" Margin="0,10,0,0">
                                     <Charting:Chart.Palette>
@@ -191,16 +192,11 @@
                             <TextBlock x:Name="NoOfFemaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="297,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock x:Name="NoOfChildTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="351,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
                             <TextBlock x:Name="NoOfMaleTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="407,335,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Cholera" VerticalAlignment="Top" Margin="508,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rotavirus" VerticalAlignment="Top" Margin="581,258,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Shigella" VerticalAlignment="Top" Margin="508,279,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Salmonella" VerticalAlignment="Top" Margin="581,280,0,0" Foreground="#FF2E4E5B" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock x:Name="NoCholeraTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="542,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,219,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="603,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="542,304,0,0" FontWeight="Bold" FontSize="30" Foreground="White"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Others" VerticalAlignment="Top" Margin="581,380,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
-                            <TextBlock x:Name="NoOthersTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="642,380,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock x:Name="NoOthersTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="574,280,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock x:Name="NoShigellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="523,290,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock x:Name="NoCholeraTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="523,254,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock x:Name="NoRotaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="627,254,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock x:Name="NoSalmonellaTbl" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="626,290,0,0" Foreground="#FF2E4E5B" FontSize="18" FontWeight="Bold"/>
                         </Grid>
                     </ControlTemplate>
                 </HubSection.Resources>
