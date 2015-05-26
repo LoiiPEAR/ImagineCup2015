@@ -220,7 +220,7 @@ namespace DEDI
             if (disaster_reports.Count > 0)
             {
                 string Title = disaster_reports[0].disaster;
-                string Content = disaster_reports[0].description + "\n" + disaster_reports[0].ocurred_time.Date;
+                string Content = disaster_reports[0].description + "\n" + disaster_reports[0].occurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
                 await dialog.ShowAsync();
 
@@ -230,7 +230,7 @@ namespace DEDI
             {
                 //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
                 string Title = "Probability of this disease report";
-                string Content = "Cholera: " + d[0].cholera + "\n" + "Shigella: " + d[0].shigella + "\n" + "Salmoella: " + d[0].salmonella + "\n" + "Rotavirus: " + d[0].rotavirus + "\n" + "Others: " + d[0].others + "\n\n" + d[0].ocurred_time.Date;
+                string Content = "Cholera: " + d[0].cholera + "\n" + "Shigella: " + d[0].shigella + "\n" + "Salmoella: " + d[0].salmonella + "\n" + "Rotavirus: " + d[0].rotavirus + "\n" + "Others: " + d[0].others + "\n\n" + d[0].occurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
                 await dialog.ShowAsync();
 
@@ -239,7 +239,7 @@ namespace DEDI
             if (rf_reports.Count > 0)
             {
                 string Title = rf_reports[0].risk_factor;
-                string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
+                string Content = rf_reports[0].description + "\n" + rf_reports[0].occurred_time.Date;
                 dialog = new MessageDialog(Content, Title);
                 await dialog.ShowAsync();
 

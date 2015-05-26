@@ -40,7 +40,7 @@ namespace DEDI
                 user = reportdetail.hw;
                 report = reportdetail.report;
                 DescriptionTb.Text = report.description;
-                dateTb.Text = report.ocurred_time + "";
+                dateTb.Text = report.occurred_time + "";
                 RiskFactorImage.Source = report.icon;
                 TypeTb.Text = report.risk_factor;
                 var hw = await App.MobileService.GetTable<Health_Worker>().Where(r => r.id == report.hw_id).ToListAsync();

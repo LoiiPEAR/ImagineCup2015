@@ -137,9 +137,9 @@ namespace DEDI
 
                 var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
 
-                //var h = disease_report.GroupBy(d => d.ocurred_time.Date ).Select(d => new{dateOccurred=d.Key,noOfCases=d.Count()}).OrderBy(t => t.dateOccurred);
-                var all = disease_report.GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
-                //var others = disease_report.Where(d => d.others > 0.5).GroupBy(d => d.ocurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                //var h = disease_report.GroupBy(d => d.occurred_time.Date ).Select(d => new{dateOccurred=d.Key,noOfCases=d.Count()}).OrderBy(t => t.dateOccurred);
+                var all = disease_report.GroupBy(d => d.occurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                //var others = disease_report.Where(d => d.others > 0.5).GroupBy(d => d.occurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
 
                 //foreach(var report in h)
                 //{
@@ -250,7 +250,7 @@ namespace DEDI
                 foreach (Disease_Report report in reports)
                 {
 
-                    if (report.ocurred_time < enddate.Date && report.ocurred_time.Date > startdate.Date)
+                    if (report.occurred_time < enddate.Date && report.occurred_time.Date > startdate.Date)
                     {
                         var patient = await App.MobileService.GetTable<Patient>().Where(p => p.id == report.patient_id).ToListAsync();
                         if (patient.Count > 0)
@@ -346,6 +346,9 @@ namespace DEDI
         {
             try
             {
+                DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
+                DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
+                        
                 var reports = await App.MobileService.GetTable<Disaster_Report>().ToListAsync();
                
                     var client = new HttpClient();
@@ -362,9 +365,7 @@ namespace DEDI
 
                         //if (postcode == user_postcode)
                         //{
-                        DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
-                        DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
-                        if (report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                       if (report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
                         {
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
@@ -404,7 +405,8 @@ namespace DEDI
                         //string postcode = jsonResponse.results[0].address_components[jsonResponse.results[0].address_components.Count - 1].long_name;
                         //if (postcode == user_postcode)
                         //{
-                       if(report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date){
+                        if (report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
+                        {
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
 
@@ -448,7 +450,7 @@ namespace DEDI
                         DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
                 
                             if(((check_cholera ==1||check_all==1) && report.cholera>Prob.Value/100)&&
-                                report.ocurred_time<enddate.Date&&report.ocurred_time>startdate.Date){
+                                report.occurred_time<enddate.Date&&report.occurred_time>startdate.Date){
                             Pushpin pushpin = new Pushpin();
                             pushpin.Tapped += new TappedEventHandler(pushpinTapped);
                             pushpin.Name = report.id;
@@ -458,7 +460,7 @@ namespace DEDI
                             myMap.Children.Add(pushpin);
                         }
                             else if (((check_rotavirus == 1 || check_all == 1) && report.rotavirus > Prob.Value / 100) &&
-                            report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                            report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
                             {
                                 Pushpin pushpin = new Pushpin();
                                 pushpin.Tapped += new TappedEventHandler(pushpinTapped);
@@ -469,7 +471,7 @@ namespace DEDI
                                 myMap.Children.Add(pushpin);
                             }
                             else if (((check_salmonella == 1 || check_all == 1) && report.salmonella > Prob.Value / 100) &&
-                        report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                        report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
                             {
                                 Pushpin pushpin = new Pushpin();
                                 pushpin.Tapped += new TappedEventHandler(pushpinTapped);
@@ -480,7 +482,7 @@ namespace DEDI
                                 myMap.Children.Add(pushpin);
                             }
                             else if (((check_shigella == 1 || check_all == 1) && report.shigella > Prob.Value / 100) &&
-                    report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                    report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
                             {
                                 Pushpin pushpin = new Pushpin();
                                 pushpin.Tapped += new TappedEventHandler(pushpinTapped);
@@ -491,7 +493,7 @@ namespace DEDI
                                 myMap.Children.Add(pushpin);
                             }
                             else if (((check_other == 1 || check_all == 1) && report.others > Prob.Value / 100) &&
-                report.ocurred_time < enddate.Date && report.ocurred_time > startdate.Date)
+                report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
                             {
                                 Pushpin pushpin = new Pushpin();
                                 pushpin.Tapped += new TappedEventHandler(pushpinTapped);
@@ -530,7 +532,7 @@ namespace DEDI
                 if (disaster_reports.Count > 0)
                 {
                     string Title = disaster_reports[0].disaster;
-                    string Content = disaster_reports[0].description + "\n" + disaster_reports[0].ocurred_time.Date;
+                    string Content = disaster_reports[0].description + "\n" + disaster_reports[0].occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     await dialog.ShowAsync();
 
@@ -540,7 +542,7 @@ namespace DEDI
                 {
                     // string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
                     string Title = "Disease Report";
-                    string Content = disease_reports[0].description + "\n" + disease_reports[0].ocurred_time.Date;
+                    string Content = disease_reports[0].description + "\n" + disease_reports[0].occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     await dialog.ShowAsync();
 
@@ -549,7 +551,7 @@ namespace DEDI
                 if (rf_reports.Count > 0)
                 {
                     string Title = rf_reports[0].risk_factor;
-                    string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
+                    string Content = rf_reports[0].description + "\n" + rf_reports[0].occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     await dialog.ShowAsync();
 
@@ -877,7 +879,7 @@ namespace DEDI
                 if (disaster_reports.Count > 0)
                 {
                     string Title = disaster_reports[0].disaster;
-                    string Content = disaster_reports[0].description + "\n" + disaster_reports[0].ocurred_time.Date;
+                    string Content = disaster_reports[0].description + "\n" + disaster_reports[0].occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     await dialog.ShowAsync();
 
@@ -887,7 +889,7 @@ namespace DEDI
                 {
                     //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
                     string Title = "Probability of this disease report";
-                    string Content = "Cholera: " + d[0].cholera + "\n" + "Shigella: " + d[0].shigella + "\n" + "Salmoella: " + d[0].salmonella + "\n" + "Rotavirus: " + d[0].rotavirus + "\n" + "Others: " + d[0].others + "\n\n" + d[0].ocurred_time.Date;
+                    string Content = "Cholera: " + d[0].cholera + "\n" + "Shigella: " + d[0].shigella + "\n" + "Salmoella: " + d[0].salmonella + "\n" + "Rotavirus: " + d[0].rotavirus + "\n" + "Others: " + d[0].others + "\n\n" + d[0].occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     await dialog.ShowAsync();
 
@@ -896,7 +898,7 @@ namespace DEDI
                 if (rf_reports.Count > 0)
                 {
                     string Title = rf_reports[0].risk_factor;
-                    string Content = rf_reports[0].description + "\n" + rf_reports[0].ocurred_time.Date;
+                    string Content = rf_reports[0].description + "\n" + rf_reports[0].occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     await dialog.ShowAsync();
 

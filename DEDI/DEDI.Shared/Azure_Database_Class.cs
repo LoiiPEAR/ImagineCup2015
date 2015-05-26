@@ -78,8 +78,8 @@ namespace DEDI
         public string disaster { get; set; }
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
-        [JsonProperty(PropertyName = "ocurred_time")]
-        public DateTime ocurred_time { get; set; }
+        [JsonProperty(PropertyName = "occurred_time")]
+        public DateTime occurred_time { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
@@ -106,8 +106,8 @@ namespace DEDI
         public string disaster { get; set; }
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
-        [JsonProperty(PropertyName = "ocurred_time")]
-        public DateTime ocurred_time { get; set; }
+        [JsonProperty(PropertyName = "occurred_time")]
+        public DateTime occurred_time { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
@@ -133,8 +133,8 @@ namespace DEDI
         public string name { get; set; }
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
-        [JsonProperty(PropertyName = "ocurred_time")]
-        public DateTime ocurred_time { get; set; }
+        [JsonProperty(PropertyName = "occurred_time")]
+        public DateTime occurred_time { get; set; }
     }
 
     class Edited_Report
@@ -273,7 +273,7 @@ namespace DEDI
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
         [JsonProperty(PropertyName = "occurred_time")]
-        public DateTime ocurred_time { get; set; }
+        public DateTime occurred_time { get; set; }
         [JsonProperty(PropertyName = "cholera")]
         public double cholera { get; set; }
         [JsonProperty(PropertyName = "shigella")]
@@ -312,7 +312,7 @@ namespace DEDI
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
         [JsonProperty(PropertyName = "occurred_time")]
-        public DateTime ocurred_time { get; set; }
+        public DateTime occurred_time { get; set; }
         [JsonProperty(PropertyName = "Cholera")]
         public double cholera { get; set; }
         [JsonProperty(PropertyName = "Shigella")]
@@ -367,7 +367,7 @@ namespace DEDI
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
         [JsonProperty(PropertyName = "occurred_time")]
-        public DateTime ocurred_time { get; set; }
+        public DateTime occurred_time { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
@@ -395,7 +395,7 @@ namespace DEDI
         [JsonProperty(PropertyName = "reported_time")]
         public DateTime reported_time { get; set; }
         [JsonProperty(PropertyName = "occurred_time")]
-        public DateTime ocurred_time { get; set; }
+        public DateTime occurred_time { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
