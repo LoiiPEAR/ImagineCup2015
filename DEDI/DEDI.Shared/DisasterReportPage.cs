@@ -244,7 +244,7 @@ namespace DEDI
                     {
                         disaster = this.disaster,
                         description = DescriptionTb.Text,
-#if WINDOW_APP
+#if WINDOWS_APP
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
 #endif
@@ -252,10 +252,23 @@ namespace DEDI
                         longitude = MapControl.GetLocation(pin).Position.Longitude,
                         latitude = MapControl.GetLocation(pin).Position.Latitude,
 #endif
-                        ocurred_time = DatePicker.Date.UtcDateTime,
+                        occurred_time = DatePicker.Date.UtcDateTime,
                         hw_id = user.id,
                         reported_time = DateTime.Now.Date
                     };
+#if WINDOWS_PHONE_APP
+                    Disaster_Report d = new Disaster_Report()
+                    {
+                        disaster = this.disaster,
+                        description = DescriptionTb.Text,
+                        longitude = MapControl.GetLocation(pin).Position.Longitude,
+                        latitude = MapControl.GetLocation(pin).Position.Latitude,
+
+                        occurred_time = DatePicker.Date.UtcDateTime,
+                        hw_id = user.id,
+                        reported_time = DateTime.Now.Date
+                    };
+#endif
                     IMobileServiceTable<Disaster_Report> hwTable = App.MobileService.GetTable<Disaster_Report>();
                     await hwTable.InsertAsync(d);
                     this.Frame.Navigate(typeof(ReportsView), user);

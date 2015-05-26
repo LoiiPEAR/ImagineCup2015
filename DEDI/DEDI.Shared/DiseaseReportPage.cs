@@ -539,7 +539,7 @@ namespace DEDI
                         latitude = MapControl.GetLocation(pin).Position.Latitude,
 #endif
                         reported_time = DateTime.Today,
-                        ocurred_time = DatePicker.Date.UtcDateTime,
+                        occurred_time = DatePicker.Date.UtcDateTime,
                         patient_id = p.id,
                         prob_id = Prob[0].id,
                         cholera = Prob[0].Cholera,
@@ -655,7 +655,7 @@ namespace DEDI
 
                     //string Title = "Chance of cholera:" + disease_reports[0].cholera + "\nChance of shigella:" + disease_reports[0].shigella + "\nChance of salmonella:" + disease_reports[0].simolnelle + "\nChance of rotavirus:" + disease_reports[0].rotavirus + "\nChance of others:" + disease_reports[0].others;
                     string Title = "Probability of this disease report";
-                    string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n" + "Others: " + d.others + "\n\n" + d.ocurred_time.Date;
+                    string Content = "Cholera: " + d.cholera + "\n" + "Shigella: " + d.shigella + "\n" + "Salmoella: " + d.salmonella + "\n" + "Rotavirus: " + d.rotavirus + "\n" + "Others: " + d.others + "\n\n" + d.occurred_time.Date;
                     dialog = new MessageDialog(Content, Title);
                     dialog.Commands.Add(new UICommand(
                     "OK",

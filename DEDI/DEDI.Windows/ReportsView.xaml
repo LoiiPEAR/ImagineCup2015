@@ -17,7 +17,7 @@
                             <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                         </StackPanel>
                         <TextBlock Text="{Binding disaster}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding occurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
 
                         <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
                     </Grid>
@@ -32,7 +32,7 @@
                             <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                         </StackPanel>
                         <TextBlock Text="{Binding type}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding occurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
 
                         <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
                     </Grid>
@@ -47,7 +47,7 @@
                             <Image x:Name="disasterIcon" Source="{Binding icon}" Height="100" Width="100" Stretch="Fill"/>
                         </StackPanel>
                         <TextBlock Text="{Binding risk_factor}" Margin="150,20,0,0" TextTrimming="WordEllipsis" TextWrapping="Wrap" HorizontalAlignment="Left" FontFamily="Global User Interface" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding ocurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding occurred_time}" Opacity="0.49" FontSize="12" FontWeight="Semilight" Height="26" TextTrimming="WordEllipsis" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Global User Interface" Margin="0" FontStyle="Italic"/>
 
                         <TextBlock Text="{Binding description}" FontSize="12" Opacity="0.49" Margin="150,39,20,23" VerticalAlignment="Center" Height="38"/>
                     </Grid>

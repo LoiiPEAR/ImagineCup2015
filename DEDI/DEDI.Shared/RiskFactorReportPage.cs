@@ -238,7 +238,7 @@ namespace DEDI
                     description = DescriptionTb.Text,
                     latitude = Bing.Maps.MapLayer.GetPosition(pin).Latitude,
                     longitude = Bing.Maps.MapLayer.GetPosition(pin).Longitude,
-                    ocurred_time = DatePicker.Date.UtcDateTime,
+                    occurred_time = DatePicker.Date.DateTime,
                     hw_id = user.id,
                     reported_time = DateTime.Now.Date
                 };

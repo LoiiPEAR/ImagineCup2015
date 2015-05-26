@@ -47,7 +47,7 @@ namespace DEDI
                                 longitude = item.longitude,
                                 description = item.description,
                                 reported_time = item.reported_time,
-                                ocurred_time = item.ocurred_time,
+                                occurred_time = item.occurred_time,
                                 icon = src
                             });
 
@@ -84,7 +84,7 @@ namespace DEDI
                                 longitude = item.longitude,
                                 description = item.description,
                                 reported_time = item.reported_time,
-                                ocurred_time = item.ocurred_time,
+                                occurred_time = item.occurred_time,
                                 icon = src
                             });
 
@@ -117,7 +117,7 @@ namespace DEDI
                             longitude = item.longitude,
                             description = item.description,
                             reported_time = item.reported_time,
-                            ocurred_time = item.ocurred_time,
+                            occurred_time = item.occurred_time,
                             icon = src,
                             patient_id = item.patient_id,
                             cholera = item.cholera,

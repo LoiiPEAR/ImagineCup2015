@@ -25,7 +25,7 @@ namespace DEDI
         {
             try
             {
-                var reports = await App.MobileService.GetTable<Disaster_Report>().OrderByDescending(x => x.ocurred_time).ToListAsync();
+                var reports = await App.MobileService.GetTable<Disaster_Report>().OrderByDescending(x => x.occurred_time).ToListAsync();
                 ImageSource src = null;
                 List<Disaster_Report_View> disasterView = new List<Disaster_Report_View>();
                 if (reports.Count > 0)
@@ -48,7 +48,7 @@ namespace DEDI
                                 longitude = item.longitude,
                                 description = item.description,
                                 reported_time = item.reported_time,
-                                ocurred_time = item.ocurred_time,
+                                occurred_time = item.occurred_time,
                                 icon = src
                             });
 
@@ -84,7 +84,7 @@ namespace DEDI
                                 longitude = item.longitude,
                                 description = item.description,
                                 reported_time = item.reported_time,
-                                ocurred_time = item.ocurred_time,
+                                occurred_time = item.occurred_time,
                                 icon = src
                             });
 
@@ -150,7 +150,7 @@ namespace DEDI
                             longitude = item.longitude,
                             description = item.description,
                             reported_time = item.reported_time,
-                            ocurred_time = item.ocurred_time,
+                            occurred_time = item.occurred_time,
                             icon = src,
                             patient_id = item.patient_id,
                             cholera = item.cholera,
