@@ -728,7 +728,7 @@ namespace DEDI
             try
             {
 #if WINDOWS_APP
-            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.Credentials = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
             myMap.ZoomLevel = 10;
             myMap.MapType = MapType.Road;
 
@@ -762,7 +762,7 @@ namespace DEDI
             AddressTB.Text = jsonResponse.results[0].formatted_address;
 #endif
 #if WINDOWS_PHONE_APP
-                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.MapServiceToken = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
                 myMap.ZoomLevel = 10;
 
                 pin = new Grid()

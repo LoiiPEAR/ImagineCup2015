@@ -1,4 +1,20 @@
 ﻿
+using Bing.Maps;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using Windows.Devices.Geolocation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using WinRTXamlToolkit.Controls.DataVisualization.Charting;
+
+
 #if WINDOWS_APP
 using Bing.Maps;
 #endif
@@ -31,11 +47,7 @@ namespace DEDI
 {
     public sealed partial class DashBoard
     {
-        double cholera = 0;
-        double shigella = 0;
-        double rotavirus = 0;
-        double salmonella = 0;
-        double others = 0;
+        
         int check_cholera = 0;
         int check_shigella = 0;
         int check_rotavirus = 0;
@@ -48,7 +60,7 @@ namespace DEDI
 #endif
         public class NumberOfCases
         {
-            public DateTime date { get; set; }
+            public string date { get; set; }
             public int cases { get; set; }
         }
         Health_Worker user;
@@ -91,7 +103,7 @@ namespace DEDI
                                                                                TimeSpan.FromSeconds(10));
 #if WINDOWS_APP
                 myMap = FindChildControl<Map>(ResponsibleAreaSection, "myMap") as Map;
-                myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.Credentials = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
                 myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Center = new Bing.Maps.Location(currentPosition.Coordinate.Latitude, currentPosition.Coordinate.Longitude);
@@ -135,30 +147,63 @@ namespace DEDI
                 List<NumberOfCases> Salmonella = new List<NumberOfCases>();
                 List<NumberOfCases> Others = new List<NumberOfCases>();
 
-                var disease_report = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
+                var disease_report = await App.MobileService.GetTable<Disease_Report>().OrderBy(d=>d.occurred_time).ToListAsync();
 
                 //var h = disease_report.GroupBy(d => d.occurred_time.Date ).Select(d => new{dateOccurred=d.Key,noOfCases=d.Count()}).OrderBy(t => t.dateOccurred);
-                var all = disease_report.GroupBy(d => d.occurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
+                //var all = disease_report.GroupBy(d => d.occurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
                 //var others = disease_report.Where(d => d.others > 0.5).GroupBy(d => d.occurred_time.Date).Select(d => new { dateOccurred = d.Key, noOfCases = d.Count() }).OrderBy(t => t.dateOccurred);
 
                 //foreach(var report in h)
                 //{
                 //    All.Add(new NumberOfCases() {date = report.dateOccurred , cases = report.noOfCases});
                 //}
-
-                foreach (var report in all)
+                Slider Prob = FindChildControl<Slider>(ResponsibleAreaSection, "ProbabilitySider") as Slider;
+                DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
+                DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
+                int no_cholera = 0;
+                int no_shigella = 0;
+                int no_salmonella = 0;
+                int no_rotavirus = 0;
+                int i = 0;
+               int j =0;
+                for (j =0; j<disease_report.Count;j++)
                 {
-                    DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
-                    DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
-                    if (report.dateOccurred < enddate.Date && report.dateOccurred > startdate.Date)
+                   var report = disease_report[j];
+                    if (report.occurred_time < enddate.Date && report.occurred_time > startdate.Date)
                     {
-                        Cholera.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(cholera) });
-                        Rotavirus.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(rotavirus) });
-                        Shigella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(shigella) });
-                        Salmonella.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)Math.Round(salmonella) });
-                        Others.Add(new NumberOfCases() { date = report.dateOccurred, cases = (int)(disease_report.Count - Math.Round(cholera) - Math.Round(shigella) - Math.Round(rotavirus) - Math.Round(salmonella)) });
+                       
+                        
+                            if (report.cholera > Prob.Value / 100) no_cholera++;
+                            else if (report.shigella > Prob.Value / 100) no_shigella++;
+                            else if (report.salmonella > Prob.Value / 100) no_salmonella++;
+                            else if (report.rotavirus > Prob.Value / 100) no_rotavirus++;
+                            i++;
+                            if (disease_report.Count - 1 == j)
+                            {
+                                Cholera.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_cholera });
+                                Rotavirus.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_rotavirus });
+                                Shigella.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_shigella });
+                                Salmonella.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_salmonella });
+                                Others.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = i - no_cholera - no_rotavirus - no_salmonella - no_shigella });
+                            
+                            }
+                            else if (disease_report[j+1].occurred_time.Date != report.occurred_time.Date || disease_report[disease_report.Count - 1].id == report.id)
+                            {
+                                Cholera.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_cholera });
+                                Rotavirus.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_rotavirus });
+                                Shigella.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_shigella });
+                                Salmonella.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = no_salmonella });
+                                Others.Add(new NumberOfCases() { date = report.occurred_time.ToString("MM / dd / yyyy"), cases = i - no_cholera - no_rotavirus - no_salmonella - no_shigella });
+                                no_cholera = 0;
+                                no_shigella = 0;
+                                no_salmonella = 0;
+                                no_rotavirus = 0;
+                                i = 0;
+                            }
                     }
+                    
                 }
+                
                 //foreach (var report in others)
                 //{
                 //    Others.Add(new NumberOfCases() { date = report.dateOccurred, cases = report.noOfCases });
@@ -237,15 +282,15 @@ namespace DEDI
                 int female = 0;
                 int child = 0;
                 int NoofCases = 0;
-                cholera = 0;
-                shigella = 0;
-                rotavirus = 0;
-                salmonella = 0;
-                others = 0;
+                double cholera = 0;
+                double shigella = 0;
+                double rotavirus = 0;
+                double salmonella = 0;
+                double others = 0;
                 DatePicker startdate = FindChildControl<DatePicker>(ResponsibleAreaSection, "StartDatePicker") as DatePicker;
                 DatePicker enddate = FindChildControl<DatePicker>(ResponsibleAreaSection, "EndDatePicker") as DatePicker;
                 var reports = await App.MobileService.GetTable<Disease_Report>().ToListAsync();
-               
+                Slider Prob = FindChildControl<Slider>(ResponsibleAreaSection, "ProbabilitySider") as Slider;
                 List<Dashboard_Report> dashboard_report = new List<Dashboard_Report>();
                 foreach (Disease_Report report in reports)
                 {
@@ -259,10 +304,10 @@ namespace DEDI
                             else if (patient[0].gender == "M" && CalculateAge(patient[0].dob) > 12) male++;
                             else if (CalculateAge(patient[0].dob) <= 12) child++;
                         }
-                        cholera += report.cholera;
-                        shigella += report.shigella;
-                        salmonella += report.salmonella;
-                        rotavirus += report.rotavirus;
+                        if(report.cholera > Prob.Value/100)cholera++;
+                        else if (report.shigella > Prob.Value/100) shigella++;
+                        else if (report.salmonella > Prob.Value/100) salmonella++;
+                        else if (report.rotavirus > Prob.Value/100) rotavirus++;
                         NoofCases++;
                         dashboard_report.Add(new Dashboard_Report()
                         {
@@ -282,28 +327,7 @@ namespace DEDI
                     
                 }
 
-                Image lt5 = FindChildControl<Image>(PredictionSection, "lt5") as Image;
-                Image lt10 = FindChildControl<Image>(PredictionSection, "lt10") as Image;
-                Image mt10 = FindChildControl<Image>(PredictionSection, "mt10") as Image;
-
-                if (NoofCases < 5)
-                {
-                    lt5.Visibility = Visibility.Visible;
-                    lt10.Visibility = Visibility.Collapsed;
-                    mt10.Visibility = Visibility.Collapsed;
-                }
-                else if (NoofCases < 10 && reports.Count >= 5)
-                {
-                    lt5.Visibility = Visibility.Collapsed;
-                    lt10.Visibility = Visibility.Visible;
-                    mt10.Visibility = Visibility.Collapsed;
-                }
-                else if (NoofCases >= 10)
-                {
-                    lt5.Visibility = Visibility.Collapsed;
-                    lt10.Visibility = Visibility.Collapsed;
-                    mt10.Visibility = Visibility.Visible;
-                }
+               
                 TextBlock NoOfCasesTbl = FindChildControl<TextBlock>(PredictionSection, "NoOfCasesTbl") as TextBlock;
                 NoOfCasesTbl.Text = NoofCases + "";
 
@@ -503,16 +527,7 @@ namespace DEDI
                                 MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
                                 myMap.Children.Add(pushpin);
                             }
-                            else
-                            {
-                                Pushpin pushpin = new Pushpin();
-                                pushpin.Tapped += new TappedEventHandler(pushpinTapped);
-                                pushpin.Name = report.id;
-
-                                pushpin.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xA9, 0xAB, 0xAE));
-                                MapLayer.SetPosition(pushpin, new Bing.Maps.Location(report.latitude, report.longitude));
-                                myMap.Children.Add(pushpin);
-                            }
+                            
 
                         //}
                 }
@@ -682,6 +697,8 @@ namespace DEDI
                 loadDisaster();
                 loadRF();
             }
+            loadNum();
+            loadgraph();
         }
         private void StartDate_Change(object sender, DatePickerValueChangedEventArgs e)
         {
@@ -711,7 +728,7 @@ namespace DEDI
         public async void InitializeMap()
         {
 
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.MapServiceToken = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
             myMap.ZoomLevel = 17;
 
 

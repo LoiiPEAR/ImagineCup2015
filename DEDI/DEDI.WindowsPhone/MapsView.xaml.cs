@@ -46,8 +46,8 @@ namespace DEDI
 
        public async void InitializeMap()
         {
-            
-            myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+
+            myMap.MapServiceToken = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
             myMap.ZoomLevel = 10;
 
 

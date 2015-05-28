@@ -292,7 +292,7 @@ namespace DEDI
 
 #if WINDOWS_APP
                 myMap = FindChildControl<Map>(MapSection, "myMap") as Map;
-                myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.Credentials = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
                 myMap.ZoomLevel = 10;
                 myMap.MapType = MapType.Road;
                 myMap.Width = 420;
@@ -608,7 +608,7 @@ namespace DEDI
         {
             try
             {
-                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.MapServiceToken = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
                 myMap.ZoomLevel = 10;
 
 

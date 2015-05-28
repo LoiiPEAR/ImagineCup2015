@@ -216,7 +216,7 @@ namespace DEDI
             {
 #if WINDOWS_APP
 
-            myMap.Credentials = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+            myMap.Credentials = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
             myMap.ZoomLevel = 10;
             myMap.MapType = MapType.Road;
 
@@ -250,7 +250,7 @@ namespace DEDI
             AddressTbl.Text = jsonResponse.results[0].formatted_address;
 #endif
 #if WINDOWS_PHONE_APP
-                myMap.MapServiceToken = "AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht";
+                myMap.MapServiceToken = "AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6";
                 myMap.ZoomLevel = 10;
 
                 pin = new Grid()
@@ -337,7 +337,7 @@ namespace DEDI
         {
             
             //var client = new HttpClient();
-            //Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + obj.Latitude + "," + obj.Longitude + "?o=&key=AoLBvVSHDImAEcL4sNj6pWaEUMNR-lOCm_D_NtXhokvHCMOoKI7EnpJ_9A8dH5Ht");
+            //Uri uri = new Uri("http://dev.virtualearth.net/REST/v1/Locations/" + obj.Latitude + "," + obj.Longitude + "?o=&key=AgRNfxvPZHZijcTen8d_YdjOczkXbxKLoIegltoNSdqhGqHmq5PpeZxDvyFw4HM6");
             //var response = await client.GetAsync(uri);
             //var result = await response.Content.ReadAsStringAsync();
             //MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
