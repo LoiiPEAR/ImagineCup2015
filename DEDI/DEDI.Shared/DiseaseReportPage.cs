@@ -73,55 +73,6 @@ namespace DEDI
             stoolType.Items.Add("normal");
         }
 
-        private void findStat()
-        {
-            using (SQLiteConnection conn = new SQLiteConnection("localsync.db"))
-            {
-                StringBuilder query = new StringBuilder();
-                query.Append("SELECT Cholera");
-                query.Append("FROM Bayesian_Prob WHERE");
-
-                for (int i = 0; i < addSymptom.Items.Count; i++)
-                {
-                    Symptom item = addSymptom.Items[0] as Symptom;
-                    if (item.symptom.Equals("Diarrhea"))
-                    {
-                        query.Append("nature_of_stool='" + stoolnature + "' AND stool_frequency_per_day='" + stoolfrequency + "' AND stool_type='" + stooltype + "'");
-                    }
-                    else if (item.symptom.Equals("Reduced urine"))
-                    {
-                        query.Append("urine_output='" + urine + "'");
-                    }
-                    else if (item.symptom.Equals("Fever"))
-                    {
-                        query.Append("fever='present'");
-                    }
-                    else if (item.symptom.Equals("Decreased skin turgor"))
-                    {
-                        query.Append("skin_turgor='" + skinturgor + "'");
-                    }
-                    else if (item.symptom.Equals("Vomiting"))
-                    {
-                        query.Append("vomiting='present'");
-                    }
-                    else if (item.symptom.Equals("Cold skin"))
-                    {
-                        query.Append("skin_temperature='cold'");
-                    }
-                    else if (item.symptom.Equals("Thirst"))
-                    {
-                        query.Append("thirst='" + thirst + "'");
-                    }
-                    else if (item.symptom.Equals("Sunken eyes"))
-                    {
-                        query.Append("eyes='sunken'");
-                    }
-                    if (i != addSymptom.Items.Count - 1) query.Append(" AND ");
-                }
-                
-            }
-        }
-
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreateReportPage), user);

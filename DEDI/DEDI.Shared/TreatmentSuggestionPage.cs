@@ -16,7 +16,7 @@ namespace DEDI
          }
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(HomePage), user);
+            this.Frame.Navigate(typeof(DashBoard), user);
         }
     }
 }
